@@ -68,3 +68,55 @@ O jogo poderá incluir várias categorias educativas:
 - 🌦️ **Natureza:** estações do ano, meteorologia, plantas e flores.
 - 📅 **Tempo:** dias da semana, meses e horas.
 - 🏫 **Escola:** materiais escolares
+
+---
+
+## Desenvolvimento Android — PE-001
+
+A estrutura inicial do plugin é um **APK independente** da aplicação VCCAprender,
+com um identificador de pacote próprio. Esta fase disponibiliza um ecrã inicial
+de arranque para confirmar que o projeto compila e abre no Android. A integração
+com o Game Plugin SDK v1 e os jogos serão adicionados nas issues PE-003 em diante.
+
+| Componente | Versão |
+|---|---|
+| JDK | 17 |
+| Gradle Wrapper | 8.9 |
+| Android Gradle Plugin | 8.7.3 |
+| Kotlin | 2.0.21 |
+| Android SDK (compile/target) | 35 |
+| Android minSdk | 26 |
+| Package/applicationId | com.vcc.aprender.playenglish |
+| Versão inicial | 0.1.0 (versionCode 1) |
+
+**Pré-requisitos:** JDK 17 e Android SDK Platform 35 instalados; definir
+`ANDROID_HOME` ou criar um `local.properties` (ignorado pelo Git) apontando
+para o SDK, por exemplo `sdk.dir=/caminho/para/android-sdk`.
+
+**Linux / macOS / Codespaces:**
+
+```bash
+chmod +x ./gradlew
+./gradlew :app:assembleDebug
+./gradlew :app:testDebugUnitTest
+```
+
+**Windows:**
+
+```powershell
+.\gradlew.bat :app:assembleDebug
+.\gradlew.bat :app:testDebugUnitTest
+```
+
+**APK:** `app/build/outputs/apk/debug/app-debug.apk`.
+Pode ser instalado com `adb install -r app/build/outputs/apk/debug/app-debug.apk`.
+
+O Gradle Wrapper (incluindo `gradle-wrapper.jar`) está incluído e utiliza
+a distribuição oficial Gradle 8.9, evitando dependência de uma instalação
+global de Gradle. A aplicação é independente e pode ser instalada em paralelo
+com `com.vcc.aprender`.
+
+**Nota:** este ecrã de arranque é temporário. Nesta issue, o APK ainda
+**não é reconhecido como plugin** pela VCCAprender, pois o contrato,
+a Activity exportada e as verificações de assinatura pertencem às
+issues PE-003 a PE-006. Não acrescentar o módulo ao projeto principal.
