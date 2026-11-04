@@ -1,0 +1,96 @@
+# PE-009: Build and test the independent Android plugin APK.
+# Release signing and automatic versioning are handled separately in PE-010.
+name: Android CI - Debug APK
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: android-debug-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  build:
+    name: Test and build Debug APK
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          # The action's default includes the removed legacy "tools" package.
+          packages: 'platform-tools'
+
+      - name: Install Android SDK 35
+        shell: bash
+        run: |
+          set -euo pipefail
+          sdkmanager --install "platforms;android-35" "build-tools;35.0.0"
+
+      - name: Set up Gradle and cache
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Verify Gradle Wrapper
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f gradle/wrapper/gradle-wrapper.jar
+          test -f gradle/wrapper/gradle-wrapper.properties
+          chmod +x ./gradlew
+          ./gradlew --version
+
+      - name: Unit tests and Debug APK
+        shell: bash
+        run: |
+          set -euo pipefail
+          ./gradlew :app:testDebugUnitTest :app:assembleDebug \
+            --no-daemon --max-workers=2 --no-parallel --console=plain
+
+      - name: Upload test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: VCCAprenderPlayEnglish-test-results-${{ github.run_number }}
+          path: |
+            app/build/test-results/testDebugUnitTest/
+            app/build/reports/tests/testDebugUnitTest/
+          if-no-files-found: ignore
+          retention-days: 14
+
+      - name: Upload APK Debug
+        uses: actions/upload-artifact@v4
+        with:
+          name: VCCAprenderPlayEnglish-debug-${{ github.run_number }}
+          path: app/build/outputs/apk/debug/*.apk
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Build summary
+        if: success()
+        shell: bash
+        run: |
+          {
+            echo "### VCCAprenderPlayEnglish - APK Debug"
+            echo "Testes unitários e compilação concluídos com sucesso."
+            echo "Descarrega o artefacto **VCCAprenderPlayEnglish-debug-${GITHUB_RUN_NUMBER}** nesta execução."
+            echo "Este APK Debug ainda não implementa o contrato de plugin da VCCAprender (PE-003/PE-004)."
+          } >> "${GITHUB_STEP_SUMMARY}"

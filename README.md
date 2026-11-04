@@ -120,3 +120,22 @@ com `com.vcc.aprender`.
 **não é reconhecido como plugin** pela VCCAprender, pois o contrato,
 a Activity exportada e as verificações de assinatura pertencem às
 issues PE-003 a PE-006. Não acrescentar o módulo ao projeto principal.
+
+---
+
+## CI — PE-009: gerar APK automaticamente no GitHub
+
+O workflow [Android CI - Debug APK](.github/workflows/android-ci.yml) executa automaticamente em **push para `main`** e nos **Pull Requests para `main`**. Também pode ser iniciado manualmente em **Actions → Android CI - Debug APK → Run workflow**, depois de o workflow existir na branch predefinida.
+
+O pipeline:
+
+1. Configura **JDK 17**, Android SDK Platform **35**, Build Tools **35.0.0** e o Gradle Wrapper do projeto (**8.9**).
+2. Executa `./gradlew :app:testDebugUnitTest :app:assembleDebug`.
+3. Publica os relatórios de testes no artefacto `VCCAprenderPlayEnglish-test-results-<run_number>`.
+4. Em caso de sucesso, publica o APK Debug no artefacto **`VCCAprenderPlayEnglish-debug-<run_number>`**.
+
+**Como descarregar:** abrir **Actions**, selecionar a execução concluída com sucesso, ir à secção **Artifacts**, descarregar o ZIP do APK e extrair `app-debug.apk`. Para instalar no Android, usar `adb install -r app-debug.apk` ou o instalador de APK do dispositivo.
+
+Este APK Debug é apenas para desenvolvimento: **não está assinado com a chave Release do host**. A assinatura de produção será tratada em **PE-008/PE-010**. A descoberta e comunicação com a VCCAprender serão implementadas em **PE-003 a PE-006**.
+
+A CI não publica Releases nem incrementa versões automaticamente nesta etapa.
