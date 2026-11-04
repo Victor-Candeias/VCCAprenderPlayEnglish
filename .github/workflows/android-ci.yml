@@ -77,12 +77,39 @@ jobs:
             :app:testDebugUnitTest :app:compileDebugAndroidTestKotlin :app:assembleDebug \
             --no-daemon --max-workers=2 --no-parallel --console=plain
 
+      - name: Verify plugin discovery metadata in generated APK
+        shell: bash
+        run: |
+          set -euo pipefail
+          apk="app/build/outputs/apk/debug/app-debug.apk"
+          test -s "$apk"
+          manifest_dump="$RUNNER_TEMP/playenglish-manifest.txt"
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump xmltree "$apk" AndroidManifest.xml > "$manifest_dump"
+          for needle in \
+            "PlayEnglishPluginActivity" \
+            "com.vcc.aprender.permission.PLAY_GAME" \
+            "com.vcc.aprender.plugin.action.PLAY" \
+            "android.intent.category.DEFAULT" \
+            "com.vcc.aprender.plugin.GAME_ID" \
+            "com.vcc.aprender.playenglish" \
+            "com.vcc.aprender.plugin.GAME_TITLE" \
+            "VCC Brincar ao Inglês" \
+            "com.vcc.aprender.plugin.PROTOCOL_VERSION"; do
+            if ! grep -Fq "$needle" "$manifest_dump"; then
+              echo "::error::Falta um campo de descoberta do plugin no APK: $needle"
+              exit 1
+            fi
+          done
+          echo "Metadata de descoberta do plugin confirmada no APK Debug."
+
       - name: Upload test reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: VCCAprenderPlayEnglish-test-results-${{ github.run_number }}
           path: |
+            game-plugin-sdk/build/test-results/testDebugUnitTest/
+            game-plugin-sdk/build/reports/tests/testDebugUnitTest/
             app/build/test-results/testDebugUnitTest/
             app/build/reports/tests/testDebugUnitTest/
           if-no-files-found: ignore
@@ -104,5 +131,5 @@ jobs:
             echo "### VCCAprenderPlayEnglish - APK Debug"
             echo "Testes unitários e compilação concluídos com sucesso."
             echo "Descarrega o artefacto **VCCAprenderPlayEnglish-debug-${GITHUB_RUN_NUMBER}** nesta execução."
-            echo "Este APK Debug ainda não implementa o contrato de plugin da VCCAprender (PE-003/PE-004)."
+            echo "O APK declara a Activity do plugin v1; resultados reais e gestao completa de sessao serao implementados nas PE-005/006."
           } >> "${GITHUB_STEP_SUMMARY}"

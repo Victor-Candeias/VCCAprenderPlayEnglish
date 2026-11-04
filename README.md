@@ -203,3 +203,50 @@ Consultar **[game-plugin-sdk/UPSTREAM.md](game-plugin-sdk/UPSTREAM.md)** para a 
 ```
 
 **Limites desta fase:** ainda não se declara a `Activity` do plugin, os metadados de descoberta nem a permissão de assinatura no `AndroidManifest.xml` (PE-004/005). Estes testes verificam apenas o contrato e a serialização, não uma ligação real à VCCAprender nem a aceitação do APK pelo host.
+
+---
+
+## PE-004 — Descoberta do plugin pela VCCAprender
+
+O APK contém agora **duas Activities distintas**:
+
+- `MainActivity`: entrada manual para testar os ecrãs Compose diretamente.
+- `plugin.PlayEnglishPluginActivity`: entrada reservada à **VCCAprender** e descoberta automaticamente pelo `InstalledGameRegistry` do host.
+
+**Manifesto v1 do plugin:**
+
+| Campo | Valor |
+|---|---|
+| Action | `com.vcc.aprender.plugin.action.PLAY` |
+| Category | `android.intent.category.DEFAULT` |
+| GAME_ID | `com.vcc.aprender.playenglish` |
+| GAME_TITLE | `VCC Brincar ao Inglês` |
+| PROTOCOL_VERSION | `1` (inteiro) |
+| Activity | `com.vcc.aprender.playenglish.plugin.PlayEnglishPluginActivity` |
+| Exportada | `true` |
+| Permissão da Activity / solicitada pelo APK | `com.vcc.aprender.permission.PLAY_GAME` |
+
+A permissão é **definida apenas na VCCAprender**, com `protectionLevel="signature"`: o plugin solicita-a, mas não a redefine. A descoberta pelo host também exige um certificado de assinatura **igual ao do host**, um `GAME_ID` único e metadata válida. Não é utilizado `QUERY_ALL_PACKAGES` nem existe carregamento de código remoto.
+
+A Activity de plugin recusa entradas inválidas e, antes de abrir o ecrã Compose, verifica de forma preventiva o chamador `com.vcc.aprender`, a assinatura, `GameProtocol.readRequest(intent)` e a identidade do jogo. Estes controlos são uma **proteção mínima de arranque**; a gestão completa de sessão e emissão de resultados ficam nas PE-005/006.
+
+**Estado funcional nesta fase:** quando o host inicia uma sessão válida, o plugin apresenta os ecrãs de pré-visualização existentes. Ao fechar, devolve **`RESULT_CANCELED`** e **não guarda pontuações**. Os modos de jogo e voz ainda não foram implementados.
+
+### Como validar
+
+O GitHub Actions compila o APK, executa os testes unitários e confirma no APK resultante os campos essenciais do manifesto. Os testes Android instrumentados (descoberta real por PackageManager) são **compilados na CI**, mas precisam de um dispositivo ou emulador para execução:
+
+```bash
+./gradlew :game-plugin-sdk:testDebugUnitTest :app:testDebugUnitTest \
+    :app:compileDebugAndroidTestKotlin :app:assembleDebug
+./gradlew :app:connectedDebugAndroidTest
+```
+
+Para testar no host, instalar ambos os APKs e escolher um perfil na VCCAprender. O jogo só deverá aparecer se os **certificados dos dois APKs forem iguais**. Para comparar os certificados:
+
+```bash
+apksigner verify --print-certs VCCAprender-debug.apk
+apksigner verify --print-certs VCCAprenderPlayEnglish-debug.apk
+```
+
+**Atenção:** o APK Debug gerado pelo GitHub Actions tem a chave Debug do runner, que pode não coincidir com a assinatura do APK host instalado a partir de outra máquina. Para testes reais, compilar/assinar **ambos** no mesmo ambiente ou usar assinaturas Release coincidentes (PE-008/010). A CI do plugin, por si só, não prova descoberta real no host.
