@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">VCC Brincar ao Inglês</string>
-    <string name="welcome_title">VCC Brincar ao Inglês</string>
-    <string name="welcome_message">Projeto Android inicializado. Os jogos e a integração com a VCCAprender serão desenvolvidos nas próximas fases.</string>
+    <string name="nav_back">Voltar</string>
+    <string name="home_welcome">Hello, explorador!</string>
+    <string name="home_intro">Vamos aprender palavras em inglês com jogos e descobertas?</string>
+    <string name="home_quiz_title">Descobre a palavra</string>
+    <string name="home_quiz_subtitle">Escolhe a resposta certa entre três opções.</string>
+    <string name="home_speech_title">Como se diz em inglês?</string>
+    <string name="home_speech_subtitle">Descobre palavras e pratica a pronúncia.</string>
+    <string name="home_footer">Aprende ao teu ritmo. Vamos brincar!</string>
+    <string name="quiz_title">Descobre a palavra</string>
+    <string name="quiz_preview_title">Prepara-te para jogar!</string>
+    <string name="quiz_preview_body">Em breve vais responder a perguntas sobre cores, animais, números e muito mais.</string>
+    <string name="quiz_not_ready">Este ecrã de navegação está pronto. As perguntas e respostas serão implementadas na PE-015.</string>
+    <string name="quiz_preview_results">Ver ecrã de resultados</string>
+    <string name="pronunciation_title">Como se diz em inglês?</string>
+    <string name="pronunciation_example_pt">Português: Bom dia</string>
+    <string name="pronunciation_example_en">Inglês: Good morning</string>
+    <string name="pronunciation_not_ready">A pronúncia inglesa será adicionada na PE-021 e a prática de palavras na PE-023.</string>
+    <string name="pronunciation_audio_coming">Ouvir em inglês (em breve)</string>
+    <string name="results_title">Resultados</string>
+    <string name="results_placeholder_title">As tuas conquistas aparecem aqui!</string>
+    <string name="results_placeholder_body">Quando o jogo de perguntas estiver pronto, vais poder ver os resultados da tua aventura.</string>
+    <string name="results_go_home">Voltar ao início</string>
 </resources>
