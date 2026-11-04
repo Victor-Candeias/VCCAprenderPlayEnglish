@@ -19,13 +19,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.vcc.aprender.playenglish.R
+import com.vcc.aprender.playenglish.plugin.QuizCompletion
 import com.vcc.aprender.playenglish.ui.components.ChildScreenLayout
 import com.vcc.aprender.playenglish.ui.theme.PlayEnglishColors
 
 @Composable
+@Suppress("UNUSED_PARAMETER")
 fun QuizScreen(
     onBack: () -> Unit,
-    onPreviewResults: () -> Unit
+    onPreviewResults: () -> Unit,
+    onQuizCompleted: (QuizCompletion) -> Unit = {}
 ) {
     ChildScreenLayout(
         title = stringResource(R.string.quiz_title),

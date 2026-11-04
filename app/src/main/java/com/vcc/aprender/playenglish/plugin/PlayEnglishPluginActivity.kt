@@ -9,21 +9,20 @@ import com.vcc.aprender.playenglish.ui.navigation.PlayEnglishNavHost
 import com.vcc.aprender.playenglish.ui.theme.PlayEnglishTheme
 
 /**
- * Entry point reserved for VCCAprender.
+ * Entry point reserved for VCCAprender; only signed, validated host sessions
+ * can open the plugin. The request is not exposed to the standalone launcher.
  *
- * Only the framework-provided callingPackage may identify the caller.
- * Signature equality is checked via PackageManager; caller-controlled extras
- * are decoded only after both checks pass. Invalid launches cancel and close.
- *
- * The PE-005 preview intentionally never returns a score (PE-006).
+ * The plugin reports RESULT_OK exactly once *after* a real completed quiz.
+ * Until the quiz engine is implemented (PE-015/PE-020), the existing preview
+ * cannot invoke onQuizCompleted and closing returns RESULT_CANCELED.
  */
 class PlayEnglishPluginActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Default and all unsuccessful exits must not be interpreted as scores.
         setResult(RESULT_CANCELED)
 
         val caller = callingPackage
-        // Check signatures only for the expected Android-provided caller.
         val sameSignature = caller == PluginLaunchGate.HOST_PACKAGE &&
             runCatching {
                 packageManager.checkSignatures(
@@ -43,11 +42,17 @@ class PlayEnglishPluginActivity : ComponentActivity() {
             return
         }
 
-        // The opaque, validated request is intentionally not logged or exported.
-        // PE-006 will use it to produce a real GameProtocol result.
+        val resultSender = PluginQuizResultSender(request)
         setContent {
             PlayEnglishTheme {
-                PlayEnglishNavHost()
+                PlayEnglishNavHost(
+                    onQuizCompleted = { completedQuiz ->
+                        resultSender.createResultOnce(completedQuiz)?.let { resultIntent ->
+                            setResult(RESULT_OK, resultIntent)
+                            finish()
+                        }
+                    }
+                )
             }
         }
     }
