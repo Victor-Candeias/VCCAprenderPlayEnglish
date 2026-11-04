@@ -250,3 +250,39 @@ apksigner verify --print-certs VCCAprenderPlayEnglish-debug.apk
 ```
 
 **Atenção:** o APK Debug gerado pelo GitHub Actions tem a chave Debug do runner, que pode não coincidir com a assinatura do APK host instalado a partir de outra máquina. Para testes reais, compilar/assinar **ambos** no mesmo ambiente ou usar assinaturas Release coincidentes (PE-008/010). A CI do plugin, por si só, não prova descoberta real no host.
+
+---
+
+## PE-005 — Validação de segurança no arranque da sessão
+
+A entrada protegida `PlayEnglishPluginActivity` passou a utilizar o validador
+`PluginSessionValidator` que aplica a seguinte política **fail-closed**:
+
+1. Confirmar que o **chamador real**, obtido de `Activity.callingPackage`,
+   é `com.vcc.aprender` (nunca confiar num extra enviado pelo chamador).
+2. Confirmar que `PackageManager.checkSignatures("com.vcc.aprender", packageName)`
+   devolve `SIGNATURE_MATCH`; na ausência do host ou em erro, negar.
+3. Aceitar apenas um `Intent` **explícito** endereçado à Activity do plugin.
+4. Descodificar com `GameProtocol.readRequest` (SDK v1): ação `ACTION_PLAY`,
+   versão 1, `GAME_ID=com.vcc.aprender.playenglish`, UUID de sessão canónico
+   e `profileId > 0`.
+5. Se faltar um campo, tiver tipo incorreto, valor inválido ou os extras
+   provocarem uma exceção de leitura, **cancelar e fechar a Activity** sem
+   abrir os ecrãs.
+
+O pedido validado contém apenas identificadores opacos; não são enviados nem
+registados nomes, idades, avatares ou outros dados da criança. Esta fase
+continua a devolver `RESULT_CANCELED`, pois os resultados reais serão
+implementados na **PE-006**.
+
+Os testes JVM cobrem chamadores e identificadores inválidos. Os testes
+instrumentados Android verificam `Intent` correto e casos de versões,
+ações, componentes, tipos e extras inválidos. O CI compila os testes Android,
+mas a execução dos testes instrumentados e a confirmação real com o host
+dependem de um emulador/dispositivo com os dois APKs assinados pelo
+mesmo certificado.
+
+```bash
+./gradlew :app:testDebugUnitTest :app:compileDebugAndroidTestKotlin :app:assembleDebug
+./gradlew :app:connectedDebugAndroidTest
+```
