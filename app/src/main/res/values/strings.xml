@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">VCC Brincar ao Inglês</string>
+    <string name="welcome_title">VCC Brincar ao Inglês</string>
+    <string name="welcome_message">Projeto Android inicializado. Os jogos e a integração com a VCCAprender serão desenvolvidos nas próximas fases.</string>
+</resources>
