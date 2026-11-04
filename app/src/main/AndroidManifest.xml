@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Permission is defined as signature-protected by VCCAprender; the plugin only requests it. -->
+    <uses-permission android:name="com.vcc.aprender.permission.PLAY_GAME" />
+
     <application
         android:allowBackup="false"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@android:style/Theme.Material.Light.NoActionBar">
-        <!-- Temporary standalone launcher. PE-004 will add the host-only plugin Activity contract. -->
+
+        <!-- Standalone preview launcher: kept separate from the host-only plugin entry point. -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -13,6 +17,26 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <!-- Contract v1: the host discovers this Activity by ACTION_PLAY and verifies its signature. -->
+        <activity
+            android:name=".plugin.PlayEnglishPluginActivity"
+            android:exported="true"
+            android:permission="com.vcc.aprender.permission.PLAY_GAME">
+            <intent-filter>
+                <action android:name="com.vcc.aprender.plugin.action.PLAY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data
+                android:name="com.vcc.aprender.plugin.GAME_ID"
+                android:value="com.vcc.aprender.playenglish" />
+            <meta-data
+                android:name="com.vcc.aprender.plugin.GAME_TITLE"
+                android:value="VCC Brincar ao Inglês" />
+            <meta-data
+                android:name="com.vcc.aprender.plugin.PROTOCOL_VERSION"
+                android:value="1" />
         </activity>
     </application>
 </manifest>
