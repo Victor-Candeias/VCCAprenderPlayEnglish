@@ -58,11 +58,23 @@ jobs:
           chmod +x ./gradlew
           ./gradlew --version
 
+      - name: Verify pinned VCCAprender Game Plugin SDK source
+        shell: bash
+        run: |
+          set -euo pipefail
+          actual=$(git hash-object game-plugin-sdk/src/main/java/com/vcc/aprender/pluginsdk/GameContract.kt)
+          expected="5e3f65046fd7979f09786a2a727b4e075de1592c"
+          if [[ "$actual" != "$expected" ]]; then
+            echo "::error::A copia do SDK nao corresponde ao commit de origem fixado."
+            exit 1
+          fi
+
       - name: Unit tests and Debug APK
         shell: bash
         run: |
           set -euo pipefail
-          ./gradlew :app:testDebugUnitTest :app:compileDebugAndroidTestKotlin :app:assembleDebug \
+          ./gradlew :game-plugin-sdk:testDebugUnitTest :game-plugin-sdk:assembleDebug \
+            :app:testDebugUnitTest :app:compileDebugAndroidTestKotlin :app:assembleDebug \
             --no-daemon --max-workers=2 --no-parallel --console=plain
 
       - name: Upload test reports
