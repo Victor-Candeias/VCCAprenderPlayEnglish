@@ -250,3 +250,89 @@ apksigner verify --print-certs VCCAprenderPlayEnglish-debug.apk
 ```
 
 **Atenção:** o APK Debug gerado pelo GitHub Actions tem a chave Debug do runner, que pode não coincidir com a assinatura do APK host instalado a partir de outra máquina. Para testes reais, compilar/assinar **ambos** no mesmo ambiente ou usar assinaturas Release coincidentes (PE-008/010). A CI do plugin, por si só, não prova descoberta real no host.
+
+---
+
+## PE-005 — Validação de segurança no arranque da sessão
+
+A entrada protegida `PlayEnglishPluginActivity` passou a utilizar o validador
+`PluginSessionValidator` que aplica a seguinte política **fail-closed**:
+
+1. Confirmar que o **chamador real**, obtido de `Activity.callingPackage`,
+   é `com.vcc.aprender` (nunca confiar num extra enviado pelo chamador).
+2. Confirmar que `PackageManager.checkSignatures("com.vcc.aprender", packageName)`
+   devolve `SIGNATURE_MATCH`; na ausência do host ou em erro, negar.
+3. Aceitar apenas um `Intent` **explícito** endereçado à Activity do plugin.
+4. Descodificar com `GameProtocol.readRequest` (SDK v1): ação `ACTION_PLAY`,
+   versão 1, `GAME_ID=com.vcc.aprender.playenglish`, UUID de sessão canónico
+   e `profileId > 0`.
+5. Se faltar um campo, tiver tipo incorreto, valor inválido ou os extras
+   provocarem uma exceção de leitura, **cancelar e fechar a Activity** sem
+   abrir os ecrãs.
+
+O pedido validado contém apenas identificadores opacos; não são enviados nem
+registados nomes, idades, avatares ou outros dados da criança. Esta fase
+continua a devolver `RESULT_CANCELED`, pois os resultados reais serão
+implementados na **PE-006**.
+
+Os testes JVM cobrem chamadores e identificadores inválidos. Os testes
+instrumentados Android verificam `Intent` correto e casos de versões,
+ações, componentes, tipos e extras inválidos. O CI compila os testes Android,
+mas a execução dos testes instrumentados e a confirmação real com o host
+dependem de um emulador/dispositivo com os dois APKs assinados pelo
+mesmo certificado.
+
+```bash
+./gradlew :app:testDebugUnitTest :app:compileDebugAndroidTestKotlin :app:assembleDebug
+./gradlew :app:connectedDebugAndroidTest
+```
+
+---
+
+## PE-006 — Devolução de resultados de um quiz concluído
+
+Foi criado um circuito de comunicação de resultados da Activity do plugin para a
+VCCAprender usando **`GameProtocol.createResultIntent(request, correct, total)`**.
+
+1. A Activity aceita apenas um **`GameRequest` validado** pela PE-005.
+2. `QuizProgress` recebe uma lista não vazia de IDs únicos das perguntas do jogo
+   e contabiliza **uma resposta real por pergunta**; duplicados e IDs estranhos
+   são ignorados. Só disponibiliza `QuizCompletion` quando *todas* as perguntas
+   foram respondidas, e apenas uma vez.
+3. A interface do quiz tem a ligação `onQuizCompleted`, disponível para o
+   motor real do quiz (PE-015/PE-020) comunicar a conclusão.
+4. `PluginQuizResultSender.createResultOnce` constrói o `Intent` de resultado
+   usando os valores de jogo/sessão/perfil do pedido original. O retorno é
+   **`RESULT_OK`** seguido de `finish()`, sem duplicação.
+5. Se a criança sair antes de concluir o quiz, se o pedido for inválido ou se
+   a sessão não tiver respostas completas, o Android mantém
+   **`RESULT_CANCELED`** e não envia um resultado fictício.
+
+**Limites do protocolo v1:** `1 <= totalQuestions <= 10000` e
+`0 <= correctAnswers <= totalQuestions`. É válido acertar zero perguntas
+de um quiz real, mas **não** devolver `0/0`.
+
+**Privacidade:** só são transportados `PROTOCOL_VERSION`, `GAME_ID`,
+`SESSION_ID`, `PROFILE_ID`, `CORRECT_ANSWERS` e `TOTAL_QUESTIONS`
+em extras primitivos; não se transmitem nomes, idades ou avatares. O host
+continua responsável por reverificar o certificado e por persistir cada
+sessão associada ao perfil correto, rejeitando resultados repetidos.
+
+**Atenção — integração funcional ainda pendente:** os ecrãs de Quiz continuam
+a ser *pré-visualizações*. A callback de conclusão ainda **não é chamada**
+enquanto não houver um motor de perguntas reais (PE-015/PE-020). Por isso,
+o APK atual **não envia pontuações** apenas por navegar entre ecrãs. A PE-006
+implementa e testa o circuito de resultados, não um quiz fictício.
+
+**Validação:**
+
+```bash
+./gradlew :app:testDebugUnitTest :app:compileDebugAndroidTestKotlin :app:assembleDebug
+./gradlew :app:connectedDebugAndroidTest
+```
+
+A CI verifica os testes JVM, compila os testes Android e gera o APK. Os testes
+instrumentados de `Intent` e o teste E2E de registo pela VCCAprender
+requerem um dispositivo/emulador com host e plugin assinados pelo mesmo
+certificado. A persistência através de rotação/encerramento do processo
+será tratada na PE-007.

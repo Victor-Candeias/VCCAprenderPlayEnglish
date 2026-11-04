@@ -4,13 +4,16 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.vcc.aprender.playenglish.plugin.QuizCompletion
 import com.vcc.aprender.playenglish.ui.screens.HomeScreen
 import com.vcc.aprender.playenglish.ui.screens.PronunciationScreen
 import com.vcc.aprender.playenglish.ui.screens.QuizScreen
 import com.vcc.aprender.playenglish.ui.screens.ResultsScreen
 
 @Composable
-fun PlayEnglishNavHost() {
+fun PlayEnglishNavHost(
+    onQuizCompleted: (QuizCompletion) -> Unit = {}
+) {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
@@ -27,7 +30,8 @@ fun PlayEnglishNavHost() {
         composable(PlayEnglishRoutes.QUIZ) {
             QuizScreen(
                 onBack = { navController.popBackStack() },
-                onPreviewResults = { navController.navigate(PlayEnglishRoutes.RESULTS) }
+                onPreviewResults = { navController.navigate(PlayEnglishRoutes.RESULTS) },
+                onQuizCompleted = onQuizCompleted
             )
         }
         composable(PlayEnglishRoutes.PRONUNCIATION) {

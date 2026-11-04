@@ -1,44 +1,58 @@
 package com.vcc.aprender.playenglish.plugin
 
+import android.content.ComponentName
 import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.vcc.aprender.playenglish.ui.navigation.PlayEnglishNavHost
 import com.vcc.aprender.playenglish.ui.theme.PlayEnglishTheme
-import com.vcc.aprender.pluginsdk.GameProtocol
 
 /**
- * Host-facing entry point of the separate APK.
+ * Entry point reserved for VCCAprender; only signed, validated host sessions
+ * can open the plugin. The request is not exposed to the standalone launcher.
  *
- * The manifest requires the host's signature permission. Defence in depth:
- * verify for-result caller, matching signing certificate, action, protocol,
- * game ID, opaque profile ID and session UUID before displaying any UI.
- *
- * During PE-004 the screens are previews and do not produce quiz results:
- * always return RESULT_CANCELED. PE-005/006 will own the full session/result flow.
+ * The plugin reports RESULT_OK exactly once *after* a real completed quiz.
+ * Until the quiz engine is implemented (PE-015/PE-020), the existing preview
+ * cannot invoke onQuizCompleted and closing returns RESULT_CANCELED.
  */
 class PlayEnglishPluginActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Default and all unsuccessful exits must not be interpreted as scores.
         setResult(RESULT_CANCELED)
 
-        val sameSignature = runCatching {
-            packageManager.checkSignatures(
-                PluginLaunchGate.HOST_PACKAGE,
-                packageName
-            ) == PackageManager.SIGNATURE_MATCH
-        }.getOrDefault(false)
+        val caller = callingPackage
+        val sameSignature = caller == PluginLaunchGate.HOST_PACKAGE &&
+            runCatching {
+                packageManager.checkSignatures(
+                    PluginLaunchGate.HOST_PACKAGE,
+                    packageName
+                ) == PackageManager.SIGNATURE_MATCH
+            }.getOrDefault(false)
 
-        val request = runCatching { GameProtocol.readRequest(intent) }.getOrNull()
-        if (!PluginLaunchGate.canOpen(callingPackage, sameSignature, request)) {
+        val request = PluginSessionValidator.validate(
+            callingPackage = caller,
+            signaturesMatch = sameSignature,
+            launchIntent = intent,
+            expectedComponent = ComponentName(this, PlayEnglishPluginActivity::class.java)
+        )
+        if (request == null) {
             finish()
             return
         }
 
+        val resultSender = PluginQuizResultSender(request)
         setContent {
             PlayEnglishTheme {
-                PlayEnglishNavHost()
+                PlayEnglishNavHost(
+                    onQuizCompleted = { completedQuiz ->
+                        resultSender.createResultOnce(completedQuiz)?.let { resultIntent ->
+                            setResult(RESULT_OK, resultIntent)
+                            finish()
+                        }
+                    }
+                )
             }
         }
     }

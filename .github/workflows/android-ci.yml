@@ -9,6 +9,8 @@ on:
   pull_request:
     branches:
       - main
+      # Support review/CI for stacked feature PRs (e.g. PE-005 on PE-004).
+      - 'feature/**'
   workflow_dispatch:
 
 permissions:
