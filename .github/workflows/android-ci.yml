@@ -62,7 +62,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          ./gradlew :app:testDebugUnitTest :app:assembleDebug \
+          ./gradlew :app:testDebugUnitTest :app:compileDebugAndroidTestKotlin :app:assembleDebug \
             --no-daemon --max-workers=2 --no-parallel --console=plain
 
       - name: Upload test reports

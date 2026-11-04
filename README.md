@@ -139,3 +139,45 @@ O pipeline:
 Este APK Debug é apenas para desenvolvimento: **não está assinado com a chave Release do host**. A assinatura de produção será tratada em **PE-008/PE-010**. A descoberta e comunicação com a VCCAprender serão implementadas em **PE-003 a PE-006**.
 
 A CI não publica Releases nem incrementa versões automaticamente nesta etapa.
+
+---
+
+## PE-002 — Interface Jetpack Compose, tema infantil e navegação
+
+A Activity de arranque foi convertida para **Jetpack Compose com Material 3**,
+mantendo o `applicationId` próprio e o APK independente da VCCAprender.
+A interface em português de Portugal utiliza componentes acessíveis, botões
+grandes, contraste reforçado, limites de largura para tablets e scroll vertical
+para escalas de letra aumentadas.
+
+**Ecrãs e rotas:**
+
+| Rota | Ecrã | Disponibilidade |
+|---|---|---|
+| `home` | Escolha do modo de aprendizagem | Navegável |
+| `quiz` | Descobre a palavra em inglês | Pré-visualização; perguntas na PE-015 |
+| `pronunciation` | Como se diz em inglês? | Pré-visualização; voz nas PE-021/023 |
+| `results` | Resultados | Pré-visualização; pontuações na PE-020 |
+
+O botão **Voltar** e o botão físico Voltar usam a pilha de navegação.
+O `rememberNavController` preserva a navegação durante mudanças de
+configuração, incluindo rotação. Os campos do jogo ainda **não** recolhem
+respostas nem geram pontuação simulada. O áudio mantém-se desativado até à
+implementação do motor Text-to-Speech en-GB.
+
+**Dependências principais:** Jetpack Compose BOM `2024.12.01`, Material 3,
+Navigation Compose `2.8.5`, Kotlin Compose Compiler Plugin `2.0.21`
+e Activity Compose `1.9.3`.
+
+**Validação:**
+
+```bash
+./gradlew :app:testDebugUnitTest :app:compileDebugAndroidTestKotlin :app:assembleDebug
+# Num emulador ou dispositivo com adb:
+./gradlew :app:connectedDebugAndroidTest
+```
+
+Os testes JVM verificam as rotas; testes instrumentados Compose verificam
+**Home → Quiz → Resultados → Home** e **Home → Pronúncia → Voltar**.
+O pipeline de CI compila os testes instrumentados, mas a sua execução
+requer um emulador ou dispositivo Android.
