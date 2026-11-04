@@ -30,19 +30,28 @@ class PluginLaunchGateTest {
     @Test
     fun rejectsWrongGameIdInvalidUuidAndProfile() {
         assertFalse(PluginLaunchGate.canOpen(
-            PluginLaunchGate.HOST_PACKAGE,
-            true,
+            PluginLaunchGate.HOST_PACKAGE, true,
             request.copy(gameId = "com.vcc.aprender.other")
         ))
         assertFalse(PluginLaunchGate.canOpen(
-            PluginLaunchGate.HOST_PACKAGE,
-            true,
+            PluginLaunchGate.HOST_PACKAGE, true,
+            request.copy(gameId = "com.vcc.aprender")
+        ))
+        assertFalse(PluginLaunchGate.canOpen(
+            PluginLaunchGate.HOST_PACKAGE, true,
             request.copy(sessionId = "not-a-uuid")
         ))
         assertFalse(PluginLaunchGate.canOpen(
-            PluginLaunchGate.HOST_PACKAGE,
-            true,
-            request.copy(profileId = 0)
+            PluginLaunchGate.HOST_PACKAGE, true,
+            request.copy(sessionId = request.sessionId.uppercase())
+        ))
+        assertFalse(PluginLaunchGate.canOpen(
+            PluginLaunchGate.HOST_PACKAGE, true,
+            request.copy(profileId = 0L)
+        ))
+        assertFalse(PluginLaunchGate.canOpen(
+            PluginLaunchGate.HOST_PACKAGE, true,
+            request.copy(profileId = -1L)
         ))
     }
 }

@@ -1,41 +1,50 @@
 package com.vcc.aprender.playenglish.plugin
 
+import android.content.ComponentName
 import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.vcc.aprender.playenglish.ui.navigation.PlayEnglishNavHost
 import com.vcc.aprender.playenglish.ui.theme.PlayEnglishTheme
-import com.vcc.aprender.pluginsdk.GameProtocol
 
 /**
- * Host-facing entry point of the separate APK.
+ * Entry point reserved for VCCAprender.
  *
- * The manifest requires the host's signature permission. Defence in depth:
- * verify for-result caller, matching signing certificate, action, protocol,
- * game ID, opaque profile ID and session UUID before displaying any UI.
+ * Only the framework-provided callingPackage may identify the caller.
+ * Signature equality is checked via PackageManager; caller-controlled extras
+ * are decoded only after both checks pass. Invalid launches cancel and close.
  *
- * During PE-004 the screens are previews and do not produce quiz results:
- * always return RESULT_CANCELED. PE-005/006 will own the full session/result flow.
+ * The PE-005 preview intentionally never returns a score (PE-006).
  */
 class PlayEnglishPluginActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setResult(RESULT_CANCELED)
 
-        val sameSignature = runCatching {
-            packageManager.checkSignatures(
-                PluginLaunchGate.HOST_PACKAGE,
-                packageName
-            ) == PackageManager.SIGNATURE_MATCH
-        }.getOrDefault(false)
+        val caller = callingPackage
+        // Check signatures only for the expected Android-provided caller.
+        val sameSignature = caller == PluginLaunchGate.HOST_PACKAGE &&
+            runCatching {
+                packageManager.checkSignatures(
+                    PluginLaunchGate.HOST_PACKAGE,
+                    packageName
+                ) == PackageManager.SIGNATURE_MATCH
+            }.getOrDefault(false)
 
-        val request = runCatching { GameProtocol.readRequest(intent) }.getOrNull()
-        if (!PluginLaunchGate.canOpen(callingPackage, sameSignature, request)) {
+        val request = PluginSessionValidator.validate(
+            callingPackage = caller,
+            signaturesMatch = sameSignature,
+            launchIntent = intent,
+            expectedComponent = ComponentName(this, PlayEnglishPluginActivity::class.java)
+        )
+        if (request == null) {
             finish()
             return
         }
 
+        // The opaque, validated request is intentionally not logged or exported.
+        // PE-006 will use it to produce a real GameProtocol result.
         setContent {
             PlayEnglishTheme {
                 PlayEnglishNavHost()
