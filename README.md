@@ -181,3 +181,25 @@ Os testes JVM verificam as rotas; testes instrumentados Compose verificam
 **Home → Quiz → Resultados → Home** e **Home → Pronúncia → Voltar**.
 O pipeline de CI compila os testes instrumentados, mas a sua execução
 requer um emulador ou dispositivo Android.
+
+---
+
+## PE-003 — Integração do Game Plugin SDK v1
+
+O projeto contém agora o módulo **`:game-plugin-sdk`** (Android Library), copiado literalmente do [SDK da VCCAprender](https://github.com/Victor-Candeias/VCCAprender/tree/76127ac5902b361c86271037d3943e737f8e35a7/game-plugin-sdk), no commit fixo `76127ac5902b361c86271037d3943e737f8e35a7`.
+
+- A app incorpora o SDK como `implementation(project(":game-plugin-sdk"))` e continua a compilar **sem checkout adicional**.
+- A classe `PlayEnglishPlugin` expõe a identidade estável `com.vcc.aprender.playenglish` e utiliza `GameContract`/`GameValidation`.
+- Os testes do SDK oficial foram preservados; acrescentaram-se testes de compatibilidade JVM na app e testes instrumentados de serialização de `Intent`.
+- A CI valida o hash Git exato do contrato, compila a biblioteca e executa testes JVM tanto da app como do SDK.
+
+Consultar **[game-plugin-sdk/UPSTREAM.md](game-plugin-sdk/UPSTREAM.md)** para a origem, atualização controlada, regras de versionamento e segurança.
+
+**Compilar e testar:**
+
+```bash
+./gradlew :game-plugin-sdk:testDebugUnitTest :game-plugin-sdk:assembleDebug \
+    :app:testDebugUnitTest :app:compileDebugAndroidTestKotlin :app:assembleDebug
+```
+
+**Limites desta fase:** ainda não se declara a `Activity` do plugin, os metadados de descoberta nem a permissão de assinatura no `AndroidManifest.xml` (PE-004/005). Estes testes verificam apenas o contrato e a serialização, não uma ligação real à VCCAprender nem a aceitação do APK pelo host.
