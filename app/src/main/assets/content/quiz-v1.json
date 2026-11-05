@@ -220,6 +220,654 @@
       },
       "imageRef": null,
       "audioText": "Table"
+    },
+    {
+      "id": "animals.fish",
+      "ptPT": "Peixe",
+      "enGB": "Fish",
+      "category": "animals",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Fish"
+    },
+    {
+      "id": "animals.cow",
+      "ptPT": "Vaca",
+      "enGB": "Cow",
+      "category": "animals",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Cow"
+    },
+    {
+      "id": "animals.horse",
+      "ptPT": "Cavalo",
+      "enGB": "Horse",
+      "category": "animals",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Horse"
+    },
+    {
+      "id": "animals.sheep",
+      "ptPT": "Ovelha",
+      "enGB": "Sheep",
+      "category": "animals",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Sheep"
+    },
+    {
+      "id": "animals.pig",
+      "ptPT": "Porco",
+      "enGB": "Pig",
+      "category": "animals",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Pig"
+    },
+    {
+      "id": "animals.duck",
+      "ptPT": "Pato",
+      "enGB": "Duck",
+      "category": "animals",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Duck"
+    },
+    {
+      "id": "animals.rabbit",
+      "ptPT": "Coelho",
+      "enGB": "Rabbit",
+      "category": "animals",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Rabbit"
+    },
+    {
+      "id": "animals.lion",
+      "ptPT": "Leão",
+      "enGB": "Lion",
+      "category": "animals",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Lion"
+    },
+    {
+      "id": "animals.elephant",
+      "ptPT": "Elefante",
+      "enGB": "Elephant",
+      "category": "animals",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Elephant"
+    },
+    {
+      "id": "colors.yellow",
+      "ptPT": "Amarelo",
+      "enGB": "Yellow",
+      "category": "colors",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Yellow"
+    },
+    {
+      "id": "colors.orange",
+      "ptPT": "Laranja",
+      "enGB": "Orange",
+      "category": "colors",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Orange"
+    },
+    {
+      "id": "colors.purple",
+      "ptPT": "Roxo",
+      "enGB": "Purple",
+      "category": "colors",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Purple"
+    },
+    {
+      "id": "colors.pink",
+      "ptPT": "Cor-de-rosa",
+      "enGB": "Pink",
+      "category": "colors",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Pink"
+    },
+    {
+      "id": "colors.black",
+      "ptPT": "Preto",
+      "enGB": "Black",
+      "category": "colors",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Black"
+    },
+    {
+      "id": "colors.white",
+      "ptPT": "Branco",
+      "enGB": "White",
+      "category": "colors",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "White"
+    },
+    {
+      "id": "colors.brown",
+      "ptPT": "Castanho",
+      "enGB": "Brown",
+      "category": "colors",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Brown"
+    },
+    {
+      "id": "colors.grey",
+      "ptPT": "Cinzento",
+      "enGB": "Grey",
+      "category": "colors",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Grey"
+    },
+    {
+      "id": "colors.gold",
+      "ptPT": "Dourado",
+      "enGB": "Gold",
+      "category": "colors",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Gold"
+    },
+    {
+      "id": "numbers.four",
+      "ptPT": "Quatro",
+      "enGB": "Four",
+      "category": "numbers",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Four"
+    },
+    {
+      "id": "numbers.five",
+      "ptPT": "Cinco",
+      "enGB": "Five",
+      "category": "numbers",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Five"
+    },
+    {
+      "id": "numbers.six",
+      "ptPT": "Seis",
+      "enGB": "Six",
+      "category": "numbers",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Six"
+    },
+    {
+      "id": "numbers.seven",
+      "ptPT": "Sete",
+      "enGB": "Seven",
+      "category": "numbers",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Seven"
+    },
+    {
+      "id": "numbers.eight",
+      "ptPT": "Oito",
+      "enGB": "Eight",
+      "category": "numbers",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Eight"
+    },
+    {
+      "id": "numbers.nine",
+      "ptPT": "Nove",
+      "enGB": "Nine",
+      "category": "numbers",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Nine"
+    },
+    {
+      "id": "numbers.ten",
+      "ptPT": "Dez",
+      "enGB": "Ten",
+      "category": "numbers",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Ten"
+    },
+    {
+      "id": "numbers.eleven",
+      "ptPT": "Onze",
+      "enGB": "Eleven",
+      "category": "numbers",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Eleven"
+    },
+    {
+      "id": "numbers.twelve",
+      "ptPT": "Doze",
+      "enGB": "Twelve",
+      "category": "numbers",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Twelve"
+    },
+    {
+      "id": "phrases.hello",
+      "ptPT": "Olá",
+      "enGB": "Hello",
+      "category": "phrases",
+      "ageRange": {
+        "min": 5,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Hello"
+    },
+    {
+      "id": "phrases.goodbye",
+      "ptPT": "Adeus",
+      "enGB": "Goodbye",
+      "category": "phrases",
+      "ageRange": {
+        "min": 5,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Goodbye"
+    },
+    {
+      "id": "phrases.please",
+      "ptPT": "Por favor",
+      "enGB": "Please",
+      "category": "phrases",
+      "ageRange": {
+        "min": 5,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Please"
+    },
+    {
+      "id": "phrases.sorry",
+      "ptPT": "Desculpa",
+      "enGB": "Sorry",
+      "category": "phrases",
+      "ageRange": {
+        "min": 5,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Sorry"
+    },
+    {
+      "id": "phrases.yes",
+      "ptPT": "Sim",
+      "enGB": "Yes",
+      "category": "phrases",
+      "ageRange": {
+        "min": 5,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Yes"
+    },
+    {
+      "id": "phrases.no",
+      "ptPT": "Não",
+      "enGB": "No",
+      "category": "phrases",
+      "ageRange": {
+        "min": 5,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "No"
+    },
+    {
+      "id": "phrases.how_are_you",
+      "ptPT": "Como estás?",
+      "enGB": "How are you?",
+      "category": "phrases",
+      "ageRange": {
+        "min": 5,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "How are you?"
+    },
+    {
+      "id": "phrases.i_am_fine",
+      "ptPT": "Estou bem",
+      "enGB": "I'm fine",
+      "category": "phrases",
+      "ageRange": {
+        "min": 5,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "I'm fine"
+    },
+    {
+      "id": "phrases.see_you_later",
+      "ptPT": "Até logo",
+      "enGB": "See you later",
+      "category": "phrases",
+      "ageRange": {
+        "min": 5,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "See you later"
+    },
+    {
+      "id": "food.milk",
+      "ptPT": "Leite",
+      "enGB": "Milk",
+      "category": "food",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Milk"
+    },
+    {
+      "id": "food.cheese",
+      "ptPT": "Queijo",
+      "enGB": "Cheese",
+      "category": "food",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Cheese"
+    },
+    {
+      "id": "food.egg",
+      "ptPT": "Ovo",
+      "enGB": "Egg",
+      "category": "food",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Egg"
+    },
+    {
+      "id": "food.carrot",
+      "ptPT": "Cenoura",
+      "enGB": "Carrot",
+      "category": "food",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Carrot"
+    },
+    {
+      "id": "food.orange",
+      "ptPT": "Laranja",
+      "enGB": "Orange",
+      "category": "food",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Orange"
+    },
+    {
+      "id": "food.rice",
+      "ptPT": "Arroz",
+      "enGB": "Rice",
+      "category": "food",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Rice"
+    },
+    {
+      "id": "food.soup",
+      "ptPT": "Sopa",
+      "enGB": "Soup",
+      "category": "food",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Soup"
+    },
+    {
+      "id": "food.water",
+      "ptPT": "Água",
+      "enGB": "Water",
+      "category": "food",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Water"
+    },
+    {
+      "id": "food.strawberry",
+      "ptPT": "Morango",
+      "enGB": "Strawberry",
+      "category": "food",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Strawberry"
+    },
+    {
+      "id": "objects.pencil",
+      "ptPT": "Lápis",
+      "enGB": "Pencil",
+      "category": "objects",
+      "ageRange": {
+        "min": 4,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Pencil"
+    },
+    {
+      "id": "objects.pen",
+      "ptPT": "Caneta",
+      "enGB": "Pen",
+      "category": "objects",
+      "ageRange": {
+        "min": 4,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Pen"
+    },
+    {
+      "id": "objects.bag",
+      "ptPT": "Saco",
+      "enGB": "Bag",
+      "category": "objects",
+      "ageRange": {
+        "min": 4,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Bag"
+    },
+    {
+      "id": "objects.ball",
+      "ptPT": "Bola",
+      "enGB": "Ball",
+      "category": "objects",
+      "ageRange": {
+        "min": 4,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Ball"
+    },
+    {
+      "id": "objects.door",
+      "ptPT": "Porta",
+      "enGB": "Door",
+      "category": "objects",
+      "ageRange": {
+        "min": 4,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Door"
+    },
+    {
+      "id": "objects.window",
+      "ptPT": "Janela",
+      "enGB": "Window",
+      "category": "objects",
+      "ageRange": {
+        "min": 4,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Window"
+    },
+    {
+      "id": "objects.bed",
+      "ptPT": "Cama",
+      "enGB": "Bed",
+      "category": "objects",
+      "ageRange": {
+        "min": 4,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Bed"
+    },
+    {
+      "id": "objects.cup",
+      "ptPT": "Copo",
+      "enGB": "Cup",
+      "category": "objects",
+      "ageRange": {
+        "min": 4,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Cup"
+    },
+    {
+      "id": "objects.clock",
+      "ptPT": "Relógio",
+      "enGB": "Clock",
+      "category": "objects",
+      "ageRange": {
+        "min": 4,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Clock"
     }
   ],
   "questions": [
@@ -282,6 +930,426 @@
         "objects.book"
       ],
       "correctId": "objects.book"
+    },
+    {
+      "id": "quiz.animals.fish",
+      "prompt": "Como se diz «Peixe» em inglês?",
+      "optionIds": [
+        "animals.sheep",
+        "animals.rabbit",
+        "animals.fish"
+      ],
+      "correctId": "animals.fish"
+    },
+    {
+      "id": "quiz.animals.cow",
+      "prompt": "Como se diz «Vaca» em inglês?",
+      "optionIds": [
+        "animals.lion",
+        "animals.cow",
+        "animals.pig"
+      ],
+      "correctId": "animals.cow"
+    },
+    {
+      "id": "quiz.animals.horse",
+      "prompt": "Como se diz «Cavalo» em inglês?",
+      "optionIds": [
+        "animals.horse",
+        "animals.duck",
+        "animals.elephant"
+      ],
+      "correctId": "animals.horse"
+    },
+    {
+      "id": "quiz.animals.sheep",
+      "prompt": "Como se diz «Ovelha» em inglês?",
+      "optionIds": [
+        "animals.rabbit",
+        "animals.cat",
+        "animals.sheep"
+      ],
+      "correctId": "animals.sheep"
+    },
+    {
+      "id": "quiz.animals.pig",
+      "prompt": "Como se diz «Porco» em inglês?",
+      "optionIds": [
+        "animals.dog",
+        "animals.pig",
+        "animals.lion"
+      ],
+      "correctId": "animals.pig"
+    },
+    {
+      "id": "quiz.animals.duck",
+      "prompt": "Como se diz «Pato» em inglês?",
+      "optionIds": [
+        "animals.duck",
+        "animals.elephant",
+        "animals.bird"
+      ],
+      "correctId": "animals.duck"
+    },
+    {
+      "id": "quiz.animals.rabbit",
+      "prompt": "Como se diz «Coelho» em inglês?",
+      "optionIds": [
+        "animals.cat",
+        "animals.fish",
+        "animals.rabbit"
+      ],
+      "correctId": "animals.rabbit"
+    },
+    {
+      "id": "quiz.colors.yellow",
+      "prompt": "Como se diz «Amarelo» em inglês?",
+      "optionIds": [
+        "colors.pink",
+        "colors.brown",
+        "colors.yellow"
+      ],
+      "correctId": "colors.yellow"
+    },
+    {
+      "id": "quiz.colors.orange",
+      "prompt": "Como se diz «Laranja» em inglês?",
+      "optionIds": [
+        "colors.grey",
+        "colors.orange",
+        "colors.black"
+      ],
+      "correctId": "colors.orange"
+    },
+    {
+      "id": "quiz.colors.purple",
+      "prompt": "Como se diz «Roxo» em inglês?",
+      "optionIds": [
+        "colors.purple",
+        "colors.white",
+        "colors.gold"
+      ],
+      "correctId": "colors.purple"
+    },
+    {
+      "id": "quiz.colors.pink",
+      "prompt": "Como se diz «Cor-de-rosa» em inglês?",
+      "optionIds": [
+        "colors.brown",
+        "colors.red",
+        "colors.pink"
+      ],
+      "correctId": "colors.pink"
+    },
+    {
+      "id": "quiz.colors.black",
+      "prompt": "Como se diz «Preto» em inglês?",
+      "optionIds": [
+        "colors.blue",
+        "colors.black",
+        "colors.grey"
+      ],
+      "correctId": "colors.black"
+    },
+    {
+      "id": "quiz.colors.white",
+      "prompt": "Como se diz «Branco» em inglês?",
+      "optionIds": [
+        "colors.white",
+        "colors.gold",
+        "colors.green"
+      ],
+      "correctId": "colors.white"
+    },
+    {
+      "id": "quiz.colors.brown",
+      "prompt": "Como se diz «Castanho» em inglês?",
+      "optionIds": [
+        "colors.red",
+        "colors.yellow",
+        "colors.brown"
+      ],
+      "correctId": "colors.brown"
+    },
+    {
+      "id": "quiz.numbers.four",
+      "prompt": "Como se diz «Quatro» em inglês?",
+      "optionIds": [
+        "numbers.seven",
+        "numbers.ten",
+        "numbers.four"
+      ],
+      "correctId": "numbers.four"
+    },
+    {
+      "id": "quiz.numbers.five",
+      "prompt": "Como se diz «Cinco» em inglês?",
+      "optionIds": [
+        "numbers.eleven",
+        "numbers.five",
+        "numbers.eight"
+      ],
+      "correctId": "numbers.five"
+    },
+    {
+      "id": "quiz.numbers.six",
+      "prompt": "Como se diz «Seis» em inglês?",
+      "optionIds": [
+        "numbers.six",
+        "numbers.nine",
+        "numbers.twelve"
+      ],
+      "correctId": "numbers.six"
+    },
+    {
+      "id": "quiz.numbers.seven",
+      "prompt": "Como se diz «Sete» em inglês?",
+      "optionIds": [
+        "numbers.ten",
+        "numbers.one",
+        "numbers.seven"
+      ],
+      "correctId": "numbers.seven"
+    },
+    {
+      "id": "quiz.numbers.eight",
+      "prompt": "Como se diz «Oito» em inglês?",
+      "optionIds": [
+        "numbers.two",
+        "numbers.eight",
+        "numbers.eleven"
+      ],
+      "correctId": "numbers.eight"
+    },
+    {
+      "id": "quiz.numbers.nine",
+      "prompt": "Como se diz «Nove» em inglês?",
+      "optionIds": [
+        "numbers.nine",
+        "numbers.twelve",
+        "numbers.three"
+      ],
+      "correctId": "numbers.nine"
+    },
+    {
+      "id": "quiz.numbers.ten",
+      "prompt": "Como se diz «Dez» em inglês?",
+      "optionIds": [
+        "numbers.one",
+        "numbers.four",
+        "numbers.ten"
+      ],
+      "correctId": "numbers.ten"
+    },
+    {
+      "id": "quiz.phrases.hello",
+      "prompt": "Como se diz «Olá» em inglês?",
+      "optionIds": [
+        "phrases.sorry",
+        "phrases.how_are_you",
+        "phrases.hello"
+      ],
+      "correctId": "phrases.hello"
+    },
+    {
+      "id": "quiz.phrases.goodbye",
+      "prompt": "Como se diz «Adeus» em inglês?",
+      "optionIds": [
+        "phrases.i_am_fine",
+        "phrases.goodbye",
+        "phrases.yes"
+      ],
+      "correctId": "phrases.goodbye"
+    },
+    {
+      "id": "quiz.phrases.please",
+      "prompt": "Como se diz «Por favor» em inglês?",
+      "optionIds": [
+        "phrases.please",
+        "phrases.no",
+        "phrases.see_you_later"
+      ],
+      "correctId": "phrases.please"
+    },
+    {
+      "id": "quiz.phrases.sorry",
+      "prompt": "Como se diz «Desculpa» em inglês?",
+      "optionIds": [
+        "phrases.how_are_you",
+        "phrases.good_morning",
+        "phrases.sorry"
+      ],
+      "correctId": "phrases.sorry"
+    },
+    {
+      "id": "quiz.phrases.yes",
+      "prompt": "Como se diz «Sim» em inglês?",
+      "optionIds": [
+        "phrases.good_night",
+        "phrases.yes",
+        "phrases.i_am_fine"
+      ],
+      "correctId": "phrases.yes"
+    },
+    {
+      "id": "quiz.phrases.no",
+      "prompt": "Como se diz «Não» em inglês?",
+      "optionIds": [
+        "phrases.no",
+        "phrases.see_you_later",
+        "phrases.thank_you"
+      ],
+      "correctId": "phrases.no"
+    },
+    {
+      "id": "quiz.phrases.how_are_you",
+      "prompt": "Como se diz «Como estás?» em inglês?",
+      "optionIds": [
+        "phrases.good_morning",
+        "phrases.hello",
+        "phrases.how_are_you"
+      ],
+      "correctId": "phrases.how_are_you"
+    },
+    {
+      "id": "quiz.food.milk",
+      "prompt": "Como se diz «Leite» em inglês?",
+      "optionIds": [
+        "food.carrot",
+        "food.soup",
+        "food.milk"
+      ],
+      "correctId": "food.milk"
+    },
+    {
+      "id": "quiz.food.cheese",
+      "prompt": "Como se diz «Queijo» em inglês?",
+      "optionIds": [
+        "food.water",
+        "food.cheese",
+        "food.orange"
+      ],
+      "correctId": "food.cheese"
+    },
+    {
+      "id": "quiz.food.egg",
+      "prompt": "Como se diz «Ovo» em inglês?",
+      "optionIds": [
+        "food.egg",
+        "food.rice",
+        "food.strawberry"
+      ],
+      "correctId": "food.egg"
+    },
+    {
+      "id": "quiz.food.carrot",
+      "prompt": "Como se diz «Cenoura» em inglês?",
+      "optionIds": [
+        "food.soup",
+        "food.apple",
+        "food.carrot"
+      ],
+      "correctId": "food.carrot"
+    },
+    {
+      "id": "quiz.food.orange",
+      "prompt": "Como se diz «Laranja» em inglês?",
+      "optionIds": [
+        "food.banana",
+        "food.orange",
+        "food.water"
+      ],
+      "correctId": "food.orange"
+    },
+    {
+      "id": "quiz.food.rice",
+      "prompt": "Como se diz «Arroz» em inglês?",
+      "optionIds": [
+        "food.rice",
+        "food.strawberry",
+        "food.bread"
+      ],
+      "correctId": "food.rice"
+    },
+    {
+      "id": "quiz.food.soup",
+      "prompt": "Como se diz «Sopa» em inglês?",
+      "optionIds": [
+        "food.apple",
+        "food.milk",
+        "food.soup"
+      ],
+      "correctId": "food.soup"
+    },
+    {
+      "id": "quiz.objects.pencil",
+      "prompt": "Como se diz «Lápis» em inglês?",
+      "optionIds": [
+        "objects.ball",
+        "objects.bed",
+        "objects.pencil"
+      ],
+      "correctId": "objects.pencil"
+    },
+    {
+      "id": "quiz.objects.pen",
+      "prompt": "Como se diz «Caneta» em inglês?",
+      "optionIds": [
+        "objects.cup",
+        "objects.pen",
+        "objects.door"
+      ],
+      "correctId": "objects.pen"
+    },
+    {
+      "id": "quiz.objects.bag",
+      "prompt": "Como se diz «Saco» em inglês?",
+      "optionIds": [
+        "objects.bag",
+        "objects.window",
+        "objects.clock"
+      ],
+      "correctId": "objects.bag"
+    },
+    {
+      "id": "quiz.objects.ball",
+      "prompt": "Como se diz «Bola» em inglês?",
+      "optionIds": [
+        "objects.bed",
+        "objects.book",
+        "objects.ball"
+      ],
+      "correctId": "objects.ball"
+    },
+    {
+      "id": "quiz.objects.door",
+      "prompt": "Como se diz «Porta» em inglês?",
+      "optionIds": [
+        "objects.chair",
+        "objects.door",
+        "objects.cup"
+      ],
+      "correctId": "objects.door"
+    },
+    {
+      "id": "quiz.objects.window",
+      "prompt": "Como se diz «Janela» em inglês?",
+      "optionIds": [
+        "objects.window",
+        "objects.clock",
+        "objects.table"
+      ],
+      "correctId": "objects.window"
+    },
+    {
+      "id": "quiz.objects.bed",
+      "prompt": "Como se diz «Cama» em inglês?",
+      "optionIds": [
+        "objects.book",
+        "objects.pencil",
+        "objects.bed"
+      ],
+      "correctId": "objects.bed"
     }
   ]
 }

@@ -31,7 +31,7 @@ import com.vcc.aprender.playenglish.ui.theme.PlayEnglishColors
 @Composable
 fun HomeScreen(
     onQuiz: () -> Unit,
-    onPronunciation: () -> Unit,
+    onDiscover: () -> Unit,
     onExit: (() -> Unit)? = null
 ) {
     ChildScreenLayout(
@@ -63,20 +63,20 @@ fun HomeScreen(
         }
 
         LearningModeButton(
-            emoji = "🎨",
-            title = stringResource(R.string.home_quiz_title),
-            subtitle = stringResource(R.string.home_quiz_subtitle),
+            emoji = "🧭",
+            title = stringResource(R.string.home_discover_title),
+            subtitle = stringResource(R.string.home_discover_subtitle),
             containerColor = PlayEnglishColors.Mint,
-            tag = "home-quiz",
-            onClick = onQuiz
+            tag = "home-discover",
+            onClick = onDiscover
         )
         LearningModeButton(
-            emoji = "🔊",
-            title = stringResource(R.string.home_speech_title),
-            subtitle = stringResource(R.string.home_speech_subtitle),
+            emoji = "🧩",
+            title = stringResource(R.string.home_quiz_title),
+            subtitle = stringResource(R.string.home_quiz_subtitle),
             containerColor = PlayEnglishColors.Peach,
-            tag = "home-pronunciation",
-            onClick = onPronunciation
+            tag = "home-quiz",
+            onClick = onQuiz
         )
         if (onExit != null) {
             OutlinedButton(

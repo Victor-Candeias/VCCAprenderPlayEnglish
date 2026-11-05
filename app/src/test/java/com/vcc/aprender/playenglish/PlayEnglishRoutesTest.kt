@@ -9,8 +9,9 @@ class PlayEnglishRoutesTest {
     @Test
     fun initialRouteIsHomeAndDestinationsAreDistinct() {
         assertEquals("home", PlayEnglishRoutes.HOME)
-        assertEquals(4, PlayEnglishRoutes.all.size)
+        assertEquals(5, PlayEnglishRoutes.all.size)
         assertTrue(PlayEnglishRoutes.all.contains(PlayEnglishRoutes.HOME))
+        assertTrue(PlayEnglishRoutes.all.contains(PlayEnglishRoutes.DISCOVER))
         assertTrue(PlayEnglishRoutes.all.contains(PlayEnglishRoutes.QUIZ))
         assertTrue(PlayEnglishRoutes.all.contains(PlayEnglishRoutes.PRONUNCIATION))
         assertTrue(PlayEnglishRoutes.all.contains(PlayEnglishRoutes.RESULTS))

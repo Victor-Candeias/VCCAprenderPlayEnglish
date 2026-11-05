@@ -48,9 +48,10 @@ Exemplo reduzido:
 }
 ```
 
-O catálogo inicial contém **18 palavras/expressões** e **6 perguntas**
-reais sobre animais, cores, números, comida, objetos e saudações. A expansão
-editorial e imagens pertence à **PE-013**. Os valores `imageRef` ficam
+O catálogo começou com **18 palavras/expressões** e **6 perguntas** na PE-012
+reais sobre animais, cores, números, comida, objetos e saudações. A **PE-013**
+expandiu o conteúdo para **72 palavras/expressões** e **48 perguntas**, com
+12 palavras e 8 perguntas por categoria. A produção de imagens continua pendente. Os valores `imageRef` ficam
 `null` até existirem ficheiros de imagens locais. `audioText` é texto
 para futura pronúncia TTS, não um ficheiro de som.
 
