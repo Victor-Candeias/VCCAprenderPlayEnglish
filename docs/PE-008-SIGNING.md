@@ -39,8 +39,9 @@ Compilação local:
 ./gradlew :app:assembleRelease
 ```
 
-A etapa PE-010 tratará a disponibilização/versão automática de Releases
-assinadas por CI. Não foram adicionadas keystores ou passwords ao repositório.
+A **PE-010** disponibiliza a geração de Release assinada com versionamento
+automático no GitHub Actions. Consultar [PE-010-RELEASE.md](PE-010-RELEASE.md).
+Não foram adicionadas keystores ou passwords ao repositório.
 
 ## Debug — assinatura partilhada com o host
 

@@ -7,6 +7,17 @@ plugins {
 }
 
 
+// Release version is supplied by PE-010; no source edits are required to ship.
+val appVersion = providers.gradleProperty("appVersion").orElse("0.1.0").get()
+val buildNumber = providers.gradleProperty("buildNumber").orElse("1").get()
+    .toIntOrNull() ?: error("buildNumber tem de ser um número inteiro.")
+require(Regex("""(0|[1-9][0-9]*)[.](0|[1-9][0-9]*)[.](0|[1-9][0-9]*)""").matches(appVersion)) {
+    "appVersion deve ter o formato MAJOR.MINOR.PATCH, sem zeros à esquerda."
+}
+require(buildNumber in 1..2_100_000_000) {
+    "buildNumber deve estar entre 1 e 2100000000."
+}
+
 // Match the VCCAprender host's existing signing configuration.
 // Never put passwords, PKCS12/JKS files or keys in this repository.
 val signingProperties = Properties().apply {
@@ -63,8 +74,8 @@ android {
         applicationId = "com.vcc.aprender.playenglish"
         minSdk = 26
         targetSdk = 35
-        versionCode = 1
-        versionName = "0.1.0"
+        versionCode = buildNumber
+        versionName = appVersion
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 

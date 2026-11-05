@@ -71,6 +71,12 @@ jobs:
             exit 1
           fi
 
+      - name: Verify Release versioning logic (no secrets required)
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s scripts -p "test_release_version.py" -v
+
       - name: Unit tests and Debug APK
         shell: bash
         run: |
