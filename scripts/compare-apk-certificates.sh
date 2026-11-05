@@ -46,11 +46,15 @@ fingerprint() {
     echo "Erro: APK não tem assinatura válida." >&2
     return 1
   fi
+  # apksigner versions may indent signer lines differently. The final
+  # whitespace-delimited field on each certificate-digest line is the SHA-256.
   fingerprints="$(printf '%s\n' "$output" |
-    sed -nE 's/^Signer #[0-9]+ certificate SHA-256 digest: ([0-9A-Fa-f]{64})\r?$/\1/p' |
-    tr '[:upper:]' '[:lower:]')"
-  # The VCCAprender signature policy requires exactly one consistent signer.
-  if [[ "$(printf '%s\n' "$fingerprints" | sed '/^$/d' | wc -l | tr -d ' ')" != "1" ]]; then
+    awk '/Signer #[0-9]+ certificate SHA-256 digest:/ { print $NF }' |
+    tr '[:upper:]' '[:lower:]' |
+    tr -d '\r')"
+  # A single signer SHA-256 must be exactly 64 hex characters; multiple
+  # signers or unexpected output are rejected instead of guessed.
+  if [[ ! "$fingerprints" =~ ^[0-9a-f]{64}$ ]]; then
     echo "Erro: certificado SHA-256 ausente ou múltiplos signatários no APK." >&2
     return 1
   fi
