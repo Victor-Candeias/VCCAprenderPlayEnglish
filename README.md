@@ -424,3 +424,15 @@ após upload bem-sucedido**. A primeira versão sem tags é `v0.1.0`.
 As credenciais permanecem em GitHub Secrets; o pipeline não faz fallback
 para certificados Debug. Para preparar os secrets e executar uma Release,
 consultar **[docs/PE-010-RELEASE.md](docs/PE-010-RELEASE.md)**.
+
+---
+
+## PE-011 — Arquitetura MVVM e lógica offline desacoplada
+
+Foi introduzida uma separação entre **domínio** (estado imutável e casos de uso),
+**dados** (catálogo JSON offline), **UI** (Compose e `QuizViewModel`),
+**áudio** (contrato) e **plugin** (SDK e segurança do host). A UI não depende
+dos modelos de sessão da VCCAprender. O catálogo começará vazio até PE-012;
+nenhuma pontuação fictícia é gerada.
+
+Consultar [docs/PE-011-ARCHITECTURE.md](docs/PE-011-ARCHITECTURE.md).
