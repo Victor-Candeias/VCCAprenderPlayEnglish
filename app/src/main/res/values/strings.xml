@@ -23,4 +23,5 @@
     <string name="results_placeholder_title">As tuas conquistas aparecem aqui!</string>
     <string name="results_placeholder_body">Quando o jogo de perguntas estiver pronto, vais poder ver os resultados da tua aventura.</string>
     <string name="results_go_home">Voltar ao início</string>
+    <string name="session_cancel">Sair do jogo sem guardar</string>
 </resources>
