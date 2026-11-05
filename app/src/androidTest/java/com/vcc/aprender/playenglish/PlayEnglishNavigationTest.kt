@@ -26,6 +26,13 @@ class PlayEnglishNavigationTest {
         rule.onNodeWithTag("quiz-preview-results").assertIsNotEnabled()
         rule.onNodeWithTag("quiz-category-animals").performScrollTo().performClick()
         rule.onNodeWithTag("quiz-selection-count").assertExists()
+        rule.onNodeWithTag("quiz-question-prompt").performScrollTo().assertExists()
+        rule.onNodeWithTag("quiz-option-a").performScrollTo().assertExists()
+        rule.onNodeWithTag("quiz-option-b").performScrollTo().performClick()
+        rule.onNodeWithTag("quiz-option-c").performScrollTo().assertExists()
+        rule.onNodeWithTag("quiz-preview-notice").performScrollTo().assertExists()
+        rule.onNodeWithTag("quiz-next-preview").performScrollTo().performClick()
+        rule.onNodeWithTag("quiz-question-prompt").assertExists()
         rule.onNodeWithTag("quiz-preview-results").performScrollTo().assertIsEnabled()
         rule.onNodeWithTag("quiz-preview-results").performClick()
         rule.onNodeWithTag("screen-results").assertExists()
@@ -41,6 +48,16 @@ class PlayEnglishNavigationTest {
         rule.onNodeWithTag("quiz-level-6-8").performScrollTo().performClick()
         rule.onNodeWithTag("quiz-selection-count").performScrollTo().assertExists()
         rule.onNodeWithTag("quiz-preview-results").assertIsEnabled()
+    }
+
+    @Test fun colorSwatchAndThreeOptionsAreVisibleWithoutAnswerFeedback() {
+        rule.onNodeWithTag("home-quiz").performClick()
+        rule.onNodeWithTag("quiz-category-colors").performScrollTo().performClick()
+        rule.onNodeWithTag("quiz-color-swatch").performScrollTo().assertExists()
+        rule.onNodeWithTag("quiz-option-a").performScrollTo().assertExists()
+        rule.onNodeWithTag("quiz-option-b").performScrollTo().assertExists()
+        rule.onNodeWithTag("quiz-option-c").performScrollTo().assertExists()
+        rule.onNodeWithTag("quiz-answer-feedback").assertDoesNotExist()
     }
 
     @Test fun discoverFiltersWordsAndPreservesSelectionAcrossScreens() {
