@@ -104,6 +104,23 @@ jobs:
           done
           echo "Metadata de descoberta do plugin confirmada no APK Debug."
 
+      - name: Verify Debug APK certificate and signature comparison
+        shell: bash
+        run: |
+          set -euo pipefail
+          apk="app/build/outputs/apk/debug/app-debug.apk"
+          apksigner="$ANDROID_HOME/build-tools/35.0.0/apksigner"
+          "$apksigner" verify --verbose "$apk" > "$RUNNER_TEMP/debug-signature.txt"
+          bash -n scripts/compare-apk-certificates.sh
+          bash scripts/compare-apk-certificates.sh "$apk" "$apk"
+          # A missing/invalid APK must never be treated as a matching signer.
+          touch "$RUNNER_TEMP/unsigned.apk"
+          if bash scripts/compare-apk-certificates.sh "$apk" "$RUNNER_TEMP/unsigned.apk"; then
+            echo "::error::Comparador aceitou um APK sem assinatura!"
+            exit 1
+          fi
+          echo "Assinatura Debug válida e comparador verificado."
+
       - name: Upload test reports
         if: always()
         uses: actions/upload-artifact@v4
@@ -133,5 +150,5 @@ jobs:
             echo "### VCCAprenderPlayEnglish - APK Debug"
             echo "Testes unitários e compilação concluídos com sucesso."
             echo "Descarrega o artefacto **VCCAprenderPlayEnglish-debug-${GITHUB_RUN_NUMBER}** nesta execução."
-            echo "O APK declara a Activity do plugin v1; resultados reais e gestao completa de sessao serao implementados nas PE-005/006."
+            echo "Assinatura Debug verificada; a compatibilidade com o host exige certificado coincidente em ambos os APKs."
           } >> "${GITHUB_STEP_SUMMARY}"

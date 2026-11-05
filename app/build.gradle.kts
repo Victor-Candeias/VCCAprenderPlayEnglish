@@ -1,7 +1,58 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.compose")
+}
+
+
+// Match the VCCAprender host's existing signing configuration.
+// Never put passwords, PKCS12/JKS files or keys in this repository.
+val signingProperties = Properties().apply {
+    val credentials = rootProject.file("keystore.properties")
+    if (credentials.isFile) credentials.reader(Charsets.UTF_8).use { load(it) }
+}
+
+fun releaseSetting(environmentVariable: String, property: String): String? =
+    providers.environmentVariable(environmentVariable).orNull?.takeIf { it.isNotBlank() }
+        ?: signingProperties.getProperty(property)?.takeIf { it.isNotBlank() }
+
+val releaseStoreFile = rootProject.file(
+    releaseSetting("VCC_RELEASE_STORE_FILE", "storeFile")
+        ?: "${System.getProperty("user.home")}/.keystores/VCCProjects.jks"
+)
+val releaseStorePassword = releaseSetting("VCC_RELEASE_STORE_PASSWORD", "storePassword")
+val releaseKeyAlias = releaseSetting("VCC_RELEASE_KEY_ALIAS", "keyAlias") ?: "vccprojects"
+val releaseKeyPassword = releaseSetting("VCC_RELEASE_KEY_PASSWORD", "keyPassword")
+    ?: releaseStorePassword
+
+// A debug build uses Android's usual ~/.android/debug.keystore by default.
+// Both host and plugin match when built with the same default debug keystore.
+// To sign the plugin debug APK with a custom shared certificate, set ALL of
+// VCC_DEBUG_STORE_FILE, VCC_DEBUG_STORE_PASSWORD and VCC_DEBUG_KEY_ALIAS;
+// VCC_DEBUG_KEY_PASSWORD may be omitted if identical to the store password.
+val debugStorePath = providers.environmentVariable("VCC_DEBUG_STORE_FILE").orNull
+    ?.takeIf { it.isNotBlank() }
+val debugStorePassword = providers.environmentVariable("VCC_DEBUG_STORE_PASSWORD").orNull
+    ?.takeIf { it.isNotBlank() }
+val debugKeyAlias = providers.environmentVariable("VCC_DEBUG_KEY_ALIAS").orNull
+    ?.takeIf { it.isNotBlank() }
+val debugKeyPassword = providers.environmentVariable("VCC_DEBUG_KEY_PASSWORD").orNull
+    ?.takeIf { it.isNotBlank() } ?: debugStorePassword
+
+val customDebugSigning = listOf(
+    debugStorePath, debugStorePassword, debugKeyAlias,
+    providers.environmentVariable("VCC_DEBUG_KEY_PASSWORD").orNull?.takeIf { it.isNotBlank() }
+).any { it != null }
+
+if (customDebugSigning) {
+    require(debugStorePath != null && debugStorePassword != null && debugKeyAlias != null) {
+        "Configura VCC_DEBUG_STORE_FILE, VCC_DEBUG_STORE_PASSWORD e VCC_DEBUG_KEY_ALIAS em conjunto."
+    }
+    require(rootProject.file(debugStorePath).isFile) {
+        "Keystore Debug personalizada não encontrada. Verifica VCC_DEBUG_STORE_FILE."
+    }
 }
 
 android {
@@ -23,7 +74,45 @@ android {
     }
     kotlinOptions { jvmTarget = "17" }
     buildFeatures { compose = true }
+
+    signingConfigs {
+        create("release") {
+            storeFile = releaseStoreFile
+            storeType = "PKCS12"
+            storePassword = releaseStorePassword
+            keyAlias = releaseKeyAlias
+            keyPassword = releaseKeyPassword
+        }
+        if (customDebugSigning) {
+            getByName("debug") {
+                storeFile = rootProject.file(debugStorePath!!)
+                storePassword = debugStorePassword
+                keyAlias = debugKeyAlias
+                keyPassword = debugKeyPassword
+            }
+        }
+    }
+    buildTypes {
+        getByName("release") {
+            signingConfig = signingConfigs.getByName("release")
+        }
+    }
 }
+
+// Release signing must fail closed: no unsigned fallback when the key is absent.
+tasks.matching { it.name == "preReleaseBuild" }.configureEach {
+    doFirst {
+        require(releaseStoreFile.isFile) {
+            "Keystore Release não encontrada. Define VCC_RELEASE_STORE_FILE ou keystore.properties."
+        }
+        require(!releaseStorePassword.isNullOrBlank() &&
+                !releaseKeyPassword.isNullOrBlank() &&
+                releaseKeyAlias.isNotBlank()) {
+            "Credenciais Release em falta: configura VCC_RELEASE_* ou keystore.properties."
+        }
+    }
+}
+
 
 dependencies {
     implementation(project(":game-plugin-sdk"))
