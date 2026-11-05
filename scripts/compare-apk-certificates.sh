@@ -56,6 +56,9 @@ fingerprint() {
   # signers or unexpected output are rejected instead of guessed.
   if [[ ! "$fingerprints" =~ ^[0-9a-f]{64}$ ]]; then
     echo "Erro: certificado SHA-256 ausente ou múltiplos signatários no APK." >&2
+    # Public certificate metadata only; no passwords, store paths or private keys.
+    echo "Metadados públicos de certificado recebidos do apksigner:" >&2
+    printf '%s\n' "$output" | grep -iE 'signer|certificate|digest' >&2 || true
     return 1
   fi
   printf '%s\n' "$fingerprints"
