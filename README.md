@@ -410,3 +410,17 @@ Debug também valida a assinatura do APK gerado, sem recorrer a secrets Release.
 **Consultar [docs/PE-008-SIGNING.md](docs/PE-008-SIGNING.md)** para instruções
 completas, exemplos, impressão SHA-256 pública do host, políticas de segurança
 e passos de validação num dispositivo.
+
+---
+
+## PE-010 — Pipeline Release e versionamento automático
+
+O workflow manual [Android Release - Signed APK](.github/workflows/android-release.yml)
+é responsável por criar Releases assinadas com a chave da VCCAprender,
+atribuir versões `MAJOR.MINOR.PATCH`, verificar o certificado SHA-256 e
+publicar o APK no GitHub Actions. As tags `vX.Y.Z` são criadas **apenas
+após upload bem-sucedido**. A primeira versão sem tags é `v0.1.0`.
+
+As credenciais permanecem em GitHub Secrets; o pipeline não faz fallback
+para certificados Debug. Para preparar os secrets e executar uma Release,
+consultar **[docs/PE-010-RELEASE.md](docs/PE-010-RELEASE.md)**.
