@@ -42,8 +42,8 @@ internal object PluginSessionSavedState {
     }
 
     @Suppress("DEPRECATION")
-    fun read(savedState: Bundle, request: GameRequest): PluginSessionSnapshot? =
-        try {
+    fun read(savedState: Bundle, request: GameRequest): PluginSessionSnapshot? {
+        return try {
             val b = savedState.getBundle(ROOT) ?: return null
             if (b.getInt(FORMAT, -1) != FORMAT_VERSION ||
                 !b.containsKey(GAME) || !b.containsKey(SESSION) ||
@@ -83,4 +83,5 @@ internal object PluginSessionSavedState {
         } catch (_: RuntimeException) {
             null
         }
+    }
 }
