@@ -32,7 +32,11 @@ class PlayEnglishNavigationTest {
         rule.onNodeWithTag("quiz-option-c").performScrollTo().assertExists()
         // Physical short tap does not invoke the accessibility confirmation.
         rule.onNodeWithTag("quiz-option-b").performScrollTo()
-            .performTouchInput { click() }
+            .performTouchInput {
+                down(center)
+                advanceEventTime(100L)
+                up()
+            }
         rule.onNodeWithTag("quiz-waiting-state").assertExists()
         rule.onNodeWithTag("quiz-next-preview").assertIsNotEnabled()
         rule.onNodeWithTag("quiz-preview-results").assertIsNotEnabled()
