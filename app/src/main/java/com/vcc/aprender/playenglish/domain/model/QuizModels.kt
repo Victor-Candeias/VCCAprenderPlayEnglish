@@ -1,6 +1,6 @@
 package com.vcc.aprender.playenglish.domain.model
 
-/** Minimal stable offline models; PE-012 expands the vocabulary and metadata. */
+/** Resolved quiz options for use cases/UI; JSON references stable WordEntry IDs. */
 data class QuizChoice(val id: String, val label: String) {
     init {
         require(id.isNotBlank())
@@ -14,6 +14,9 @@ data class QuizQuestion(
     val choices: List<QuizChoice>,
     val correctChoiceId: String
 ) {
+    val optionIds: List<String> get() = choices.map { it.id }
+    val correctId: String get() = correctChoiceId
+
     init {
         require(id.isNotBlank())
         require(prompt.isNotBlank())

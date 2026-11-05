@@ -9,14 +9,27 @@ import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
 
-/** Runs on Android device/emulator; GitHub CI compiles but does not execute. */
+/** Executes on Android device/emulator; GitHub CI compiles these tests only. */
 @RunWith(AndroidJUnit4::class)
 class OfflineCatalogInstrumentedTest {
-    @Test fun readsBundledCatalogWithoutNetwork() {
+    @Test fun loadsBundledPtPtEnGbVocabularyAndQuestionsWithoutNetwork() {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
-        val quiz = LoadQuizUseCase(AssetsQuizContentRepository(context)).execute()
-        assertTrue(quiz.questions.isEmpty())
-        assertEquals(QuizPhase.NOT_STARTED, quiz.phase)
+        val repository = AssetsQuizContentRepository(context)
+        val catalog = repository.loadCatalog()
+        assertEquals(18, catalog.words.size)
+        assertEquals(6, catalog.questions.size)
+        assertEquals("Pássaro",
+            catalog.words.first { it.id == "animals.bird" }.ptPT)
+        assertTrue(catalog.words.all { it.imageRef == null })
+        val quiz = LoadQuizUseCase(repository).execute()
+        assertEquals(QuizPhase.ACTIVE, quiz.phase)
+        assertEquals(6, quiz.questionCount)
         assertNull(quiz.score)
+        val resolved = repository.loadQuestions()
+        assertEquals(6, resolved.size)
+        assertEquals(3, resolved.first().choices.size)
+        assertEquals(1, resolved.first().choices.count {
+            it.id == resolved.first().correctChoiceId
+        })
     }
 }
