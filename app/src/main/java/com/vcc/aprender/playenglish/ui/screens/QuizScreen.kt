@@ -108,6 +108,7 @@ fun QuizScreen(
                     modifier = Modifier.testTag("quiz-preparing-question")
                 )
                 else -> {
+                    val shownQuestion = checkNotNull(question)
                     Text(
                         stringResource(R.string.learning_quiz_count, selected.questionCount),
                         modifier = Modifier.testTag("quiz-selection-count"),
@@ -135,10 +136,10 @@ fun QuizScreen(
                         ) {
                             QuestionIllustration(
                                 category = selectionState.selectedCategory,
-                                questionId = question!!.id
+                                questionId = shownQuestion.id
                             )
                             Text(
-                                question.prompt,
+                                shownQuestion.prompt,
                                 style = MaterialTheme.typography.headlineSmall,
                                 textAlign = TextAlign.Center,
                                 modifier = Modifier.fillMaxWidth()
@@ -150,12 +151,12 @@ fun QuizScreen(
                         stringResource(R.string.quiz_select_preview_instruction),
                         style = MaterialTheme.typography.bodyMedium
                     )
-                    question.options.forEachIndexed { index, option ->
+                    shownQuestion.options.forEachIndexed { index, option ->
                         QuizOptionCard(
                             letter = "ABC"[index].toString(),
                             option = option,
                             isSelected = preview.preselectedOptionId == option.id,
-                            onClick = { onPreviewOption(question.id, option.id) }
+                            onClick = { onPreviewOption(shownQuestion.id, option.id) }
                         )
                     }
                     Text(
