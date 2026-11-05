@@ -9,31 +9,28 @@ import com.vcc.aprender.playenglish.ui.navigation.PlayEnglishNavHost
 import com.vcc.aprender.playenglish.ui.theme.PlayEnglishTheme
 
 /**
- * Entry point reserved for VCCAprender; only signed, validated host sessions
- * can open the plugin. The request is not exposed to the standalone launcher.
- *
- * The plugin reports RESULT_OK exactly once *after* a real completed quiz.
- * Until the quiz engine is implemented (PE-015/PE-020), the existing preview
- * cannot invoke onQuizCompleted and closing returns RESULT_CANCELED.
+ * Host-only entry point. The host identity, signature and immutable request
+ * are checked on every Activity creation, including process restoration.
  */
 class PlayEnglishPluginActivity : ComponentActivity() {
+    private var session: PluginSessionStateHolder? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Default and all unsuccessful exits must not be interpreted as scores.
+        // Back, cancellation and premature closure must never return a score.
         setResult(RESULT_CANCELED)
 
         val caller = callingPackage
-        val sameSignature = caller == PluginLaunchGate.HOST_PACKAGE &&
+        val trusted = caller == PluginLaunchGate.HOST_PACKAGE &&
             runCatching {
                 packageManager.checkSignatures(
-                    PluginLaunchGate.HOST_PACKAGE,
-                    packageName
+                    PluginLaunchGate.HOST_PACKAGE, packageName
                 ) == PackageManager.SIGNATURE_MATCH
             }.getOrDefault(false)
 
         val request = PluginSessionValidator.validate(
             callingPackage = caller,
-            signaturesMatch = sameSignature,
+            signaturesMatch = trusted,
             launchIntent = intent,
             expectedComponent = ComponentName(this, PlayEnglishPluginActivity::class.java)
         )
@@ -42,18 +39,56 @@ class PlayEnglishPluginActivity : ComponentActivity() {
             return
         }
 
-        val resultSender = PluginQuizResultSender(request)
+        val holder = if (savedInstanceState == null) {
+            PluginSessionStateHolder.start(request)
+        } else {
+            val restored = PluginSessionSavedState.read(savedInstanceState, request)
+            restored?.let { PluginSessionStateHolder.restore(request, it) }
+        }
+        // Never revive a canceled or completed session after process death.
+        if (holder == null || !holder.isActive) {
+            finish()
+            return
+        }
+        session = holder
+
         setContent {
             PlayEnglishTheme {
                 PlayEnglishNavHost(
-                    onQuizCompleted = { completedQuiz ->
-                        resultSender.createResultOnce(completedQuiz)?.let { resultIntent ->
-                            setResult(RESULT_OK, resultIntent)
+                    onQuizStarted = { questionIds ->
+                        holder.beginQuiz(questionIds)
+                    },
+                    onAnswerRecorded = { id, correct ->
+                        holder.recordAnswer(id, correct)
+                    },
+                    onQuizCompleted = {
+                        holder.finishQuizOnce()?.let { result ->
+                            setResult(RESULT_OK, result)
                             finish()
                         }
+                    },
+                    onCancelSession = {
+                        holder.cancel()
+                        setResult(RESULT_CANCELED)
+                        finish()
                     }
                 )
             }
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        session?.let {
+            PluginSessionSavedState.write(outState, it.snapshot())
+        }
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun onNewIntent(intent: android.content.Intent) {
+        super.onNewIntent(intent)
+        // Do not accept a second launch into an existing session.
+        session?.cancel()
+        setResult(RESULT_CANCELED)
+        finish()
     }
 }

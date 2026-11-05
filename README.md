@@ -336,3 +336,55 @@ instrumentados de `Intent` e o teste E2E de registo pela VCCAprender
 requerem um dispositivo/emulador com host e plugin assinados pelo mesmo
 certificado. A persistência através de rotação/encerramento do processo
 será tratada na PE-007.
+
+---
+
+## PE-007 — Ciclo de vida e cancelamento de sessões
+
+A Activity do plugin utiliza `PluginSessionStateHolder` para manter o estado
+transitório de uma sessão do host. A Activity guarda em `onSaveInstanceState`
+apenas **gameId**, **sessionId**, **profileId**, estado (ativa/cancelada/
+resultado enviado), IDs das perguntas e respostas booleanas. Não guarda nomes,
+idades, fotos ou outros dados pessoais.
+
+- **Rotação / recriação do processo:** a Activity volta a validar o chamador e
+  o pedido original com a PE-005; `PluginSessionSavedState` recupera o estado
+  só quando coincide exatamente com a identidade da sessão e os dados guardados
+  são válidos. O Navigation Compose conserva a pilha de ecrãs, e as respostas
+  são repostas sem duplicados.
+- **Voltar / sair antecipadamente:** o ecrã inicial oferece **Sair do jogo sem
+  guardar** quando chamado pelo host. Os botões de Voltar nas vistas do host
+  cancelam e fecham o plugin. O botão físico Voltar pode regressar primeiro ao
+  ecrã inicial, mas sair da Activity continua a devolver `RESULT_CANCELED`.
+- **Conclusão real:** apenas `QuizProgress` com todas as respostas registadas
+  pode produzir o `GameProtocol.createResultIntent`. O gestor conserva o estado
+  `RESULT_SENT` para impedir nova emissão após recriação; após cancelamento
+  não permite criar resultados. Não é emitido `0/0`.
+- **Falha de restauração:** se o estado estiver incompleto, corrompido ou
+  associado a outra sessão/perfil, a Activity termina com
+  `RESULT_CANCELED`, sem reiniciar o quiz como se fosse uma sessão nova.
+- **Limites de segurança:** no máximo 500 IDs de perguntas, até 80 caracteres
+  por ID no gestor de sessão, para limitar o tamanho dos `Bundle` do Android.
+  O protocolo permite até 10 000 perguntas, mas esse limite maior não é
+  adequado ao `SavedState` de uma Activity.
+
+**Modo pronúncia:** continua a ser apenas prática; o protocolo v1 exige
+contagem de respostas de um quiz real. Não são enviados resultados falsos para
+representar escuta ou repetição. Um histórico específico de pronúncia exigiria
+a evolução do contrato entre plugin e host.
+
+**Integração ainda pendente:** a UI de Quiz continua em pré-visualização.
+As callbacks `onQuizStarted`, `onAnswerRecorded` e `onQuizCompleted`
+ficam preparadas para o motor real da PE-015/PE-020; a UI atual não as chama
+para fabricar uma pontuação. A confirmação E2E depende de host e plugin com
+certificados coincidentes.
+
+**Testes:**
+
+```bash
+./gradlew :app:testDebugUnitTest :app:compileDebugAndroidTestKotlin :app:assembleDebug
+./gradlew :app:connectedDebugAndroidTest
+```
+
+A CI executa os testes JVM e compila os testes instrumentados Android;
+os testes Android reais exigem emulador/dispositivo.

@@ -1,59 +1,72 @@
 package com.vcc.aprender.playenglish.plugin
 
 /**
- * Only a *finished*, non-empty quiz may produce a result for VCCAprender.
- * The score is based on actual answers to a pre-selected set of question IDs.
+ * A completed non-empty quiz can produce a result for VCCAprender.
+ * Answers are recorded once per known question.
  */
 data class QuizCompletion internal constructor(
     val correctAnswers: Int,
     val totalQuestions: Int
 ) {
     init {
-        require(totalQuestions in 1..10_000) { "Quiz must have 1..10000 questions" }
-        require(correctAnswers in 0..totalQuestions) { "Invalid number of correct answers" }
+        require(totalQuestions in 1..10_000)
+        require(correctAnswers in 0..totalQuestions)
     }
 }
 
-/**
- * Records a single answer per known question. Unknown/repeated answers do not
- * alter the score. PE-015 will call recordAnswer from the real quiz UI.
- *
- * No names, ages or child information are accepted or stored.
- */
+/** Pure, immutable snapshot; only question IDs and answer flags are stored. */
+data class QuizProgressSnapshot(
+    val questionIds: List<String>,
+    val answers: Map<String, Boolean>,
+    val finalized: Boolean
+)
+
 class QuizProgress(questionIds: List<String>) {
-    private val knownQuestionIds: Set<String> = questionIds.toSet()
-    private val answered = mutableMapOf<String, Boolean>()
+    private val ids = questionIds.toList()
+    private val knownIds: Set<String> = ids.toSet()
+    private val answered = linkedMapOf<String, Boolean>()
     private var finalized = false
 
     init {
-        require(questionIds.size in 1..10_000)
-        require(questionIds.all(String::isNotBlank))
-        require(knownQuestionIds.size == questionIds.size) { "Question IDs must be unique" }
+        require(ids.size in 1..10_000)
+        require(ids.all(String::isNotBlank))
+        require(knownIds.size == ids.size) { "Question IDs must be unique" }
     }
 
-    val answeredCount: Int
-        get() = answered.size
-
-    val isComplete: Boolean
-        get() = answered.size == knownQuestionIds.size
+    val answeredCount: Int get() = answered.size
+    val isComplete: Boolean get() = answered.size == knownIds.size
+    val isFinalized: Boolean get() = finalized
 
     fun recordAnswer(questionId: String, correct: Boolean): Boolean {
-        if (finalized || questionId !in knownQuestionIds || questionId in answered) return false
+        if (finalized || questionId !in knownIds || questionId in answered) return false
         answered[questionId] = correct
         return true
     }
 
-    /**
-     * Consumes the completed quiz exactly once. Incomplete or already-consumed
-     * sessions can never generate a score (including 0/0).
-     */
     fun finishIfComplete(): QuizCompletion? {
         if (finalized || !isComplete) return null
         val score = QuizCompletion(
             correctAnswers = answered.values.count { it },
-            totalQuestions = knownQuestionIds.size
+            totalQuestions = knownIds.size
         )
         finalized = true
         return score
+    }
+
+    fun snapshot(): QuizProgressSnapshot =
+        QuizProgressSnapshot(ids.toList(), answered.toMap(), finalized)
+
+    companion object {
+        /** Reject malformed snapshots; never silently change a saved score. */
+        fun restore(snapshot: QuizProgressSnapshot): QuizProgress? {
+            val quiz = runCatching { QuizProgress(snapshot.questionIds) }.getOrNull()
+                ?: return null
+            if (snapshot.answers.size > snapshot.questionIds.size) return null
+            for ((id, correct) in snapshot.answers) {
+                if (!quiz.recordAnswer(id, correct)) return null
+            }
+            if (snapshot.finalized && quiz.finishIfComplete() == null) return null
+            return quiz
+        }
     }
 }

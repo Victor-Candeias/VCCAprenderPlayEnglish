@@ -19,7 +19,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.vcc.aprender.playenglish.R
-import com.vcc.aprender.playenglish.plugin.QuizCompletion
 import com.vcc.aprender.playenglish.ui.components.ChildScreenLayout
 import com.vcc.aprender.playenglish.ui.theme.PlayEnglishColors
 
@@ -28,7 +27,9 @@ import com.vcc.aprender.playenglish.ui.theme.PlayEnglishColors
 fun QuizScreen(
     onBack: () -> Unit,
     onPreviewResults: () -> Unit,
-    onQuizCompleted: (QuizCompletion) -> Unit = {}
+    onQuizStarted: (List<String>) -> Unit = {},
+    onAnswerRecorded: (String, Boolean) -> Unit = { _, _ -> },
+    onQuizCompleted: () -> Unit = {}
 ) {
     ChildScreenLayout(
         title = stringResource(R.string.quiz_title),

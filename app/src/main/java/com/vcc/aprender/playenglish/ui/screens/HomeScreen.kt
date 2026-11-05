@@ -12,6 +12,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -30,7 +31,8 @@ import com.vcc.aprender.playenglish.ui.theme.PlayEnglishColors
 @Composable
 fun HomeScreen(
     onQuiz: () -> Unit,
-    onPronunciation: () -> Unit
+    onPronunciation: () -> Unit,
+    onExit: (() -> Unit)? = null
 ) {
     ChildScreenLayout(
         title = stringResource(R.string.app_name),
@@ -76,6 +78,15 @@ fun HomeScreen(
             tag = "home-pronunciation",
             onClick = onPronunciation
         )
+        if (onExit != null) {
+            OutlinedButton(
+                onClick = onExit,
+                modifier = Modifier.fillMaxWidth().heightIn(min = 56.dp)
+                    .testTag("session-cancel")
+            ) {
+                Text(stringResource(R.string.session_cancel))
+            }
+        }
         Text(
             stringResource(R.string.home_footer),
             color = MaterialTheme.colorScheme.onBackground,
