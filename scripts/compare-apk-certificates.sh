@@ -46,16 +46,18 @@ fingerprint() {
     echo "Erro: APK não tem assinatura válida." >&2
     return 1
   fi
-  # apksigner versions may indent signer lines differently. The final
-  # whitespace-delimited field on each certificate-digest line is the SHA-256.
+  # apksigner output varies by signing scheme and SDK version:
+  # "Signer #1 certificate SHA-256 digest:" or "V2 Signer: certificate ...".
+  # The same certificate can appear once per v1/v2/v3 signing scheme.
   fingerprints="$(printf '%s\n' "$output" |
-    awk '/Signer #[0-9]+ certificate SHA-256 digest:/ { print $NF }' |
+    awk '/certificate SHA-256 digest:/ { print $NF }' |
     tr '[:upper:]' '[:lower:]' |
-    tr -d '\r')"
-  # A single signer SHA-256 must be exactly 64 hex characters; multiple
-  # signers or unexpected output are rejected instead of guessed.
+    tr -d '\r' |
+    sort -u)"
+  # Exactly one distinct SHA-256 digest must remain after deduplication.
+  # Different signing certificates or unexpected output are rejected.
   if [[ ! "$fingerprints" =~ ^[0-9a-f]{64}$ ]]; then
-    echo "Erro: certificado SHA-256 ausente ou múltiplos signatários no APK." >&2
+    echo "Erro: certificado SHA-256 ausente ou múltiplos certificados diferentes no APK." >&2
     # Public certificate metadata only; no passwords, store paths or private keys.
     echo "Metadados públicos de certificado recebidos do apksigner:" >&2
     printf '%s\n' "$output" | grep -iE 'signer|certificate|digest' >&2 || true
