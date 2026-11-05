@@ -73,7 +73,9 @@ bash scripts/compare-apk-certificates.sh VCCAprender-release.apk VCCAprenderPlay
 ```
 
 O script falha se qualquer APK não estiver corretamente assinado, tiver
-vários signatários ou apresentar uma impressão SHA-256 diferente.
+certificados de assinatura diferentes ou apresentar uma impressão SHA-256
+incompatível. A mesma impressão pode surgir várias vezes quando o APK contém
+vários esquemas de assinatura (v1/v2/v3).
 
 A VCCAprender publicou uma verificação anterior da sua assinatura Release em
 [`.verification/release-build2-signature.txt`](https://github.com/Victor-Candeias/VCCAprender/blob/main/.verification/release-build2-signature.txt),
