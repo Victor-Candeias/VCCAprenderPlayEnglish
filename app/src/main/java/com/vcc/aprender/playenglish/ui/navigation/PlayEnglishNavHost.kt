@@ -62,15 +62,15 @@ fun PlayEnglishNavHost(
         }
         composable(PlayEnglishRoutes.QUIZ) {
             QuizScreen(
-                uiState = quizUiState,
+                preview = quizUiState.preview,
+                catalogError = quizUiState.catalogError,
                 selectionState = selectionState,
+                onPreviewOption = quizViewModel::previewOption,
+                onNextPreview = quizViewModel::nextPreviewQuestion,
                 onLevelSelected = selectionViewModel::chooseLevel,
                 onCategorySelected = selectionViewModel::chooseCategory,
                 onBack = { onCancelSession?.invoke() ?: navController.popBackStack() },
-                onPreviewResults = { navController.navigate(PlayEnglishRoutes.RESULTS) },
-                onQuizStarted = onQuizStarted,
-                onAnswerRecorded = onAnswerRecorded,
-                onQuizCompleted = onQuizCompleted
+                onPreviewResults = { navController.navigate(PlayEnglishRoutes.RESULTS) }
             )
         }
         composable(PlayEnglishRoutes.PRONUNCIATION) {

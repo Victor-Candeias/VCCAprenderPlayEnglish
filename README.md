@@ -482,3 +482,18 @@ elegíveis para a combinação escolhida, ainda **sem respostas interativas**
 (essas chegam na PE-015/PE-020). A seleção funciona offline.
 
 [Documentação e critérios de aceitação PE-014](docs/PE-014-LEVEL-CATEGORIES.md).
+
+---
+
+## PE-015 — Cartões de perguntas A/B/C (pré-seleção)
+
+O ecrã **Como se diz em inglês?** apresenta agora o enunciado real em
+português e exatamente três opções A/B/C em inglês, com cartões
+adaptativos e deslocamento vertical. Os utilizadores podem **pré-selecionar**
+uma opção e **ver outra pergunta**, sem criar resultados falsos; a
+confirmação por pressão prolongada e os feedbacks de acerto/erro ficam para
+PE-016/017/018. A vista Compose recebe uma projeção segura, que **não
+expõe o identificador da resposta certa**. Perguntas de cores têm
+amostra de cor; restantes categorias apresentam ícones ilustrativos.
+
+Detalhes: [docs/PE-015-ABC-QUESTION-UI.md](docs/PE-015-ABC-QUESTION-UI.md).

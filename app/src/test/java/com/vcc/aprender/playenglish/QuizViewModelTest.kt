@@ -89,4 +89,71 @@ class QuizViewModelTest {
         assertTrue(anotherVm.uiState.value.catalogError)
     }
 
+    @Test fun previewChoiceIsInteractiveButDoesNotAnswerOrAwardPoints() {
+        val question = QuizQuestion(
+            "quiz.colors.red", "Qual é a tradução de Vermelho?",
+            listOf(QuizChoice("colors.green", "Green"),
+                QuizChoice("colors.red", "Red"), QuizChoice("colors.blue", "Blue")),
+            "colors.red"
+        )
+        val vm = QuizViewModel(LoadQuizUseCase(source(listOf(question))))
+        vm.selectQuestionSet(listOf(question.id))
+        assertNull(vm.uiState.value.preview.preselectedOptionId)
+        assertEquals(listOf("Green", "Red", "Blue"),
+            vm.uiState.value.preview.question!!.options.map { it.label })
+        vm.previewOption(question.id, "colors.red")
+        assertEquals("colors.red", vm.uiState.value.preview.preselectedOptionId)
+        assertTrue(vm.uiState.value.quiz.selected.isEmpty())
+        assertEquals(QuizPhase.ACTIVE, vm.uiState.value.quiz.phase)
+        assertNull(vm.uiState.value.quiz.score)
+        vm.previewOption(question.id, "colors.green")
+        assertEquals("colors.green", vm.uiState.value.preview.preselectedOptionId)
+        assertTrue(vm.uiState.value.quiz.selected.isEmpty())
+    }
+
+    @Test fun previewRejectsUnknownOptionsAndDoesNotRevealCorrectAnswer() {
+        val q = QuizQuestion("quiz.colors.red", "Vermelho?",
+            listOf(QuizChoice("a", "Green"), QuizChoice("b", "Red"),
+                QuizChoice("c", "Blue")), "b")
+        val vm = QuizViewModel(LoadQuizUseCase(source(listOf(q))))
+        vm.selectQuestionSet(listOf(q.id))
+        vm.previewOption("wrong-question", "b")
+        vm.previewOption(q.id, "fake")
+        assertNull(vm.uiState.value.preview.preselectedOptionId)
+        val preview = vm.uiState.value.preview.question!!
+        assertEquals(q.prompt, preview.prompt)
+        assertEquals(3, preview.options.size)
+        assertFalse(preview.javaClass.declaredFields.any {
+            it.name.contains("correct", ignoreCase = true)
+        })
+        assertFalse(vm.uiState.value.preview.javaClass.declaredFields.any {
+            it.name.contains("correct", ignoreCase = true)
+        })
+    }
+
+    @Test fun nextPreviewResetsChoiceAndCategorySelectionStartsFromFirstQuestion() {
+        val first = QuizQuestion("q1", "Animal?",
+            listOf(QuizChoice("a", "Cat"), QuizChoice("b", "Dog"),
+                QuizChoice("c", "Bird")), "a")
+        val second = QuizQuestion("q2", "Cor?",
+            listOf(QuizChoice("r", "Red"), QuizChoice("g", "Green"),
+                QuizChoice("b", "Blue")), "r")
+        val vm = QuizViewModel(LoadQuizUseCase(source(listOf(first, second))))
+        vm.selectQuestionSet(listOf(first.id, second.id))
+        vm.previewOption(first.id, "a")
+        vm.nextPreviewQuestion()
+        assertEquals(1, vm.uiState.value.preview.questionIndex)
+        assertEquals(second.id, vm.uiState.value.preview.question!!.id)
+        assertNull(vm.uiState.value.preview.preselectedOptionId)
+        vm.previewOption(second.id, "r")
+        vm.nextPreviewQuestion()
+        assertEquals(0, vm.uiState.value.preview.questionIndex)
+        assertNull(vm.uiState.value.preview.preselectedOptionId)
+        assertTrue(vm.uiState.value.quiz.selected.isEmpty())
+        vm.selectQuestionSet(listOf(second.id))
+        assertEquals(0, vm.uiState.value.preview.questionIndex)
+        assertEquals(second.id, vm.uiState.value.preview.question!!.id)
+        assertNull(vm.uiState.value.preview.preselectedOptionId)
+    }
+
 }

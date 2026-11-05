@@ -60,6 +60,29 @@ class QuizViewModel(
         )
     }
 
+    /**
+     * PE-015 only: tap highlights an A/B/C card WITHOUT recording an answer.
+     * The one-attempt 800 ms hold confirmation belongs to PE-016.
+     * No host callbacks, score or correct-answer feedback are emitted here.
+     */
+    fun previewOption(questionId: String, optionId: String) {
+        val current = mutableState.value
+        if (current.catalogError || current.quiz.phase != QuizPhase.ACTIVE) return
+        val question = current.quiz.questions.getOrNull(current.previewIndex) ?: return
+        if (question.id != questionId || question.choices.none { it.id == optionId }) return
+        mutableState.value = current.copy(previewSelectedOptionId = optionId)
+    }
+
+    /** Inspect the next catalog question without awarding points or answering. */
+    fun nextPreviewQuestion() {
+        val current = mutableState.value
+        if (current.catalogError || current.quiz.questionCount <= 1) return
+        mutableState.value = current.copy(
+            previewIndex = (current.previewIndex + 1) % current.quiz.questionCount,
+            previewSelectedOptionId = null
+        )
+    }
+
     fun selectAnswer(questionId: String, choiceId: String) {
         val previous = mutableState.value
         mutableState.value = previous.copy(

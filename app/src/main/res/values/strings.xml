@@ -49,4 +49,11 @@
     <string name="learning_no_questions">Ainda não existem perguntas para esta categoria e este nível. Experimenta outro nível ou categoria.</string>
     <string name="learning_no_words">Ainda não existem palavras para esta categoria e este nível. Experimenta outro nível ou categoria.</string>
     <string name="learning_quiz_count">%1$d perguntas disponíveis neste nível e categoria.</string>
+    <string name="quiz_abc_intro">Explora as perguntas e as três opções de resposta em inglês.</string>
+    <string name="quiz_preparing_question">A preparar uma pergunta desta categoria…</string>
+    <string name="quiz_question_progress">Pergunta %1$d de %2$d</string>
+    <string name="quiz_select_preview_instruction">Toca numa opção A, B ou C para a destacar.</string>
+    <string name="quiz_preview_selected">Opção destacada! Ainda não é uma resposta confirmada. A confirmação por pressão prolongada será adicionada na próxima etapa.</string>
+    <string name="quiz_preview_no_answer">Pré-visualização: nenhuma resposta é confirmada nem avaliada.</string>
+    <string name="quiz_next_preview">Ver outra pergunta (pré-visualização)</string>
 </resources>
