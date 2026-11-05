@@ -40,4 +40,13 @@
     <string name="category_phrases">Expressões</string>
     <string name="category_food">Alimentos</string>
     <string name="category_objects">Objetos</string>
+    <string name="learning_level_instruction">Escolhe o teu nível</string>
+    <string name="learning_level_3_5">3–5 anos</string>
+    <string name="learning_level_6_8">6–8 anos</string>
+    <string name="learning_category_instruction">Escolhe uma categoria</string>
+    <string name="learning_category_counts">%1$s — %2$d palavras · %3$d perguntas</string>
+    <string name="learning_choose_category">Seleciona uma categoria para veres as perguntas disponíveis.</string>
+    <string name="learning_no_questions">Ainda não existem perguntas para esta categoria e este nível. Experimenta outro nível ou categoria.</string>
+    <string name="learning_no_words">Ainda não existem palavras para esta categoria e este nível. Experimenta outro nível ou categoria.</string>
+    <string name="learning_quiz_count">%1$d perguntas disponíveis neste nível e categoria.</string>
 </resources>

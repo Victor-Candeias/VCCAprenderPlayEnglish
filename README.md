@@ -468,3 +468,17 @@ e 48 perguntas**, distribuídas pelas seis categorias existentes. Os dados e os
 resultados do host continuam isolados da interface.
 
 Detalhes em [docs/PE-013-HOME-CATEGORIES.md](docs/PE-013-HOME-CATEGORIES.md).
+
+---
+
+## PE-014 — Categorias e níveis locais (3–5 e 6–8 anos)
+
+Os ecrãs **Descobre** e **Como se diz em inglês?** partilham uma seleção de
+categoria e nível pedagógico, independente da idade real do perfil da
+VCCAprender. Os botões mostram contagens de palavras e perguntas filtradas.
+Uma categoria sem palavras/perguntas indica o estado vazio e impede iniciar
+conteúdo indisponível. O `QuizViewModel` passa a conter só as perguntas
+elegíveis para a combinação escolhida, ainda **sem respostas interativas**
+(essas chegam na PE-015/PE-020). A seleção funciona offline.
+
+[Documentação e critérios de aceitação PE-014](docs/PE-014-LEVEL-CATEGORIES.md).

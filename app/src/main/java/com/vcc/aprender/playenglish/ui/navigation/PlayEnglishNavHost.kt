@@ -1,6 +1,7 @@
 package com.vcc.aprender.playenglish.ui.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -13,8 +14,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.vcc.aprender.playenglish.ui.screens.HomeScreen
 import com.vcc.aprender.playenglish.ui.screens.DiscoverScreen
-import com.vcc.aprender.playenglish.ui.vocabulary.VocabularyViewModel
-import com.vcc.aprender.playenglish.ui.vocabulary.VocabularyViewModelFactory
+import com.vcc.aprender.playenglish.ui.learning.LearningSelectionViewModel
+import com.vcc.aprender.playenglish.ui.learning.LearningSelectionViewModelFactory
 import com.vcc.aprender.playenglish.ui.screens.PronunciationScreen
 import com.vcc.aprender.playenglish.ui.screens.QuizScreen
 import com.vcc.aprender.playenglish.ui.screens.ResultsScreen
@@ -30,9 +31,14 @@ fun PlayEnglishNavHost(
     val factory = remember(context) { QuizViewModelFactory(context) }
     val quizViewModel: QuizViewModel = viewModel(factory = factory)
     val quizUiState by quizViewModel.uiState.collectAsState()
-    val vocabularyFactory = remember(context) { VocabularyViewModelFactory(context) }
-    val vocabularyViewModel: VocabularyViewModel = viewModel(factory = vocabularyFactory)
-    val vocabularyUiState by vocabularyViewModel.uiState.collectAsState()
+    val selectionFactory = remember(context) { LearningSelectionViewModelFactory(context) }
+    val selectionViewModel: LearningSelectionViewModel = viewModel(factory = selectionFactory)
+    val selectionState by selectionViewModel.uiState.collectAsState()
+    // Reset quiz to exactly the IDs allowed by the locally selected age level/category.
+    // This also prevents a future interactive screen from starting with all 48 questions.
+    LaunchedEffect(selectionState.selectedQuestionIds) {
+        quizViewModel.selectQuestionSet(selectionState.selectedQuestionIds)
+    }
     val navController = rememberNavController()
     NavHost(
         navController = navController,
@@ -47,7 +53,9 @@ fun PlayEnglishNavHost(
         }
         composable(PlayEnglishRoutes.DISCOVER) {
             DiscoverScreen(
-                uiState = vocabularyUiState,
+                selectionState = selectionState,
+                onLevelSelected = selectionViewModel::chooseLevel,
+                onCategorySelected = selectionViewModel::chooseCategory,
                 onBack = { onCancelSession?.invoke() ?: navController.popBackStack() },
                 onPronunciation = { navController.navigate(PlayEnglishRoutes.PRONUNCIATION) }
             )
@@ -55,6 +63,9 @@ fun PlayEnglishNavHost(
         composable(PlayEnglishRoutes.QUIZ) {
             QuizScreen(
                 uiState = quizUiState,
+                selectionState = selectionState,
+                onLevelSelected = selectionViewModel::chooseLevel,
+                onCategorySelected = selectionViewModel::chooseCategory,
                 onBack = { onCancelSession?.invoke() ?: navController.popBackStack() },
                 onPreviewResults = { navController.navigate(PlayEnglishRoutes.RESULTS) },
                 onQuizStarted = onQuizStarted,
