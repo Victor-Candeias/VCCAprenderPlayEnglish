@@ -1,6 +1,13 @@
 package com.vcc.aprender.playenglish.ui.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.vcc.aprender.playenglish.ui.quiz.QuizViewModel
+import com.vcc.aprender.playenglish.ui.quiz.QuizViewModelFactory
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -16,6 +23,10 @@ fun PlayEnglishNavHost(
     onQuizCompleted: () -> Unit = {},
     onCancelSession: (() -> Unit)? = null
 ) {
+    val context = LocalContext.current.applicationContext
+    val factory = remember(context) { QuizViewModelFactory(context) }
+    val quizViewModel: QuizViewModel = viewModel(factory = factory)
+    val quizUiState by quizViewModel.uiState.collectAsState()
     val navController = rememberNavController()
     NavHost(
         navController = navController,
@@ -32,6 +43,7 @@ fun PlayEnglishNavHost(
         }
         composable(PlayEnglishRoutes.QUIZ) {
             QuizScreen(
+                uiState = quizUiState,
                 onBack = { onCancelSession?.invoke() ?: navController.popBackStack() },
                 onPreviewResults = { navController.navigate(PlayEnglishRoutes.RESULTS) },
                 onQuizStarted = onQuizStarted,

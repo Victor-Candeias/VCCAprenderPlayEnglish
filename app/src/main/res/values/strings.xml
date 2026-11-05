@@ -24,4 +24,6 @@
     <string name="results_placeholder_body">Quando o jogo de perguntas estiver pronto, vais poder ver os resultados da tua aventura.</string>
     <string name="results_go_home">Voltar ao início</string>
     <string name="session_cancel">Sair do jogo sem guardar</string>
+    <string name="quiz_catalog_empty">O catálogo de perguntas será adicionado na próxima fase.</string>
+    <string name="quiz_catalog_error">Não foi possível carregar o catálogo offline.</string>
 </resources>

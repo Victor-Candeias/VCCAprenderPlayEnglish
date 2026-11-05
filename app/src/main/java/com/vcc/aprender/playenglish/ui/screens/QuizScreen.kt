@@ -21,10 +21,12 @@ import androidx.compose.ui.unit.sp
 import com.vcc.aprender.playenglish.R
 import com.vcc.aprender.playenglish.ui.components.ChildScreenLayout
 import com.vcc.aprender.playenglish.ui.theme.PlayEnglishColors
+import com.vcc.aprender.playenglish.ui.quiz.QuizUiState
 
 @Composable
 @Suppress("UNUSED_PARAMETER")
 fun QuizScreen(
+    uiState: QuizUiState = QuizUiState(),
     onBack: () -> Unit,
     onPreviewResults: () -> Unit,
     onQuizStarted: (List<String>) -> Unit = {},
@@ -59,7 +61,11 @@ fun QuizScreen(
             }
         }
         Text(
-            stringResource(R.string.quiz_not_ready),
+            stringResource(
+                if (uiState.catalogError) R.string.quiz_catalog_error
+                else if (!uiState.hasContent) R.string.quiz_catalog_empty
+                else R.string.quiz_not_ready
+            ),
             style = MaterialTheme.typography.bodyMedium
         )
         Button(
