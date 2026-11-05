@@ -415,11 +415,15 @@ e passos de validação num dispositivo.
 
 ## PE-010 — Pipeline Release e versionamento automático
 
-O workflow manual [Android Release - Signed APK](.github/workflows/android-release.yml)
-é responsável por criar Releases assinadas com a chave da VCCAprender,
-atribuir versões `MAJOR.MINOR.PATCH`, verificar o certificado SHA-256 e
-publicar o APK no GitHub Actions. As tags `vX.Y.Z` são criadas **apenas
-após upload bem-sucedido**. A primeira versão sem tags é `v0.1.0`.
+O workflow [Android Release - Signed APK](.github/workflows/android-release.yml)
+é acionado **automaticamente a cada push/merge na `main`** (e pode ser
+executado manualmente). Utiliza a keystore Release da VCCAprender guardada em
+GitHub Secrets para assinar, atribui versões `MAJOR.MINOR.PATCH`, verifica
+o certificado SHA-256 do host e publica nos Actions Artifacts o ficheiro
+**`VCC-Brincar-ao-Ingles-vX.Y.Z-release.apk`**. A tag `vX.Y.Z` só é
+criada depois do upload bem-sucedido. Sem tags anteriores, a primeira
+versão é `v0.1.0`. Um erro de assinatura/credenciais bloqueia a Release
+sem qualquer fallback para Debug.
 
 As credenciais permanecem em GitHub Secrets; o pipeline não faz fallback
 para certificados Debug. Para preparar os secrets e executar uma Release,

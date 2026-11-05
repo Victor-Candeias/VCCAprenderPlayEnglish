@@ -1,6 +1,6 @@
 # PE-010 — Releases assinadas e versionadas automaticamente
 
-O plugin tem agora o workflow manual [Android Release - Signed APK](../.github/workflows/android-release.yml). É independente do pipeline Debug da PE-009 e só executa a partir de `main`.
+O plugin tem o workflow [Android Release - Signed APK](../.github/workflows/android-release.yml), que **executa automaticamente em cada push/merge para `main`** e também permite a execução manual (`workflow_dispatch`). É independente do pipeline Debug da PE-009 e nunca publica a partir de PRs/branches de desenvolvimento. Se falhar uma etapa, a execução apresenta erro e não substitui o APK Release por Debug.
 
 ## 1. Preparação de GitHub Secrets
 
@@ -35,12 +35,16 @@ Um certificado do plugin diferente **bloqueia a Release** antes da publicação.
 
 ## 2. Executar a Release
 
-1. Integrar a PE-010 na `main`.
-2. Confirmar os secrets e a assinatura da VCCAprender instalada.
-3. Em **Actions → Android Release - Signed APK → Run workflow**, escolher `main`.
-4. Após sucesso, descarregar o artefacto
-   `VCCAprenderPlayEnglish-vX.Y.Z-release`, que contém exatamente
-   `VCCAprenderPlayEnglish-vX.Y.Z-release.apk`.
+1. Confirmar os quatro secrets e que a keystore é a mesma que assinou a VCCAprender instalada.
+2. Integrar alterações em `main`: o GitHub Actions lança automaticamente o build Release assinado (em paralelo com o pipeline Debug). Não é necessário clicar em **Run workflow**.
+3. Em **Actions → Android Release - Signed APK**, verificar que a execução está **Success**. Opcionalmente, iniciar uma Release extra com **Run workflow**, escolhendo `main`.
+4. Descarregar o artefacto `VCC-Brincar-ao-Ingles-vX.Y.Z-release`, que contém exatamente:
+   `VCC-Brincar-ao-Ingles-vX.Y.Z-release.apk`.
+
+O nome do ficheiro corresponde ao nome apresentado pela aplicação, **VCC Brincar ao Inglês**, sem espaços nem acentos para facilitar o download e a instalação no Windows/Android.
+O APK mantém `applicationId=com.vcc.aprender.playenglish` e o nome visível `VCC Brincar ao Inglês`; apenas o **nome do ficheiro** é adaptado.
+
+**Importante:** se existir uma aprovação obrigatória no ambiente GitHub `release`, o job ficará pendente até essa aprovação. Os quatro secrets podem estar configurados ao nível do repositório ou do ambiente. Falhas de credenciais, certificado, `aapt`, upload ou criação da tag deixam o workflow a vermelho; não há APK Release não assinado nem fallback para Debug.
 
 A primeira Release sem tags prévias será **v0.1.0**. A seguinte será
 **v0.1.1**. O `scripts/release_version.py` usa as tags `vMAJOR.MINOR.PATCH`
@@ -58,9 +62,10 @@ o `applicationId`, `versionName` e `versionCode` efetivos.
 
 1. Calcular a próxima versão a partir das tags publicadas.
 2. Validar secrets; preparar keystore fora do repositório.
-3. Executar testes JVM e compilar Release assinada.
+3. Validar o catálogo offline, executar testes JVM e compilar Release assinada.
 4. Validar a assinatura com `apksigner`, comparar o SHA-256 ao host e verificar
-   versão e package ID no APK real.
+   versão e package ID no APK real. Copiar para o ficheiro com o nome da app,
+   verificando que os bytes são idênticos ao APK assinado.
 5. Carregar o APK assinado nos **Artifacts** do GitHub Actions.
 6. **Só depois do upload ter sido concluído com sucesso**, criar e enviar a tag
    anotada `vX.Y.Z`.
