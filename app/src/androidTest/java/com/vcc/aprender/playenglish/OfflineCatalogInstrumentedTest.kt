@@ -16,17 +16,18 @@ class OfflineCatalogInstrumentedTest {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         val repository = AssetsQuizContentRepository(context)
         val catalog = repository.loadCatalog()
-        assertEquals(18, catalog.words.size)
-        assertEquals(6, catalog.questions.size)
+        assertEquals(72, catalog.words.size)
+        assertEquals(48, catalog.questions.size)
         assertEquals("Pássaro",
             catalog.words.first { it.id == "animals.bird" }.ptPT)
         assertTrue(catalog.words.all { it.imageRef == null })
+        assertTrue(catalog.words.groupBy { it.category }.values.all { it.size == 12 })
         val quiz = LoadQuizUseCase(repository).execute()
         assertEquals(QuizPhase.ACTIVE, quiz.phase)
-        assertEquals(6, quiz.questionCount)
+        assertEquals(48, quiz.questionCount)
         assertNull(quiz.score)
         val resolved = repository.loadQuestions()
-        assertEquals(6, resolved.size)
+        assertEquals(48, resolved.size)
         assertEquals(3, resolved.first().choices.size)
         assertEquals(1, resolved.first().choices.count {
             it.id == resolved.first().correctChoiceId

@@ -452,3 +452,15 @@ reais de vocabulário e 6 perguntas, com testes de consistência e Unicode.
 **[Documentação da PE-012](docs/PE-012-OFFLINE-CATALOG.md)**.
 A UI do Quiz continua em pré-visualização; as sessões apenas devolverão
 resultados após a implementação do motor interativo PE-015/PE-020.
+
+---
+
+## PE-013 — Dois modos e conteúdos por categorias
+
+A página inicial oferece agora **«Descobre a palavra em inglês»** (explorar
+as palavras offline por categoria) e **«Como se diz em inglês?»** (pré-visualização
+do futuro quiz). O catálogo PT-PT/EN-GB passou a conter **72 palavras/expressões
+e 48 perguntas**, distribuídas pelas seis categorias existentes. Os dados e os
+resultados do host continuam isolados da interface.
+
+Detalhes em [docs/PE-013-HOME-CATEGORIES.md](docs/PE-013-HOME-CATEGORIES.md).

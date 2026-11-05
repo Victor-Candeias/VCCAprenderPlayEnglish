@@ -4,7 +4,9 @@
     <string name="nav_back">Voltar</string>
     <string name="home_welcome">Hello, explorador!</string>
     <string name="home_intro">Vamos aprender palavras em inglês com jogos e descobertas?</string>
-    <string name="home_quiz_title">Descobre a palavra</string>
+    <string name="home_discover_title">Descobre a palavra em inglês</string>
+    <string name="home_discover_subtitle">Explora palavras por categorias, ao teu ritmo.</string>
+    <string name="home_quiz_title">Como se diz em inglês?</string>
     <string name="home_quiz_subtitle">Escolhe a resposta certa entre três opções.</string>
     <string name="home_speech_title">Como se diz em inglês?</string>
     <string name="home_speech_subtitle">Descobre palavras e pratica a pronúncia.</string>
@@ -26,4 +28,16 @@
     <string name="session_cancel">Sair do jogo sem guardar</string>
     <string name="quiz_catalog_empty">O catálogo de perguntas será adicionado na próxima fase.</string>
     <string name="quiz_catalog_error">Não foi possível carregar o catálogo offline.</string>
+    <string name="discover_title">Descobre a palavra em inglês</string>
+    <string name="discover_intro">Escolhe uma categoria e aprende novas palavras. Tudo funciona sem Internet!</string>
+    <string name="discover_category_count">%1$s — %2$d palavras</string>
+    <string name="discover_empty">Ainda não há palavras nesta categoria.</string>
+    <string name="discover_error">Não foi possível abrir o vocabulário offline.</string>
+    <string name="discover_pronunciation">Praticar pronúncia (em breve)</string>
+    <string name="category_animals">Animais</string>
+    <string name="category_colors">Cores</string>
+    <string name="category_numbers">Números</string>
+    <string name="category_phrases">Expressões</string>
+    <string name="category_food">Alimentos</string>
+    <string name="category_objects">Objetos</string>
 </resources>

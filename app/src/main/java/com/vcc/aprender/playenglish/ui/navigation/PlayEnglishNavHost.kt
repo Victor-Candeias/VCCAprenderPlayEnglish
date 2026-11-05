@@ -12,6 +12,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.vcc.aprender.playenglish.ui.screens.HomeScreen
+import com.vcc.aprender.playenglish.ui.screens.DiscoverScreen
+import com.vcc.aprender.playenglish.ui.vocabulary.VocabularyViewModel
+import com.vcc.aprender.playenglish.ui.vocabulary.VocabularyViewModelFactory
 import com.vcc.aprender.playenglish.ui.screens.PronunciationScreen
 import com.vcc.aprender.playenglish.ui.screens.QuizScreen
 import com.vcc.aprender.playenglish.ui.screens.ResultsScreen
@@ -27,6 +30,9 @@ fun PlayEnglishNavHost(
     val factory = remember(context) { QuizViewModelFactory(context) }
     val quizViewModel: QuizViewModel = viewModel(factory = factory)
     val quizUiState by quizViewModel.uiState.collectAsState()
+    val vocabularyFactory = remember(context) { VocabularyViewModelFactory(context) }
+    val vocabularyViewModel: VocabularyViewModel = viewModel(factory = vocabularyFactory)
+    val vocabularyUiState by vocabularyViewModel.uiState.collectAsState()
     val navController = rememberNavController()
     NavHost(
         navController = navController,
@@ -36,9 +42,14 @@ fun PlayEnglishNavHost(
             HomeScreen(
                 onExit = onCancelSession,
                 onQuiz = { navController.navigate(PlayEnglishRoutes.QUIZ) },
-                onPronunciation = {
-                    navController.navigate(PlayEnglishRoutes.PRONUNCIATION)
-                }
+                onDiscover = { navController.navigate(PlayEnglishRoutes.DISCOVER) }
+            )
+        }
+        composable(PlayEnglishRoutes.DISCOVER) {
+            DiscoverScreen(
+                uiState = vocabularyUiState,
+                onBack = { onCancelSession?.invoke() ?: navController.popBackStack() },
+                onPronunciation = { navController.navigate(PlayEnglishRoutes.PRONUNCIATION) }
             )
         }
         composable(PlayEnglishRoutes.QUIZ) {
