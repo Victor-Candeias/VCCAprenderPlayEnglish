@@ -497,3 +497,17 @@ expõe o identificador da resposta certa**. Perguntas de cores têm
 amostra de cor; restantes categorias apresentam ícones ilustrativos.
 
 Detalhes: [docs/PE-015-ABC-QUESTION-UI.md](docs/PE-015-ABC-QUESTION-UI.md).
+
+---
+
+## PE-016 — Confirmar com pressão de 800 ms e uma única tentativa
+
+Agora é necessário **manter um dedo 800 ms** sobre A/B/C para confirmar.
+Soltar antes, deslizar, fazer scroll ou pressionar com dois dedos cancela
+o gesto. Depois da primeira resposta, os outros cartões ficam bloqueados;
+o ViewModel recusa novas tentativas e só permite continuar após confirmar.
+TalkBack e teclado dispõem de ativação acessível imediata, usando a mesma
+validação anti-duplicados. **Ainda não há feedback de acerto/erro nem envio
+de resultados ao host** (PE-017, PE-018 e PE-020).
+
+[Especificação e testes PE-016](docs/PE-016-LONG-PRESS-SINGLE-ATTEMPT.md).

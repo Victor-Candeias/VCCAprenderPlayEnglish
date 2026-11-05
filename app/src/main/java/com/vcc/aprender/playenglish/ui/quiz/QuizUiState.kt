@@ -3,8 +3,8 @@ package com.vcc.aprender.playenglish.ui.quiz
 import com.vcc.aprender.playenglish.domain.model.QuizState
 
 /**
- * Public presentation types deliberately do NOT contain correctChoiceId.
- * The correct answer remains exclusively in the domain/VM until PE-016+.
+ * Presentation-only types. A correctChoiceId is intentionally NOT exposed
+ * to Compose or accessibility until PE-017/018 handle result feedback.
  */
 data class QuizOptionPreview(val id: String, val label: String)
 
@@ -20,28 +20,29 @@ data class QuizPreviewState(
     val question: QuizQuestionPreview? = null,
     val questionIndex: Int = 0,
     val totalQuestions: Int = 0,
-    val preselectedOptionId: String? = null
+    val confirmedOptionId: String? = null,
+    val allAnswered: Boolean = false
 ) {
     val hasQuestion: Boolean get() = question != null
-    val canPreviewNext: Boolean get() = totalQuestions > 1 && hasQuestion
+    val isConfirmed: Boolean get() = confirmedOptionId != null
+    val canPreviewNext: Boolean
+        get() = isConfirmed && hasQuestion && questionIndex + 1 < totalQuestions
 }
 
 /**
- * QuizState is kept in the ViewModel for future answer validation.
- * Compose receives ONLY the sanitized QuizPreviewState projection.
+ * The full domain QuizState lives only inside the ViewModel. Compose receives
+ * the sanitized preview and cannot obtain the correct answer from that type.
  */
 data class QuizUiState(
     val quiz: QuizState = QuizState(),
     val catalogError: Boolean = false,
-    val previewIndex: Int = 0,
-    val previewSelectedOptionId: String? = null
+    val previewIndex: Int = 0
 ) {
     val hasContent: Boolean get() = quiz.questionCount > 0
 
     val preview: QuizPreviewState get() {
         if (catalogError) return QuizPreviewState()
         val question = quiz.questions.getOrNull(previewIndex) ?: return QuizPreviewState()
-        val optionIds = question.choices.map { it.id }
         return QuizPreviewState(
             question = QuizQuestionPreview(
                 id = question.id,
@@ -50,7 +51,8 @@ data class QuizUiState(
             ),
             questionIndex = previewIndex,
             totalQuestions = quiz.questionCount,
-            preselectedOptionId = previewSelectedOptionId?.takeIf { it in optionIds }
+            confirmedOptionId = quiz.selected[question.id],
+            allAnswered = quiz.allAnswered
         )
     }
 }

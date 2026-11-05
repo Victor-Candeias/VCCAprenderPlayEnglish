@@ -13,8 +13,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 /**
- * MVVM coordinator. The UI observes state but never calls the host SDK.
- * Business decisions are delegated to deterministic Kotlin use cases.
+ * Records confirmed answers exactly once in the immutable domain QuizState.
+ * Gesture detection and accessibility share confirmOption(); neither has
+ * a separate route to score / record duplicate answers.
  */
 class QuizViewModel(
     private val loadQuiz: LoadQuizUseCase,
@@ -26,9 +27,7 @@ class QuizViewModel(
     val uiState: StateFlow<QuizUiState> = mutableState.asStateFlow()
     private var allQuestions: List<QuizQuestion> = emptyList()
 
-    init {
-        reload()
-    }
+    init { reload() }
 
     fun reload() {
         mutableState.value = runCatching {
@@ -37,14 +36,13 @@ class QuizViewModel(
             QuizUiState(quiz = loaded)
         }.getOrElse {
             allQuestions = emptyList()
-            // Do not display partial or untrusted catalog data on parse failure.
             QuizUiState(quiz = QuizState(), catalogError = true)
         }
     }
 
     /**
-     * Restrict real quiz state to the IDs selected from the offline catalog.
-     * Fail closed on duplicates or unknown IDs; never silently run every question.
+     * Changing the category/learning level clears all prior confirmations.
+     * Unknown/duplicate IDs reject the catalog without exposing partial data.
      */
     fun selectQuestionSet(ids: List<String>) {
         if (mutableState.value.catalogError) return
@@ -61,28 +59,42 @@ class QuizViewModel(
     }
 
     /**
-     * PE-015 only: tap highlights an A/B/C card WITHOUT recording an answer.
-     * The one-attempt 800 ms hold confirmation belongs to PE-016.
-     * No host callbacks, score or correct-answer feedback are emitted here.
+     * Returns true only for the first legitimate confirmation of the VISIBLE
+     * question. Subsequent attempts (other options, second finger, keyboard,
+     * duplicate events, wrong question, invalid option) return false.
+     *
+     * Domain answer counts are stored but NOT reported to the host yet: PE-020
+     * will integrate begin/record/finish with real session results.
      */
-    fun previewOption(questionId: String, optionId: String) {
+    fun confirmOption(questionId: String, optionId: String): Boolean {
         val current = mutableState.value
-        if (current.catalogError || current.quiz.phase != QuizPhase.ACTIVE) return
-        val question = current.quiz.questions.getOrNull(current.previewIndex) ?: return
-        if (question.id != questionId || question.choices.none { it.id == optionId }) return
-        mutableState.value = current.copy(previewSelectedOptionId = optionId)
+        if (current.catalogError || current.quiz.phase != QuizPhase.ACTIVE) return false
+        val shownQuestion = current.quiz.questions.getOrNull(current.previewIndex)
+            ?: return false
+        if (shownQuestion.id != questionId ||
+            current.quiz.selected.containsKey(questionId) ||
+            shownQuestion.choices.none { it.id == optionId }) return false
+
+        val next = answer.execute(current.quiz, questionId, optionId)
+        if (next === current.quiz || next.selected[questionId] != optionId) return false
+        mutableState.value = current.copy(quiz = next)
+        return true
     }
 
-    /** Inspect the next catalog question without awarding points or answering. */
+    /**
+     * Only move forward after a confirmed answer. Never loop to an already
+     * answered question and never skip one. Final results belong to PE-020.
+     */
     fun nextPreviewQuestion() {
         val current = mutableState.value
-        if (current.catalogError || current.quiz.questionCount <= 1) return
-        mutableState.value = current.copy(
-            previewIndex = (current.previewIndex + 1) % current.quiz.questionCount,
-            previewSelectedOptionId = null
-        )
+        val shown = current.quiz.questions.getOrNull(current.previewIndex) ?: return
+        if (current.catalogError || current.quiz.phase != QuizPhase.ACTIVE ||
+            !current.quiz.selected.containsKey(shown.id) ||
+            current.previewIndex >= current.quiz.questions.lastIndex) return
+        mutableState.value = current.copy(previewIndex = current.previewIndex + 1)
     }
 
+    /** Existing domain integration for the later PE-020 host session flow. */
     fun selectAnswer(questionId: String, choiceId: String) {
         val previous = mutableState.value
         mutableState.value = previous.copy(
