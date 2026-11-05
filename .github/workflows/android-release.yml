@@ -1,8 +1,11 @@
-# PE-010: signed Android Release APK, never using the runner Debug key.
-# Workflow runs only from main and requires the same keystore as VCCAprender.
+# Signed, automatically versioned Release of VCC Brincar ao Inglês.
+# Only main may publish; require the same signing certificate as the VCCAprender host.
 name: Android Release - Signed APK
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
@@ -46,6 +49,15 @@ jobs:
           set -euo pipefail
           python3 -m unittest discover -s scripts -p "test_release_version.py" -v
           python3 scripts/release_version.py --github-output "$GITHUB_OUTPUT"
+
+      - name: Validate offline vocabulary and category coverage
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/validate_offline_catalog.py
+          python3 scripts/validate_category_coverage.py
+          python3 -m unittest discover -s scripts -p "test_offline_catalog.py" -v
+          python3 -m unittest discover -s scripts -p "test_category_coverage.py" -v
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
@@ -128,6 +140,7 @@ jobs:
             "-PappVersion=$RELEASE_VERSION" "-PbuildNumber=$RELEASE_CODE"
 
       - name: Verify signature, host certificate and APK version
+        id: verify
         shell: bash
         env:
           RELEASE_VERSION: ${{ steps.version.outputs.version_name }}
@@ -153,15 +166,19 @@ jobs:
             echo "::error::versionCode do APK não corresponde à versão."
             exit 1
           }
+          # Use the app's visible name in a portable ASCII filename.
+          # Keep the original Gradle output untouched for signing verification.
+          apk_name="VCC-Brincar-ao-Ingles-v${RELEASE_VERSION}-release.apk"
           mkdir -p dist
-          cp "$apk" "dist/VCCAprenderPlayEnglish-v${RELEASE_VERSION}-release.apk"
-          cmp -s "$apk" "dist/VCCAprenderPlayEnglish-v${RELEASE_VERSION}-release.apk"
+          cp "$apk" "dist/$apk_name"
+          cmp -s "$apk" "dist/$apk_name"
+          printf 'apk_name=%s\n' "$apk_name" >> "$GITHUB_OUTPUT"
 
       - name: Upload signed Release APK
         uses: actions/upload-artifact@v4
         with:
-          name: VCCAprenderPlayEnglish-v${{ steps.version.outputs.version_name }}-release
-          path: dist/VCCAprenderPlayEnglish-v${{ steps.version.outputs.version_name }}-release.apk
+          name: VCC-Brincar-ao-Ingles-v${{ steps.version.outputs.version_name }}-release
+          path: dist/${{ steps.verify.outputs.apk_name }}
           if-no-files-found: error
           retention-days: 90
 
@@ -179,7 +196,7 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git tag -a "$RELEASE_TAG" -m "VCCAprenderPlayEnglish $RELEASE_TAG" "$GITHUB_SHA"
+          git tag -a "$RELEASE_TAG" -m "VCC Brincar ao Inglês $RELEASE_TAG" "$GITHUB_SHA"
           git push origin "refs/tags/$RELEASE_TAG"
 
       - name: Release summary
@@ -190,10 +207,12 @@ jobs:
           RELEASE_CODE: ${{ steps.version.outputs.version_code }}
         run: |
           {
-            echo "### Release v$RELEASE_VERSION"
+            echo "### VCC Brincar ao Inglês — Release v$RELEASE_VERSION"
             echo "versionCode: $RELEASE_CODE"
-            echo "APK assinado e validado contra o certificado público da VCCAprender."
-            echo "Artefacto: VCCAprenderPlayEnglish-v$RELEASE_VERSION-release"
+            echo "APK: VCC-Brincar-ao-Ingles-v$RELEASE_VERSION-release.apk"
+            echo "Assinatura verificada com apksigner e comparada ao certificado público da VCCAprender."
+            echo "Artefacto: VCC-Brincar-ao-Ingles-v$RELEASE_VERSION-release"
+            echo "Publicação automática após push na main (ou execução manual na main)."
             echo "A tag só foi criada depois do upload do APK."
           } >> "$GITHUB_STEP_SUMMARY"
 
