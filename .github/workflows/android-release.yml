@@ -179,7 +179,7 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git tag -a "$RELEASE_TAG" "$GITHUB_SHA" -m "VCCAprenderPlayEnglish $RELEASE_TAG"
+          git tag -a "$RELEASE_TAG" -m "VCCAprenderPlayEnglish $RELEASE_TAG" "$GITHUB_SHA"
           git push origin "refs/tags/$RELEASE_TAG"
 
       - name: Release summary
