@@ -388,3 +388,25 @@ certificados coincidentes.
 
 A CI executa os testes JVM e compila os testes instrumentados Android;
 os testes Android reais exigem emulador/dispositivo.
+
+---
+
+## PE-008 — Assinatura Debug e Release compatível com VCCAprender
+
+A configuração do plugin usa os mesmos nomes de variáveis `VCC_RELEASE_*`
+e o mesmo ficheiro ignorado `keystore.properties` da aplicação principal.
+`assembleRelease` requer a keystore de Release legítima; sem credenciais a
+compilação falha, sem gerar uma Release supostamente compatível.
+
+O Debug pode ser compilado com a keystore padrão Android do **mesmo
+utilizador/máquina que compila o host**, ou configurado com `VCC_DEBUG_*` para
+uma keystore Debug partilhada. O APK Debug do GitHub Actions não tem
+necessariamente o mesmo certificado que a VCCAprender instalada.
+
+O script `scripts/compare-apk-certificates.sh` verifica com
+`apksigner` as assinaturas e compara os certificados SHA-256. O workflow
+Debug também valida a assinatura do APK gerado, sem recorrer a secrets Release.
+
+**Consultar [docs/PE-008-SIGNING.md](docs/PE-008-SIGNING.md)** para instruções
+completas, exemplos, impressão SHA-256 pública do host, políticas de segurança
+e passos de validação num dispositivo.
