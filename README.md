@@ -436,3 +436,19 @@ dos modelos de sessão da VCCAprender. O catálogo começará vazio até PE-012;
 nenhuma pontuação fictícia é gerada.
 
 Consultar [docs/PE-011-ARCHITECTURE.md](docs/PE-011-ARCHITECTURE.md).
+
+---
+
+## PE-012 — Vocabulário e perguntas disponíveis offline
+
+O catálogo `app/src/main/assets/content/quiz-v1.json` está empacotado no
+APK e utiliza `WordEntry` com traduções PT-PT/EN-GB, categorias, idades,
+texto para pronúncia e referências opcionais a imagens locais.
+
+As perguntas usam `optionIds` e `correctId`, resolvidos para opções
+legíveis por `AssetsQuizContentRepository`. Foram incluídos 18 exemplos
+reais de vocabulário e 6 perguntas, com testes de consistência e Unicode.
+
+**[Documentação da PE-012](docs/PE-012-OFFLINE-CATALOG.md)**.
+A UI do Quiz continua em pré-visualização; as sessões apenas devolverão
+resultados após a implementação do motor interativo PE-015/PE-020.

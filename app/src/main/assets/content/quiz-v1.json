@@ -1,4 +1,287 @@
 {
   "schemaVersion": 1,
-  "questions": []
+  "locales": {
+    "source": "pt-PT",
+    "target": "en-GB"
+  },
+  "words": [
+    {
+      "id": "animals.cat",
+      "ptPT": "Gato",
+      "enGB": "Cat",
+      "category": "animals",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Cat"
+    },
+    {
+      "id": "animals.dog",
+      "ptPT": "Cão",
+      "enGB": "Dog",
+      "category": "animals",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Dog"
+    },
+    {
+      "id": "animals.bird",
+      "ptPT": "Pássaro",
+      "enGB": "Bird",
+      "category": "animals",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Bird"
+    },
+    {
+      "id": "colors.red",
+      "ptPT": "Vermelho",
+      "enGB": "Red",
+      "category": "colors",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Red"
+    },
+    {
+      "id": "colors.blue",
+      "ptPT": "Azul",
+      "enGB": "Blue",
+      "category": "colors",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Blue"
+    },
+    {
+      "id": "colors.green",
+      "ptPT": "Verde",
+      "enGB": "Green",
+      "category": "colors",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Green"
+    },
+    {
+      "id": "numbers.one",
+      "ptPT": "Um",
+      "enGB": "One",
+      "category": "numbers",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "One"
+    },
+    {
+      "id": "numbers.two",
+      "ptPT": "Dois",
+      "enGB": "Two",
+      "category": "numbers",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Two"
+    },
+    {
+      "id": "numbers.three",
+      "ptPT": "Três",
+      "enGB": "Three",
+      "category": "numbers",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Three"
+    },
+    {
+      "id": "phrases.good_morning",
+      "ptPT": "Bom dia",
+      "enGB": "Good morning",
+      "category": "phrases",
+      "ageRange": {
+        "min": 5,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Good morning"
+    },
+    {
+      "id": "phrases.good_night",
+      "ptPT": "Boa noite",
+      "enGB": "Good night",
+      "category": "phrases",
+      "ageRange": {
+        "min": 5,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Good night"
+    },
+    {
+      "id": "phrases.thank_you",
+      "ptPT": "Obrigado",
+      "enGB": "Thank you",
+      "category": "phrases",
+      "ageRange": {
+        "min": 5,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Thank you"
+    },
+    {
+      "id": "food.apple",
+      "ptPT": "Maçã",
+      "enGB": "Apple",
+      "category": "food",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Apple"
+    },
+    {
+      "id": "food.banana",
+      "ptPT": "Banana",
+      "enGB": "Banana",
+      "category": "food",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Banana"
+    },
+    {
+      "id": "food.bread",
+      "ptPT": "Pão",
+      "enGB": "Bread",
+      "category": "food",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Bread"
+    },
+    {
+      "id": "objects.book",
+      "ptPT": "Livro",
+      "enGB": "Book",
+      "category": "objects",
+      "ageRange": {
+        "min": 4,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Book"
+    },
+    {
+      "id": "objects.chair",
+      "ptPT": "Cadeira",
+      "enGB": "Chair",
+      "category": "objects",
+      "ageRange": {
+        "min": 4,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Chair"
+    },
+    {
+      "id": "objects.table",
+      "ptPT": "Mesa",
+      "enGB": "Table",
+      "category": "objects",
+      "ageRange": {
+        "min": 4,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Table"
+    }
+  ],
+  "questions": [
+    {
+      "id": "quiz.animals.cat",
+      "prompt": "Como se diz «Gato» em inglês?",
+      "optionIds": [
+        "animals.dog",
+        "animals.cat",
+        "animals.bird"
+      ],
+      "correctId": "animals.cat"
+    },
+    {
+      "id": "quiz.colors.red",
+      "prompt": "Qual é a tradução de «Vermelho»?",
+      "optionIds": [
+        "colors.green",
+        "colors.red",
+        "colors.blue"
+      ],
+      "correctId": "colors.red"
+    },
+    {
+      "id": "quiz.numbers.three",
+      "prompt": "Como se diz «Três» em inglês?",
+      "optionIds": [
+        "numbers.one",
+        "numbers.two",
+        "numbers.three"
+      ],
+      "correctId": "numbers.three"
+    },
+    {
+      "id": "quiz.phrases.good_morning",
+      "prompt": "Como se diz «Bom dia» em inglês?",
+      "optionIds": [
+        "phrases.good_night",
+        "phrases.good_morning",
+        "phrases.thank_you"
+      ],
+      "correctId": "phrases.good_morning"
+    },
+    {
+      "id": "quiz.food.apple",
+      "prompt": "Como se diz «Maçã» em inglês?",
+      "optionIds": [
+        "food.bread",
+        "food.apple",
+        "food.banana"
+      ],
+      "correctId": "food.apple"
+    },
+    {
+      "id": "quiz.objects.book",
+      "prompt": "Como se diz «Livro» em inglês?",
+      "optionIds": [
+        "objects.chair",
+        "objects.table",
+        "objects.book"
+      ],
+      "correctId": "objects.book"
+    }
+  ]
 }
