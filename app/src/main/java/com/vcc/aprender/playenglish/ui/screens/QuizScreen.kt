@@ -19,14 +19,21 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.vcc.aprender.playenglish.R
+import com.vcc.aprender.playenglish.domain.model.WordCategory
+import com.vcc.aprender.playenglish.domain.usecase.LearningLevel
 import com.vcc.aprender.playenglish.ui.components.ChildScreenLayout
-import com.vcc.aprender.playenglish.ui.theme.PlayEnglishColors
+import com.vcc.aprender.playenglish.ui.components.LearningFilters
+import com.vcc.aprender.playenglish.ui.learning.LearningSelectionUiState
 import com.vcc.aprender.playenglish.ui.quiz.QuizUiState
+import com.vcc.aprender.playenglish.ui.theme.PlayEnglishColors
 
 @Composable
 @Suppress("UNUSED_PARAMETER")
 fun QuizScreen(
     uiState: QuizUiState = QuizUiState(),
+    selectionState: LearningSelectionUiState = LearningSelectionUiState(),
+    onLevelSelected: (LearningLevel) -> Unit = {},
+    onCategorySelected: (WordCategory) -> Unit = {},
     onBack: () -> Unit,
     onPreviewResults: () -> Unit,
     onQuizStarted: (List<String>) -> Unit = {},
@@ -60,16 +67,53 @@ fun QuizScreen(
                 )
             }
         }
-        Text(
-            stringResource(
-                if (uiState.catalogError) R.string.quiz_catalog_error
-                else if (!uiState.hasContent) R.string.quiz_catalog_empty
-                else R.string.quiz_not_ready
-            ),
-            style = MaterialTheme.typography.bodyMedium
-        )
+
+        if (selectionState.catalogError || uiState.catalogError) {
+            Text(
+                stringResource(R.string.quiz_catalog_error),
+                modifier = Modifier.testTag("quiz-catalog-error"),
+                style = MaterialTheme.typography.bodyLarge
+            )
+        } else {
+            LearningFilters(
+                state = selectionState,
+                testPrefix = "quiz",
+                onLevelSelected = onLevelSelected,
+                onCategorySelected = onCategorySelected
+            )
+            val selected = selectionState.selectedContent
+            when {
+                !selectionState.hasSelectedCategory -> {
+                    Text(
+                        stringResource(R.string.learning_choose_category),
+                        modifier = Modifier.testTag("quiz-choose-category")
+                    )
+                }
+                selected == null || selected.questionCount == 0 -> {
+                    Text(
+                        stringResource(R.string.learning_no_questions),
+                        modifier = Modifier.testTag("quiz-no-questions")
+                    )
+                }
+                else -> {
+                    Text(
+                        stringResource(R.string.learning_quiz_count, selected.questionCount),
+                        modifier = Modifier.testTag("quiz-selection-count"),
+                        style = MaterialTheme.typography.titleMedium
+                    )
+                    Text(
+                        stringResource(R.string.quiz_not_ready),
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                }
+            }
+        }
+
+        // PE-015 builds the interactive question cards; never emit a fake score.
         Button(
             onClick = onPreviewResults,
+            enabled = !selectionState.catalogError && !uiState.catalogError &&
+                selectionState.selectedQuestionIds.isNotEmpty(),
             modifier = Modifier.fillMaxWidth().heightIn(min = 56.dp)
                 .testTag("quiz-preview-results")
         ) {

@@ -11,32 +11,30 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.vcc.aprender.playenglish.R
 import com.vcc.aprender.playenglish.domain.model.WordCategory
+import com.vcc.aprender.playenglish.domain.usecase.LearningLevel
 import com.vcc.aprender.playenglish.ui.components.ChildScreenLayout
+import com.vcc.aprender.playenglish.ui.components.LearningFilters
+import com.vcc.aprender.playenglish.ui.learning.LearningSelectionUiState
 import com.vcc.aprender.playenglish.ui.theme.PlayEnglishColors
-import com.vcc.aprender.playenglish.ui.vocabulary.VocabularyUiState
 
 /**
- * Offline vocabulary explorer. PE-014 will add age/level filters.
- * Not a quiz: this screen never emits answers or a host result.
+ * Offline age-level/category explorer, shared choice with quiz setup.
+ * No answer submission or host result is emitted from this screen.
  */
 @Composable
 fun DiscoverScreen(
-    uiState: VocabularyUiState,
+    selectionState: LearningSelectionUiState,
+    onLevelSelected: (LearningLevel) -> Unit,
+    onCategorySelected: (WordCategory) -> Unit,
     onBack: () -> Unit,
     onPronunciation: () -> Unit
 ) {
-    var expandedCategory by rememberSaveable { mutableStateOf<String?>(null) }
-
     ChildScreenLayout(
         title = stringResource(R.string.discover_title),
         screenTag = "screen-discover",
@@ -47,37 +45,30 @@ fun DiscoverScreen(
             style = MaterialTheme.typography.bodyLarge
         )
 
-        if (uiState.catalogError) {
+        if (selectionState.catalogError) {
             Text(
                 text = stringResource(R.string.discover_error),
                 style = MaterialTheme.typography.bodyLarge,
                 modifier = Modifier.testTag("discover-error")
             )
         } else {
-            uiState.groups.forEach { group ->
-                val isOpen = expandedCategory == group.category.id
-                OutlinedButton(
-                    onClick = {
-                        expandedCategory = if (isOpen) null else group.category.id
-                    },
-                    modifier = Modifier.fillMaxWidth()
-                        .heightIn(min = 56.dp)
-                        .testTag("discover-category-${group.category.id}")
-                ) {
+            LearningFilters(
+                state = selectionState,
+                testPrefix = "discover",
+                onLevelSelected = onLevelSelected,
+                onCategorySelected = onCategorySelected
+            )
+            val selected = selectionState.selectedContent
+            if (selected != null) {
+                if (selected.words.isEmpty()) {
                     Text(
-                        text = stringResource(
-                            R.string.discover_category_count,
-                            categoryLabel(group.category),
-                            group.words.size
-                        ),
-                        style = MaterialTheme.typography.titleMedium
+                        stringResource(R.string.learning_no_words),
+                        modifier = Modifier.testTag("discover-no-words"),
+                        style = MaterialTheme.typography.bodyLarge
                     )
-                }
-                if (isOpen) {
-                    if (group.words.isEmpty()) {
-                        Text(stringResource(R.string.discover_empty))
-                    } else {
-                        group.words.forEach { word ->
+                } else {
+                    Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                        selected.words.forEach { word ->
                             Card(
                                 modifier = Modifier.fillMaxWidth()
                                     .testTag("discover-word-${word.id}"),
@@ -113,17 +104,4 @@ fun DiscoverScreen(
             Text(stringResource(R.string.discover_pronunciation))
         }
     }
-}
-
-@Composable
-private fun categoryLabel(category: WordCategory): String {
-    val resId = when (category) {
-        WordCategory.ANIMALS -> R.string.category_animals
-        WordCategory.COLORS -> R.string.category_colors
-        WordCategory.NUMBERS -> R.string.category_numbers
-        WordCategory.FOOD -> R.string.category_food
-        WordCategory.OBJECTS -> R.string.category_objects
-        WordCategory.PHRASES -> R.string.category_phrases
-    }
-    return stringResource(resId)
 }
