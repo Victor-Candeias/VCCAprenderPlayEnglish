@@ -52,8 +52,11 @@
     <string name="quiz_abc_intro">Explora as perguntas e as três opções de resposta em inglês.</string>
     <string name="quiz_preparing_question">A preparar uma pergunta desta categoria…</string>
     <string name="quiz_question_progress">Pergunta %1$d de %2$d</string>
-    <string name="quiz_select_preview_instruction">Toca numa opção A, B ou C para a destacar.</string>
-    <string name="quiz_preview_selected">Opção destacada! Ainda não é uma resposta confirmada. A confirmação por pressão prolongada será adicionada na próxima etapa.</string>
-    <string name="quiz_preview_no_answer">Pré-visualização: nenhuma resposta é confirmada nem avaliada.</string>
-    <string name="quiz_next_preview">Ver outra pergunta (pré-visualização)</string>
+    <string name="quiz_select_preview_instruction">Mantém um dedo pressionado durante 0,8 segundos sobre A, B ou C para confirmar. Soltar antes cancela a escolha.</string>
+    <string name="quiz_answer_confirmed">Resposta registada. Só é permitida uma tentativa por pergunta.</string>
+    <string name="quiz_waiting_confirmation">Mantém pressionada uma opção para responder.</string>
+    <string name="quiz_next_preview">Continuar para a próxima pergunta</string>
+    <string name="quiz_finish_preview_notice">Respondeste a todas as perguntas! A apresentação de resultados reais será adicionada numa próxima etapa.</string>
+    <string name="quiz_accessibility_confirm">Confirmar esta resposta</string>
+    <string name="quiz_accessibility_locked">Resposta bloqueada</string>
 </resources>

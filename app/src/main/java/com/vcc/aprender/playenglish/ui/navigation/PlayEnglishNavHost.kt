@@ -65,7 +65,9 @@ fun PlayEnglishNavHost(
                 preview = quizUiState.preview,
                 catalogError = quizUiState.catalogError,
                 selectionState = selectionState,
-                onPreviewOption = quizViewModel::previewOption,
+                onConfirmOption = { questionId, optionId ->
+                    quizViewModel.confirmOption(questionId, optionId)
+                },
                 onNextPreview = quizViewModel::nextPreviewQuestion,
                 onLevelSelected = selectionViewModel::chooseLevel,
                 onCategorySelected = selectionViewModel::chooseCategory,

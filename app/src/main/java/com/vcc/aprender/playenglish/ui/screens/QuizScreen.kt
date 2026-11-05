@@ -3,6 +3,7 @@ package com.vcc.aprender.playenglish.ui.screens
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -18,18 +19,34 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.input.key.Key
+import androidx.compose.ui.input.key.KeyEventType
+import androidx.compose.ui.input.key.onKeyEvent
+import androidx.compose.ui.input.pointer.PointerEventPass
+import androidx.compose.foundation.gestures.awaitEachGesture
+import androidx.compose.foundation.gestures.awaitFirstDown
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.foundation.gestures.waitForUpOrCancellation
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.stateDescription
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.role
+import androidx.compose.ui.semantics.disabled
+import androidx.compose.ui.semantics.onClick
+import androidx.compose.ui.semantics.onLongClick
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.vcc.aprender.playenglish.R
@@ -43,9 +60,10 @@ import com.vcc.aprender.playenglish.ui.quiz.QuizPreviewState
 import com.vcc.aprender.playenglish.ui.theme.PlayEnglishColors
 
 /**
- * PE-015: real offline PT-PT question and exactly three EN-GB options.
- * A short tap ONLY previews a choice; it never grades or sends a host result.
- * PE-016 adds long-press confirmation, PE-017/018 feedback, PE-020 result flow.
+ * PE-016: 800 ms uninterrupted single-pointer hold confirms one answer.
+ * A short touch / move / multitouch cancels; keyboard and TalkBack activate
+ * an accessible confirmation action without requiring a timed physical hold.
+ * PE-017/018 introduce correct/wrong visual feedback; PE-020 host results.
  *
  * No correctChoiceId enters this composable: it receives a sanitized preview.
  * ChildScreenLayout provides vertical scrolling at 200% font scale.
@@ -57,7 +75,7 @@ fun QuizScreen(
     selectionState: LearningSelectionUiState = LearningSelectionUiState(),
     onLevelSelected: (LearningLevel) -> Unit = {},
     onCategorySelected: (WordCategory) -> Unit = {},
-    onPreviewOption: (String, String) -> Unit = { _, _ -> },
+    onConfirmOption: (String, String) -> Unit = { _, _ -> },
     onNextPreview: () -> Unit = {},
     onBack: () -> Unit,
     onPreviewResults: () -> Unit
@@ -155,19 +173,27 @@ fun QuizScreen(
                         QuizOptionCard(
                             letter = "ABC"[index].toString(),
                             option = option,
-                            isSelected = preview.preselectedOptionId == option.id,
-                            onClick = { onPreviewOption(shownQuestion.id, option.id) }
+                            isConfirmed = preview.confirmedOptionId == option.id,
+                            isLocked = preview.isConfirmed,
+                            onConfirm = { onConfirmOption(shownQuestion.id, option.id) }
                         )
                     }
                     Text(
                         stringResource(
-                            if (preview.preselectedOptionId != null)
-                                R.string.quiz_preview_selected
-                            else R.string.quiz_preview_no_answer
+                            if (preview.isConfirmed)
+                                R.string.quiz_answer_confirmed
+                            else R.string.quiz_waiting_confirmation
                         ),
                         modifier = Modifier.testTag("quiz-preview-notice"),
                         style = MaterialTheme.typography.bodyMedium
                     )
+                    if (preview.allAnswered) {
+                        Text(
+                            stringResource(R.string.quiz_finish_preview_notice),
+                            modifier = Modifier.testTag("quiz-finish-notice"),
+                            style = MaterialTheme.typography.bodyMedium
+                        )
+                    }
                     OutlinedButton(
                         onClick = onNextPreview,
                         enabled = preview.canPreviewNext,
@@ -181,7 +207,7 @@ fun QuizScreen(
         }
         Button(
             onClick = onPreviewResults,
-            enabled = hasValidQuestion,
+            enabled = hasValidQuestion && preview.allAnswered,
             modifier = Modifier.fillMaxWidth().heightIn(min = 56.dp)
                 .testTag("quiz-preview-results")
         ) {
@@ -190,33 +216,102 @@ fun QuizScreen(
     }
 }
 
+/**
+ * Each touch gesture may confirm only after 800 ms continuously held.
+ *
+ * Main pass observes scroll consumption, pointer lift, slide and second finger.
+ * This is NOT a clickable Button: a short physical tap must do nothing.
+ * Semantics onClick/onLongClick and KeyUp allow accessible activation without
+ * physically keeping a finger pressed, but use the very same VM guard.
+ */
 @Composable
 private fun QuizOptionCard(
     letter: String,
     option: QuizOptionPreview,
-    isSelected: Boolean,
-    onClick: () -> Unit
+    isConfirmed: Boolean,
+    isLocked: Boolean,
+    onConfirm: () -> Unit
 ) {
-    OutlinedButton(
-        onClick = onClick,
-        modifier = Modifier.fillMaxWidth().heightIn(min = 80.dp)
-            .testTag("quiz-option-${letter.lowercase()}")
-            .semantics {
-                stateDescription = if (isSelected)
-                    "Pré-selecionada" else "Não selecionada"
-            },
-        contentPadding = androidx.compose.foundation.layout.PaddingValues(16.dp),
-        colors = ButtonDefaults.outlinedButtonColors(
-            containerColor = if (isSelected) PlayEnglishColors.Mint else Color.White,
-            contentColor = PlayEnglishColors.Navy
-        ),
+    val enabled = !isLocked
+    val currentConfirm by rememberUpdatedState(onConfirm)
+    val accessibilityLabel = stringResource(R.string.quiz_accessibility_confirm)
+    val modifier = Modifier.fillMaxWidth().heightIn(min = 80.dp)
+        .testTag("quiz-option-${letter.lowercase()}")
+        .semantics {
+            role = Role.Button
+            stateDescription = when {
+                isConfirmed -> "Resposta registada"
+                isLocked -> "Outra resposta já foi confirmada"
+                else -> "Manter pressionado 0,8 segundos para confirmar"
+            }
+            if (enabled) {
+                onClick(label = accessibilityLabel) {
+                    currentConfirm()
+                    true
+                }
+                onLongClick(label = accessibilityLabel) {
+                    currentConfirm()
+                    true
+                }
+            } else {
+                disabled()
+            }
+        }
+        .onKeyEvent { keyEvent ->
+            if (enabled && keyEvent.type == KeyEventType.KeyUp &&
+                (keyEvent.key == Key.Enter || keyEvent.key == Key.Spacebar ||
+                    keyEvent.key == Key.DirectionCenter)) {
+                currentConfirm()
+                true
+            } else false
+        }
+        .focusable(enabled)
+        .pointerInput(enabled, option.id) {
+            if (!enabled) return@pointerInput
+            awaitEachGesture {
+                val down = awaitFirstDown(requireUnconsumed = false)
+                var valid = !down.isConsumed
+                if (valid) {
+                    // Member timeout of AwaitPointerEventScope guarantees that
+                    // a short release wins over the 800 ms timer.
+                    val releasedOrCanceled = withTimeoutOrNull(800L) {
+                        while (true) {
+                            val event = awaitPointerEvent(PointerEventPass.Main)
+                            val current = event.changes.firstOrNull { it.id == down.id }
+                            if (current == null ||
+                                !current.pressed ||
+                                current.isConsumed ||
+                                event.changes.any { it.id != down.id && it.pressed } ||
+                                (current.position - down.position).getDistance() >
+                                    viewConfiguration.touchSlop * 2f) {
+                                valid = false
+                                break
+                            }
+                        }
+                        true
+                    }
+                    if (releasedOrCanceled == null && valid) {
+                        currentConfirm()
+                        // Wait for the active finger to lift. The ViewModel
+                        // makes repeated events and accessibility actions inert.
+                        waitForUpOrCancellation()
+                    }
+                }
+            }
+        }
+
+    Surface(
+        modifier = modifier,
+        shape = MaterialTheme.shapes.medium,
+        color = if (isConfirmed) PlayEnglishColors.Mint else Color.White,
+        contentColor = PlayEnglishColors.Navy,
         border = BorderStroke(
-            if (isSelected) 3.dp else 2.dp,
-            if (isSelected) PlayEnglishColors.Green else PlayEnglishColors.RoyalBlue
+            if (isConfirmed) 3.dp else 2.dp,
+            if (isConfirmed) PlayEnglishColors.Green else PlayEnglishColors.RoyalBlue
         )
     ) {
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().padding(16.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(14.dp)
         ) {

@@ -10,150 +10,152 @@ import org.junit.Test
 class QuizViewModelTest {
     private fun source(items: List<QuizQuestion>): QuizContentRepository =
         object : QuizContentRepository {
-            override fun loadQuestions() = items
+            override fun loadQuestions(): List<QuizQuestion> = items
         }
 
-    @Test fun emptyOfflineCatalogIsSafeForPreviewMode() {
+    private fun question(id: String, correct: String = "b") = QuizQuestion(
+        id, "Como se diz «Vermelho» em inglês?",
+        listOf(QuizChoice("a", "Green"), QuizChoice("b", "Red"),
+            QuizChoice("c", "Blue")), correct
+    )
+
+    @Test fun emptyOfflineCatalogDoesNotAllowFictitiousAnswers() {
         val vm = QuizViewModel(LoadQuizUseCase(source(emptyList())))
         assertFalse(vm.uiState.value.catalogError)
         assertFalse(vm.uiState.value.hasContent)
         assertEquals(QuizPhase.NOT_STARTED, vm.uiState.value.quiz.phase)
+        assertFalse(vm.confirmOption("missing", "a"))
         vm.finishQuiz()
         assertNull(vm.uiState.value.quiz.score)
     }
 
     @Test fun malformedCatalogDoesNotLeakPartialState() {
         val failing = object : QuizContentRepository {
-            override fun loadQuestions(): List<QuizQuestion> {
-                error("Corrupt offline asset")
-            }
+            override fun loadQuestions(): List<QuizQuestion> = error("Corrupt offline asset")
         }
         val vm = QuizViewModel(LoadQuizUseCase(failing))
         assertTrue(vm.uiState.value.catalogError)
         assertFalse(vm.uiState.value.hasContent)
-        assertNull(vm.uiState.value.quiz.score)
+        assertFalse(vm.confirmOption("q1", "a"))
     }
 
-    @Test fun viewModelUsesPureDomainAndImmutableScore() {
-        val q = QuizQuestion(
-            "word.red", "Qual é a tradução de vermelho?",
-            listOf(QuizChoice("red", "Red"), QuizChoice("blue", "Blue"), QuizChoice("green", "Green")),
-            "red"
-        )
+    @Test fun legacyDomainAnswerUseCaseRemainsImmutable() {
+        val q = question("q1")
         val vm = QuizViewModel(LoadQuizUseCase(source(listOf(q))))
         val initial = vm.uiState.value
-        assertTrue(initial.hasContent)
-        vm.selectAnswer(q.id, "red")
+        vm.selectAnswer(q.id, "b")
         assertTrue(initial.quiz.selected.isEmpty())
         assertEquals(1, vm.uiState.value.quiz.answeredCount)
         vm.finishQuiz()
         assertEquals(QuizScore(1, 1), vm.uiState.value.quiz.score)
-        vm.selectAnswer(q.id, "blue")
+        vm.selectAnswer(q.id, "a")
         assertEquals(QuizScore(1, 1), vm.uiState.value.quiz.score)
     }
-    @Test fun selectionRestrictsActualQuizStateAndResetsAnswers() {
-        val first = QuizQuestion(
-            "quiz.animals.cat", "Como se diz Gato?",
-            listOf(QuizChoice("animals.cat", "Cat"), QuizChoice("animals.dog", "Dog"),
-                QuizChoice("animals.bird", "Bird")), "animals.cat"
-        )
-        val second = QuizQuestion(
-            "quiz.colors.red", "Como se diz Vermelho?",
-            listOf(QuizChoice("colors.red", "Red"), QuizChoice("colors.blue", "Blue"),
-                QuizChoice("colors.green", "Green")), "colors.red"
-        )
+
+    @Test fun questionSetResetsPreviouslyConfirmedAttempts() {
+        val first = question("quiz.colors.red")
+        val second = question("quiz.colors.blue")
         val vm = QuizViewModel(LoadQuizUseCase(source(listOf(first, second))))
         vm.selectQuestionSet(listOf(first.id))
         assertEquals(listOf(first.id), vm.uiState.value.quiz.questions.map { it.id })
-        vm.selectAnswer(first.id, "animals.cat")
+        assertTrue(vm.confirmOption(first.id, "a"))
         assertEquals(1, vm.uiState.value.quiz.answeredCount)
         vm.selectQuestionSet(listOf(second.id))
-        assertEquals(listOf(second.id), vm.uiState.value.quiz.questions.map { it.id })
         assertEquals(0, vm.uiState.value.quiz.answeredCount)
+        assertNull(vm.uiState.value.preview.confirmedOptionId)
         assertNull(vm.uiState.value.quiz.score)
         vm.selectQuestionSet(emptyList())
         assertFalse(vm.uiState.value.hasContent)
-        assertEquals(QuizPhase.NOT_STARTED, vm.uiState.value.quiz.phase)
     }
 
-    @Test fun unknownOrDuplicateIdsFailClosed() {
-        val first = QuizQuestion("q1", "Pergunta",
-            listOf(QuizChoice("a", "A"), QuizChoice("b", "B"), QuizChoice("c", "C")), "a")
-        val vm = QuizViewModel(LoadQuizUseCase(source(listOf(first))))
+    @Test fun invalidFilteredQuestionsFailClosed() {
+        val q = question("q1")
+        val vm = QuizViewModel(LoadQuizUseCase(source(listOf(q))))
         vm.selectQuestionSet(listOf("missing"))
         assertTrue(vm.uiState.value.catalogError)
         assertFalse(vm.uiState.value.hasContent)
-
-        val anotherVm = QuizViewModel(LoadQuizUseCase(source(listOf(first))))
-        anotherVm.selectQuestionSet(listOf("q1", "q1"))
-        assertTrue(anotherVm.uiState.value.catalogError)
+        val vm2 = QuizViewModel(LoadQuizUseCase(source(listOf(q))))
+        vm2.selectQuestionSet(listOf("q1", "q1"))
+        assertTrue(vm2.uiState.value.catalogError)
     }
 
-    @Test fun previewChoiceIsInteractiveButDoesNotAnswerOrAwardPoints() {
-        val question = QuizQuestion(
-            "quiz.colors.red", "Qual é a tradução de Vermelho?",
-            listOf(QuizChoice("colors.green", "Green"),
-                QuizChoice("colors.red", "Red"), QuizChoice("colors.blue", "Blue")),
-            "colors.red"
-        )
-        val vm = QuizViewModel(LoadQuizUseCase(source(listOf(question))))
-        vm.selectQuestionSet(listOf(question.id))
-        assertNull(vm.uiState.value.preview.preselectedOptionId)
-        assertEquals(listOf("Green", "Red", "Blue"),
-            vm.uiState.value.preview.question!!.options.map { it.label })
-        vm.previewOption(question.id, "colors.red")
-        assertEquals("colors.red", vm.uiState.value.preview.preselectedOptionId)
-        assertTrue(vm.uiState.value.quiz.selected.isEmpty())
-        assertEquals(QuizPhase.ACTIVE, vm.uiState.value.quiz.phase)
+    @Test fun confirmOnceLocksWrongAnswerEvenIfRetriedWithCorrectChoice() {
+        val vm = QuizViewModel(LoadQuizUseCase(source(listOf(question("q1")))))
+        vm.selectQuestionSet(listOf("q1"))
+        val presentation = vm.uiState.value.preview.question!!
+        assertEquals(listOf("Green", "Red", "Blue"), presentation.options.map { it.label })
+        assertFalse(presentation.javaClass.declaredFields.any {
+            it.name.contains("correct", ignoreCase = true)
+        })
+        assertTrue(vm.confirmOption("q1", "a")) // Intentional wrong answer
+        assertEquals("a", vm.uiState.value.preview.confirmedOptionId)
+        assertEquals(1, vm.uiState.value.quiz.answeredCount)
+        assertEquals("a", vm.uiState.value.quiz.selected["q1"])
+        assertFalse(vm.confirmOption("q1", "a")) // duplicate event
+        assertFalse(vm.confirmOption("q1", "b")) // correct second attempt
+        assertFalse(vm.confirmOption("q1", "c")) // different card
+        assertEquals(1, vm.uiState.value.quiz.answeredCount)
         assertNull(vm.uiState.value.quiz.score)
-        vm.previewOption(question.id, "colors.green")
-        assertEquals("colors.green", vm.uiState.value.preview.preselectedOptionId)
-        assertTrue(vm.uiState.value.quiz.selected.isEmpty())
     }
 
-    @Test fun previewRejectsUnknownOptionsAndDoesNotRevealCorrectAnswer() {
-        val q = QuizQuestion("quiz.colors.red", "Vermelho?",
-            listOf(QuizChoice("a", "Green"), QuizChoice("b", "Red"),
-                QuizChoice("c", "Blue")), "b")
-        val vm = QuizViewModel(LoadQuizUseCase(source(listOf(q))))
-        vm.selectQuestionSet(listOf(q.id))
-        vm.previewOption("wrong-question", "b")
-        vm.previewOption(q.id, "fake")
-        assertNull(vm.uiState.value.preview.preselectedOptionId)
-        val preview = vm.uiState.value.preview.question!!
-        assertEquals(q.prompt, preview.prompt)
-        assertEquals(3, preview.options.size)
-        assertFalse(preview.javaClass.declaredFields.any {
-            it.name.contains("correct", ignoreCase = true)
-        })
-        assertFalse(vm.uiState.value.preview.javaClass.declaredFields.any {
-            it.name.contains("correct", ignoreCase = true)
-        })
+    @Test fun keyboardAndTalkBackActivationsShareSameAtomicGuard() {
+        val vm = QuizViewModel(LoadQuizUseCase(source(listOf(question("q1")))))
+        vm.selectQuestionSet(listOf("q1"))
+        assertTrue(vm.confirmOption("q1", "b"))
+        repeat(30) {
+            assertFalse(vm.confirmOption("q1", if (it % 2 == 0) "a" else "b"))
+        }
+        assertEquals(mapOf("q1" to "b"), vm.uiState.value.quiz.selected)
+        assertNull(vm.uiState.value.quiz.score)
     }
 
-    @Test fun nextPreviewResetsChoiceAndCategorySelectionStartsFromFirstQuestion() {
-        val first = QuizQuestion("q1", "Animal?",
-            listOf(QuizChoice("a", "Cat"), QuizChoice("b", "Dog"),
-                QuizChoice("c", "Bird")), "a")
-        val second = QuizQuestion("q2", "Cor?",
-            listOf(QuizChoice("r", "Red"), QuizChoice("g", "Green"),
-                QuizChoice("b", "Blue")), "r")
+    @Test fun cannotConfirmUnknownOptionOrInvisibleQuestion() {
+        val first = question("q1")
+        val second = question("q2")
         val vm = QuizViewModel(LoadQuizUseCase(source(listOf(first, second))))
         vm.selectQuestionSet(listOf(first.id, second.id))
-        vm.previewOption(first.id, "a")
-        vm.nextPreviewQuestion()
-        assertEquals(1, vm.uiState.value.preview.questionIndex)
-        assertEquals(second.id, vm.uiState.value.preview.question!!.id)
-        assertNull(vm.uiState.value.preview.preselectedOptionId)
-        vm.previewOption(second.id, "r")
-        vm.nextPreviewQuestion()
-        assertEquals(0, vm.uiState.value.preview.questionIndex)
-        assertNull(vm.uiState.value.preview.preselectedOptionId)
-        assertTrue(vm.uiState.value.quiz.selected.isEmpty())
-        vm.selectQuestionSet(listOf(second.id))
-        assertEquals(0, vm.uiState.value.preview.questionIndex)
-        assertEquals(second.id, vm.uiState.value.preview.question!!.id)
-        assertNull(vm.uiState.value.preview.preselectedOptionId)
+        assertFalse(vm.confirmOption("q2", "a"))
+        assertFalse(vm.confirmOption("q1", "not-an-option"))
+        assertFalse(vm.confirmOption("missing", "b"))
+        assertEquals(0, vm.uiState.value.quiz.answeredCount)
+        assertNull(vm.uiState.value.preview.confirmedOptionId)
+        assertFalse(vm.uiState.value.preview.canPreviewNext)
     }
 
+    @Test fun navigationNeedsConfirmationAndCannotRepeatFinishedQuestion() {
+        val first = question("q1")
+        val second = question("q2")
+        val vm = QuizViewModel(LoadQuizUseCase(source(listOf(first, second))))
+        vm.selectQuestionSet(listOf(first.id, second.id))
+        vm.nextPreviewQuestion()
+        assertEquals(0, vm.uiState.value.preview.questionIndex)
+        assertTrue(vm.confirmOption("q1", "b"))
+        assertTrue(vm.uiState.value.preview.canPreviewNext)
+        vm.nextPreviewQuestion()
+        assertEquals("q2", vm.uiState.value.preview.question!!.id)
+        assertFalse(vm.confirmOption("q1", "a"))
+        assertFalse(vm.uiState.value.preview.isConfirmed)
+        assertTrue(vm.confirmOption("q2", "c"))
+        assertTrue(vm.uiState.value.preview.allAnswered)
+        assertFalse(vm.uiState.value.preview.canPreviewNext)
+        vm.nextPreviewQuestion()
+        assertEquals(1, vm.uiState.value.preview.questionIndex)
+        assertEquals(2, vm.uiState.value.quiz.answeredCount)
+        assertNull(vm.uiState.value.quiz.score)
+    }
+
+    @Test fun canceledOrCompletedQuizDoesNotAcceptAnotherAttempt() {
+        val vm = QuizViewModel(LoadQuizUseCase(source(listOf(question("q1")))))
+        vm.selectQuestionSet(listOf("q1"))
+        vm.cancelQuiz()
+        assertFalse(vm.confirmOption("q1", "a"))
+        assertTrue(vm.uiState.value.quiz.selected.isEmpty())
+
+        val finished = QuizViewModel(LoadQuizUseCase(source(listOf(question("q1")))))
+        finished.selectQuestionSet(listOf("q1"))
+        assertTrue(finished.confirmOption("q1", "b"))
+        finished.finishQuiz()
+        assertEquals(QuizScore(1, 1), finished.uiState.value.quiz.score)
+        assertFalse(finished.confirmOption("q1", "a"))
+    }
 }

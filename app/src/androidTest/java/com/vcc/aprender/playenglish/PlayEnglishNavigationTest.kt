@@ -5,6 +5,7 @@ import androidx.compose.ui.test.assertIsNotEnabled
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performTouchInput
 import androidx.compose.ui.test.performScrollTo
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Rule
@@ -28,16 +29,24 @@ class PlayEnglishNavigationTest {
         rule.onNodeWithTag("quiz-selection-count").assertExists()
         rule.onNodeWithTag("quiz-question-prompt").performScrollTo().assertExists()
         rule.onNodeWithTag("quiz-option-a").performScrollTo().assertExists()
-        rule.onNodeWithTag("quiz-option-b").performScrollTo().performClick()
         rule.onNodeWithTag("quiz-option-c").performScrollTo().assertExists()
-        rule.onNodeWithTag("quiz-preview-notice").performScrollTo().assertExists()
-        rule.onNodeWithTag("quiz-next-preview").performScrollTo().performClick()
+        // Physical short tap does not invoke the accessibility confirmation.
+        rule.onNodeWithTag("quiz-option-b").performScrollTo()
+            .performTouchInput { click() }
+        rule.onNodeWithTag("quiz-waiting-state").assertExists()
+        rule.onNodeWithTag("quiz-next-preview").assertIsNotEnabled()
+        rule.onNodeWithTag("quiz-preview-results").assertIsNotEnabled()
+        // TalkBack semantics click is the accessible alternative to holding.
+        rule.onNodeWithTag("quiz-option-b").performClick()
+        rule.onNodeWithTag("quiz-answer-registered").assertExists()
+        rule.onNodeWithTag("quiz-option-a").assertIsNotEnabled()
+        rule.onNodeWithTag("quiz-option-b").assertIsNotEnabled()
+        rule.onNodeWithTag("quiz-option-c").assertIsNotEnabled()
+        rule.onNodeWithTag("quiz-next-preview").performScrollTo().assertIsEnabled()
+        rule.onNodeWithTag("quiz-next-preview").performClick()
         rule.onNodeWithTag("quiz-question-prompt").assertExists()
-        rule.onNodeWithTag("quiz-preview-results").performScrollTo().assertIsEnabled()
-        rule.onNodeWithTag("quiz-preview-results").performClick()
-        rule.onNodeWithTag("screen-results").assertExists()
-        rule.onNodeWithTag("results-home").performClick()
-        rule.onNodeWithTag("screen-home").assertExists()
+        rule.onNodeWithTag("quiz-waiting-state").assertExists()
+        rule.onNodeWithTag("quiz-preview-results").assertIsNotEnabled()
     }
 
     @Test fun beginnerExpressionsShowEmptyAndAdvancedExpressionsHaveQuestions() {
