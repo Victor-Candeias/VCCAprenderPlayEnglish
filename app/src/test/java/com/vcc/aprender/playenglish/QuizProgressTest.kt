@@ -5,6 +5,18 @@ import org.junit.Assert.*
 import org.junit.Test
 
 class QuizProgressTest {
+    @Test fun exposedInMemoryCountsAreDerivedFromUniqueAnswers() {
+        val quiz = QuizProgress(listOf("q1", "q2", "q3"))
+        assertEquals(3, quiz.totalQuestions)
+        assertEquals(0, quiz.correctCount)
+        assertTrue(quiz.recordAnswer("q1", true))
+        assertFalse(quiz.recordAnswer("q1", false))
+        assertTrue(quiz.recordAnswer("q2", false))
+        assertEquals(2, quiz.answeredCount)
+        assertEquals(1, quiz.correctCount)
+        assertNull(quiz.finishIfComplete())
+    }
+
     @Test fun countsRealAnswersAndFinishesExactlyOnce() {
         val quiz = QuizProgress(listOf("animal.cat", "colour.red", "number.three"))
         assertFalse(quiz.isComplete)

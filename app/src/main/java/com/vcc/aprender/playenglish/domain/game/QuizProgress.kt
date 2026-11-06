@@ -34,6 +34,8 @@ class QuizProgress(questionIds: List<String>) {
     }
 
     val answeredCount: Int get() = answered.size
+    val totalQuestions: Int get() = knownIds.size
+    val correctCount: Int get() = answered.values.count { it }
     val isComplete: Boolean get() = answered.size == knownIds.size
     val isFinalized: Boolean get() = finalized
 

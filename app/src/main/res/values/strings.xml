@@ -67,5 +67,7 @@
     <string name="quiz_conclude">Concluir</string>
     <string name="results_local_title">Jogo concluído!</string>
     <string name="results_local_score">Acertaste %1$d de %2$d perguntas.</string>
+    <string name="results_finish_host">Terminar e guardar resultados</string>
+    <string name="results_host_ready_note">Confirma para enviar o resultado desta partida à VCCAprender.</string>
     <string name="results_local_note">O resultado desta partida ainda não foi enviado à VCCAprender.</string>
 </resources>

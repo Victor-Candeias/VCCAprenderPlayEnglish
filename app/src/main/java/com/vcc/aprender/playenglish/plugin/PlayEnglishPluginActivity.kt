@@ -55,18 +55,15 @@ class PlayEnglishPluginActivity : ComponentActivity() {
         setContent {
             PlayEnglishTheme {
                 PlayEnglishNavHost(
-                    onQuizStarted = { questionIds ->
-                        holder.beginQuiz(questionIds)
-                    },
-                    onAnswerRecorded = { id, correct ->
-                        holder.recordAnswer(id, correct)
-                    },
-                    onQuizCompleted = {
-                        holder.finishQuizOnce()?.let { result ->
+                    onQuizStarted = { questionIds -> holder.beginQuiz(questionIds) },
+                    onAnswerRecorded = { id, correct -> holder.recordAnswer(id, correct) },
+                    onQuizCompleted = { score ->
+                        holder.finishQuizOnce(score.correctAnswers, score.totalQuestions)?.let { result ->
                             setResult(RESULT_OK, result)
                             finish()
                         }
                     },
+                    isHostedSession = true,
                     onCancelSession = {
                         holder.cancel()
                         setResult(RESULT_CANCELED)

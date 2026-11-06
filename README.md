@@ -545,3 +545,10 @@ Depois de uma resposta incorreta confirmada, mostra-se **«Resposta errada!»** 
 ## PE-019 — Baralhamento reproduzível de perguntas e opções
 
 Cada partida interativa escolhe uma seed aleatória e baralha o subconjunto de perguntas da categoria/nível, sem repetição. As opções A/B/C também mudam de posição, mantendo IDs e resposta correta do catálogo; as posições certas são distribuídas equilibradamente. Para testes e diagnóstico, a mesma seed reproduz exatamente o baralho. A validação rejeita opções com rótulos indistinguíveis. O score, os feedbacks e a confirmação de 800 ms mantêm-se. [Detalhes PE-019](docs/PE-019-RANDOMIZED-DECK.md).
+
+
+---
+
+## PE-020 — Resultados reais entregues à VCCAprender
+
+O modo plugin inicia o progresso do host na primeira confirmação verdadeira, regista uma única resposta por pergunta, calcula o score a partir do domínio e apresenta um resumo. **«Terminar e guardar resultados»** envia a conclusão do quiz pelo GameProtocol v1 com `RESULT_OK`, usando os IDs de sessão e perfil originalmente validados. O envio é único e bloqueado se as contagens do ecrã e da sessão divergirem; cancelar mantém `RESULT_CANCELED`. O modo APK independente apenas apresenta resultados locais, sem qualquer envio. A atividade de pronúncia nunca contribui para as respostas corretas. Consultar [PE-020](docs/PE-020-REAL-HOST-RESULTS.md).
