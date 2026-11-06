@@ -11,19 +11,36 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.vcc.aprender.playenglish.R
+import com.vcc.aprender.playenglish.audio.AndroidEnglishPronunciationOutput
+import com.vcc.aprender.playenglish.audio.EnglishTtsStatus
 import com.vcc.aprender.playenglish.ui.components.ChildScreenLayout
 import com.vcc.aprender.playenglish.ui.theme.PlayEnglishColors
 
 @Composable
 fun PronunciationScreen(onBack: () -> Unit) {
+    val context = LocalContext.current
+    val audio = remember(context) { AndroidEnglishPronunciationOutput(context) }
+    DisposableEffect(audio) { onDispose { audio.close() } }
+
+    val status = audio.status
+    val message = when (status) {
+        EnglishTtsStatus.INITIALIZING -> R.string.pronunciation_tts_loading
+        EnglishTtsStatus.READY -> R.string.pronunciation_tts_ready
+        EnglishTtsStatus.SPEAKING -> R.string.pronunciation_tts_speaking
+        EnglishTtsStatus.VOICE_MISSING -> R.string.pronunciation_tts_unavailable
+        EnglishTtsStatus.ERROR, EnglishTtsStatus.CLOSED -> R.string.pronunciation_tts_error
+    }
     ChildScreenLayout(
         title = stringResource(R.string.pronunciation_title),
         screenTag = "screen-pronunciation",
@@ -52,16 +69,24 @@ fun PronunciationScreen(onBack: () -> Unit) {
             }
         }
         Text(
-            stringResource(R.string.pronunciation_not_ready),
-            style = MaterialTheme.typography.bodyLarge
+            stringResource(message),
+            style = MaterialTheme.typography.bodyLarge,
+            modifier = Modifier.testTag("pronunciation-tts-status")
         )
+        if (status == EnglishTtsStatus.VOICE_MISSING) {
+            Text(
+                stringResource(R.string.pronunciation_tts_install_hint),
+                style = MaterialTheme.typography.bodyMedium,
+                modifier = Modifier.testTag("pronunciation-tts-install-hint")
+            )
+        }
         OutlinedButton(
-            onClick = {},
-            enabled = false,
+            onClick = { audio.speak("Good morning") },
+            enabled = status == EnglishTtsStatus.READY,
             modifier = Modifier.fillMaxWidth().heightIn(min = 56.dp)
-                .testTag("pronunciation-audio-disabled")
+                .testTag("pronunciation-listen")
         ) {
-            Text(stringResource(R.string.pronunciation_audio_coming))
+            Text(stringResource(R.string.pronunciation_listen))
         }
     }
 }
