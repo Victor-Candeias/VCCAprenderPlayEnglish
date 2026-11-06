@@ -3,10 +3,8 @@ package com.vcc.aprender.playenglish
 import androidx.compose.ui.test.assertIsEnabled
 import androidx.compose.ui.test.assertIsNotEnabled
 import androidx.compose.ui.test.assertTextContains
-import androidx.compose.ui.test.assertDoesNotExist
 import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.onAllNodesWithTag
-import androidx.compose.ui.test.fetchSemanticsNode
 import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
