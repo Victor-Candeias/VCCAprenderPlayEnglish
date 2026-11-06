@@ -214,6 +214,29 @@ class QuizViewModelTest {
         assertEquals(QuizScore(1, 2), vm.uiState.value.quiz.score)
     }
 
+    @Test fun wrongAnswerRevealsOnlyCorrectOptionAfterConfirmationAndResetsOnNext() {
+        val vm = QuizViewModel(LoadQuizUseCase(source(listOf(question("q1"), question("q2")))))
+        vm.selectQuestionSet(listOf("q1", "q2"))
+        assertNull(vm.uiState.value.preview.correctOptionAfterError)
+        assertNull(vm.uiState.value.preview.wasCorrect)
+        assertTrue(vm.confirmOption("q1", "a"))
+        val wrong = vm.uiState.value.preview
+        assertEquals(false, wrong.wasCorrect)
+        assertEquals("b", wrong.correctOptionAfterError?.id)
+        assertEquals("Red", wrong.correctOptionAfterError?.label)
+        assertEquals(0, wrong.correctAnswers)
+        repeat(30) { assertFalse(vm.confirmOption("q1", "b")) }
+        assertEquals("b", vm.uiState.value.preview.correctOptionAfterError?.id)
+        assertEquals(1, vm.uiState.value.quiz.answeredCount)
+        vm.nextPreviewQuestion()
+        assertNull(vm.uiState.value.preview.correctOptionAfterError)
+        assertNull(vm.uiState.value.preview.wasCorrect)
+        assertTrue(vm.confirmOption("q2", "b"))
+        assertNull(vm.uiState.value.preview.correctOptionAfterError)
+        vm.finishQuiz()
+        assertEquals(QuizScore(1, 2), vm.uiState.value.quiz.score)
+    }
+
     @Test fun changingCategoryErasesSmilesAndCorrectProgress() {
         val vm = QuizViewModel(LoadQuizUseCase(source(listOf(question("q1"), question("q2")))))
         vm.selectQuestionSet(listOf("q1"))
