@@ -19,6 +19,7 @@ import com.vcc.aprender.playenglish.ui.learning.LearningSelectionViewModelFactor
 import com.vcc.aprender.playenglish.ui.screens.PronunciationScreen
 import com.vcc.aprender.playenglish.ui.screens.QuizScreen
 import com.vcc.aprender.playenglish.ui.screens.ResultsScreen
+import com.vcc.aprender.playenglish.domain.model.QuizPhase
 
 @Composable
 fun PlayEnglishNavHost(
@@ -72,7 +73,15 @@ fun PlayEnglishNavHost(
                 onLevelSelected = selectionViewModel::chooseLevel,
                 onCategorySelected = selectionViewModel::chooseCategory,
                 onBack = { onCancelSession?.invoke() ?: navController.popBackStack() },
-                onPreviewResults = { navController.navigate(PlayEnglishRoutes.RESULTS) }
+                onConclude = {
+                    // Actual local score only. Host completion is PE-020.
+                    quizViewModel.finishQuiz()
+                    if (quizViewModel.uiState.value.quiz.phase == QuizPhase.COMPLETED) {
+                        navController.navigate(PlayEnglishRoutes.RESULTS) {
+                            launchSingleTop = true
+                        }
+                    }
+                }
             )
         }
         composable(PlayEnglishRoutes.PRONUNCIATION) {
@@ -82,7 +91,11 @@ fun PlayEnglishNavHost(
         }
         composable(PlayEnglishRoutes.RESULTS) {
             ResultsScreen(
-                onBack = { onCancelSession?.invoke() ?: navController.popBackStack() },
+                score = quizUiState.quiz.score,
+                onBack = {
+                    onCancelSession?.invoke()
+                        ?: navController.popBackStack(PlayEnglishRoutes.HOME, false)
+                },
                 onHome = { navController.popBackStack(PlayEnglishRoutes.HOME, false) }
             )
         }
