@@ -49,7 +49,7 @@
     <string name="learning_no_questions">Ainda não existem perguntas para esta categoria e este nível. Experimenta outro nível ou categoria.</string>
     <string name="learning_no_words">Ainda não existem palavras para esta categoria e este nível. Experimenta outro nível ou categoria.</string>
     <string name="learning_quiz_count">%1$d perguntas disponíveis neste nível e categoria.</string>
-    <string name="quiz_abc_intro">Explora as perguntas e as três opções de resposta em inglês.</string>
+    <string name="quiz_abc_intro">Responde em inglês e descobre quantas perguntas acertas!</string>
     <string name="quiz_preparing_question">A preparar uma pergunta desta categoria…</string>
     <string name="quiz_question_progress">Pergunta %1$d de %2$d</string>
     <string name="quiz_select_preview_instruction">Mantém um dedo pressionado durante 0,8 segundos sobre A, B ou C para confirmar. Soltar antes cancela a escolha.</string>
@@ -59,4 +59,11 @@
     <string name="quiz_finish_preview_notice">Respondeste a todas as perguntas! A apresentação de resultados reais será adicionada numa próxima etapa.</string>
     <string name="quiz_accessibility_confirm">Confirmar esta resposta</string>
     <string name="quiz_accessibility_locked">Resposta bloqueada</string>
+    <string name="quiz_correct_feedback">Muito bem! Resposta certa!</string>
+    <string name="quiz_correct_progress">Acertos: %1$d</string>
+    <string name="quiz_next_question">Pergunta seguinte</string>
+    <string name="quiz_conclude">Concluir</string>
+    <string name="results_local_title">Jogo concluído!</string>
+    <string name="results_local_score">Acertaste %1$d de %2$d perguntas.</string>
+    <string name="results_local_note">O resultado desta partida ainda não foi enviado à VCCAprender.</string>
 </resources>
