@@ -20,14 +20,16 @@ import com.vcc.aprender.playenglish.ui.screens.PronunciationScreen
 import com.vcc.aprender.playenglish.ui.screens.QuizScreen
 import com.vcc.aprender.playenglish.ui.screens.ResultsScreen
 import com.vcc.aprender.playenglish.domain.model.QuizPhase
+import com.vcc.aprender.playenglish.domain.model.QuizScore
 import kotlin.random.Random
 
 @Composable
 fun PlayEnglishNavHost(
-    onQuizStarted: (List<String>) -> Unit = {},
-    onAnswerRecorded: (String, Boolean) -> Unit = { _, _ -> },
-    onQuizCompleted: () -> Unit = {},
-    onCancelSession: (() -> Unit)? = null
+    onQuizStarted: (List<String>) -> Boolean = { true },
+    onAnswerRecorded: (String, Boolean) -> Boolean = { _, _ -> true },
+    onQuizCompleted: (QuizScore) -> Unit = {},
+    onCancelSession: (() -> Unit)? = null,
+    isHostedSession: Boolean = false
 ) {
     val context = LocalContext.current.applicationContext
     val factory = remember(context) { QuizViewModelFactory(context) }
@@ -68,14 +70,32 @@ fun PlayEnglishNavHost(
                 catalogError = quizUiState.catalogError,
                 selectionState = selectionState,
                 onConfirmOption = { questionId, optionId ->
-                    quizViewModel.confirmOption(questionId, optionId)
+                    val before = quizViewModel.uiState.value.quiz
+                    // Only the first real confirmation opens the host progress.
+                    // A failed host start prevents an unreported UI answer.
+                    val ready = !isHostedSession || before.selected.isNotEmpty() ||
+                        onQuizStarted(before.questions.map { it.id })
+                    if (ready && quizViewModel.confirmOption(questionId, optionId)) {
+                        val answered = quizViewModel.uiState.value.quiz
+                        val question = answered.questions.first { it.id == questionId }
+                        val correct = optionId == question.correctChoiceId
+                        onAnswerRecorded(questionId, correct)
+                    }
                 },
                 onNextPreview = quizViewModel::nextPreviewQuestion,
-                onLevelSelected = selectionViewModel::chooseLevel,
-                onCategorySelected = selectionViewModel::chooseCategory,
+                // A hosted session cannot silently replace the question deck
+                // after recording its first answer (otherwise scores diverge).
+                onLevelSelected = { level ->
+                    if (!isHostedSession || quizViewModel.uiState.value.quiz.selected.isEmpty())
+                        selectionViewModel.chooseLevel(level)
+                },
+                onCategorySelected = { category ->
+                    if (!isHostedSession || quizViewModel.uiState.value.quiz.selected.isEmpty())
+                        selectionViewModel.chooseCategory(category)
+                },
                 onBack = { onCancelSession?.invoke() ?: navController.popBackStack() },
                 onConclude = {
-                    // Actual local score only. Host completion is PE-020.
+                    // Calculate the real score first; sending is explicit on summary.
                     quizViewModel.finishQuiz()
                     if (quizViewModel.uiState.value.quiz.phase == QuizPhase.COMPLETED) {
                         navController.navigate(PlayEnglishRoutes.RESULTS) {
@@ -93,6 +113,9 @@ fun PlayEnglishNavHost(
         composable(PlayEnglishRoutes.RESULTS) {
             ResultsScreen(
                 score = quizUiState.quiz.score,
+                onFinishForHost = if (isHostedSession) ({
+                    quizUiState.quiz.score?.let(onQuizCompleted)
+                }) else null,
                 onBack = {
                     onCancelSession?.invoke()
                         ?: navController.popBackStack(PlayEnglishRoutes.HOME, false)
