@@ -158,4 +158,71 @@ class QuizViewModelTest {
         assertEquals(QuizScore(1, 1), finished.uiState.value.quiz.score)
         assertFalse(finished.confirmOption("q1", "a"))
     }
+
+    @Test fun correctFeedbackOnlyAfterConfirmationAndCountsOnce() {
+        val vm = QuizViewModel(LoadQuizUseCase(source(listOf(question("q1")))))
+        vm.selectQuestionSet(listOf("q1"))
+        assertNull(vm.uiState.value.preview.wasCorrect)
+        assertEquals(0, vm.uiState.value.preview.correctAnswers)
+        assertFalse(vm.uiState.value.preview.canConclude)
+        assertTrue(vm.confirmOption("q1", "b"))
+        assertEquals(true, vm.uiState.value.preview.wasCorrect)
+        assertEquals(1, vm.uiState.value.preview.correctAnswers)
+        assertEquals("b", vm.uiState.value.preview.confirmedOptionId)
+        assertTrue(vm.uiState.value.preview.canConclude)
+        repeat(30) { assertFalse(vm.confirmOption("q1", if (it % 2 == 0) "b" else "a")) }
+        assertEquals(1, vm.uiState.value.preview.correctAnswers)
+        assertNull(vm.uiState.value.quiz.score)
+    }
+
+    @Test fun wrongAnswerNeverShowsSuccessOrIncrementsCorrectCount() {
+        val vm = QuizViewModel(LoadQuizUseCase(source(listOf(question("q1"), question("q2")))))
+        vm.selectQuestionSet(listOf("q1", "q2"))
+        assertTrue(vm.confirmOption("q1", "a"))
+        assertEquals(false, vm.uiState.value.preview.wasCorrect)
+        assertEquals(0, vm.uiState.value.preview.correctAnswers)
+        assertTrue(vm.uiState.value.preview.canPreviewNext)
+        assertFalse(vm.confirmOption("q1", "b"))
+        vm.nextPreviewQuestion()
+        assertNull(vm.uiState.value.preview.wasCorrect)
+        assertEquals(0, vm.uiState.value.preview.correctAnswers)
+        assertNull(vm.uiState.value.preview.confirmedOptionId)
+    }
+
+    @Test fun smileStaysUntilAdvancingAndLastQuestionConcludesWithRealScore() {
+        val vm = QuizViewModel(LoadQuizUseCase(source(listOf(question("q1"), question("q2")))))
+        vm.selectQuestionSet(listOf("q1", "q2"))
+        assertTrue(vm.confirmOption("q1", "b"))
+        assertEquals(true, vm.uiState.value.preview.wasCorrect)
+        assertEquals(true, vm.uiState.value.preview.wasCorrect)
+        assertEquals(1, vm.uiState.value.preview.correctAnswers)
+        assertFalse(vm.uiState.value.preview.canConclude)
+        vm.finishQuiz()
+        assertEquals(QuizPhase.ACTIVE, vm.uiState.value.quiz.phase)
+        vm.nextPreviewQuestion()
+        assertNull(vm.uiState.value.preview.wasCorrect)
+        assertNull(vm.uiState.value.preview.confirmedOptionId)
+        assertEquals(1, vm.uiState.value.preview.correctAnswers)
+        assertTrue(vm.confirmOption("q2", "a"))
+        assertEquals(false, vm.uiState.value.preview.wasCorrect)
+        assertEquals(1, vm.uiState.value.preview.correctAnswers)
+        assertTrue(vm.uiState.value.preview.canConclude)
+        vm.finishQuiz()
+        assertEquals(QuizPhase.COMPLETED, vm.uiState.value.quiz.phase)
+        assertEquals(QuizScore(1, 2), vm.uiState.value.quiz.score)
+        vm.finishQuiz()
+        assertEquals(QuizScore(1, 2), vm.uiState.value.quiz.score)
+    }
+
+    @Test fun changingCategoryErasesSmilesAndCorrectProgress() {
+        val vm = QuizViewModel(LoadQuizUseCase(source(listOf(question("q1"), question("q2")))))
+        vm.selectQuestionSet(listOf("q1"))
+        assertTrue(vm.confirmOption("q1", "b"))
+        assertEquals(1, vm.uiState.value.preview.correctAnswers)
+        vm.selectQuestionSet(listOf("q2"))
+        assertNull(vm.uiState.value.preview.wasCorrect)
+        assertEquals(0, vm.uiState.value.preview.correctAnswers)
+        assertFalse(vm.uiState.value.preview.isConfirmed)
+        assertNull(vm.uiState.value.quiz.score)
+    }
 }
