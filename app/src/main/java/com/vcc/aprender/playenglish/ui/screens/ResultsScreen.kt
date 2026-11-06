@@ -26,6 +26,7 @@ import com.vcc.aprender.playenglish.ui.theme.PlayEnglishColors
 @Composable
 fun ResultsScreen(
     score: QuizScore? = null,
+    onFinishForHost: (() -> Unit)? = null,
     onBack: () -> Unit,
     onHome: () -> Unit
 ) {
@@ -61,11 +62,23 @@ fun ResultsScreen(
                 )
                 if (score != null) {
                     Text(
-                        stringResource(R.string.results_local_note),
+                        stringResource(
+                            if (onFinishForHost == null) R.string.results_local_note
+                            else R.string.results_host_ready_note
+                        ),
                         style = MaterialTheme.typography.bodyMedium,
                         textAlign = TextAlign.Center
                     )
                 }
+            }
+        }
+        if (score != null && onFinishForHost != null) {
+            Button(
+                onClick = onFinishForHost,
+                modifier = Modifier.fillMaxWidth().heightIn(min = 56.dp)
+                    .testTag("results-finish-host")
+            ) {
+                Text(stringResource(R.string.results_finish_host))
             }
         }
         Button(
