@@ -511,3 +511,21 @@ validação anti-duplicados. **Ainda não há feedback de acerto/erro nem envio
 de resultados ao host** (PE-017, PE-018 e PE-020).
 
 [Especificação e testes PE-016](docs/PE-016-LONG-PRESS-SINGLE-ATTEMPT.md).
+
+---
+
+## PE-017 — Smile de acerto e Pergunta seguinte / Concluir
+
+Depois de uma resposta **certa** confirmada pela pressão de 800 ms
+ou ação acessível, a opção escolhida mostra um **smile feliz 😊** e
+**«Muito bem! Resposta certa!»**. O smile permanece até avançar;
+a próxima pergunta começa sem opção marcada. **«Acertos: N»** é
+calculado a partir das respostas reais já confirmadas, evitando
+pontuação duplicada.
+
+Na última pergunta, **«Concluir»** calcula o resultado local
+`X de Y` sem o transmitir ainda à VCCAprender (integração PE-020).
+Respostas erradas ficam bloqueadas e com mensagem neutra, sem smile;
+o feedback de erro será desenvolvido na PE-018.
+
+Detalhes e testes: [PE-017](docs/PE-017-CORRECT-ANSWER-FEEDBACK.md).
