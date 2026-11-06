@@ -57,10 +57,14 @@ class PluginSessionStateHolder private constructor(
      * Never trust a caller-provided score. Only QuizProgress, backed by real
      * questions/answers, can create a completion. Calling this twice is inert.
      */
-    fun finishQuizOnce(): Intent? {
+    fun finishQuizOnce(expectedCorrect: Int? = null, expectedTotal: Int? = null): Intent? {
         if (!isActive) return null
         val progress = quiz ?: return null
         if (!progress.isComplete) return null
+        // Fail closed when UI state differs from events stored for this host
+        // session (for example after process restoration or duplicated input).
+        if (expectedTotal != null && expectedTotal != progress.totalQuestions) return null
+        if (expectedCorrect != null && expectedCorrect != progress.correctCount) return null
         val completion = progress.finishIfComplete() ?: return null
         val result = resultSender.createResultOnce(completion) ?: return null
         status = SessionStatus.RESULT_SENT
