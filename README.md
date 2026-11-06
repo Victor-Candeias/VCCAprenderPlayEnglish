@@ -538,3 +538,10 @@ Detalhes e testes: [PE-017](docs/PE-017-CORRECT-ANSWER-FEEDBACK.md).
 Depois de uma resposta incorreta confirmada, mostra-se **«Resposta errada!»** a vermelho e uma explicação com a palavra inglesa correta. As duas opções erradas desaparecem por completo, incluindo da árvore de acessibilidade; apenas a opção correta permanece visível e bloqueada, sem smile. O botão **Pergunta seguinte** permite avançar sem segunda tentativa. O erro continua contabilizado na pontuação real. Nenhuma solução é divulgada antes da confirmação.
 
 [Especificação e testes PE-018](docs/PE-018-WRONG-ANSWER-FEEDBACK.md).
+
+
+---
+
+## PE-019 — Baralhamento reproduzível de perguntas e opções
+
+Cada partida interativa escolhe uma seed aleatória e baralha o subconjunto de perguntas da categoria/nível, sem repetição. As opções A/B/C também mudam de posição, mantendo IDs e resposta correta do catálogo; as posições certas são distribuídas equilibradamente. Para testes e diagnóstico, a mesma seed reproduz exatamente o baralho. A validação rejeita opções com rótulos indistinguíveis. O score, os feedbacks e a confirmação de 800 ms mantêm-se. [Detalhes PE-019](docs/PE-019-RANDOMIZED-DECK.md).
