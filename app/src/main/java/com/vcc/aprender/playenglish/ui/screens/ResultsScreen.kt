@@ -19,11 +19,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.vcc.aprender.playenglish.R
+import com.vcc.aprender.playenglish.domain.model.QuizScore
 import com.vcc.aprender.playenglish.ui.components.ChildScreenLayout
 import com.vcc.aprender.playenglish.ui.theme.PlayEnglishColors
 
 @Composable
 fun ResultsScreen(
+    score: QuizScore? = null,
     onBack: () -> Unit,
     onHome: () -> Unit
 ) {
@@ -43,15 +45,27 @@ fun ResultsScreen(
             ) {
                 Text("🏆", fontSize = 48.sp)
                 Text(
-                    stringResource(R.string.results_placeholder_title),
+                    stringResource(
+                        if (score != null) R.string.results_local_title
+                        else R.string.results_placeholder_title
+                    ),
                     style = MaterialTheme.typography.titleLarge,
                     textAlign = TextAlign.Center
                 )
                 Text(
-                    stringResource(R.string.results_placeholder_body),
+                    if (score != null) stringResource(
+                        R.string.results_local_score, score.correctAnswers, score.totalQuestions
+                    ) else stringResource(R.string.results_placeholder_body),
                     style = MaterialTheme.typography.bodyLarge,
                     textAlign = TextAlign.Center
                 )
+                if (score != null) {
+                    Text(
+                        stringResource(R.string.results_local_note),
+                        style = MaterialTheme.typography.bodyMedium,
+                        textAlign = TextAlign.Center
+                    )
+                }
             }
         }
         Button(
