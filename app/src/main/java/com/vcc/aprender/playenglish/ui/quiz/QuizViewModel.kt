@@ -8,6 +8,7 @@ import com.vcc.aprender.playenglish.domain.usecase.AnswerQuestionUseCase
 import com.vcc.aprender.playenglish.domain.usecase.CancelQuizUseCase
 import com.vcc.aprender.playenglish.domain.usecase.CompleteQuizUseCase
 import com.vcc.aprender.playenglish.domain.usecase.LoadQuizUseCase
+import com.vcc.aprender.playenglish.domain.usecase.ShuffleQuizDeckUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -21,7 +22,8 @@ class QuizViewModel(
     private val loadQuiz: LoadQuizUseCase,
     private val answer: AnswerQuestionUseCase = AnswerQuestionUseCase(),
     private val complete: CompleteQuizUseCase = CompleteQuizUseCase(),
-    private val cancel: CancelQuizUseCase = CancelQuizUseCase()
+    private val cancel: CancelQuizUseCase = CancelQuizUseCase(),
+    private val shuffle: ShuffleQuizDeckUseCase = ShuffleQuizDeckUseCase()
 ) : ViewModel() {
     private val mutableState = MutableStateFlow(QuizUiState())
     val uiState: StateFlow<QuizUiState> = mutableState.asStateFlow()
@@ -44,7 +46,11 @@ class QuizViewModel(
      * Changing the category/learning level clears all prior confirmations.
      * Unknown/duplicate IDs reject the catalog without exposing partial data.
      */
-    fun selectQuestionSet(ids: List<String>) {
+    /** A null seed retains a stable catalog order for legacy/programmatic callers.
+     * The interactive screen always supplies a fresh seed per selected game.
+     * For reproducible tests, pass the same explicit seed.
+     */
+    fun selectQuestionSet(ids: List<String>, seed: Long? = null) {
         if (mutableState.value.catalogError) return
         val lookup = allQuestions.associateBy { it.id }
         if (ids.distinct().size != ids.size || ids.any { it !in lookup }) {
@@ -52,9 +58,15 @@ class QuizViewModel(
             return
         }
         val questions = ids.map { checkNotNull(lookup[it]) }
+        val deck = runCatching {
+            if (seed == null) questions else shuffle.execute(questions, seed)
+        }.getOrElse {
+            mutableState.value = QuizUiState(catalogError = true)
+            return
+        }
         mutableState.value = QuizUiState(
-            quiz = if (questions.isEmpty()) QuizState()
-                   else QuizState(phase = QuizPhase.ACTIVE, questions = questions)
+            quiz = if (deck.isEmpty()) QuizState()
+                   else QuizState(phase = QuizPhase.ACTIVE, questions = deck)
         )
     }
 

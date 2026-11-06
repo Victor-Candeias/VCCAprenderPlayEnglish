@@ -20,6 +20,7 @@ import com.vcc.aprender.playenglish.ui.screens.PronunciationScreen
 import com.vcc.aprender.playenglish.ui.screens.QuizScreen
 import com.vcc.aprender.playenglish.ui.screens.ResultsScreen
 import com.vcc.aprender.playenglish.domain.model.QuizPhase
+import kotlin.random.Random
 
 @Composable
 fun PlayEnglishNavHost(
@@ -38,7 +39,7 @@ fun PlayEnglishNavHost(
     // Reset quiz to exactly the IDs allowed by the locally selected age level/category.
     // This also prevents a future interactive screen from starting with all 48 questions.
     LaunchedEffect(selectionState.selectedQuestionIds) {
-        quizViewModel.selectQuestionSet(selectionState.selectedQuestionIds)
+        quizViewModel.selectQuestionSet(selectionState.selectedQuestionIds, Random.nextLong())
     }
     val navController = rememberNavController()
     NavHost(
