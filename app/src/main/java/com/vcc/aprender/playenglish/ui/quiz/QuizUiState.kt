@@ -21,12 +21,19 @@ data class QuizPreviewState(
     val questionIndex: Int = 0,
     val totalQuestions: Int = 0,
     val confirmedOptionId: String? = null,
+    /** Null until answered; never reveals the correct choice ID. */
+    val wasCorrect: Boolean? = null,
+    /** Real count from unique confirmed answers, not UI events. */
+    val correctAnswers: Int = 0,
     val allAnswered: Boolean = false
 ) {
     val hasQuestion: Boolean get() = question != null
     val isConfirmed: Boolean get() = confirmedOptionId != null
     val canPreviewNext: Boolean
         get() = isConfirmed && hasQuestion && questionIndex + 1 < totalQuestions
+    val canConclude: Boolean
+        get() = isConfirmed && allAnswered && hasQuestion &&
+            questionIndex == totalQuestions - 1
 }
 
 /**
@@ -43,6 +50,7 @@ data class QuizUiState(
     val preview: QuizPreviewState get() {
         if (catalogError) return QuizPreviewState()
         val question = quiz.questions.getOrNull(previewIndex) ?: return QuizPreviewState()
+        val chosen = quiz.selected[question.id]
         return QuizPreviewState(
             question = QuizQuestionPreview(
                 id = question.id,
@@ -51,7 +59,11 @@ data class QuizUiState(
             ),
             questionIndex = previewIndex,
             totalQuestions = quiz.questionCount,
-            confirmedOptionId = quiz.selected[question.id],
+            confirmedOptionId = chosen,
+            wasCorrect = chosen?.let { it == question.correctChoiceId },
+            correctAnswers = quiz.questions.count { q ->
+                quiz.selected[q.id] == q.correctChoiceId
+            },
             allAnswered = quiz.allAnswered
         )
     }

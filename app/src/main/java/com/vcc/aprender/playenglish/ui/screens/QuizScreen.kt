@@ -65,7 +65,8 @@ import com.vcc.aprender.playenglish.ui.theme.PlayEnglishColors
  * PE-016: 800 ms uninterrupted single-pointer hold confirms one answer.
  * A short touch / move / multitouch cancels; keyboard and TalkBack activate
  * an accessible confirmation action without requiring a timed physical hold.
- * PE-017/018 introduce correct/wrong visual feedback; PE-020 host results.
+ * PE-017 adds happy feedback only when the confirmed choice is right.
+ * PE-018 adds error feedback and PE-020 sends host results.
  *
  * No correctChoiceId enters this composable: it receives a sanitized preview.
  * ChildScreenLayout provides vertical scrolling at 200% font scale.
@@ -80,7 +81,7 @@ fun QuizScreen(
     onConfirmOption: (String, String) -> Unit = { _, _ -> },
     onNextPreview: () -> Unit = {},
     onBack: () -> Unit,
-    onPreviewResults: () -> Unit
+    onConclude: () -> Unit
 ) {
     // Prevent the previous category's card appearing during LaunchedEffect's
     // async transition to the new filtered quiz question set.
@@ -171,11 +172,18 @@ fun QuizScreen(
                         stringResource(R.string.quiz_select_preview_instruction),
                         style = MaterialTheme.typography.bodyMedium
                     )
+                    Text(
+                        stringResource(R.string.quiz_correct_progress, preview.correctAnswers),
+                        style = MaterialTheme.typography.titleMedium,
+                        modifier = Modifier.testTag("quiz-correct-count")
+                    )
                     shownQuestion.options.forEachIndexed { index, option ->
                         QuizOptionCard(
                             letter = "ABC"[index].toString(),
                             option = option,
                             isConfirmed = preview.confirmedOptionId == option.id,
+                            showHappySmile = preview.wasCorrect == true &&
+                                preview.confirmedOptionId == option.id,
                             isLocked = preview.isConfirmed,
                             onConfirm = { onConfirmOption(shownQuestion.id, option.id) }
                         )
@@ -186,34 +194,40 @@ fun QuizScreen(
                                 R.string.quiz_answer_confirmed
                             else R.string.quiz_waiting_confirmation
                         ),
-                        modifier = Modifier.testTag("quiz-preview-notice"),
+                        modifier = Modifier.testTag(
+                            if (preview.isConfirmed) "quiz-answer-registered"
+                            else "quiz-waiting-state"
+                        ),
                         style = MaterialTheme.typography.bodyMedium
                     )
-                    if (preview.allAnswered) {
+                    if (preview.wasCorrect == true) {
                         Text(
-                            stringResource(R.string.quiz_finish_preview_notice),
-                            modifier = Modifier.testTag("quiz-finish-notice"),
-                            style = MaterialTheme.typography.bodyMedium
+                            stringResource(R.string.quiz_correct_feedback),
+                            color = PlayEnglishColors.Green,
+                            style = MaterialTheme.typography.titleLarge,
+                            modifier = Modifier.testTag("quiz-success-feedback")
                         )
                     }
-                    OutlinedButton(
-                        onClick = onNextPreview,
-                        enabled = preview.canPreviewNext,
-                        modifier = Modifier.fillMaxWidth().heightIn(min = 56.dp)
-                            .testTag("quiz-next-preview")
-                    ) {
-                        Text(stringResource(R.string.quiz_next_preview))
+                    if (preview.canConclude) {
+                        Button(
+                            onClick = onConclude,
+                            modifier = Modifier.fillMaxWidth().heightIn(min = 56.dp)
+                                .testTag("quiz-conclude")
+                        ) {
+                            Text(stringResource(R.string.quiz_conclude))
+                        }
+                    } else {
+                        OutlinedButton(
+                            onClick = onNextPreview,
+                            enabled = preview.canPreviewNext,
+                            modifier = Modifier.fillMaxWidth().heightIn(min = 56.dp)
+                                .testTag("quiz-next-preview")
+                        ) {
+                            Text(stringResource(R.string.quiz_next_question))
+                        }
                     }
                 }
             }
-        }
-        Button(
-            onClick = onPreviewResults,
-            enabled = hasValidQuestion && preview.allAnswered,
-            modifier = Modifier.fillMaxWidth().heightIn(min = 56.dp)
-                .testTag("quiz-preview-results")
-        ) {
-            Text(stringResource(R.string.quiz_preview_results))
         }
     }
 }
@@ -231,6 +245,7 @@ private fun QuizOptionCard(
     letter: String,
     option: QuizOptionPreview,
     isConfirmed: Boolean,
+    showHappySmile: Boolean,
     isLocked: Boolean,
     onConfirm: () -> Unit
 ) {
@@ -312,17 +327,31 @@ private fun QuizOptionCard(
             if (isConfirmed) PlayEnglishColors.Green else PlayEnglishColors.RoyalBlue
         )
     ) {
-        Row(
+        Column(
             modifier = Modifier.fillMaxWidth().padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(14.dp)
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
-            Text(letter, style = MaterialTheme.typography.titleLarge)
-            Text(
-                option.label,
-                modifier = Modifier.weight(1f),
-                style = MaterialTheme.typography.titleLarge
-            )
+            if (showHappySmile) {
+                Text(
+                    "😊",
+                    fontSize = 48.sp,
+                    modifier = Modifier.testTag("quiz-correct-smile")
+                        .semantics { contentDescription = "Resposta certa. Muito bem!" }
+                )
+            }
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(14.dp)
+            ) {
+                Text(letter, style = MaterialTheme.typography.titleLarge)
+                Text(
+                    option.label,
+                    modifier = Modifier.weight(1f),
+                    style = MaterialTheme.typography.titleLarge
+                )
+            }
         }
     }
 }
