@@ -4,7 +4,7 @@ import com.vcc.aprender.playenglish.domain.model.QuizState
 
 /**
  * Presentation-only types. A correctChoiceId is intentionally NOT exposed
- * to Compose or accessibility until PE-017/018 handle result feedback.
+ * to Compose or accessibility before a response is confirmed.
  */
 data class QuizOptionPreview(val id: String, val label: String)
 
@@ -23,6 +23,8 @@ data class QuizPreviewState(
     val confirmedOptionId: String? = null,
     /** Null until answered; never reveals the correct choice ID. */
     val wasCorrect: Boolean? = null,
+    /** Available only after an incorrect confirmed answer. Never before confirmation. */
+    val correctOptionAfterError: QuizOptionPreview? = null,
     /** Real count from unique confirmed answers, not UI events. */
     val correctAnswers: Int = 0,
     val allAnswered: Boolean = false
@@ -61,6 +63,10 @@ data class QuizUiState(
             totalQuestions = quiz.questionCount,
             confirmedOptionId = chosen,
             wasCorrect = chosen?.let { it == question.correctChoiceId },
+            correctOptionAfterError = if (chosen != null && chosen != question.correctChoiceId) {
+                question.choices.firstOrNull { it.id == question.correctChoiceId }
+                    ?.let { QuizOptionPreview(it.id, it.label) }
+            } else null,
             correctAnswers = quiz.questions.count { q ->
                 quiz.selected[q.id] == q.correctChoiceId
             },

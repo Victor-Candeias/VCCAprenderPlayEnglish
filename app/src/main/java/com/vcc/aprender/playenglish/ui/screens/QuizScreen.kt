@@ -66,7 +66,8 @@ import com.vcc.aprender.playenglish.ui.theme.PlayEnglishColors
  * A short touch / move / multitouch cancels; keyboard and TalkBack activate
  * an accessible confirmation action without requiring a timed physical hold.
  * PE-017 adds happy feedback only when the confirmed choice is right.
- * PE-018 adds error feedback and PE-020 sends host results.
+ * PE-018 reveals only the correct option after a wrong confirmation.
+ * PE-020 sends host results.
  *
  * No correctChoiceId enters this composable: it receives a sanitized preview.
  * ChildScreenLayout provides vertical scrolling at 200% font scale.
@@ -177,7 +178,15 @@ fun QuizScreen(
                         style = MaterialTheme.typography.titleMedium,
                         modifier = Modifier.testTag("quiz-correct-count")
                     )
-                    shownQuestion.options.forEachIndexed { index, option ->
+                    // After an incorrect answer, physically remove both wrong
+                    // alternatives from the composition and accessibility tree.
+                    // The correct option is supplied by the domain projection only
+                    // after confirmation; its original A/B/C position is retained.
+                    val optionsToDisplay = if (preview.wasCorrect == false) {
+                        shownQuestion.options.filter { it.id == preview.correctOptionAfterError?.id }
+                    } else shownQuestion.options
+                    optionsToDisplay.forEach { option ->
+                        val index = shownQuestion.options.indexOf(option)
                         QuizOptionCard(
                             letter = "ABC"[index].toString(),
                             option = option,
@@ -200,6 +209,22 @@ fun QuizScreen(
                         ),
                         style = MaterialTheme.typography.bodyMedium
                     )
+                    if (preview.wasCorrect == false) {
+                        Text(
+                            stringResource(R.string.quiz_wrong_feedback),
+                            color = Color(0xFFB3261E),
+                            style = MaterialTheme.typography.titleLarge,
+                            modifier = Modifier.testTag("quiz-error-feedback")
+                                .semantics { contentDescription = "Resposta errada!" }
+                        )
+                        preview.correctOptionAfterError?.let { correct ->
+                            Text(
+                                stringResource(R.string.quiz_wrong_explanation, correct.label),
+                                style = MaterialTheme.typography.bodyLarge,
+                                modifier = Modifier.testTag("quiz-error-explanation")
+                            )
+                        }
+                    }
                     if (preview.wasCorrect == true) {
                         Text(
                             stringResource(R.string.quiz_correct_feedback),

@@ -59,6 +59,8 @@
     <string name="quiz_finish_preview_notice">Respondeste a todas as perguntas! A apresentação de resultados reais será adicionada numa próxima etapa.</string>
     <string name="quiz_accessibility_confirm">Confirmar esta resposta</string>
     <string name="quiz_accessibility_locked">Resposta bloqueada</string>
+    <string name="quiz_wrong_feedback">Resposta errada!</string>
+    <string name="quiz_wrong_explanation">A resposta correta é %1$s. Observa a palavra em inglês para a recordares na próxima pergunta.</string>
     <string name="quiz_correct_feedback">Muito bem! Resposta certa!</string>
     <string name="quiz_correct_progress">Acertos: %1$d</string>
     <string name="quiz_next_question">Pergunta seguinte</string>

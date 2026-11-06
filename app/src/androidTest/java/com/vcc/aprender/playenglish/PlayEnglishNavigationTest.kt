@@ -83,8 +83,20 @@ class PlayEnglishNavigationTest {
         rule.onNodeWithTag("quiz-correct-smile").assertDoesNotExist()
         rule.onNodeWithTag("quiz-success-feedback").assertDoesNotExist()
         rule.onNodeWithTag("quiz-correct-count").performScrollTo().assertTextContains("0")
+        rule.onNodeWithTag("quiz-option-a").assertDoesNotExist()
+        rule.onNodeWithTag("quiz-option-c").assertDoesNotExist()
         rule.onNodeWithTag("quiz-option-b").assertIsNotEnabled()
+        rule.onNodeWithTag("quiz-error-feedback").performScrollTo()
+            .assertTextContains("Resposta errada!")
+        rule.onNodeWithTag("quiz-error-explanation").performScrollTo()
+            .assertTextContains("Red")
         rule.onNodeWithTag("quiz-next-preview").performScrollTo().assertIsEnabled()
+        rule.onNodeWithTag("quiz-next-preview").performClick()
+        rule.onNodeWithTag("quiz-error-feedback").assertDoesNotExist()
+        rule.onNodeWithTag("quiz-error-explanation").assertDoesNotExist()
+        rule.onNodeWithTag("quiz-option-a").performScrollTo().assertExists()
+        rule.onNodeWithTag("quiz-option-b").performScrollTo().assertExists()
+        rule.onNodeWithTag("quiz-option-c").performScrollTo().assertExists()
     }
 
     @Test fun discoverFiltersWordsAndPreservesSelectionAcrossScreens() {

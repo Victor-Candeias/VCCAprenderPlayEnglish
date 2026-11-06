@@ -529,3 +529,12 @@ Respostas erradas ficam bloqueadas e com mensagem neutra, sem smile;
 o feedback de erro será desenvolvido na PE-018.
 
 Detalhes e testes: [PE-017](docs/PE-017-CORRECT-ANSWER-FEEDBACK.md).
+
+
+---
+
+## PE-018 — Resposta errada e correção educativa
+
+Depois de uma resposta incorreta confirmada, mostra-se **«Resposta errada!»** a vermelho e uma explicação com a palavra inglesa correta. As duas opções erradas desaparecem por completo, incluindo da árvore de acessibilidade; apenas a opção correta permanece visível e bloqueada, sem smile. O botão **Pergunta seguinte** permite avançar sem segunda tentativa. O erro continua contabilizado na pontuação real. Nenhuma solução é divulgada antes da confirmação.
+
+[Especificação e testes PE-018](docs/PE-018-WRONG-ANSWER-FEEDBACK.md).
