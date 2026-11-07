@@ -48,9 +48,9 @@ class NumbersShapesTests(unittest.TestCase):
         self.assertIn('"●".repeat(count)', source)
         self.assertIn('"quiz-number-shape-illustration"', source)
         for id_ in CARDINALS + TENS + SHAPES:
-            self.assertRegex(source, r'"' + re.escape(id_) + r'"\\s*->')
+            self.assertRegex(source, r'"' + re.escape(id_) + r'"\s*->')
         for id_ in SHAPES:
-            self.assertRegex(source, r'"' + re.escape(id_) + r'"\\s*->\\s*"[^"]+"')
+            self.assertRegex(source, r'"' + re.escape(id_) + r'"\s*->\s*"[^"]+"')
 
     def test_no_ordinals_in_prompts(self):
         for q in self.questions:
