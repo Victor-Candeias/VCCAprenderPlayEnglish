@@ -904,6 +904,246 @@
       },
       "imageRef": null,
       "audioText": "Turquoise"
+    },
+    {
+      "id": "numbers.zero",
+      "ptPT": "Zero",
+      "enGB": "Zero",
+      "category": "numbers",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Zero"
+    },
+    {
+      "id": "numbers.thirteen",
+      "ptPT": "Treze",
+      "enGB": "Thirteen",
+      "category": "numbers",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Thirteen"
+    },
+    {
+      "id": "numbers.fourteen",
+      "ptPT": "Catorze",
+      "enGB": "Fourteen",
+      "category": "numbers",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Fourteen"
+    },
+    {
+      "id": "numbers.fifteen",
+      "ptPT": "Quinze",
+      "enGB": "Fifteen",
+      "category": "numbers",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Fifteen"
+    },
+    {
+      "id": "numbers.sixteen",
+      "ptPT": "Dezasseis",
+      "enGB": "Sixteen",
+      "category": "numbers",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Sixteen"
+    },
+    {
+      "id": "numbers.seventeen",
+      "ptPT": "Dezassete",
+      "enGB": "Seventeen",
+      "category": "numbers",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Seventeen"
+    },
+    {
+      "id": "numbers.eighteen",
+      "ptPT": "Dezoito",
+      "enGB": "Eighteen",
+      "category": "numbers",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Eighteen"
+    },
+    {
+      "id": "numbers.nineteen",
+      "ptPT": "Dezanove",
+      "enGB": "Nineteen",
+      "category": "numbers",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Nineteen"
+    },
+    {
+      "id": "numbers.twenty",
+      "ptPT": "Vinte",
+      "enGB": "Twenty",
+      "category": "numbers",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Twenty"
+    },
+    {
+      "id": "numbers.thirty",
+      "ptPT": "Trinta",
+      "enGB": "Thirty",
+      "category": "numbers",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Thirty"
+    },
+    {
+      "id": "numbers.forty",
+      "ptPT": "Quarenta",
+      "enGB": "Forty",
+      "category": "numbers",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Forty"
+    },
+    {
+      "id": "numbers.fifty",
+      "ptPT": "Cinquenta",
+      "enGB": "Fifty",
+      "category": "numbers",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Fifty"
+    },
+    {
+      "id": "numbers.shape_circle",
+      "ptPT": "Círculo",
+      "enGB": "Circle",
+      "category": "numbers",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Circle"
+    },
+    {
+      "id": "numbers.shape_square",
+      "ptPT": "Quadrado",
+      "enGB": "Square",
+      "category": "numbers",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Square"
+    },
+    {
+      "id": "numbers.shape_triangle",
+      "ptPT": "Triângulo",
+      "enGB": "Triangle",
+      "category": "numbers",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Triangle"
+    },
+    {
+      "id": "numbers.shape_rectangle",
+      "ptPT": "Retângulo",
+      "enGB": "Rectangle",
+      "category": "numbers",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Rectangle"
+    },
+    {
+      "id": "numbers.shape_star",
+      "ptPT": "Estrela",
+      "enGB": "Star",
+      "category": "numbers",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Star"
+    },
+    {
+      "id": "numbers.shape_diamond",
+      "ptPT": "Losango",
+      "enGB": "Diamond",
+      "category": "numbers",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Diamond"
+    },
+    {
+      "id": "numbers.shape_pentagon",
+      "ptPT": "Pentágono",
+      "enGB": "Pentagon",
+      "category": "numbers",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Pentagon"
+    },
+    {
+      "id": "numbers.shape_hexagon",
+      "ptPT": "Hexágono",
+      "enGB": "Hexagon",
+      "category": "numbers",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Hexagon"
     }
   ],
   "questions": [
@@ -1416,6 +1656,206 @@
         "colors.black"
       ],
       "correctId": "colors.turquoise"
+    },
+    {
+      "id": "quiz.numbers.zero",
+      "prompt": "Como se diz «Zero» em inglês? Conta os pontos.",
+      "optionIds": [
+        "numbers.one",
+        "numbers.zero",
+        "numbers.two"
+      ],
+      "correctId": "numbers.zero"
+    },
+    {
+      "id": "quiz.numbers.thirteen",
+      "prompt": "Como se diz «Treze» em inglês? Observa o algarismo.",
+      "optionIds": [
+        "numbers.fourteen",
+        "numbers.thirteen",
+        "numbers.fifteen"
+      ],
+      "correctId": "numbers.thirteen"
+    },
+    {
+      "id": "quiz.numbers.fourteen",
+      "prompt": "Como se diz «Catorze» em inglês? Observa o algarismo.",
+      "optionIds": [
+        "numbers.fifteen",
+        "numbers.fourteen",
+        "numbers.sixteen"
+      ],
+      "correctId": "numbers.fourteen"
+    },
+    {
+      "id": "quiz.numbers.fifteen",
+      "prompt": "Como se diz «Quinze» em inglês? Observa o algarismo.",
+      "optionIds": [
+        "numbers.sixteen",
+        "numbers.fifteen",
+        "numbers.seventeen"
+      ],
+      "correctId": "numbers.fifteen"
+    },
+    {
+      "id": "quiz.numbers.sixteen",
+      "prompt": "Como se diz «Dezasseis» em inglês? Observa o algarismo.",
+      "optionIds": [
+        "numbers.seventeen",
+        "numbers.sixteen",
+        "numbers.eighteen"
+      ],
+      "correctId": "numbers.sixteen"
+    },
+    {
+      "id": "quiz.numbers.seventeen",
+      "prompt": "Como se diz «Dezassete» em inglês? Observa o algarismo.",
+      "optionIds": [
+        "numbers.eighteen",
+        "numbers.seventeen",
+        "numbers.nineteen"
+      ],
+      "correctId": "numbers.seventeen"
+    },
+    {
+      "id": "quiz.numbers.eighteen",
+      "prompt": "Como se diz «Dezoito» em inglês? Observa o algarismo.",
+      "optionIds": [
+        "numbers.nineteen",
+        "numbers.eighteen",
+        "numbers.twenty"
+      ],
+      "correctId": "numbers.eighteen"
+    },
+    {
+      "id": "quiz.numbers.nineteen",
+      "prompt": "Como se diz «Dezanove» em inglês? Observa o algarismo.",
+      "optionIds": [
+        "numbers.twenty",
+        "numbers.nineteen",
+        "numbers.thirteen"
+      ],
+      "correctId": "numbers.nineteen"
+    },
+    {
+      "id": "quiz.numbers.twenty",
+      "prompt": "Como se diz «Vinte» em inglês? Observa o algarismo.",
+      "optionIds": [
+        "numbers.thirteen",
+        "numbers.twenty",
+        "numbers.fourteen"
+      ],
+      "correctId": "numbers.twenty"
+    },
+    {
+      "id": "quiz.numbers.thirty",
+      "prompt": "Como se diz «Trinta» em inglês? Observa o algarismo.",
+      "optionIds": [
+        "numbers.forty",
+        "numbers.thirty",
+        "numbers.fifty"
+      ],
+      "correctId": "numbers.thirty"
+    },
+    {
+      "id": "quiz.numbers.forty",
+      "prompt": "Como se diz «Quarenta» em inglês? Observa o algarismo.",
+      "optionIds": [
+        "numbers.fifty",
+        "numbers.forty",
+        "numbers.thirty"
+      ],
+      "correctId": "numbers.forty"
+    },
+    {
+      "id": "quiz.numbers.fifty",
+      "prompt": "Como se diz «Cinquenta» em inglês? Observa o algarismo.",
+      "optionIds": [
+        "numbers.thirty",
+        "numbers.fifty",
+        "numbers.forty"
+      ],
+      "correctId": "numbers.fifty"
+    },
+    {
+      "id": "quiz.numbers.shape_circle",
+      "prompt": "Como se diz «Círculo» em inglês? Observa a forma.",
+      "optionIds": [
+        "numbers.shape_square",
+        "numbers.shape_circle",
+        "numbers.shape_triangle"
+      ],
+      "correctId": "numbers.shape_circle"
+    },
+    {
+      "id": "quiz.numbers.shape_square",
+      "prompt": "Como se diz «Quadrado» em inglês? Observa a forma.",
+      "optionIds": [
+        "numbers.shape_triangle",
+        "numbers.shape_square",
+        "numbers.shape_circle"
+      ],
+      "correctId": "numbers.shape_square"
+    },
+    {
+      "id": "quiz.numbers.shape_triangle",
+      "prompt": "Como se diz «Triângulo» em inglês? Observa a forma.",
+      "optionIds": [
+        "numbers.shape_circle",
+        "numbers.shape_triangle",
+        "numbers.shape_square"
+      ],
+      "correctId": "numbers.shape_triangle"
+    },
+    {
+      "id": "quiz.numbers.shape_rectangle",
+      "prompt": "Como se diz «Retângulo» em inglês? Observa a forma.",
+      "optionIds": [
+        "numbers.shape_star",
+        "numbers.shape_rectangle",
+        "numbers.shape_diamond"
+      ],
+      "correctId": "numbers.shape_rectangle"
+    },
+    {
+      "id": "quiz.numbers.shape_star",
+      "prompt": "Como se diz «Estrela» em inglês? Observa a forma.",
+      "optionIds": [
+        "numbers.shape_diamond",
+        "numbers.shape_star",
+        "numbers.shape_pentagon"
+      ],
+      "correctId": "numbers.shape_star"
+    },
+    {
+      "id": "quiz.numbers.shape_diamond",
+      "prompt": "Como se diz «Losango» em inglês? Observa a forma.",
+      "optionIds": [
+        "numbers.shape_pentagon",
+        "numbers.shape_diamond",
+        "numbers.shape_hexagon"
+      ],
+      "correctId": "numbers.shape_diamond"
+    },
+    {
+      "id": "quiz.numbers.shape_pentagon",
+      "prompt": "Como se diz «Pentágono» em inglês? Observa a forma.",
+      "optionIds": [
+        "numbers.shape_hexagon",
+        "numbers.shape_pentagon",
+        "numbers.shape_rectangle"
+      ],
+      "correctId": "numbers.shape_pentagon"
+    },
+    {
+      "id": "quiz.numbers.shape_hexagon",
+      "prompt": "Como se diz «Hexágono» em inglês? Observa a forma.",
+      "optionIds": [
+        "numbers.shape_rectangle",
+        "numbers.shape_hexagon",
+        "numbers.shape_star"
+      ],
+      "correctId": "numbers.shape_hexagon"
     }
   ]
 }
