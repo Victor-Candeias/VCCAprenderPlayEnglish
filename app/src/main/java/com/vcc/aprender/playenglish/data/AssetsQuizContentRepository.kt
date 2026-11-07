@@ -85,8 +85,19 @@ class AssetsQuizContentRepository(private val context: Context) :
         // Non-null image references must resolve to real APK assets.
         catalog.words.forEach { entry ->
             entry.imageRef?.let { path ->
-                context.assets.open(path).use { stream ->
-                    require(stream.read() != -1) { "Bundled image asset must not be empty." }
+                if (path.startsWith("drawable/")) {
+                    require(Regex("drawable/[a-z0-9_]+").matches(path))
+                    val id = context.resources.getIdentifier(
+                        path.substringAfter("drawable/"), "drawable", context.packageName
+                    )
+                    require(id != 0) { "Missing bundled vector: $path" }
+                    context.resources.getDrawable(id, context.theme)
+                } else {
+                    require(Regex("images/[a-z0-9_./-]+[.](png|webp|jpg)").matches(path) &&
+                        !path.contains(".."))
+                    context.assets.open(path).use { stream ->
+                        require(stream.read() != -1) { "Bundled image asset must not be empty." }
+                    }
                 }
             }
         }

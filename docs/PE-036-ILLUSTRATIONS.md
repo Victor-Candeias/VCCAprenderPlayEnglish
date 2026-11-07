@@ -1,0 +1,3 @@
+# PE-036 — Ilustrações offline
+
+Issue #37. Adicionados 12 recursos Android VectorDrawable originais empacotados no APK, com referências estáveis para os 12 alimentos atuais, apresentação no quiz e na biblioteca. As frases continuam com fallback textual; números e cores usam a apresentação já existente. Não há dependências de rede nem imagens externas. Vetores geométricos produzidos para o projeto sem marcas ou imagens de terceiros; reutilização conforme licença do repositório. Referências inválidas são rejeitadas. Testes Python executam validação de caminhos e XML; Gradle compila e testa JVM no CI. AndroidTest é apenas compilado, não executado em dispositivo. A revisão de legibilidade visual em dispositivo fica pendente. PE-028 (#29) depende desta infraestrutura.

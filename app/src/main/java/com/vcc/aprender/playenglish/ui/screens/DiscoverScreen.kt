@@ -1,5 +1,7 @@
 package com.vcc.aprender.playenglish.ui.screens
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,7 +14,9 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.vcc.aprender.playenglish.R
@@ -80,6 +84,20 @@ fun DiscoverScreen(
                                     modifier = Modifier.fillMaxWidth().padding(16.dp),
                                     verticalArrangement = Arrangement.spacedBy(4.dp)
                                 ) {
+                                    word.imageRef?.takeIf { it.startsWith("drawable/") }?.let { ref ->
+                                        val ctx = LocalContext.current
+                                        val id = ctx.resources.getIdentifier(
+                                            ref.substringAfter("drawable/"), "drawable", ctx.packageName
+                                        )
+                                        if (id != 0) {
+                                            Image(
+                                                painter = painterResource(id),
+                                                contentDescription = "Ilustração: " + word.ptPT,
+                                                modifier = Modifier.size(72.dp)
+                                                    .testTag("discover-illustration")
+                                            )
+                                        }
+                                    }
                                     Text(
                                         word.ptPT,
                                         style = MaterialTheme.typography.titleMedium
