@@ -585,3 +585,8 @@ No modo de pronúncia, o campo de pesquisa filtra as palavras já escolhidas por
 ## PE-025 — Cores e tonalidades por faixa etária
 
 O catálogo inclui 15 cores em português de Portugal e inglês britânico, com amostras de cor locais no Quiz: vermelho/red, azul/blue, verde/green e mais doze cores/tonalidades. As novas entradas **prateado/silver**, **bege/beige** e **turquesa/turquoise** são exclusivamente para o nível 6–8; as faixas 3–5 mantêm o vocabulário anterior. Cada nova questão contém três opções distintas e pronúncia `audioText` em inglês britânico. A validação editorial de cobertura e os testes de esquema foram atualizados para 75 palavras e 51 perguntas. Ver `docs/PE-025-COLOURS.md`.
+
+
+## PE-027 — Números, contagem e formas geométricas
+
+O catálogo offline tem 32 itens em Números: cardinais de 0 a 20, dezenas 30/40/50 e 8 formas (círculo, quadrado, triângulo, retângulo, estrela, losango, pentágono e hexágono). As novas perguntas mostram pontos, algarismos ou símbolos geométricos, com três respostas distintas e voz en-GB. A lista original permanece intacta. Ver docs/PE-027-NUMBERS-COUNTING-SHAPES.md.
