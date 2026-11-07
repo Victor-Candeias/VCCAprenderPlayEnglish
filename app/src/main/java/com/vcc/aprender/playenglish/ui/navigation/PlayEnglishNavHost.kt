@@ -107,6 +107,7 @@ fun PlayEnglishNavHost(
         }
         composable(PlayEnglishRoutes.PRONUNCIATION) {
             PronunciationScreen(
+                words = selectionState.selectedContent?.words.orEmpty(),
                 onBack = { onCancelSession?.invoke() ?: navController.popBackStack() }
             )
         }

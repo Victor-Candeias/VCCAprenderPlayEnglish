@@ -17,6 +17,10 @@
     <string name="quiz_not_ready">Este ecrã de navegação está pronto. As perguntas e respostas serão implementadas na PE-015.</string>
     <string name="quiz_preview_results">Ver ecrã de resultados</string>
     <string name="pronunciation_title">Como se diz em inglês?</string>
+    <string name="pronunciation_no_words">Escolhe uma categoria com palavras no ecrã Descobre para ouvires inglês.</string>
+    <string name="pronunciation_position">Palavra %1$d de %2$d</string>
+    <string name="pronunciation_previous">Anterior</string>
+    <string name="pronunciation_next">Seguinte</string>
     <string name="pronunciation_example_pt">Português: Bom dia</string>
     <string name="pronunciation_example_en">Inglês: Good morning</string>
     <string name="pronunciation_not_ready">A pronúncia inglesa será adicionada na PE-021 e a prática de palavras na PE-023.</string>
