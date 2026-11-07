@@ -35,6 +35,7 @@ import com.vcc.aprender.playenglish.domain.model.WordEntry
 import com.vcc.aprender.playenglish.domain.model.WordCategory
 import com.vcc.aprender.playenglish.domain.usecase.SearchVocabularyUseCase
 import kotlin.random.Random
+import com.vcc.aprender.playenglish.ui.components.AnimalIllustrations
 import com.vcc.aprender.playenglish.ui.components.ChildScreenLayout
 import com.vcc.aprender.playenglish.ui.pronunciation.PronunciationNavigation
 import com.vcc.aprender.playenglish.ui.theme.PlayEnglishColors
@@ -103,7 +104,7 @@ fun PronunciationScreen(onBack: () -> Unit, words: List<WordEntry> = emptyList()
                     verticalArrangement = Arrangement.spacedBy(14.dp)
                 ) {
                     val illustration = when (word.category) {
-                        WordCategory.ANIMALS -> "🐾"
+                        WordCategory.ANIMALS -> AnimalIllustrations.symbol(word.id)
                         WordCategory.COLORS -> "🎨"
                         WordCategory.NUMBERS -> "🔢"
                         WordCategory.PHRASES -> "💬"
