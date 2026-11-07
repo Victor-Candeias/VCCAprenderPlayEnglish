@@ -15,16 +15,22 @@ enum class EnglishTtsStatus { INITIALIZING, READY, SPEAKING, VOICE_MISSING, ERRO
 
 /**
  * Owns the TTS engine, never an Activity. State changes are marshalled onto the
- * main thread. PE-022 will extend coordination between multiple speech buttons.
+ * main thread. PE-022 uses a single-flight gate shared by all speech controls.
  */
 class AndroidEnglishPronunciationOutput(context: Context) : PronunciationOutput, AutoCloseable {
     private val main = Handler(Looper.getMainLooper())
     private var engine: TextToSpeech? = null
-    private var activeUtteranceId: String? = null
+    private val turnGate = SpeechTurnGate()
     private var closed = false
 
     var status by mutableStateOf(EnglishTtsStatus.INITIALIZING)
         private set
+
+    /** A playback failure is reported without permanently disabling retries. */
+    var lastPlaybackFailed by mutableStateOf(false)
+        private set
+
+    val isSpeaking: Boolean get() = turnGate.isSpeaking
 
     init {
         try {
@@ -86,8 +92,8 @@ class AndroidEnglishPronunciationOutput(context: Context) : PronunciationOutput,
 
     private fun releaseIfCurrent(id: String?) {
         main.post {
-            if (!closed && id != null && id == activeUtteranceId) {
-                activeUtteranceId = null
+            if (!closed && turnGate.finish(id)) {
+                lastPlaybackFailed = false
                 status = EnglishTtsStatus.READY
             }
         }
@@ -95,9 +101,10 @@ class AndroidEnglishPronunciationOutput(context: Context) : PronunciationOutput,
 
     private fun failIfCurrent(id: String?) {
         main.post {
-            if (!closed && id != null && id == activeUtteranceId) {
-                activeUtteranceId = null
-                status = EnglishTtsStatus.ERROR
+            if (!closed && turnGate.finish(id)) {
+                lastPlaybackFailed = true
+                // The engine and en-GB voice are still usable: unlock retry.
+                status = EnglishTtsStatus.READY
             }
         }
     }
@@ -107,35 +114,45 @@ class AndroidEnglishPronunciationOutput(context: Context) : PronunciationOutput,
             languageTag != EnglishVoicePolicy.LANGUAGE_TAG || text.isBlank()) return false
         val tts = engine ?: return false
         val id = UUID.randomUUID().toString()
+        if (!turnGate.tryBegin(id)) return false
+        lastPlaybackFailed = false
+        status = EnglishTtsStatus.SPEAKING
         return try {
-            activeUtteranceId = id
-            status = EnglishTtsStatus.SPEAKING
-            if (tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, id) == TextToSpeech.SUCCESS) {
+            // No QUEUE_FLUSH: a second control can never interrupt speech.
+            if (tts.speak(text, TextToSpeech.QUEUE_ADD, null, id) == TextToSpeech.SUCCESS) {
                 true
             } else {
-                activeUtteranceId = null
-                status = EnglishTtsStatus.ERROR
+                failPlaybackImmediately(id)
                 false
             }
         } catch (_: RuntimeException) {
-            activeUtteranceId = null
-            status = EnglishTtsStatus.ERROR
+            failPlaybackImmediately(id)
             false
         }
     }
 
+    private fun failPlaybackImmediately(id: String) {
+        if (turnGate.finish(id) && !closed) {
+            lastPlaybackFailed = true
+            status = EnglishTtsStatus.READY
+        }
+    }
+
     override fun stop() {
-        activeUtteranceId = null
+        val wasSpeaking = turnGate.cancel()
         if (!closed) {
             runCatching { engine?.stop() }
-            if (status == EnglishTtsStatus.SPEAKING) status = EnglishTtsStatus.READY
+            if (wasSpeaking) {
+                lastPlaybackFailed = false
+                status = EnglishTtsStatus.READY
+            }
         }
     }
 
     override fun close() {
         if (closed) return
         closed = true
-        activeUtteranceId = null
+        turnGate.cancel()
         runCatching { engine?.stop() }
         runCatching { engine?.shutdown() }
         engine = null
