@@ -26,6 +26,7 @@
     <string name="pronunciation_tts_ready">Voz inglesa britânica disponível.</string>
     <string name="pronunciation_tts_speaking">A ouvir a pronúncia inglesa…</string>
     <string name="pronunciation_tts_install_hint">Definições do Android → Texto para voz → Instalar voz inglês (Reino Unido).</string>
+    <string name="pronunciation_repeat">Repetir pronúncia</string>
     <string name="pronunciation_listen">Ouvir em inglês</string>
     <string name="pronunciation_audio_coming">Ouvir em inglês (em breve)</string>
     <string name="results_title">Resultados</string>
