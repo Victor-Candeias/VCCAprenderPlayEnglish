@@ -55,7 +55,7 @@ class AnimalsTests(unittest.TestCase):
         source = ILLUSTRATIONS.read_text(encoding="utf-8")
         for w in self.animals:
             key = w["id"].split(".")[-1]
-            self.assertRegex(source, r'"'+re.escape(key)+r'"\\s*->\\s*"[^"]+"')
+            self.assertRegex(source, r'"'+re.escape(key)+r'"\s*->\s*"[^"]+"')
         self.assertIn("AnimalIllustrations.symbol(questionId)", QUIZ.read_text(encoding="utf-8"))
         self.assertIn("AnimalIllustrations.symbol(word.id)", PRONUNCIATION.read_text(encoding="utf-8"))
         self.assertIn('"quiz-animal-illustration"', QUIZ.read_text(encoding="utf-8"))
