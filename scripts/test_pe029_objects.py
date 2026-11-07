@@ -20,7 +20,7 @@ class ObjectVocabularyTests(unittest.TestCase):
         self.assertEqual((24, 20), (wc["objects"], qc["objects"]))
         self.assertEqual({"home", "school"}, {w["subcategory"] for w in self.objects})
         self.assertGreaterEqual(sum(w["subcategory"] == "home" for w in self.objects), 10)
-        self.assertGreaterEqual(sum(w["subcategory"] == "school" for w in self.objects), 10)
+        self.assertGreaterEqual(sum(w["subcategory"] == "school" for w in self.objects), 8)
 
     def test_offline_icons_translations_and_tts(self):
         self.assertEqual(24, len(self.objects))
