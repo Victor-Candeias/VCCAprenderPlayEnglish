@@ -1,5 +1,6 @@
 package com.vcc.aprender.playenglish.ui.screens
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -36,7 +37,9 @@ import androidx.compose.foundation.gestures.awaitFirstDown
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.foundation.gestures.waitForUpOrCancellation
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.stateDescription
@@ -420,6 +423,16 @@ private fun QuestionIllustration(category: WordCategory?, questionId: String) {
                 .semantics {
                     contentDescription = "Amostra ilustrativa da cor da pergunta"
                 }
+        )
+    } else if (category == WordCategory.FOOD) {
+        val ctx = LocalContext.current
+        val name = "pe_food_" + questionId.substringAfterLast('.')
+        val resource = ctx.resources.getIdentifier(name, "drawable", ctx.packageName)
+        require(resource != 0) { "Missing offline illustration: $name" }
+        Image(
+            painter = painterResource(resource),
+            contentDescription = "Ilustração do alimento",
+            modifier = Modifier.size(112.dp).testTag("quiz-food-illustration")
         )
     } else if (category == WordCategory.ANIMALS) {
         Text(

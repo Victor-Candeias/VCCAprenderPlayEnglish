@@ -2,6 +2,7 @@
 """PE-012: validate packaged PT-PT/en-GB vocabulary and quiz references offline."""
 import json
 import re
+import xml.etree.ElementTree as ET
 from pathlib import Path
 
 CATALOG_PATH = (
@@ -56,11 +57,26 @@ def validate_catalog(data):
             raise ValueError("Age range must be 3..8")
         image = entry.get("imageRef")
         if image is not None:
-            if (not isinstance(image, str) or ".." in image or
-                    re.fullmatch(r"images/[a-z0-9_./-]+[.](?:png|webp|jpg)", image) is None):
+            if not isinstance(image, str) or ".." in image:
                 raise ValueError("Invalid packaged image path")
-            if not (CATALOG_PATH.parents[1] / image).is_file():
-                raise ValueError("Missing packaged image")
+            if re.fullmatch(r"drawable/[a-z0-9_]+", image):
+                target = CATALOG_PATH.parents[2] / "res" / (image + ".xml")
+                if not target.is_file():
+                    raise ValueError("Missing bundled vector")
+                try:
+                    vector = ET.parse(target).getroot()
+                except ET.ParseError as exc:
+                    raise ValueError("Invalid vector XML") from exc
+                namespace = "{http://schemas.android.com/apk/res/android}"
+                if vector.tag != "vector" or not vector.findall("path") or not all(
+                    path.get(namespace + "pathData") for path in vector.findall("path")
+                ):
+                    raise ValueError("Invalid bundled vector content")
+            elif re.fullmatch(r"images/[a-z0-9_./-]+[.](?:png|webp|jpg)", image):
+                if not (CATALOG_PATH.parents[1] / image).is_file():
+                    raise ValueError("Missing packaged image")
+            else:
+                raise ValueError("Invalid packaged image path")
         vocabulary[wid] = entry
 
     seen = set()
