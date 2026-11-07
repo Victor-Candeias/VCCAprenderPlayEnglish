@@ -36,7 +36,8 @@ fun PronunciationScreen(onBack: () -> Unit) {
     val status = audio.status
     val message = when (status) {
         EnglishTtsStatus.INITIALIZING -> R.string.pronunciation_tts_loading
-        EnglishTtsStatus.READY -> R.string.pronunciation_tts_ready
+        EnglishTtsStatus.READY -> if (audio.lastPlaybackFailed)
+            R.string.pronunciation_tts_error else R.string.pronunciation_tts_ready
         EnglishTtsStatus.SPEAKING -> R.string.pronunciation_tts_speaking
         EnglishTtsStatus.VOICE_MISSING -> R.string.pronunciation_tts_unavailable
         EnglishTtsStatus.ERROR, EnglishTtsStatus.CLOSED -> R.string.pronunciation_tts_error
@@ -80,13 +81,24 @@ fun PronunciationScreen(onBack: () -> Unit) {
                 modifier = Modifier.testTag("pronunciation-tts-install-hint")
             )
         }
+        // Both controls share one engine and one turn gate. During speech
+        // neither an ordinary tap nor an accessibility activation may enqueue.
+        val canSpeak = status == EnglishTtsStatus.READY && !audio.isSpeaking
         OutlinedButton(
             onClick = { audio.speak("Good morning") },
-            enabled = status == EnglishTtsStatus.READY,
+            enabled = canSpeak,
             modifier = Modifier.fillMaxWidth().heightIn(min = 56.dp)
                 .testTag("pronunciation-listen")
         ) {
             Text(stringResource(R.string.pronunciation_listen))
+        }
+        OutlinedButton(
+            onClick = { audio.speak("Good morning") },
+            enabled = canSpeak,
+            modifier = Modifier.fillMaxWidth().heightIn(min = 56.dp)
+                .testTag("pronunciation-repeat")
+        ) {
+            Text(stringResource(R.string.pronunciation_repeat))
         }
     }
 }
