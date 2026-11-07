@@ -29,8 +29,8 @@ class SearchVocabularyUseCaseTest {
         assertEquals(3, SearchVocabularyUseCase.execute(words, " ").size)
         assertTrue(SearchVocabularyUseCase.execute(words, "unknown").isEmpty())
         assertEquals(before, words)
-        assertEquals(listOf("apple", "cake"),
-            SearchVocabularyUseCase.execute(words, "a").map { it.id })
+        assertEquals(listOf("bread", "cake"),
+            SearchVocabularyUseCase.execute(words, "o").map { it.id })
     }
 
     @Test fun randomSelectionAlwaysDiffersForMultiWordList() {
