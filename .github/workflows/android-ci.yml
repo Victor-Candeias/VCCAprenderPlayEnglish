@@ -86,6 +86,7 @@ jobs:
           python3 scripts/validate_category_coverage.py
           python3 -m unittest discover -s scripts -p "test_offline_catalog.py" -v
           python3 -m unittest discover -s scripts -p "test_category_coverage.py" -v
+          python3 -m unittest discover -s scripts -p "test_pe025_colours.py" -v
 
       - name: Unit tests and Debug APK
         shell: bash
