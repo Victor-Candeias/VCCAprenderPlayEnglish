@@ -10,11 +10,13 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
@@ -31,6 +33,8 @@ import com.vcc.aprender.playenglish.audio.AndroidEnglishPronunciationOutput
 import com.vcc.aprender.playenglish.audio.EnglishTtsStatus
 import com.vcc.aprender.playenglish.domain.model.WordEntry
 import com.vcc.aprender.playenglish.domain.model.WordCategory
+import com.vcc.aprender.playenglish.domain.usecase.SearchVocabularyUseCase
+import kotlin.random.Random
 import com.vcc.aprender.playenglish.ui.components.ChildScreenLayout
 import com.vcc.aprender.playenglish.ui.pronunciation.PronunciationNavigation
 import com.vcc.aprender.playenglish.ui.theme.PlayEnglishColors
@@ -42,10 +46,17 @@ fun PronunciationScreen(onBack: () -> Unit, words: List<WordEntry> = emptyList()
     val audio = remember(context) { AndroidEnglishPronunciationOutput(context) }
     DisposableEffect(audio) { onDispose { audio.close() } }
 
+    // The category/age filter is supplied by the existing selection ViewModel.
+    // Query and selected index are screen-local and never mutate the catalog.
     val wordSetKey = words.joinToString("|") { it.id }
-    var selectedIndex by rememberSaveable(wordSetKey) { mutableIntStateOf(0) }
-    val index = if (words.isEmpty()) 0 else selectedIndex.coerceIn(0, words.lastIndex)
-    val word = words.getOrNull(index)
+    var query by rememberSaveable(wordSetKey) { mutableStateOf("") }
+    val visibleWords = remember(words, query) {
+        SearchVocabularyUseCase.execute(words, query)
+    }
+    val resultKey = visibleWords.joinToString("|") { it.id }
+    var selectedIndex by rememberSaveable(wordSetKey, resultKey) { mutableIntStateOf(0) }
+    val index = if (visibleWords.isEmpty()) 0 else selectedIndex.coerceIn(0, visibleWords.lastIndex)
+    val word = visibleWords.getOrNull(index)
     val status = audio.status
     val canSpeak = status == EnglishTtsStatus.READY && !audio.isSpeaking && word != null
     val message = when (status) {
@@ -61,14 +72,24 @@ fun PronunciationScreen(onBack: () -> Unit, words: List<WordEntry> = emptyList()
         screenTag = "screen-pronunciation",
         onBack = onBack
     ) {
+        OutlinedTextField(
+            value = query,
+            onValueChange = { query = it },
+            label = { Text(stringResource(R.string.pronunciation_search_label)) },
+            singleLine = true,
+            modifier = Modifier.fillMaxWidth().testTag("pronunciation-search")
+        )
         if (word == null) {
             Text(
-                stringResource(R.string.pronunciation_no_words),
+                stringResource(
+                    if (query.isBlank()) R.string.pronunciation_no_words
+                    else R.string.pronunciation_no_matches
+                ),
                 modifier = Modifier.testTag("pronunciation-no-words")
             )
         } else {
             Text(
-                stringResource(R.string.pronunciation_position, index + 1, words.size),
+                stringResource(R.string.pronunciation_position, index + 1, visibleWords.size),
                 modifier = Modifier.testTag("pronunciation-position"),
                 style = MaterialTheme.typography.titleMedium
             )
@@ -121,19 +142,30 @@ fun PronunciationScreen(onBack: () -> Unit, words: List<WordEntry> = emptyList()
                 .testTag("pronunciation-repeat")
         ) { Text(stringResource(R.string.pronunciation_repeat)) }
         if (word != null) {
+            OutlinedButton(
+                onClick = {
+                    val randomValue = Random.nextInt(Int.MAX_VALUE)
+                    selectedIndex = SearchVocabularyUseCase.randomIndex(
+                        visibleWords.size, index, randomValue
+                    )
+                },
+                enabled = !audio.isSpeaking && visibleWords.size > 1,
+                modifier = Modifier.fillMaxWidth().heightIn(min = 56.dp)
+                    .testTag("pronunciation-random")
+            ) { Text(stringResource(R.string.pronunciation_random)) }
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 OutlinedButton(
-                    onClick = { selectedIndex = PronunciationNavigation.previous(index, words.size) },
+                    onClick = { selectedIndex = PronunciationNavigation.previous(index, visibleWords.size) },
                     enabled = !audio.isSpeaking && index > 0,
                     modifier = Modifier.weight(1f).heightIn(min = 56.dp)
                         .testTag("pronunciation-previous")
                 ) { Text(stringResource(R.string.pronunciation_previous)) }
                 OutlinedButton(
-                    onClick = { selectedIndex = PronunciationNavigation.next(index, words.size) },
-                    enabled = !audio.isSpeaking && index < words.lastIndex,
+                    onClick = { selectedIndex = PronunciationNavigation.next(index, visibleWords.size) },
+                    enabled = !audio.isSpeaking && index < visibleWords.lastIndex,
                     modifier = Modifier.weight(1f).heightIn(min = 56.dp)
                         .testTag("pronunciation-next")
                 ) { Text(stringResource(R.string.pronunciation_next)) }
