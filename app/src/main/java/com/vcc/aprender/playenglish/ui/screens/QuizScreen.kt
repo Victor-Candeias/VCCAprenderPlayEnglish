@@ -420,6 +420,64 @@ private fun QuestionIllustration(category: WordCategory?, questionId: String) {
                     contentDescription = "Amostra ilustrativa da cor da pergunta"
                 }
         )
+    } else if (category == WordCategory.NUMBERS) {
+        // PE-027: visually count cardinal dots or see one geometric figure.
+        val id = questionId.substringAfterLast('.')
+        val count = when (id) {
+            "zero" -> 0
+            "one" -> 1
+            "two" -> 2
+            "three" -> 3
+            "four" -> 4
+            "five" -> 5
+            "six" -> 6
+            "seven" -> 7
+            "eight" -> 8
+            "nine" -> 9
+            "ten" -> 10
+            else -> null
+        }
+        val numeral = when (id) {
+            "eleven" -> 11
+            "twelve" -> 12
+            "thirteen" -> 13
+            "fourteen" -> 14
+            "fifteen" -> 15
+            "sixteen" -> 16
+            "seventeen" -> 17
+            "eighteen" -> 18
+            "nineteen" -> 19
+            "twenty" -> 20
+            "thirty" -> 30
+            "forty" -> 40
+            "fifty" -> 50
+            else -> null
+        }
+        val shape = when (id) {
+            "shape_circle" -> "●"
+            "shape_square" -> "■"
+            "shape_triangle" -> "▲"
+            "shape_rectangle" -> "▰"
+            "shape_star" -> "★"
+            "shape_diamond" -> "◆"
+            "shape_pentagon" -> "⬟"
+            "shape_hexagon" -> "⬢"
+            else -> null
+        }
+        val label = when {
+            count != null -> if (count == 0) "0" else "●".repeat(count)
+            numeral != null -> numeral.toString()
+            shape != null -> shape
+            else -> "🔢"
+        }
+        Text(
+            label,
+            fontSize = if (count != null && count > 5) 27.sp else 52.sp,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.fillMaxWidth()
+                .testTag("quiz-number-shape-illustration")
+                .semantics { contentDescription = "Ilustração do número ou da forma" }
+        )
     } else {
         val emoji = when (category) {
             WordCategory.ANIMALS -> "🐾"
