@@ -88,6 +88,7 @@ jobs:
           python3 -m unittest discover -s scripts -p "test_category_coverage.py" -v
           python3 -m unittest discover -s scripts -p "test_pe025_colours.py" -v
           python3 -m unittest discover -s scripts -p "test_pe027_numbers_shapes.py" -v
+          python3 -m unittest discover -s scripts -p "test_pe026_animals.py" -v
           python3 -m unittest discover -s scripts -p "test_pe036_illustrations.py" -v
 
       - name: Unit tests and Debug APK

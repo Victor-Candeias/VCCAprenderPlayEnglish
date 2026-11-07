@@ -1144,6 +1144,246 @@
       },
       "imageRef": null,
       "audioText": "Hexagon"
+    },
+    {
+      "id": "animals.goat",
+      "ptPT": "Cabra",
+      "enGB": "Goat",
+      "category": "animals",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Goat"
+    },
+    {
+      "id": "animals.chicken",
+      "ptPT": "Galinha",
+      "enGB": "Chicken",
+      "category": "animals",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Chicken"
+    },
+    {
+      "id": "animals.rooster",
+      "ptPT": "Galo",
+      "enGB": "Rooster",
+      "category": "animals",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Rooster"
+    },
+    {
+      "id": "animals.mouse",
+      "ptPT": "Rato",
+      "enGB": "Mouse",
+      "category": "animals",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Mouse"
+    },
+    {
+      "id": "animals.frog",
+      "ptPT": "Rã",
+      "enGB": "Frog",
+      "category": "animals",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Frog"
+    },
+    {
+      "id": "animals.bear",
+      "ptPT": "Urso",
+      "enGB": "Bear",
+      "category": "animals",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Bear"
+    },
+    {
+      "id": "animals.monkey",
+      "ptPT": "Macaco",
+      "enGB": "Monkey",
+      "category": "animals",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Monkey"
+    },
+    {
+      "id": "animals.giraffe",
+      "ptPT": "Girafa",
+      "enGB": "Giraffe",
+      "category": "animals",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Giraffe"
+    },
+    {
+      "id": "animals.zebra",
+      "ptPT": "Zebra",
+      "enGB": "Zebra",
+      "category": "animals",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Zebra"
+    },
+    {
+      "id": "animals.tiger",
+      "ptPT": "Tigre",
+      "enGB": "Tiger",
+      "category": "animals",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Tiger"
+    },
+    {
+      "id": "animals.panda",
+      "ptPT": "Panda-gigante",
+      "enGB": "Giant panda",
+      "category": "animals",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Giant panda"
+    },
+    {
+      "id": "animals.crocodile",
+      "ptPT": "Crocodilo",
+      "enGB": "Crocodile",
+      "category": "animals",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Crocodile"
+    },
+    {
+      "id": "animals.dolphin",
+      "ptPT": "Golfinho",
+      "enGB": "Dolphin",
+      "category": "animals",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Dolphin"
+    },
+    {
+      "id": "animals.shark",
+      "ptPT": "Tubarão",
+      "enGB": "Shark",
+      "category": "animals",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Shark"
+    },
+    {
+      "id": "animals.octopus",
+      "ptPT": "Polvo",
+      "enGB": "Octopus",
+      "category": "animals",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Octopus"
+    },
+    {
+      "id": "animals.crab",
+      "ptPT": "Caranguejo",
+      "enGB": "Crab",
+      "category": "animals",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Crab"
+    },
+    {
+      "id": "animals.whale",
+      "ptPT": "Baleia",
+      "enGB": "Whale",
+      "category": "animals",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Whale"
+    },
+    {
+      "id": "animals.seal",
+      "ptPT": "Foca",
+      "enGB": "Seal",
+      "category": "animals",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Seal"
+    },
+    {
+      "id": "animals.penguin",
+      "ptPT": "Pinguim",
+      "enGB": "Penguin",
+      "category": "animals",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Penguin"
+    },
+    {
+      "id": "animals.seahorse",
+      "ptPT": "Cavalo-marinho",
+      "enGB": "Seahorse",
+      "category": "animals",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Seahorse"
     }
   ],
   "questions": [
@@ -1856,6 +2096,206 @@
         "numbers.shape_star"
       ],
       "correctId": "numbers.shape_hexagon"
+    },
+    {
+      "id": "quiz.animals.goat",
+      "prompt": "Como se diz «Cabra» em inglês?",
+      "optionIds": [
+        "animals.chicken",
+        "animals.goat",
+        "animals.mouse"
+      ],
+      "correctId": "animals.goat"
+    },
+    {
+      "id": "quiz.animals.chicken",
+      "prompt": "Como se diz «Galinha» em inglês?",
+      "optionIds": [
+        "animals.mouse",
+        "animals.chicken",
+        "animals.frog"
+      ],
+      "correctId": "animals.chicken"
+    },
+    {
+      "id": "quiz.animals.rooster",
+      "prompt": "Como se diz «Galo» em inglês?",
+      "optionIds": [
+        "animals.tiger",
+        "animals.rooster",
+        "animals.panda"
+      ],
+      "correctId": "animals.rooster"
+    },
+    {
+      "id": "quiz.animals.mouse",
+      "prompt": "Como se diz «Rato» em inglês?",
+      "optionIds": [
+        "animals.frog",
+        "animals.mouse",
+        "animals.bear"
+      ],
+      "correctId": "animals.mouse"
+    },
+    {
+      "id": "quiz.animals.frog",
+      "prompt": "Como se diz «Rã» em inglês?",
+      "optionIds": [
+        "animals.bear",
+        "animals.frog",
+        "animals.monkey"
+      ],
+      "correctId": "animals.frog"
+    },
+    {
+      "id": "quiz.animals.bear",
+      "prompt": "Como se diz «Urso» em inglês?",
+      "optionIds": [
+        "animals.monkey",
+        "animals.bear",
+        "animals.giraffe"
+      ],
+      "correctId": "animals.bear"
+    },
+    {
+      "id": "quiz.animals.monkey",
+      "prompt": "Como se diz «Macaco» em inglês?",
+      "optionIds": [
+        "animals.giraffe",
+        "animals.monkey",
+        "animals.zebra"
+      ],
+      "correctId": "animals.monkey"
+    },
+    {
+      "id": "quiz.animals.giraffe",
+      "prompt": "Como se diz «Girafa» em inglês?",
+      "optionIds": [
+        "animals.zebra",
+        "animals.giraffe",
+        "animals.dolphin"
+      ],
+      "correctId": "animals.giraffe"
+    },
+    {
+      "id": "quiz.animals.zebra",
+      "prompt": "Como se diz «Zebra» em inglês?",
+      "optionIds": [
+        "animals.dolphin",
+        "animals.zebra",
+        "animals.whale"
+      ],
+      "correctId": "animals.zebra"
+    },
+    {
+      "id": "quiz.animals.tiger",
+      "prompt": "Como se diz «Tigre» em inglês?",
+      "optionIds": [
+        "animals.panda",
+        "animals.tiger",
+        "animals.crocodile"
+      ],
+      "correctId": "animals.tiger"
+    },
+    {
+      "id": "quiz.animals.panda",
+      "prompt": "Como se diz «Panda-gigante» em inglês?",
+      "optionIds": [
+        "animals.crocodile",
+        "animals.panda",
+        "animals.shark"
+      ],
+      "correctId": "animals.panda"
+    },
+    {
+      "id": "quiz.animals.crocodile",
+      "prompt": "Como se diz «Crocodilo» em inglês?",
+      "optionIds": [
+        "animals.shark",
+        "animals.crocodile",
+        "animals.octopus"
+      ],
+      "correctId": "animals.crocodile"
+    },
+    {
+      "id": "quiz.animals.dolphin",
+      "prompt": "Como se diz «Golfinho» em inglês?",
+      "optionIds": [
+        "animals.whale",
+        "animals.dolphin",
+        "animals.penguin"
+      ],
+      "correctId": "animals.dolphin"
+    },
+    {
+      "id": "quiz.animals.shark",
+      "prompt": "Como se diz «Tubarão» em inglês?",
+      "optionIds": [
+        "animals.octopus",
+        "animals.shark",
+        "animals.crab"
+      ],
+      "correctId": "animals.shark"
+    },
+    {
+      "id": "quiz.animals.octopus",
+      "prompt": "Como se diz «Polvo» em inglês?",
+      "optionIds": [
+        "animals.crab",
+        "animals.octopus",
+        "animals.seal"
+      ],
+      "correctId": "animals.octopus"
+    },
+    {
+      "id": "quiz.animals.crab",
+      "prompt": "Como se diz «Caranguejo» em inglês?",
+      "optionIds": [
+        "animals.seal",
+        "animals.crab",
+        "animals.seahorse"
+      ],
+      "correctId": "animals.crab"
+    },
+    {
+      "id": "quiz.animals.whale",
+      "prompt": "Como se diz «Baleia» em inglês?",
+      "optionIds": [
+        "animals.penguin",
+        "animals.whale",
+        "animals.cat"
+      ],
+      "correctId": "animals.whale"
+    },
+    {
+      "id": "quiz.animals.seal",
+      "prompt": "Como se diz «Foca» em inglês?",
+      "optionIds": [
+        "animals.seahorse",
+        "animals.seal",
+        "animals.rooster"
+      ],
+      "correctId": "animals.seal"
+    },
+    {
+      "id": "quiz.animals.penguin",
+      "prompt": "Como se diz «Pinguim» em inglês?",
+      "optionIds": [
+        "animals.cat",
+        "animals.penguin",
+        "animals.dog"
+      ],
+      "correctId": "animals.penguin"
+    },
+    {
+      "id": "quiz.animals.seahorse",
+      "prompt": "Como se diz «Cavalo-marinho» em inglês?",
+      "optionIds": [
+        "animals.rooster",
+        "animals.seahorse",
+        "animals.tiger"
+      ],
+      "correctId": "animals.seahorse"
     }
   ]
 }
