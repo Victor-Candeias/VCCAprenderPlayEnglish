@@ -20,6 +20,13 @@
     <string name="pronunciation_example_pt">Português: Bom dia</string>
     <string name="pronunciation_example_en">Inglês: Good morning</string>
     <string name="pronunciation_not_ready">A pronúncia inglesa será adicionada na PE-021 e a prática de palavras na PE-023.</string>
+    <string name="pronunciation_tts_loading">A preparar a voz inglesa…</string>
+    <string name="pronunciation_tts_unavailable">Não foi encontrada uma voz inglesa britânica (en-GB) offline. Instala a voz nas definições de texto para voz do Android.</string>
+    <string name="pronunciation_tts_error">Não foi possível reproduzir a palavra em inglês. Verifica o motor de voz do Android.</string>
+    <string name="pronunciation_tts_ready">Voz inglesa britânica disponível.</string>
+    <string name="pronunciation_tts_speaking">A ouvir a pronúncia inglesa…</string>
+    <string name="pronunciation_tts_install_hint">Definições do Android → Texto para voz → Instalar voz inglês (Reino Unido).</string>
+    <string name="pronunciation_listen">Ouvir em inglês</string>
     <string name="pronunciation_audio_coming">Ouvir em inglês (em breve)</string>
     <string name="results_title">Resultados</string>
     <string name="results_placeholder_title">As tuas conquistas aparecem aqui!</string>

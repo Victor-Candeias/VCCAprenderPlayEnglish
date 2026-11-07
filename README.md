@@ -552,3 +552,10 @@ Cada partida interativa escolhe uma seed aleatória e baralha o subconjunto de p
 ## PE-020 — Resultados reais entregues à VCCAprender
 
 O modo plugin inicia o progresso do host na primeira confirmação verdadeira, regista uma única resposta por pergunta, calcula o score a partir do domínio e apresenta um resumo. **«Terminar e guardar resultados»** envia a conclusão do quiz pelo GameProtocol v1 com `RESULT_OK`, usando os IDs de sessão e perfil originalmente validados. O envio é único e bloqueado se as contagens do ecrã e da sessão divergirem; cancelar mantém `RESULT_CANCELED`. O modo APK independente apenas apresenta resultados locais, sem qualquer envio. A atividade de pronúncia nunca contribui para as respostas corretas. Consultar [PE-020](docs/PE-020-REAL-HOST-RESULTS.md).
+
+
+---
+
+## PE-021 — Voz inglesa britânica offline (Text-to-Speech)
+
+O ecrã de pronúncia usa agora o `AndroidEnglishPronunciationOutput` com `Locale.UK` (en-GB), ritmo 0,85 e validação de uma voz inglesa britânica **instalada localmente**. Não aceita substituição silenciosa por en-US, voz PT ou uma voz que dependa de rede. Mostra estado e instruções PT-PT para instalar a voz quando não está disponível. O motor é encerrado ao sair do ecrã e o botão de teste diz «Good morning» em inglês. A seleção de vocabulário completo e reprodução entre vários controlos pertencem às PE-022/023. [Documentação PE-021](docs/PE-021-ENGLISH-TTS.md).
