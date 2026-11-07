@@ -19,6 +19,9 @@
     <string name="pronunciation_title">Como se diz em inglês?</string>
     <string name="pronunciation_no_words">Escolhe uma categoria com palavras no ecrã Descobre para ouvires inglês.</string>
     <string name="pronunciation_position">Palavra %1$d de %2$d</string>
+    <string name="pronunciation_search_label">Pesquisar em português ou inglês</string>
+    <string name="pronunciation_no_matches">Não foram encontradas palavras para esta pesquisa.</string>
+    <string name="pronunciation_random">Palavra aleatória</string>
     <string name="pronunciation_previous">Anterior</string>
     <string name="pronunciation_next">Seguinte</string>
     <string name="pronunciation_example_pt">Português: Bom dia</string>
