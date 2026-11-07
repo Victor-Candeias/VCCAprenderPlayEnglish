@@ -566,3 +566,10 @@ O ecrã de pronúncia usa agora o `AndroidEnglishPronunciationOutput` com `Local
 ## PE-022 — Reprodução exclusiva e desbloqueio por callback real
 
 Os controlos «Ouvir em inglês» e «Repetir pronúncia» partilham o mesmo motor de voz e um `SpeechTurnGate` de exclusão. Durante a reprodução ambos ficam bloqueados; um novo pedido não interrompe nem enfileira áudio. Os callbacks `onDone`, `onStop` e `onError` só libertam o pedido se corresponderem ao ID ativo; callbacks atrasados são ignorados. Um erro de reprodução disponibiliza nova tentativa sem obrigar a reiniciar o ecrã. [Detalhes PE-022](docs/PE-022-EXCLUSIVE-PLAYBACK.md).
+
+
+---
+
+## PE-023 — Modo Como se diz em inglês?
+
+O ecrã de pronúncia mostra as palavras e expressões do catálogo offline filtradas por categoria/nível, com texto PT-PT, tradução EN-GB e ilustração da categoria. Ouvir e Repetir utilizam exclusivamente o campo inglês audioText e a proteção TTS da PE-022. A navegação Anterior/Seguinte não repete ciclicamente palavras e fica bloqueada durante a fala. Não existe pontuação nem resultado do host. Consultar docs/PE-023-PRONUNCIATION-MODE.md.
