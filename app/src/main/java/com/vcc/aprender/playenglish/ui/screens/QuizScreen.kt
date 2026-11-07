@@ -55,6 +55,7 @@ import com.vcc.aprender.playenglish.R
 import com.vcc.aprender.playenglish.domain.model.WordCategory
 import com.vcc.aprender.playenglish.domain.usecase.LearningLevel
 import com.vcc.aprender.playenglish.ui.components.ChildScreenLayout
+import com.vcc.aprender.playenglish.ui.components.AnimalIllustrations
 import com.vcc.aprender.playenglish.ui.components.LearningFilters
 import com.vcc.aprender.playenglish.ui.learning.LearningSelectionUiState
 import com.vcc.aprender.playenglish.ui.quiz.QuizOptionPreview
@@ -419,6 +420,13 @@ private fun QuestionIllustration(category: WordCategory?, questionId: String) {
                 .semantics {
                     contentDescription = "Amostra ilustrativa da cor da pergunta"
                 }
+        )
+    } else if (category == WordCategory.ANIMALS) {
+        Text(
+            AnimalIllustrations.symbol(questionId),
+            fontSize = 52.sp,
+            modifier = Modifier.testTag("quiz-animal-illustration")
+                .semantics { contentDescription = "Ilustração do animal da pergunta" }
         )
     } else if (category == WordCategory.NUMBERS) {
         // PE-027: visually count cardinal dots or see one geometric figure.

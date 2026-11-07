@@ -590,3 +590,8 @@ O catálogo inclui 15 cores em português de Portugal e inglês britânico, com 
 ## PE-027 — Números, contagem e formas geométricas
 
 O catálogo offline tem 32 itens em Números: cardinais de 0 a 20, dezenas 30/40/50 e 8 formas (círculo, quadrado, triângulo, retângulo, estrela, losango, pentágono e hexágono). As novas perguntas mostram pontos, algarismos ou símbolos geométricos, com três respostas distintas e voz en-GB. A lista original permanece intacta. Ver docs/PE-027-NUMBERS-COUNTING-SHAPES.md.
+
+
+## PE-026 — Animais domésticos, selvagens e marinhos
+
+O catálogo contém agora 32 animais bilingues PT-PT/en-GB, com 28 perguntas na categoria. Os 20 novos incluem golfinho/dolphin, tubarão/shark, baleia/whale, foca/seal, polvo/octopus, caranguejo/crab, cavalo-marinho/seahorse, animais domésticos e selvagens. Cada entrada inclui `audioText` inglês para a pronúncia en-GB, ID estável e faixa etária; as perguntas têm três opções distintas e compatíveis. As vistas de quiz e pronúncia usam símbolos específicos para cada animal como representação provisória offline. **Dependência PE-036 em aberto:** produzir imagens vetoriais próprias e empacotadas, com licenças documentadas; símbolos do sistema não substituem esses assets. Ver `docs/PE-026-ANIMALS.md`.
