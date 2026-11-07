@@ -573,3 +573,8 @@ Os controlos «Ouvir em inglês» e «Repetir pronúncia» partilham o mesmo mot
 ## PE-023 — Modo Como se diz em inglês?
 
 O ecrã de pronúncia mostra as palavras e expressões do catálogo offline filtradas por categoria/nível, com texto PT-PT, tradução EN-GB e ilustração da categoria. Ouvir e Repetir utilizam exclusivamente o campo inglês audioText e a proteção TTS da PE-022. A navegação Anterior/Seguinte não repete ciclicamente palavras e fica bloqueada durante a fala. Não existe pontuação nem resultado do host. Consultar docs/PE-023-PRONUNCIATION-MODE.md.
+
+
+## PE-024 — Biblioteca offline com pesquisa e escolha aleatória
+
+No modo de pronúncia, o campo de pesquisa filtra as palavras já escolhidas por nível e categoria, em português ou inglês, ignorando maiúsculas e acentos (`maçã` / `maca`). As listas originais não são modificadas. O botão «Palavra aleatória» escolhe outra entrada quando há pelo menos duas. «Anterior», «Seguinte», «Ouvir» e «Repetir» continuam ligados aos resultados visíveis, usando apenas áudio en-GB. Resultados vazios apresentam uma mensagem, sem pontuação artificial. Ver `docs/PE-024-VOCABULARY-SEARCH.md`.
