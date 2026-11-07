@@ -48,7 +48,8 @@ data class WordEntry(
     val category: WordCategory,
     val ageRange: AgeRange,
     val imageRef: String?,
-    val audioText: String
+    val audioText: String,
+    val subcategory: String? = null
 ) {
     init {
         requireStableId(id)
@@ -57,12 +58,18 @@ data class WordEntry(
         }
         require(ptPT == ptPT.trim() && enGB == enGB.trim() &&
             audioText == audioText.trim()) { "Content must not have outer whitespace." }
-        if (imageRef != null) {
-            require(imageRef.startsWith("images/") &&
-                !imageRef.contains("..") &&
-                Regex("images/[a-z0-9_./-]+[.](png|webp|jpg)").matches(imageRef)) {
-                "imageRef must be a safe packaged image asset path."
+        if (subcategory != null) {
+            require(category == WordCategory.OBJECTS &&
+                subcategory in setOf("home", "school")) {
+                "Only supported object subcategories may be used."
             }
+        }
+        if (imageRef != null) {
+            require(
+                Regex("drawable/[a-z0-9_]+").matches(imageRef) ||
+                (imageRef.startsWith("images/") && !imageRef.contains("..") &&
+                    Regex("images/[a-z0-9_./-]+[.](png|webp|jpg)").matches(imageRef))
+            ) { "imageRef must be a safe bundled resource path." }
         }
     }
 }

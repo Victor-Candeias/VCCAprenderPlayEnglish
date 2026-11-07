@@ -49,6 +49,12 @@ def validate_catalog(data):
             text(entry.get(field))
         if entry.get("category") not in CATEGORIES:
             raise ValueError("Unknown category")
+        subcategory = entry.get("subcategory")
+        if entry["category"] == "objects":
+            if subcategory not in ("home", "school"):
+                raise ValueError("Object subcategory must be home or school")
+        elif subcategory is not None:
+            raise ValueError("Only object entries may have a subcategory")
         ages = entry.get("ageRange")
         if not isinstance(ages, dict):
             raise ValueError("Age range is missing")
