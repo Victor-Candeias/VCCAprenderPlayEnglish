@@ -578,3 +578,10 @@ O ecrã de pronúncia mostra as palavras e expressões do catálogo offline filt
 ## PE-024 — Biblioteca offline com pesquisa e escolha aleatória
 
 No modo de pronúncia, o campo de pesquisa filtra as palavras já escolhidas por nível e categoria, em português ou inglês, ignorando maiúsculas e acentos (`maçã` / `maca`). As listas originais não são modificadas. O botão «Palavra aleatória» escolhe outra entrada quando há pelo menos duas. «Anterior», «Seguinte», «Ouvir» e «Repetir» continuam ligados aos resultados visíveis, usando apenas áudio en-GB. Resultados vazios apresentam uma mensagem, sem pontuação artificial. Ver `docs/PE-024-VOCABULARY-SEARCH.md`.
+
+
+---
+
+## PE-025 — Cores e tonalidades por faixa etária
+
+O catálogo inclui 15 cores em português de Portugal e inglês britânico, com amostras de cor locais no Quiz: vermelho/red, azul/blue, verde/green e mais doze cores/tonalidades. As novas entradas **prateado/silver**, **bege/beige** e **turquesa/turquoise** são exclusivamente para o nível 6–8; as faixas 3–5 mantêm o vocabulário anterior. Cada nova questão contém três opções distintas e pronúncia `audioText` em inglês britânico. A validação editorial de cobertura e os testes de esquema foram atualizados para 75 palavras e 51 perguntas. Ver `docs/PE-025-COLOURS.md`.

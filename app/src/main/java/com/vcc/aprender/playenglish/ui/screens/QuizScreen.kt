@@ -402,6 +402,9 @@ private fun QuestionIllustration(category: WordCategory?, questionId: String) {
             "brown" -> Color(0xFF90512C)
             "grey" -> Color(0xFF91959B)
             "gold" -> Color(0xFFD4AD30)
+            "silver" -> Color(0xFFB0BEC5)
+            "beige" -> Color(0xFFD9C5A0)
+            "turquoise" -> Color(0xFF008C95)
             else -> null
         }
     } else null

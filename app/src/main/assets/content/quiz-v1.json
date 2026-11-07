@@ -868,6 +868,42 @@
       },
       "imageRef": null,
       "audioText": "Clock"
+    },
+    {
+      "id": "colors.silver",
+      "ptPT": "Prateado",
+      "enGB": "Silver",
+      "category": "colors",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Silver"
+    },
+    {
+      "id": "colors.beige",
+      "ptPT": "Bege",
+      "enGB": "Beige",
+      "category": "colors",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Beige"
+    },
+    {
+      "id": "colors.turquoise",
+      "ptPT": "Turquesa",
+      "enGB": "Turquoise",
+      "category": "colors",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Turquoise"
     }
   ],
   "questions": [
@@ -1350,6 +1386,36 @@
         "objects.bed"
       ],
       "correctId": "objects.bed"
+    },
+    {
+      "id": "quiz.colors.silver",
+      "prompt": "Como se diz «Prateado» em inglês?",
+      "optionIds": [
+        "colors.gold",
+        "colors.silver",
+        "colors.green"
+      ],
+      "correctId": "colors.silver"
+    },
+    {
+      "id": "quiz.colors.beige",
+      "prompt": "Como se diz «Bege» em inglês?",
+      "optionIds": [
+        "colors.beige",
+        "colors.blue",
+        "colors.pink"
+      ],
+      "correctId": "colors.beige"
+    },
+    {
+      "id": "quiz.colors.turquoise",
+      "prompt": "Como se diz «Turquesa» em inglês?",
+      "optionIds": [
+        "colors.turquoise",
+        "colors.orange",
+        "colors.black"
+      ],
+      "correctId": "colors.turquoise"
     }
   ]
 }

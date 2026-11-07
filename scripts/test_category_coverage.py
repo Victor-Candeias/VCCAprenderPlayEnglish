@@ -15,10 +15,12 @@ class CategoryCoverageTests(unittest.TestCase):
 
     def test_all_six_categories_have_words_and_questions(self):
         words, questions = inspect_category_coverage(self.catalog)
-        self.assertEqual(72, sum(words.values()))
-        self.assertEqual(48, sum(questions.values()))
-        self.assertTrue(all(count == 12 for count in words.values()))
-        self.assertTrue(all(count == 8 for count in questions.values()))
+        self.assertEqual(75, sum(words.values()))
+        self.assertEqual(51, sum(questions.values()))
+        self.assertEqual(15, words['colors'])
+        self.assertEqual(11, questions['colors'])
+        self.assertTrue(all(count == 12 for category, count in words.items() if category != 'colors'))
+        self.assertTrue(all(count == 8 for category, count in questions.items() if category != 'colors'))
 
     def test_catches_wrong_pt_pt_prompt(self):
         data = copy.deepcopy(self.catalog)
