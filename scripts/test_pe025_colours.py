@@ -36,7 +36,7 @@ class ColoursEditorialTests(unittest.TestCase):
         source = QUIZ_SCREEN.read_text(encoding="utf-8")
         for word in self.colours:
             color_id = word["id"].split(".")[-1]
-            self.assertRegex(source, r'"' + re.escape(color_id) + r'"\\s*->\\s*Color\\(0xFF[0-9A-Fa-f]{6}\\)')
+            self.assertRegex(source, r'"' + re.escape(color_id) + r'"\s*->\s*Color\(0xFF[0-9A-Fa-f]{6}\)')
 
     def test_every_shade_question_has_three_unambiguous_choices(self):
         for q in self.questions:
