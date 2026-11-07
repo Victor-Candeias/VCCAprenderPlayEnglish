@@ -559,3 +559,17 @@ O modo plugin inicia o progresso do host na primeira confirmação verdadeira, r
 ## PE-021 — Voz inglesa britânica offline (Text-to-Speech)
 
 O ecrã de pronúncia usa agora o `AndroidEnglishPronunciationOutput` com `Locale.UK` (en-GB), ritmo 0,85 e validação de uma voz inglesa britânica **instalada localmente**. Não aceita substituição silenciosa por en-US, voz PT ou uma voz que dependa de rede. Mostra estado e instruções PT-PT para instalar a voz quando não está disponível. O motor é encerrado ao sair do ecrã e o botão de teste diz «Good morning» em inglês. A seleção de vocabulário completo e reprodução entre vários controlos pertencem às PE-022/023. [Documentação PE-021](docs/PE-021-ENGLISH-TTS.md).
+
+
+---
+
+## PE-022 — Reprodução exclusiva e desbloqueio por callback real
+
+Os controlos «Ouvir em inglês» e «Repetir pronúncia» partilham o mesmo motor de voz e um `SpeechTurnGate` de exclusão. Durante a reprodução ambos ficam bloqueados; um novo pedido não interrompe nem enfileira áudio. Os callbacks `onDone`, `onStop` e `onError` só libertam o pedido se corresponderem ao ID ativo; callbacks atrasados são ignorados. Um erro de reprodução disponibiliza nova tentativa sem obrigar a reiniciar o ecrã. [Detalhes PE-022](docs/PE-022-EXCLUSIVE-PLAYBACK.md).
+
+
+---
+
+## PE-023 — Modo Como se diz em inglês?
+
+O ecrã de pronúncia mostra as palavras e expressões do catálogo offline filtradas por categoria/nível, com texto PT-PT, tradução EN-GB e ilustração da categoria. Ouvir e Repetir utilizam exclusivamente o campo inglês audioText e a proteção TTS da PE-022. A navegação Anterior/Seguinte não repete ciclicamente palavras e fica bloqueada durante a fala. Não existe pontuação nem resultado do host. Consultar docs/PE-023-PRONUNCIATION-MODE.md.

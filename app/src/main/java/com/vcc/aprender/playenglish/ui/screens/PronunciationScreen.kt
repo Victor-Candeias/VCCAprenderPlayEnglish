@@ -2,6 +2,7 @@ package com.vcc.aprender.playenglish.ui.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
@@ -12,7 +13,11 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -24,19 +29,29 @@ import androidx.compose.ui.unit.sp
 import com.vcc.aprender.playenglish.R
 import com.vcc.aprender.playenglish.audio.AndroidEnglishPronunciationOutput
 import com.vcc.aprender.playenglish.audio.EnglishTtsStatus
+import com.vcc.aprender.playenglish.domain.model.WordEntry
+import com.vcc.aprender.playenglish.domain.model.WordCategory
 import com.vcc.aprender.playenglish.ui.components.ChildScreenLayout
+import com.vcc.aprender.playenglish.ui.pronunciation.PronunciationNavigation
 import com.vcc.aprender.playenglish.ui.theme.PlayEnglishColors
 
+/** PE-023: only real, age/category-filtered offline PT-PT -> en-GB entries. */
 @Composable
-fun PronunciationScreen(onBack: () -> Unit) {
+fun PronunciationScreen(onBack: () -> Unit, words: List<WordEntry> = emptyList()) {
     val context = LocalContext.current
     val audio = remember(context) { AndroidEnglishPronunciationOutput(context) }
     DisposableEffect(audio) { onDispose { audio.close() } }
 
+    val wordSetKey = words.joinToString("|") { it.id }
+    var selectedIndex by rememberSaveable(wordSetKey) { mutableIntStateOf(0) }
+    val index = if (words.isEmpty()) 0 else selectedIndex.coerceIn(0, words.lastIndex)
+    val word = words.getOrNull(index)
     val status = audio.status
+    val canSpeak = status == EnglishTtsStatus.READY && !audio.isSpeaking && word != null
     val message = when (status) {
         EnglishTtsStatus.INITIALIZING -> R.string.pronunciation_tts_loading
-        EnglishTtsStatus.READY -> R.string.pronunciation_tts_ready
+        EnglishTtsStatus.READY -> if (audio.lastPlaybackFailed)
+            R.string.pronunciation_tts_error else R.string.pronunciation_tts_ready
         EnglishTtsStatus.SPEAKING -> R.string.pronunciation_tts_speaking
         EnglishTtsStatus.VOICE_MISSING -> R.string.pronunciation_tts_unavailable
         EnglishTtsStatus.ERROR, EnglishTtsStatus.CLOSED -> R.string.pronunciation_tts_error
@@ -46,47 +61,83 @@ fun PronunciationScreen(onBack: () -> Unit) {
         screenTag = "screen-pronunciation",
         onBack = onBack
     ) {
-        Card(
-            modifier = Modifier.fillMaxWidth(),
-            colors = CardDefaults.cardColors(containerColor = PlayEnglishColors.Mint)
-        ) {
-            Column(
-                modifier = Modifier.fillMaxWidth().padding(24.dp),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(14.dp)
+        if (word == null) {
+            Text(
+                stringResource(R.string.pronunciation_no_words),
+                modifier = Modifier.testTag("pronunciation-no-words")
+            )
+        } else {
+            Text(
+                stringResource(R.string.pronunciation_position, index + 1, words.size),
+                modifier = Modifier.testTag("pronunciation-position"),
+                style = MaterialTheme.typography.titleMedium
+            )
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                colors = CardDefaults.cardColors(containerColor = PlayEnglishColors.Mint)
             ) {
-                Text("💬", fontSize = 48.sp)
-                Text(
-                    stringResource(R.string.pronunciation_example_pt),
-                    style = MaterialTheme.typography.titleMedium,
-                    textAlign = TextAlign.Center
-                )
-                Text(
-                    stringResource(R.string.pronunciation_example_en),
-                    style = MaterialTheme.typography.headlineSmall,
-                    textAlign = TextAlign.Center
-                )
+                Column(
+                    modifier = Modifier.fillMaxWidth().padding(24.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(14.dp)
+                ) {
+                    val illustration = when (word.category) {
+                        WordCategory.ANIMALS -> "🐾"
+                        WordCategory.COLORS -> "🎨"
+                        WordCategory.NUMBERS -> "🔢"
+                        WordCategory.PHRASES -> "💬"
+                        WordCategory.FOOD -> "🍎"
+                        WordCategory.OBJECTS -> "🧸"
+                    }
+                    Text(illustration, fontSize = 48.sp,
+                        modifier = Modifier.testTag("pronunciation-illustration"))
+                    Text(word.ptPT, style = MaterialTheme.typography.titleLarge,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.testTag("pronunciation-portuguese"))
+                    Text(word.enGB, style = MaterialTheme.typography.headlineMedium,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.testTag("pronunciation-english"))
+                }
             }
         }
-        Text(
-            stringResource(message),
-            style = MaterialTheme.typography.bodyLarge,
-            modifier = Modifier.testTag("pronunciation-tts-status")
-        )
+        Text(stringResource(message), style = MaterialTheme.typography.bodyLarge,
+            modifier = Modifier.testTag("pronunciation-tts-status"))
         if (status == EnglishTtsStatus.VOICE_MISSING) {
-            Text(
-                stringResource(R.string.pronunciation_tts_install_hint),
-                style = MaterialTheme.typography.bodyMedium,
-                modifier = Modifier.testTag("pronunciation-tts-install-hint")
-            )
+            Text(stringResource(R.string.pronunciation_tts_install_hint),
+                modifier = Modifier.testTag("pronunciation-tts-install-hint"))
         }
+        // Only the English audioText is ever passed to the TTS engine.
+        // The PE-022 gate makes rapid taps and callbacks safe.
         OutlinedButton(
-            onClick = { audio.speak("Good morning") },
-            enabled = status == EnglishTtsStatus.READY,
+            onClick = { word?.let { audio.speak(it.audioText, "en-GB") } },
+            enabled = canSpeak,
             modifier = Modifier.fillMaxWidth().heightIn(min = 56.dp)
                 .testTag("pronunciation-listen")
-        ) {
-            Text(stringResource(R.string.pronunciation_listen))
+        ) { Text(stringResource(R.string.pronunciation_listen)) }
+        OutlinedButton(
+            onClick = { word?.let { audio.speak(it.audioText, "en-GB") } },
+            enabled = canSpeak,
+            modifier = Modifier.fillMaxWidth().heightIn(min = 56.dp)
+                .testTag("pronunciation-repeat")
+        ) { Text(stringResource(R.string.pronunciation_repeat)) }
+        if (word != null) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                OutlinedButton(
+                    onClick = { selectedIndex = PronunciationNavigation.previous(index, words.size) },
+                    enabled = !audio.isSpeaking && index > 0,
+                    modifier = Modifier.weight(1f).heightIn(min = 56.dp)
+                        .testTag("pronunciation-previous")
+                ) { Text(stringResource(R.string.pronunciation_previous)) }
+                OutlinedButton(
+                    onClick = { selectedIndex = PronunciationNavigation.next(index, words.size) },
+                    enabled = !audio.isSpeaking && index < words.lastIndex,
+                    modifier = Modifier.weight(1f).heightIn(min = 56.dp)
+                        .testTag("pronunciation-next")
+                ) { Text(stringResource(R.string.pronunciation_next)) }
+            }
         }
     }
 }
