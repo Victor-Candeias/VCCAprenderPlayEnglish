@@ -72,7 +72,20 @@ fun DiscoverScreen(
                     )
                 } else {
                     Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                        selected.words.forEach { word ->
+                        val visibleWords = if (selectionState.selectedContent?.words?.any {
+                                it.category == WordCategory.OBJECTS
+                            } == true) {
+                            selected.words.sortedWith(compareBy({ it.subcategory ?: "zz" }, { it.ptPT }))
+                        } else selected.words
+                        visibleWords.forEachIndexed { index, word ->
+                            if (word.category == WordCategory.OBJECTS &&
+                                (index == 0 || word.subcategory != visibleWords[index - 1].subcategory)
+                            ) {
+                                Text(
+                                    if (word.subcategory == "school") "Material escolar" else "Objetos de casa",
+                                    style = MaterialTheme.typography.titleMedium
+                                )
+                            }
                             Card(
                                 modifier = Modifier.fillMaxWidth()
                                     .testTag("discover-word-${word.id}"),

@@ -70,7 +70,8 @@ class AssetsQuizContentRepository(private val context: Context) :
                     requiredInt(age, "max")
                 ),
                 imageRef = imageRef,
-                audioText = requiredString(obj, "audioText")
+                audioText = requiredString(obj, "audioText"),
+                subcategory = if (obj.has("subcategory")) requiredString(obj, "subcategory") else null
             )
         }
         val questions = root.getJSONArray("questions").mapValues { obj ->

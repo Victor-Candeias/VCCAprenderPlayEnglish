@@ -194,8 +194,9 @@
         "min": 4,
         "max": 8
       },
-      "imageRef": null,
-      "audioText": "Book"
+      "imageRef": "drawable/pe_object_book",
+      "audioText": "Book",
+      "subcategory": "school"
     },
     {
       "id": "objects.chair",
@@ -206,8 +207,9 @@
         "min": 4,
         "max": 8
       },
-      "imageRef": null,
-      "audioText": "Chair"
+      "imageRef": "drawable/pe_object_chair",
+      "audioText": "Chair",
+      "subcategory": "home"
     },
     {
       "id": "objects.table",
@@ -218,8 +220,9 @@
         "min": 4,
         "max": 8
       },
-      "imageRef": null,
-      "audioText": "Table"
+      "imageRef": "drawable/pe_object_table",
+      "audioText": "Table",
+      "subcategory": "home"
     },
     {
       "id": "animals.fish",
@@ -770,8 +773,9 @@
         "min": 4,
         "max": 8
       },
-      "imageRef": null,
-      "audioText": "Pencil"
+      "imageRef": "drawable/pe_object_pencil",
+      "audioText": "Pencil",
+      "subcategory": "school"
     },
     {
       "id": "objects.pen",
@@ -782,8 +786,9 @@
         "min": 4,
         "max": 8
       },
-      "imageRef": null,
-      "audioText": "Pen"
+      "imageRef": "drawable/pe_object_pen",
+      "audioText": "Pen",
+      "subcategory": "school"
     },
     {
       "id": "objects.bag",
@@ -794,8 +799,9 @@
         "min": 4,
         "max": 8
       },
-      "imageRef": null,
-      "audioText": "Bag"
+      "imageRef": "drawable/pe_object_bag",
+      "audioText": "Bag",
+      "subcategory": "home"
     },
     {
       "id": "objects.ball",
@@ -806,8 +812,9 @@
         "min": 4,
         "max": 8
       },
-      "imageRef": null,
-      "audioText": "Ball"
+      "imageRef": "drawable/pe_object_ball",
+      "audioText": "Ball",
+      "subcategory": "home"
     },
     {
       "id": "objects.door",
@@ -818,8 +825,9 @@
         "min": 4,
         "max": 8
       },
-      "imageRef": null,
-      "audioText": "Door"
+      "imageRef": "drawable/pe_object_door",
+      "audioText": "Door",
+      "subcategory": "home"
     },
     {
       "id": "objects.window",
@@ -830,8 +838,9 @@
         "min": 4,
         "max": 8
       },
-      "imageRef": null,
-      "audioText": "Window"
+      "imageRef": "drawable/pe_object_window",
+      "audioText": "Window",
+      "subcategory": "home"
     },
     {
       "id": "objects.bed",
@@ -842,8 +851,9 @@
         "min": 4,
         "max": 8
       },
-      "imageRef": null,
-      "audioText": "Bed"
+      "imageRef": "drawable/pe_object_bed",
+      "audioText": "Bed",
+      "subcategory": "home"
     },
     {
       "id": "objects.cup",
@@ -854,8 +864,9 @@
         "min": 4,
         "max": 8
       },
-      "imageRef": null,
-      "audioText": "Cup"
+      "imageRef": "drawable/pe_object_cup",
+      "audioText": "Cup",
+      "subcategory": "home"
     },
     {
       "id": "objects.clock",
@@ -866,8 +877,9 @@
         "min": 4,
         "max": 8
       },
-      "imageRef": null,
-      "audioText": "Clock"
+      "imageRef": "drawable/pe_object_clock",
+      "audioText": "Clock",
+      "subcategory": "home"
     },
     {
       "id": "colors.silver",
@@ -1528,6 +1540,162 @@
       },
       "imageRef": "drawable/pe_food_cake",
       "audioText": "Cake"
+    },
+    {
+      "id": "objects.sofa",
+      "ptPT": "Sofá",
+      "enGB": "Sofa",
+      "category": "objects",
+      "subcategory": "home",
+      "ageRange": {
+        "min": 4,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_object_sofa",
+      "audioText": "Sofa"
+    },
+    {
+      "id": "objects.lamp",
+      "ptPT": "Candeeiro",
+      "enGB": "Lamp",
+      "category": "objects",
+      "subcategory": "home",
+      "ageRange": {
+        "min": 4,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_object_lamp",
+      "audioText": "Lamp"
+    },
+    {
+      "id": "objects.mirror",
+      "ptPT": "Espelho",
+      "enGB": "Mirror",
+      "category": "objects",
+      "subcategory": "home",
+      "ageRange": {
+        "min": 4,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_object_mirror",
+      "audioText": "Mirror"
+    },
+    {
+      "id": "objects.fridge",
+      "ptPT": "Frigorífico",
+      "enGB": "Fridge",
+      "category": "objects",
+      "subcategory": "home",
+      "ageRange": {
+        "min": 4,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_object_fridge",
+      "audioText": "Fridge"
+    },
+    {
+      "id": "objects.plate",
+      "ptPT": "Prato",
+      "enGB": "Plate",
+      "category": "objects",
+      "subcategory": "home",
+      "ageRange": {
+        "min": 4,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_object_plate",
+      "audioText": "Plate"
+    },
+    {
+      "id": "objects.spoon",
+      "ptPT": "Colher",
+      "enGB": "Spoon",
+      "category": "objects",
+      "subcategory": "home",
+      "ageRange": {
+        "min": 4,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_object_spoon",
+      "audioText": "Spoon"
+    },
+    {
+      "id": "objects.notebook",
+      "ptPT": "Caderno",
+      "enGB": "Notebook",
+      "category": "objects",
+      "subcategory": "school",
+      "ageRange": {
+        "min": 4,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_object_notebook",
+      "audioText": "Notebook"
+    },
+    {
+      "id": "objects.ruler",
+      "ptPT": "Régua",
+      "enGB": "Ruler",
+      "category": "objects",
+      "subcategory": "school",
+      "ageRange": {
+        "min": 4,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_object_ruler",
+      "audioText": "Ruler"
+    },
+    {
+      "id": "objects.rubber",
+      "ptPT": "Borracha",
+      "enGB": "Rubber",
+      "category": "objects",
+      "subcategory": "school",
+      "ageRange": {
+        "min": 4,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_object_rubber",
+      "audioText": "Rubber"
+    },
+    {
+      "id": "objects.scissors",
+      "ptPT": "Tesoura",
+      "enGB": "Scissors",
+      "category": "objects",
+      "subcategory": "school",
+      "ageRange": {
+        "min": 4,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_object_scissors",
+      "audioText": "Scissors"
+    },
+    {
+      "id": "objects.school_bag",
+      "ptPT": "Mochila escolar",
+      "enGB": "School bag",
+      "category": "objects",
+      "subcategory": "school",
+      "ageRange": {
+        "min": 4,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_object_school_bag",
+      "audioText": "School bag"
+    },
+    {
+      "id": "objects.desk",
+      "ptPT": "Secretária",
+      "enGB": "Desk",
+      "category": "objects",
+      "subcategory": "school",
+      "ageRange": {
+        "min": 4,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_object_desk",
+      "audioText": "Desk"
     }
   ],
   "questions": [
@@ -2560,6 +2728,126 @@
         "food.cake"
       ],
       "correctId": "food.cake"
+    },
+    {
+      "id": "quiz.objects.sofa",
+      "prompt": "Como se diz «Sofá» em inglês?",
+      "optionIds": [
+        "objects.plate",
+        "objects.sofa",
+        "objects.rubber"
+      ],
+      "correctId": "objects.sofa"
+    },
+    {
+      "id": "quiz.objects.lamp",
+      "prompt": "Como se diz «Candeeiro» em inglês?",
+      "optionIds": [
+        "objects.lamp",
+        "objects.scissors",
+        "objects.spoon"
+      ],
+      "correctId": "objects.lamp"
+    },
+    {
+      "id": "quiz.objects.mirror",
+      "prompt": "Como se diz «Espelho» em inglês?",
+      "optionIds": [
+        "objects.school_bag",
+        "objects.notebook",
+        "objects.mirror"
+      ],
+      "correctId": "objects.mirror"
+    },
+    {
+      "id": "quiz.objects.fridge",
+      "prompt": "Como se diz «Frigorífico» em inglês?",
+      "optionIds": [
+        "objects.ruler",
+        "objects.fridge",
+        "objects.desk"
+      ],
+      "correctId": "objects.fridge"
+    },
+    {
+      "id": "quiz.objects.plate",
+      "prompt": "Como se diz «Prato» em inglês?",
+      "optionIds": [
+        "objects.plate",
+        "objects.sofa",
+        "objects.rubber"
+      ],
+      "correctId": "objects.plate"
+    },
+    {
+      "id": "quiz.objects.spoon",
+      "prompt": "Como se diz «Colher» em inglês?",
+      "optionIds": [
+        "objects.lamp",
+        "objects.scissors",
+        "objects.spoon"
+      ],
+      "correctId": "objects.spoon"
+    },
+    {
+      "id": "quiz.objects.notebook",
+      "prompt": "Como se diz «Caderno» em inglês?",
+      "optionIds": [
+        "objects.school_bag",
+        "objects.notebook",
+        "objects.mirror"
+      ],
+      "correctId": "objects.notebook"
+    },
+    {
+      "id": "quiz.objects.ruler",
+      "prompt": "Como se diz «Régua» em inglês?",
+      "optionIds": [
+        "objects.ruler",
+        "objects.fridge",
+        "objects.desk"
+      ],
+      "correctId": "objects.ruler"
+    },
+    {
+      "id": "quiz.objects.rubber",
+      "prompt": "Como se diz «Borracha» em inglês?",
+      "optionIds": [
+        "objects.plate",
+        "objects.sofa",
+        "objects.rubber"
+      ],
+      "correctId": "objects.rubber"
+    },
+    {
+      "id": "quiz.objects.scissors",
+      "prompt": "Como se diz «Tesoura» em inglês?",
+      "optionIds": [
+        "objects.lamp",
+        "objects.scissors",
+        "objects.spoon"
+      ],
+      "correctId": "objects.scissors"
+    },
+    {
+      "id": "quiz.objects.school_bag",
+      "prompt": "Como se diz «Mochila escolar» em inglês?",
+      "optionIds": [
+        "objects.school_bag",
+        "objects.notebook",
+        "objects.mirror"
+      ],
+      "correctId": "objects.school_bag"
+    },
+    {
+      "id": "quiz.objects.desk",
+      "prompt": "Como se diz «Secretária» em inglês?",
+      "optionIds": [
+        "objects.ruler",
+        "objects.fridge",
+        "objects.desk"
+      ],
+      "correctId": "objects.desk"
     }
   ]
 }

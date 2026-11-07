@@ -600,3 +600,8 @@ O catálogo contém agora 32 animais bilingues PT-PT/en-GB, com 28 perguntas na 
 ## PE-028 — Frutas, alimentos e bebidas
 
 O catálogo integra 24 itens de alimentação (12 existentes e 12 novos), com 20 perguntas de 3 opções, TTS en-GB a partir do termo `audioText`, e imagens vetoriais offline para cada entrada. Exemplos: pera/pear, uvas/grapes, iogurte/yoghurt, sumo/juice. Ver [docs/PE-028-FOOD.md](docs/PE-028-FOOD.md).
+
+
+## PE-029 — Objetos de casa e material escolar
+
+24 termos PT-PT/en-GB nas subcategorias `home` e `school`, 20 perguntas e ilustrações vetoriais offline para todos os objetos. Ver [docs/PE-029-OBJECTS.md](docs/PE-029-OBJECTS.md).

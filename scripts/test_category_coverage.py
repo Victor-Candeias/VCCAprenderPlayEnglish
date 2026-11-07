@@ -15,8 +15,8 @@ class CategoryCoverageTests(unittest.TestCase):
 
     def test_all_six_categories_have_words_and_questions(self):
         words, questions = inspect_category_coverage(self.catalog)
-        self.assertEqual(127, sum(words.values()))
-        self.assertEqual(103, sum(questions.values()))
+        self.assertEqual(139, sum(words.values()))
+        self.assertEqual(115, sum(questions.values()))
         self.assertEqual(15, words['colors'])
         self.assertEqual(11, questions['colors'])
         self.assertEqual(32, words['numbers'])
@@ -24,9 +24,11 @@ class CategoryCoverageTests(unittest.TestCase):
         self.assertEqual(32, words['animals'])
         self.assertEqual(28, questions['animals'])
         self.assertEqual(24, words['food'])
-        self.assertTrue(all(count == 12 for category, count in words.items() if category not in ('colors', 'numbers', 'animals', 'food')))
+        self.assertEqual(24, words['objects'])
+        self.assertTrue(all(count == 12 for category, count in words.items() if category not in ('colors', 'numbers', 'animals', 'food', 'objects')))
         self.assertEqual(20, questions['food'])
-        self.assertTrue(all(count == 8 for category, count in questions.items() if category not in ('colors', 'numbers', 'animals', 'food')))
+        self.assertEqual(20, questions['objects'])
+        self.assertTrue(all(count == 8 for category, count in questions.items() if category not in ('colors', 'numbers', 'animals', 'food', 'objects')))
 
     def test_catches_wrong_pt_pt_prompt(self):
         data = copy.deepcopy(self.catalog)

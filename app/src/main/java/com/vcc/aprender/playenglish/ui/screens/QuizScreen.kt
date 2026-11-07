@@ -424,6 +424,20 @@ private fun QuestionIllustration(category: WordCategory?, questionId: String) {
                     contentDescription = "Amostra ilustrativa da cor da pergunta"
                 }
         )
+    } else if (category == WordCategory.OBJECTS) {
+        val context = LocalContext.current
+        val resource = context.resources.getIdentifier(
+            "pe_object_" + questionId.substringAfterLast('.'),
+            "drawable",
+            context.packageName
+        )
+        if (resource != 0) {
+            Image(
+                painter = painterResource(resource),
+                contentDescription = "Ilustração do objeto",
+                modifier = Modifier.size(112.dp).testTag("quiz-object-illustration")
+            )
+        }
     } else if (category == WordCategory.FOOD) {
         val ctx = LocalContext.current
         val name = "pe_food_" + questionId.substringAfterLast('.')

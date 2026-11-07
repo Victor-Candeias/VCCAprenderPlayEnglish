@@ -91,6 +91,7 @@ jobs:
           python3 -m unittest discover -s scripts -p "test_pe026_animals.py" -v
           python3 -m unittest discover -s scripts -p "test_pe036_illustrations.py" -v
           python3 -m unittest discover -s scripts -p "test_pe028_food.py" -v
+          python3 -m unittest discover -s scripts -p "test_pe029_objects.py" -v
 
       - name: Unit tests and Debug APK
         shell: bash
