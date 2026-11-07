@@ -1384,6 +1384,150 @@
       },
       "imageRef": null,
       "audioText": "Seahorse"
+    },
+    {
+      "id": "food.pear",
+      "ptPT": "Pera",
+      "enGB": "Pear",
+      "category": "food",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_food_pear",
+      "audioText": "Pear"
+    },
+    {
+      "id": "food.grapes",
+      "ptPT": "Uvas",
+      "enGB": "Grapes",
+      "category": "food",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_food_grapes",
+      "audioText": "Grapes"
+    },
+    {
+      "id": "food.lemon",
+      "ptPT": "Limão",
+      "enGB": "Lemon",
+      "category": "food",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_food_lemon",
+      "audioText": "Lemon"
+    },
+    {
+      "id": "food.tomato",
+      "ptPT": "Tomate",
+      "enGB": "Tomato",
+      "category": "food",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_food_tomato",
+      "audioText": "Tomato"
+    },
+    {
+      "id": "food.potato",
+      "ptPT": "Batata",
+      "enGB": "Potato",
+      "category": "food",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_food_potato",
+      "audioText": "Potato"
+    },
+    {
+      "id": "food.fish",
+      "ptPT": "Peixe",
+      "enGB": "Fish",
+      "category": "food",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_food_fish",
+      "audioText": "Fish"
+    },
+    {
+      "id": "food.pizza",
+      "ptPT": "Pizza",
+      "enGB": "Pizza",
+      "category": "food",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_food_pizza",
+      "audioText": "Pizza"
+    },
+    {
+      "id": "food.pasta",
+      "ptPT": "Massa",
+      "enGB": "Pasta",
+      "category": "food",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_food_pasta",
+      "audioText": "Pasta"
+    },
+    {
+      "id": "food.yoghurt",
+      "ptPT": "Iogurte",
+      "enGB": "Yoghurt",
+      "category": "food",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_food_yoghurt",
+      "audioText": "Yoghurt"
+    },
+    {
+      "id": "food.juice",
+      "ptPT": "Sumo",
+      "enGB": "Juice",
+      "category": "food",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_food_juice",
+      "audioText": "Juice"
+    },
+    {
+      "id": "food.sandwich",
+      "ptPT": "Sanduíche",
+      "enGB": "Sandwich",
+      "category": "food",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_food_sandwich",
+      "audioText": "Sandwich"
+    },
+    {
+      "id": "food.cake",
+      "ptPT": "Bolo",
+      "enGB": "Cake",
+      "category": "food",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_food_cake",
+      "audioText": "Cake"
     }
   ],
   "questions": [
@@ -2296,6 +2440,126 @@
         "animals.tiger"
       ],
       "correctId": "animals.seahorse"
+    },
+    {
+      "id": "quiz.food.pear",
+      "prompt": "Como se diz «Pera» em inglês?",
+      "optionIds": [
+        "food.apple",
+        "food.pear",
+        "food.cheese"
+      ],
+      "correctId": "food.pear"
+    },
+    {
+      "id": "quiz.food.grapes",
+      "prompt": "Como se diz «Uvas» em inglês?",
+      "optionIds": [
+        "food.grapes",
+        "food.orange",
+        "food.milk"
+      ],
+      "correctId": "food.grapes"
+    },
+    {
+      "id": "quiz.food.lemon",
+      "prompt": "Como se diz «Limão» em inglês?",
+      "optionIds": [
+        "food.water",
+        "food.carrot",
+        "food.lemon"
+      ],
+      "correctId": "food.lemon"
+    },
+    {
+      "id": "quiz.food.tomato",
+      "prompt": "Como se diz «Tomate» em inglês?",
+      "optionIds": [
+        "food.soup",
+        "food.tomato",
+        "food.banana"
+      ],
+      "correctId": "food.tomato"
+    },
+    {
+      "id": "quiz.food.potato",
+      "prompt": "Como se diz «Batata» em inglês?",
+      "optionIds": [
+        "food.potato",
+        "food.cheese",
+        "food.apple"
+      ],
+      "correctId": "food.potato"
+    },
+    {
+      "id": "quiz.food.fish",
+      "prompt": "Como se diz «Peixe» em inglês?",
+      "optionIds": [
+        "food.orange",
+        "food.milk",
+        "food.fish"
+      ],
+      "correctId": "food.fish"
+    },
+    {
+      "id": "quiz.food.pizza",
+      "prompt": "Como se diz «Pizza» em inglês?",
+      "optionIds": [
+        "food.carrot",
+        "food.pizza",
+        "food.water"
+      ],
+      "correctId": "food.pizza"
+    },
+    {
+      "id": "quiz.food.pasta",
+      "prompt": "Como se diz «Massa» em inglês?",
+      "optionIds": [
+        "food.pasta",
+        "food.banana",
+        "food.soup"
+      ],
+      "correctId": "food.pasta"
+    },
+    {
+      "id": "quiz.food.yoghurt",
+      "prompt": "Como se diz «Iogurte» em inglês?",
+      "optionIds": [
+        "food.cheese",
+        "food.apple",
+        "food.yoghurt"
+      ],
+      "correctId": "food.yoghurt"
+    },
+    {
+      "id": "quiz.food.juice",
+      "prompt": "Como se diz «Sumo» em inglês?",
+      "optionIds": [
+        "food.milk",
+        "food.juice",
+        "food.orange"
+      ],
+      "correctId": "food.juice"
+    },
+    {
+      "id": "quiz.food.sandwich",
+      "prompt": "Como se diz «Sanduíche» em inglês?",
+      "optionIds": [
+        "food.sandwich",
+        "food.water",
+        "food.carrot"
+      ],
+      "correctId": "food.sandwich"
+    },
+    {
+      "id": "quiz.food.cake",
+      "prompt": "Como se diz «Bolo» em inglês?",
+      "optionIds": [
+        "food.banana",
+        "food.soup",
+        "food.cake"
+      ],
+      "correctId": "food.cake"
     }
   ]
 }

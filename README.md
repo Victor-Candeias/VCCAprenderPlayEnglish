@@ -595,3 +595,8 @@ O catálogo offline tem 32 itens em Números: cardinais de 0 a 20, dezenas 30/40
 ## PE-026 — Animais domésticos, selvagens e marinhos
 
 O catálogo contém agora 32 animais bilingues PT-PT/en-GB, com 28 perguntas na categoria. Os 20 novos incluem golfinho/dolphin, tubarão/shark, baleia/whale, foca/seal, polvo/octopus, caranguejo/crab, cavalo-marinho/seahorse, animais domésticos e selvagens. Cada entrada inclui `audioText` inglês para a pronúncia en-GB, ID estável e faixa etária; as perguntas têm três opções distintas e compatíveis. As vistas de quiz e pronúncia usam símbolos específicos para cada animal como representação provisória offline. **Dependência PE-036 em aberto:** produzir imagens vetoriais próprias e empacotadas, com licenças documentadas; símbolos do sistema não substituem esses assets. Ver `docs/PE-026-ANIMALS.md`.
+
+
+## PE-028 — Frutas, alimentos e bebidas
+
+O catálogo integra 24 itens de alimentação (12 existentes e 12 novos), com 20 perguntas de 3 opções, TTS en-GB a partir do termo `audioText`, e imagens vetoriais offline para cada entrada. Exemplos: pera/pear, uvas/grapes, iogurte/yoghurt, sumo/juice. Ver [docs/PE-028-FOOD.md](docs/PE-028-FOOD.md).

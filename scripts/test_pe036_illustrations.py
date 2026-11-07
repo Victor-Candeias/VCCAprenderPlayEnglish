@@ -11,9 +11,9 @@ class IllustrationsTests(unittest.TestCase):
 
     def test_all_food_items_have_distinct_valid_vectors(self):
         food = [w for w in self.data["words"] if w["category"] == "food"]
-        self.assertEqual(12, len(food))
-        self.assertEqual(12, len(set(w["imageRef"] for w in food)))
-        self.assertEqual((115, 91), validate_catalog(self.data))
+        self.assertEqual(24, len(food))
+        self.assertEqual(24, len(set(w["imageRef"] for w in food)))
+        self.assertEqual((127, 103), validate_catalog(self.data))
 
     def test_invalid_or_remote_paths_are_rejected(self):
         for path in ("drawable/absent", "drawable/../secret", "https://example.com/img.png"):
