@@ -40,7 +40,7 @@ class CategoryVocabularyUseCaseTest {
         val vm = VocabularyViewModel(LoadCategoryVocabularyUseCase(repository(catalog)))
         assertEquals(1, vm.uiState.value.totalWords)
         assertFalse(vm.uiState.value.catalogError)
-        assertEquals(6, vm.uiState.value.groups.size)
+        assertEquals(WordCategory.values().size, vm.uiState.value.groups.size)
     }
 
     @Test fun invalidSourceShowsSafeEmptyState() {

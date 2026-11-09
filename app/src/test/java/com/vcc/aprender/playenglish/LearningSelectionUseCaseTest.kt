@@ -60,7 +60,7 @@ class LearningSelectionUseCaseTest {
     @Test fun threeToFiveKeepsOnlyEntireBandSafeWordsAndQuestions() {
         val content = SelectLearningContentUseCase(source(sample))
             .execute(LearningLevel.AGES_3_TO_5)
-        assertEquals(6, content.size)
+        assertEquals(WordCategory.values().size, content.size)
         assertEquals(3, content.first { it.category == WordCategory.ANIMALS }.wordCount)
         assertEquals(listOf("quiz.animals.cat"),
             content.first { it.category == WordCategory.ANIMALS }.questionIds)
