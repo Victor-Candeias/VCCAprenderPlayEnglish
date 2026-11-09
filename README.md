@@ -630,3 +630,8 @@ Novas categorias `calendar` e `time`, com 35 termos e 35 perguntas; meses e hora
 ## PE-034 — Emoções, ações e verbos
 
 Novas categorias `emotions` e `actions`, 30 itens e 30 perguntas, com expressões faciais e ações offline, TTS e frases modelo (6–8 anos). Ver [docs/PE-034-EMOTIONS-ACTIONS.md](docs/PE-034-EMOTIONS-ACTIONS.md).
+
+
+## PE-035 — Cumprimentos e pequenas conversas
+
+Mais 20 expressões PT-PT/en-GB e 10 diálogos offline A/B mostrados na descoberta; 20 perguntas adicionais e TTS com pontuação. Ver [docs/PE-035-GREETINGS-CONVERSATIONS.md](docs/PE-035-GREETINGS-CONVERSATIONS.md).

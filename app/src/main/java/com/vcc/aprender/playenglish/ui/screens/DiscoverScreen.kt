@@ -122,6 +122,43 @@ fun DiscoverScreen(
                                 }
                             }
                         }
+                        if (selectionState.selectedCategory == WordCategory.PHRASES) {
+                            val ctx = LocalContext.current
+                            val dialogues = PhraseDialogues.load(ctx, selected.words)
+                            if (dialogues.isNotEmpty()) {
+                                Text(
+                                    "Pequenas conversas",
+                                    style = MaterialTheme.typography.titleLarge,
+                                    modifier = Modifier.testTag("discover-dialogues-title")
+                                )
+                                dialogues.forEach { dialogue ->
+                                    Card(
+                                        modifier = Modifier.fillMaxWidth()
+                                            .testTag("discover-dialogue-${dialogue.id}"),
+                                        colors = CardDefaults.cardColors(
+                                            containerColor = PlayEnglishColors.Mint
+                                        )
+                                    ) {
+                                        Column(
+                                            modifier = Modifier.fillMaxWidth().padding(16.dp),
+                                            verticalArrangement = Arrangement.spacedBy(8.dp)
+                                        ) {
+                                            Text(dialogue.title, style = MaterialTheme.typography.titleMedium)
+                                            dialogue.turns.forEachIndexed { turn, word ->
+                                                Text(
+                                                    "${if (turn == 0) "A" else "B"}: ${word.ptPT}",
+                                                    style = MaterialTheme.typography.bodyMedium
+                                                )
+                                                Text(
+                                                    "${if (turn == 0) "A" else "B"}: ${word.enGB}",
+                                                    style = MaterialTheme.typography.bodyLarge
+                                                )
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }

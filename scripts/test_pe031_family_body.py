@@ -13,7 +13,7 @@ class FamilyBodyTests(unittest.TestCase):
         self.words = {w["id"]: w for w in self.data["words"]}
 
     def test_two_new_categories_and_existing_content(self):
-        self.assertEqual((276, 252), validate_catalog(self.data))
+        self.assertEqual((296, 272), validate_catalog(self.data))
         wc, qc = inspect_category_coverage(self.data)
         self.assertEqual((12, 12), (wc["family"], wc["body"]))
         self.assertEqual((12, 12), (qc["family"], qc["body"]))
