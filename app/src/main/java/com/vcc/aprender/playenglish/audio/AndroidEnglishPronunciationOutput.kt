@@ -17,11 +17,15 @@ enum class EnglishTtsStatus { INITIALIZING, READY, SPEAKING, VOICE_MISSING, ERRO
  * Owns the TTS engine, never an Activity. State changes are marshalled onto the
  * main thread. PE-022 uses a single-flight gate shared by all speech controls.
  */
-class AndroidEnglishPronunciationOutput(context: Context) : PronunciationOutput, AutoCloseable {
+class AndroidEnglishPronunciationOutput(
+    context: Context,
+    initialSpeechRate: Float = EnglishVoicePolicy.CHILD_SPEECH_RATE
+) : PronunciationOutput, AutoCloseable {
     private val main = Handler(Looper.getMainLooper())
     private var engine: TextToSpeech? = null
     private val turnGate = SpeechTurnGate()
     private var closed = false
+    private var speechRate = ReadingPreferences(speechRate = initialSpeechRate).normalized().speechRate
 
     var status by mutableStateOf(EnglishTtsStatus.INITIALIZING)
         private set
@@ -73,7 +77,7 @@ class AndroidEnglishPronunciationOutput(context: Context) : PronunciationOutput,
                 status = EnglishTtsStatus.VOICE_MISSING
                 return
             }
-            tts.setSpeechRate(EnglishVoicePolicy.CHILD_SPEECH_RATE)
+            tts.setSpeechRate(speechRate)
             tts.setOnUtteranceProgressListener(object : UtteranceProgressListener() {
                 override fun onStart(utteranceId: String?) = Unit
                 override fun onDone(utteranceId: String?) = releaseIfCurrent(utteranceId)
@@ -106,6 +110,15 @@ class AndroidEnglishPronunciationOutput(context: Context) : PronunciationOutput,
                 // The engine and en-GB voice are still usable: unlock retry.
                 status = EnglishTtsStatus.READY
             }
+        }
+    }
+
+    /** Updates an available en-GB voice, and also the rate used after async TTS init. */
+    fun setSpeechRate(rate: Float) {
+        if (closed) return
+        speechRate = ReadingPreferences(speechRate = rate).normalized().speechRate
+        if (status == EnglishTtsStatus.READY) {
+            runCatching { engine?.setSpeechRate(speechRate) }
         }
     }
 

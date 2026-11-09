@@ -635,3 +635,8 @@ Novas categorias `emotions` e `actions`, 30 itens e 30 perguntas, com expressõe
 ## PE-035 — Cumprimentos e pequenas conversas
 
 Mais 20 expressões PT-PT/en-GB e 10 diálogos offline A/B mostrados na descoberta; 20 perguntas adicionais e TTS com pontuação. Ver [docs/PE-035-GREETINGS-CONVERSATIONS.md](docs/PE-035-GREETINGS-CONVERSATIONS.md).
+
+
+## PE-038 — Som e leitura
+
+Preferências locais para ativar/desativar áudio, velocidade da voz en-GB e instruções de leitura, com interrupção imediata do playback. Ver [docs/PE-038-AUDIO-READING-PREFERENCES.md](docs/PE-038-AUDIO-READING-PREFERENCES.md).
