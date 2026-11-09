@@ -1984,6 +1984,294 @@
       },
       "imageRef": "drawable/pe_transport_scooter",
       "audioText": "Scooter"
+    },
+    {
+      "id": "family.mother",
+      "ptPT": "Mãe",
+      "enGB": "Mother",
+      "category": "family",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_family_mother",
+      "audioText": "Mother"
+    },
+    {
+      "id": "family.father",
+      "ptPT": "Pai",
+      "enGB": "Father",
+      "category": "family",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_family_father",
+      "audioText": "Father"
+    },
+    {
+      "id": "family.sister",
+      "ptPT": "Irmã",
+      "enGB": "Sister",
+      "category": "family",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_family_sister",
+      "audioText": "Sister"
+    },
+    {
+      "id": "family.brother",
+      "ptPT": "Irmão",
+      "enGB": "Brother",
+      "category": "family",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_family_brother",
+      "audioText": "Brother"
+    },
+    {
+      "id": "family.grandmother",
+      "ptPT": "Avó",
+      "enGB": "Grandmother",
+      "category": "family",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_family_grandmother",
+      "audioText": "Grandmother"
+    },
+    {
+      "id": "family.grandfather",
+      "ptPT": "Avô",
+      "enGB": "Grandfather",
+      "category": "family",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_family_grandfather",
+      "audioText": "Grandfather"
+    },
+    {
+      "id": "family.aunt",
+      "ptPT": "Tia",
+      "enGB": "Aunt",
+      "category": "family",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_family_aunt",
+      "audioText": "Aunt"
+    },
+    {
+      "id": "family.uncle",
+      "ptPT": "Tio",
+      "enGB": "Uncle",
+      "category": "family",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_family_uncle",
+      "audioText": "Uncle"
+    },
+    {
+      "id": "family.cousin",
+      "ptPT": "Primo ou prima",
+      "enGB": "Cousin",
+      "category": "family",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_family_cousin",
+      "audioText": "Cousin"
+    },
+    {
+      "id": "family.baby",
+      "ptPT": "Bebé",
+      "enGB": "Baby",
+      "category": "family",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_family_baby",
+      "audioText": "Baby"
+    },
+    {
+      "id": "family.parents",
+      "ptPT": "Pais",
+      "enGB": "Parents",
+      "category": "family",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_family_parents",
+      "audioText": "Parents"
+    },
+    {
+      "id": "family.family",
+      "ptPT": "Família",
+      "enGB": "Family",
+      "category": "family",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_family_family",
+      "audioText": "Family"
+    },
+    {
+      "id": "body.head",
+      "ptPT": "Cabeça",
+      "enGB": "Head",
+      "category": "body",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_body_head",
+      "audioText": "Head"
+    },
+    {
+      "id": "body.hand",
+      "ptPT": "Mão",
+      "enGB": "Hand",
+      "category": "body",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_body_hand",
+      "audioText": "Hand"
+    },
+    {
+      "id": "body.foot",
+      "ptPT": "Pé",
+      "enGB": "Foot",
+      "category": "body",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_body_foot",
+      "audioText": "Foot"
+    },
+    {
+      "id": "body.eye",
+      "ptPT": "Olho",
+      "enGB": "Eye",
+      "category": "body",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_body_eye",
+      "audioText": "Eye"
+    },
+    {
+      "id": "body.ear",
+      "ptPT": "Orelha",
+      "enGB": "Ear",
+      "category": "body",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_body_ear",
+      "audioText": "Ear"
+    },
+    {
+      "id": "body.nose",
+      "ptPT": "Nariz",
+      "enGB": "Nose",
+      "category": "body",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_body_nose",
+      "audioText": "Nose"
+    },
+    {
+      "id": "body.mouth",
+      "ptPT": "Boca",
+      "enGB": "Mouth",
+      "category": "body",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_body_mouth",
+      "audioText": "Mouth"
+    },
+    {
+      "id": "body.arm",
+      "ptPT": "Braço",
+      "enGB": "Arm",
+      "category": "body",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_body_arm",
+      "audioText": "Arm"
+    },
+    {
+      "id": "body.leg",
+      "ptPT": "Perna",
+      "enGB": "Leg",
+      "category": "body",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_body_leg",
+      "audioText": "Leg"
+    },
+    {
+      "id": "body.finger",
+      "ptPT": "Dedo da mão",
+      "enGB": "Finger",
+      "category": "body",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_body_finger",
+      "audioText": "Finger"
+    },
+    {
+      "id": "body.knee",
+      "ptPT": "Joelho",
+      "enGB": "Knee",
+      "category": "body",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_body_knee",
+      "audioText": "Knee"
+    },
+    {
+      "id": "body.shoulder",
+      "ptPT": "Ombro",
+      "enGB": "Shoulder",
+      "category": "body",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_body_shoulder",
+      "audioText": "Shoulder"
     }
   ],
   "questions": [
@@ -3376,6 +3664,246 @@
         "transport.scooter"
       ],
       "correctId": "transport.scooter"
+    },
+    {
+      "id": "quiz.family.mother",
+      "prompt": "Como se diz «Mãe» em inglês?",
+      "optionIds": [
+        "family.grandfather",
+        "family.mother",
+        "family.baby"
+      ],
+      "correctId": "family.mother"
+    },
+    {
+      "id": "quiz.family.father",
+      "prompt": "Como se diz «Pai» em inglês?",
+      "optionIds": [
+        "family.father",
+        "family.parents",
+        "family.aunt"
+      ],
+      "correctId": "family.father"
+    },
+    {
+      "id": "quiz.family.sister",
+      "prompt": "Como se diz «Irmã» em inglês?",
+      "optionIds": [
+        "family.family",
+        "family.uncle",
+        "family.sister"
+      ],
+      "correctId": "family.sister"
+    },
+    {
+      "id": "quiz.family.brother",
+      "prompt": "Como se diz «Irmão» em inglês?",
+      "optionIds": [
+        "family.cousin",
+        "family.brother",
+        "family.mother"
+      ],
+      "correctId": "family.brother"
+    },
+    {
+      "id": "quiz.family.grandmother",
+      "prompt": "Como se diz «Avó» em inglês?",
+      "optionIds": [
+        "family.grandmother",
+        "family.father",
+        "family.baby"
+      ],
+      "correctId": "family.grandmother"
+    },
+    {
+      "id": "quiz.family.grandfather",
+      "prompt": "Como se diz «Avô» em inglês?",
+      "optionIds": [
+        "family.sister",
+        "family.parents",
+        "family.grandfather"
+      ],
+      "correctId": "family.grandfather"
+    },
+    {
+      "id": "quiz.family.aunt",
+      "prompt": "Como se diz «Tia» em inglês?",
+      "optionIds": [
+        "family.family",
+        "family.aunt",
+        "family.brother"
+      ],
+      "correctId": "family.aunt"
+    },
+    {
+      "id": "quiz.family.uncle",
+      "prompt": "Como se diz «Tio» em inglês?",
+      "optionIds": [
+        "family.uncle",
+        "family.grandmother",
+        "family.mother"
+      ],
+      "correctId": "family.uncle"
+    },
+    {
+      "id": "quiz.family.cousin",
+      "prompt": "Como se diz «Primo ou prima» em inglês?",
+      "optionIds": [
+        "family.grandfather",
+        "family.father",
+        "family.cousin"
+      ],
+      "correctId": "family.cousin"
+    },
+    {
+      "id": "quiz.family.baby",
+      "prompt": "Como se diz «Bebé» em inglês?",
+      "optionIds": [
+        "family.sister",
+        "family.baby",
+        "family.aunt"
+      ],
+      "correctId": "family.baby"
+    },
+    {
+      "id": "quiz.family.parents",
+      "prompt": "Como se diz «Pais» em inglês?",
+      "optionIds": [
+        "family.parents",
+        "family.uncle",
+        "family.brother"
+      ],
+      "correctId": "family.parents"
+    },
+    {
+      "id": "quiz.family.family",
+      "prompt": "Como se diz «Família» em inglês?",
+      "optionIds": [
+        "family.cousin",
+        "family.grandmother",
+        "family.family"
+      ],
+      "correctId": "family.family"
+    },
+    {
+      "id": "quiz.body.head",
+      "prompt": "Como se diz «Cabeça» em inglês?",
+      "optionIds": [
+        "body.nose",
+        "body.head",
+        "body.finger"
+      ],
+      "correctId": "body.head"
+    },
+    {
+      "id": "quiz.body.hand",
+      "prompt": "Como se diz «Mão» em inglês?",
+      "optionIds": [
+        "body.hand",
+        "body.knee",
+        "body.mouth"
+      ],
+      "correctId": "body.hand"
+    },
+    {
+      "id": "quiz.body.foot",
+      "prompt": "Como se diz «Pé» em inglês?",
+      "optionIds": [
+        "body.shoulder",
+        "body.arm",
+        "body.foot"
+      ],
+      "correctId": "body.foot"
+    },
+    {
+      "id": "quiz.body.eye",
+      "prompt": "Como se diz «Olho» em inglês?",
+      "optionIds": [
+        "body.leg",
+        "body.eye",
+        "body.head"
+      ],
+      "correctId": "body.eye"
+    },
+    {
+      "id": "quiz.body.ear",
+      "prompt": "Como se diz «Orelha» em inglês?",
+      "optionIds": [
+        "body.ear",
+        "body.hand",
+        "body.finger"
+      ],
+      "correctId": "body.ear"
+    },
+    {
+      "id": "quiz.body.nose",
+      "prompt": "Como se diz «Nariz» em inglês?",
+      "optionIds": [
+        "body.foot",
+        "body.knee",
+        "body.nose"
+      ],
+      "correctId": "body.nose"
+    },
+    {
+      "id": "quiz.body.mouth",
+      "prompt": "Como se diz «Boca» em inglês?",
+      "optionIds": [
+        "body.shoulder",
+        "body.mouth",
+        "body.eye"
+      ],
+      "correctId": "body.mouth"
+    },
+    {
+      "id": "quiz.body.arm",
+      "prompt": "Como se diz «Braço» em inglês?",
+      "optionIds": [
+        "body.arm",
+        "body.ear",
+        "body.head"
+      ],
+      "correctId": "body.arm"
+    },
+    {
+      "id": "quiz.body.leg",
+      "prompt": "Como se diz «Perna» em inglês?",
+      "optionIds": [
+        "body.nose",
+        "body.hand",
+        "body.leg"
+      ],
+      "correctId": "body.leg"
+    },
+    {
+      "id": "quiz.body.finger",
+      "prompt": "Como se diz «Dedo da mão» em inglês?",
+      "optionIds": [
+        "body.foot",
+        "body.finger",
+        "body.mouth"
+      ],
+      "correctId": "body.finger"
+    },
+    {
+      "id": "quiz.body.knee",
+      "prompt": "Como se diz «Joelho» em inglês?",
+      "optionIds": [
+        "body.knee",
+        "body.arm",
+        "body.eye"
+      ],
+      "correctId": "body.knee"
+    },
+    {
+      "id": "quiz.body.shoulder",
+      "prompt": "Como se diz «Ombro» em inglês?",
+      "optionIds": [
+        "body.leg",
+        "body.ear",
+        "body.shoulder"
+      ],
+      "correctId": "body.shoulder"
     }
   ]
 }
