@@ -32,7 +32,7 @@ class CategoryCoverageTests(unittest.TestCase):
         self.assertEqual(20, questions['objects'])
         self.assertEqual(12, questions['clothing'])
         self.assertEqual(12, questions['transport'])
-        self.assertTrue(all(count == 8 for category, count in questions.items() if category not in ('colors', 'numbers', 'animals', 'food', 'objects')))
+        self.assertTrue(all(count == 8 for category, count in questions.items() if category not in ('colors', 'numbers', 'animals', 'food', 'objects', 'clothing', 'transport')))
 
     def test_catches_wrong_pt_pt_prompt(self):
         data = copy.deepcopy(self.catalog)
