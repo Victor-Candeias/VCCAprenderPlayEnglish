@@ -2980,6 +2980,366 @@
       },
       "imageRef": "drawable/pe_time_good_night",
       "audioText": "Good night"
+    },
+    {
+      "id": "emotions.happy",
+      "ptPT": "Feliz",
+      "enGB": "Happy",
+      "category": "emotions",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_emotions_happy",
+      "audioText": "Happy"
+    },
+    {
+      "id": "emotions.sad",
+      "ptPT": "Triste",
+      "enGB": "Sad",
+      "category": "emotions",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_emotions_sad",
+      "audioText": "Sad"
+    },
+    {
+      "id": "emotions.angry",
+      "ptPT": "Zangado ou zangada",
+      "enGB": "Angry",
+      "category": "emotions",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_emotions_angry",
+      "audioText": "Angry"
+    },
+    {
+      "id": "emotions.tired",
+      "ptPT": "Cansado ou cansada",
+      "enGB": "Tired",
+      "category": "emotions",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_emotions_tired",
+      "audioText": "Tired"
+    },
+    {
+      "id": "emotions.excited",
+      "ptPT": "Entusiasmado ou entusiasmada",
+      "enGB": "Excited",
+      "category": "emotions",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_emotions_excited",
+      "audioText": "Excited"
+    },
+    {
+      "id": "emotions.calm",
+      "ptPT": "Calmo ou calma",
+      "enGB": "Calm",
+      "category": "emotions",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_emotions_calm",
+      "audioText": "Calm"
+    },
+    {
+      "id": "emotions.surprised",
+      "ptPT": "Surpreendido ou surpreendida",
+      "enGB": "Surprised",
+      "category": "emotions",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_emotions_surprised",
+      "audioText": "Surprised"
+    },
+    {
+      "id": "emotions.worried",
+      "ptPT": "Preocupado ou preocupada",
+      "enGB": "Worried",
+      "category": "emotions",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_emotions_worried",
+      "audioText": "Worried"
+    },
+    {
+      "id": "emotions.proud",
+      "ptPT": "Orgulhoso ou orgulhosa",
+      "enGB": "Proud",
+      "category": "emotions",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_emotions_proud",
+      "audioText": "Proud"
+    },
+    {
+      "id": "emotions.shy",
+      "ptPT": "Tímido ou tímida",
+      "enGB": "Shy",
+      "category": "emotions",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_emotions_shy",
+      "audioText": "Shy"
+    },
+    {
+      "id": "emotions.curious",
+      "ptPT": "Curioso ou curiosa",
+      "enGB": "Curious",
+      "category": "emotions",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_emotions_curious",
+      "audioText": "Curious"
+    },
+    {
+      "id": "emotions.relaxed",
+      "ptPT": "Descontraído ou descontraída",
+      "enGB": "Relaxed",
+      "category": "emotions",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_emotions_relaxed",
+      "audioText": "Relaxed"
+    },
+    {
+      "id": "actions.run",
+      "ptPT": "Correr",
+      "enGB": "Run",
+      "category": "actions",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_actions_run",
+      "audioText": "Run"
+    },
+    {
+      "id": "actions.walk",
+      "ptPT": "Andar",
+      "enGB": "Walk",
+      "category": "actions",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_actions_walk",
+      "audioText": "Walk"
+    },
+    {
+      "id": "actions.jump",
+      "ptPT": "Saltar",
+      "enGB": "Jump",
+      "category": "actions",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_actions_jump",
+      "audioText": "Jump"
+    },
+    {
+      "id": "actions.read",
+      "ptPT": "Ler",
+      "enGB": "Read",
+      "category": "actions",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_actions_read",
+      "audioText": "Read"
+    },
+    {
+      "id": "actions.sing",
+      "ptPT": "Cantar",
+      "enGB": "Sing",
+      "category": "actions",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_actions_sing",
+      "audioText": "Sing"
+    },
+    {
+      "id": "actions.play",
+      "ptPT": "Brincar",
+      "enGB": "Play",
+      "category": "actions",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_actions_play",
+      "audioText": "Play"
+    },
+    {
+      "id": "actions.dance",
+      "ptPT": "Dançar",
+      "enGB": "Dance",
+      "category": "actions",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_actions_dance",
+      "audioText": "Dance"
+    },
+    {
+      "id": "actions.write",
+      "ptPT": "Escrever",
+      "enGB": "Write",
+      "category": "actions",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_actions_write",
+      "audioText": "Write"
+    },
+    {
+      "id": "actions.draw",
+      "ptPT": "Desenhar",
+      "enGB": "Draw",
+      "category": "actions",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_actions_draw",
+      "audioText": "Draw"
+    },
+    {
+      "id": "actions.swim",
+      "ptPT": "Nadar",
+      "enGB": "Swim",
+      "category": "actions",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_actions_swim",
+      "audioText": "Swim"
+    },
+    {
+      "id": "actions.eat",
+      "ptPT": "Comer",
+      "enGB": "Eat",
+      "category": "actions",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_actions_eat",
+      "audioText": "Eat"
+    },
+    {
+      "id": "actions.sleep",
+      "ptPT": "Dormir",
+      "enGB": "Sleep",
+      "category": "actions",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_actions_sleep",
+      "audioText": "Sleep"
+    },
+    {
+      "id": "emotions.i_am_happy",
+      "ptPT": "Estou feliz",
+      "enGB": "I am happy",
+      "category": "emotions",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_emotions_i_am_happy",
+      "audioText": "I am happy"
+    },
+    {
+      "id": "emotions.i_am_sad",
+      "ptPT": "Estou triste",
+      "enGB": "I am sad",
+      "category": "emotions",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_emotions_i_am_sad",
+      "audioText": "I am sad"
+    },
+    {
+      "id": "emotions.i_am_tired",
+      "ptPT": "Estou cansado ou cansada",
+      "enGB": "I am tired",
+      "category": "emotions",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_emotions_i_am_tired",
+      "audioText": "I am tired"
+    },
+    {
+      "id": "actions.i_can_run",
+      "ptPT": "Eu consigo correr",
+      "enGB": "I can run",
+      "category": "actions",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_actions_i_can_run",
+      "audioText": "I can run"
+    },
+    {
+      "id": "actions.i_can_jump",
+      "ptPT": "Eu consigo saltar",
+      "enGB": "I can jump",
+      "category": "actions",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_actions_i_can_jump",
+      "audioText": "I can jump"
+    },
+    {
+      "id": "actions.i_can_sing",
+      "ptPT": "Eu consigo cantar",
+      "enGB": "I can sing",
+      "category": "actions",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_actions_i_can_sing",
+      "audioText": "I can sing"
     }
   ],
   "questions": [
@@ -5202,6 +5562,306 @@
         "time.good_afternoon"
       ],
       "correctId": "time.good_night"
+    },
+    {
+      "id": "quiz.emotions.happy",
+      "prompt": "Como se diz «Feliz» em inglês?",
+      "optionIds": [
+        "emotions.happy",
+        "emotions.sad",
+        "emotions.angry"
+      ],
+      "correctId": "emotions.happy"
+    },
+    {
+      "id": "quiz.emotions.sad",
+      "prompt": "Como se diz «Triste» em inglês?",
+      "optionIds": [
+        "emotions.angry",
+        "emotions.tired",
+        "emotions.sad"
+      ],
+      "correctId": "emotions.sad"
+    },
+    {
+      "id": "quiz.emotions.angry",
+      "prompt": "Como se diz «Zangado ou zangada» em inglês?",
+      "optionIds": [
+        "emotions.excited",
+        "emotions.angry",
+        "emotions.tired"
+      ],
+      "correctId": "emotions.angry"
+    },
+    {
+      "id": "quiz.emotions.tired",
+      "prompt": "Como se diz «Cansado ou cansada» em inglês?",
+      "optionIds": [
+        "emotions.tired",
+        "emotions.excited",
+        "emotions.calm"
+      ],
+      "correctId": "emotions.tired"
+    },
+    {
+      "id": "quiz.emotions.excited",
+      "prompt": "Como se diz «Entusiasmado ou entusiasmada» em inglês?",
+      "optionIds": [
+        "emotions.calm",
+        "emotions.surprised",
+        "emotions.excited"
+      ],
+      "correctId": "emotions.excited"
+    },
+    {
+      "id": "quiz.emotions.calm",
+      "prompt": "Como se diz «Calmo ou calma» em inglês?",
+      "optionIds": [
+        "emotions.worried",
+        "emotions.calm",
+        "emotions.surprised"
+      ],
+      "correctId": "emotions.calm"
+    },
+    {
+      "id": "quiz.emotions.surprised",
+      "prompt": "Como se diz «Surpreendido ou surpreendida» em inglês?",
+      "optionIds": [
+        "emotions.surprised",
+        "emotions.worried",
+        "emotions.proud"
+      ],
+      "correctId": "emotions.surprised"
+    },
+    {
+      "id": "quiz.emotions.worried",
+      "prompt": "Como se diz «Preocupado ou preocupada» em inglês?",
+      "optionIds": [
+        "emotions.proud",
+        "emotions.shy",
+        "emotions.worried"
+      ],
+      "correctId": "emotions.worried"
+    },
+    {
+      "id": "quiz.emotions.proud",
+      "prompt": "Como se diz «Orgulhoso ou orgulhosa» em inglês?",
+      "optionIds": [
+        "emotions.curious",
+        "emotions.proud",
+        "emotions.shy"
+      ],
+      "correctId": "emotions.proud"
+    },
+    {
+      "id": "quiz.emotions.shy",
+      "prompt": "Como se diz «Tímido ou tímida» em inglês?",
+      "optionIds": [
+        "emotions.shy",
+        "emotions.curious",
+        "emotions.relaxed"
+      ],
+      "correctId": "emotions.shy"
+    },
+    {
+      "id": "quiz.emotions.curious",
+      "prompt": "Como se diz «Curioso ou curiosa» em inglês?",
+      "optionIds": [
+        "emotions.relaxed",
+        "emotions.happy",
+        "emotions.curious"
+      ],
+      "correctId": "emotions.curious"
+    },
+    {
+      "id": "quiz.emotions.relaxed",
+      "prompt": "Como se diz «Descontraído ou descontraída» em inglês?",
+      "optionIds": [
+        "emotions.sad",
+        "emotions.relaxed",
+        "emotions.happy"
+      ],
+      "correctId": "emotions.relaxed"
+    },
+    {
+      "id": "quiz.actions.run",
+      "prompt": "Como se diz «Correr» em inglês?",
+      "optionIds": [
+        "actions.run",
+        "actions.walk",
+        "actions.jump"
+      ],
+      "correctId": "actions.run"
+    },
+    {
+      "id": "quiz.actions.walk",
+      "prompt": "Como se diz «Andar» em inglês?",
+      "optionIds": [
+        "actions.jump",
+        "actions.read",
+        "actions.walk"
+      ],
+      "correctId": "actions.walk"
+    },
+    {
+      "id": "quiz.actions.jump",
+      "prompt": "Como se diz «Saltar» em inglês?",
+      "optionIds": [
+        "actions.sing",
+        "actions.jump",
+        "actions.read"
+      ],
+      "correctId": "actions.jump"
+    },
+    {
+      "id": "quiz.actions.read",
+      "prompt": "Como se diz «Ler» em inglês?",
+      "optionIds": [
+        "actions.read",
+        "actions.sing",
+        "actions.play"
+      ],
+      "correctId": "actions.read"
+    },
+    {
+      "id": "quiz.actions.sing",
+      "prompt": "Como se diz «Cantar» em inglês?",
+      "optionIds": [
+        "actions.play",
+        "actions.dance",
+        "actions.sing"
+      ],
+      "correctId": "actions.sing"
+    },
+    {
+      "id": "quiz.actions.play",
+      "prompt": "Como se diz «Brincar» em inglês?",
+      "optionIds": [
+        "actions.write",
+        "actions.play",
+        "actions.dance"
+      ],
+      "correctId": "actions.play"
+    },
+    {
+      "id": "quiz.actions.dance",
+      "prompt": "Como se diz «Dançar» em inglês?",
+      "optionIds": [
+        "actions.dance",
+        "actions.write",
+        "actions.draw"
+      ],
+      "correctId": "actions.dance"
+    },
+    {
+      "id": "quiz.actions.write",
+      "prompt": "Como se diz «Escrever» em inglês?",
+      "optionIds": [
+        "actions.draw",
+        "actions.swim",
+        "actions.write"
+      ],
+      "correctId": "actions.write"
+    },
+    {
+      "id": "quiz.actions.draw",
+      "prompt": "Como se diz «Desenhar» em inglês?",
+      "optionIds": [
+        "actions.eat",
+        "actions.draw",
+        "actions.swim"
+      ],
+      "correctId": "actions.draw"
+    },
+    {
+      "id": "quiz.actions.swim",
+      "prompt": "Como se diz «Nadar» em inglês?",
+      "optionIds": [
+        "actions.swim",
+        "actions.eat",
+        "actions.sleep"
+      ],
+      "correctId": "actions.swim"
+    },
+    {
+      "id": "quiz.actions.eat",
+      "prompt": "Como se diz «Comer» em inglês?",
+      "optionIds": [
+        "actions.sleep",
+        "actions.run",
+        "actions.eat"
+      ],
+      "correctId": "actions.eat"
+    },
+    {
+      "id": "quiz.actions.sleep",
+      "prompt": "Como se diz «Dormir» em inglês?",
+      "optionIds": [
+        "actions.walk",
+        "actions.sleep",
+        "actions.run"
+      ],
+      "correctId": "actions.sleep"
+    },
+    {
+      "id": "quiz.emotions.i_am_happy",
+      "prompt": "Como se diz «Estou feliz» em inglês?",
+      "optionIds": [
+        "emotions.i_am_happy",
+        "emotions.i_am_sad",
+        "emotions.i_am_tired"
+      ],
+      "correctId": "emotions.i_am_happy"
+    },
+    {
+      "id": "quiz.emotions.i_am_sad",
+      "prompt": "Como se diz «Estou triste» em inglês?",
+      "optionIds": [
+        "emotions.i_am_tired",
+        "emotions.i_am_happy",
+        "emotions.i_am_sad"
+      ],
+      "correctId": "emotions.i_am_sad"
+    },
+    {
+      "id": "quiz.emotions.i_am_tired",
+      "prompt": "Como se diz «Estou cansado ou cansada» em inglês?",
+      "optionIds": [
+        "emotions.i_am_sad",
+        "emotions.i_am_tired",
+        "emotions.i_am_happy"
+      ],
+      "correctId": "emotions.i_am_tired"
+    },
+    {
+      "id": "quiz.actions.i_can_run",
+      "prompt": "Como se diz «Eu consigo correr» em inglês?",
+      "optionIds": [
+        "actions.i_can_run",
+        "actions.i_can_jump",
+        "actions.i_can_sing"
+      ],
+      "correctId": "actions.i_can_run"
+    },
+    {
+      "id": "quiz.actions.i_can_jump",
+      "prompt": "Como se diz «Eu consigo saltar» em inglês?",
+      "optionIds": [
+        "actions.i_can_sing",
+        "actions.i_can_run",
+        "actions.i_can_jump"
+      ],
+      "correctId": "actions.i_can_jump"
+    },
+    {
+      "id": "quiz.actions.i_can_sing",
+      "prompt": "Como se diz «Eu consigo cantar» em inglês?",
+      "optionIds": [
+        "actions.i_can_jump",
+        "actions.i_can_sing",
+        "actions.i_can_run"
+      ],
+      "correctId": "actions.i_can_sing"
     }
   ]
 }

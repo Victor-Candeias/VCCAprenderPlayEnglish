@@ -13,7 +13,7 @@ class CalendarTimeTests(unittest.TestCase):
         self.cat = load_catalog()
         self.words = {w["id"]: w for w in self.cat["words"]}
     def test_counts_and_calendar(self):
-        self.assertEqual((246,222),validate_catalog(self.cat))
+        self.assertEqual((276, 252),validate_catalog(self.cat))
         wc,qc = inspect_category_coverage(self.cat)
         self.assertEqual((19,16),(wc["calendar"],wc["time"]))
         self.assertEqual((19,16),(qc["calendar"],qc["time"]))

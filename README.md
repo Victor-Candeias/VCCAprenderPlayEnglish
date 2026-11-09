@@ -625,3 +625,8 @@ Categorias `family` e `body` com 24 termos PT-PT/en-GB, 24 pictogramas originais
 ## PE-033 — Dias da semana, meses e horas
 
 Novas categorias `calendar` e `time`, com 35 termos e 35 perguntas; meses e horas apenas no nível 6–8. Ver [docs/PE-033-CALENDAR-TIME.md](docs/PE-033-CALENDAR-TIME.md).
+
+
+## PE-034 — Emoções, ações e verbos
+
+Novas categorias `emotions` e `actions`, 30 itens e 30 perguntas, com expressões faciais e ações offline, TTS e frases modelo (6–8 anos). Ver [docs/PE-034-EMOTIONS-ACTIONS.md](docs/PE-034-EMOTIONS-ACTIONS.md).
