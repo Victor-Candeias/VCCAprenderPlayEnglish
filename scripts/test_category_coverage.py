@@ -27,7 +27,7 @@ class CategoryCoverageTests(unittest.TestCase):
         self.assertEqual(24, words['objects'])
         self.assertEqual(12, words['clothing'])
         self.assertEqual(12, words['transport'])
-        self.assertTrue(all(count == 12 for category, count in words.items() if category not in ('colors', 'numbers', 'animals', 'food', 'objects')))
+        self.assertTrue(all(count == 12 for category, count in words.items() if category not in ('colors', 'numbers', 'animals', 'food', 'objects', 'clothing', 'transport')))
         self.assertEqual(20, questions['food'])
         self.assertEqual(20, questions['objects'])
         self.assertEqual(12, questions['clothing'])
