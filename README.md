@@ -605,3 +605,8 @@ O catálogo integra 24 itens de alimentação (12 existentes e 12 novos), com 20
 ## PE-029 — Objetos de casa e material escolar
 
 24 termos PT-PT/en-GB nas subcategorias `home` e `school`, 20 perguntas e ilustrações vetoriais offline para todos os objetos. Ver [docs/PE-029-OBJECTS.md](docs/PE-029-OBJECTS.md).
+
+
+## PE-030 — Vestuário e meios de transporte
+
+Duas categorias offline com 12 termos cada (24 novos termos), 24 imagens vetoriais originais e 24 perguntas de 3 opções, com TTS en-GB. Consultar [docs/PE-030-CLOTHING-TRANSPORT.md](docs/PE-030-CLOTHING-TRANSPORT.md).

@@ -1,6 +1,8 @@
 package com.vcc.aprender.playenglish.ui.screens
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -24,6 +26,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -103,6 +106,21 @@ fun PronunciationScreen(onBack: () -> Unit, words: List<WordEntry> = emptyList()
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.spacedBy(14.dp)
                 ) {
+                    val newCategoryIllustration = if (word.category == WordCategory.CLOTHING ||
+                        word.category == WordCategory.TRANSPORT) {
+                        word.imageRef?.takeIf { it.startsWith("drawable/") }?.let { ref ->
+                            context.resources.getIdentifier(
+                                ref.substringAfter("drawable/"), "drawable", context.packageName
+                            )?.takeIf { it != 0 }
+                        }
+                    } else null
+                    if (newCategoryIllustration != null) {
+                        Image(
+                            painter = painterResource(newCategoryIllustration),
+                            contentDescription = "Ilustração: " + word.ptPT,
+                            modifier = Modifier.size(112.dp).testTag("pronunciation-illustration")
+                        )
+                    } else {
                     val illustration = when (word.category) {
                         WordCategory.ANIMALS -> AnimalIllustrations.symbol(word.id)
                         WordCategory.COLORS -> "🎨"
@@ -110,9 +128,12 @@ fun PronunciationScreen(onBack: () -> Unit, words: List<WordEntry> = emptyList()
                         WordCategory.PHRASES -> "💬"
                         WordCategory.FOOD -> "🍎"
                         WordCategory.OBJECTS -> "🧸"
+                        WordCategory.CLOTHING -> "👕"
+                        WordCategory.TRANSPORT -> "🚆"
                     }
                     Text(illustration, fontSize = 48.sp,
                         modifier = Modifier.testTag("pronunciation-illustration"))
+                    }
                     Text(word.ptPT, style = MaterialTheme.typography.titleLarge,
                         textAlign = TextAlign.Center,
                         modifier = Modifier.testTag("pronunciation-portuguese"))

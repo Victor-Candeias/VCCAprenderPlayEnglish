@@ -1696,6 +1696,294 @@
       },
       "imageRef": "drawable/pe_object_desk",
       "audioText": "Desk"
+    },
+    {
+      "id": "clothing.shirt",
+      "ptPT": "Camisa",
+      "enGB": "Shirt",
+      "category": "clothing",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_clothing_shirt",
+      "audioText": "Shirt"
+    },
+    {
+      "id": "clothing.trousers",
+      "ptPT": "Calças",
+      "enGB": "Trousers",
+      "category": "clothing",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_clothing_trousers",
+      "audioText": "Trousers"
+    },
+    {
+      "id": "clothing.shoes",
+      "ptPT": "Sapatos",
+      "enGB": "Shoes",
+      "category": "clothing",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_clothing_shoes",
+      "audioText": "Shoes"
+    },
+    {
+      "id": "clothing.coat",
+      "ptPT": "Casaco",
+      "enGB": "Coat",
+      "category": "clothing",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_clothing_coat",
+      "audioText": "Coat"
+    },
+    {
+      "id": "clothing.dress",
+      "ptPT": "Vestido",
+      "enGB": "Dress",
+      "category": "clothing",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_clothing_dress",
+      "audioText": "Dress"
+    },
+    {
+      "id": "clothing.hat",
+      "ptPT": "Chapéu",
+      "enGB": "Hat",
+      "category": "clothing",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_clothing_hat",
+      "audioText": "Hat"
+    },
+    {
+      "id": "clothing.socks",
+      "ptPT": "Meias",
+      "enGB": "Socks",
+      "category": "clothing",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_clothing_socks",
+      "audioText": "Socks"
+    },
+    {
+      "id": "clothing.skirt",
+      "ptPT": "Saia",
+      "enGB": "Skirt",
+      "category": "clothing",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_clothing_skirt",
+      "audioText": "Skirt"
+    },
+    {
+      "id": "clothing.jumper",
+      "ptPT": "Camisola",
+      "enGB": "Jumper",
+      "category": "clothing",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_clothing_jumper",
+      "audioText": "Jumper"
+    },
+    {
+      "id": "clothing.shorts",
+      "ptPT": "Calções",
+      "enGB": "Shorts",
+      "category": "clothing",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_clothing_shorts",
+      "audioText": "Shorts"
+    },
+    {
+      "id": "clothing.scarf",
+      "ptPT": "Cachecol",
+      "enGB": "Scarf",
+      "category": "clothing",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_clothing_scarf",
+      "audioText": "Scarf"
+    },
+    {
+      "id": "clothing.gloves",
+      "ptPT": "Luvas",
+      "enGB": "Gloves",
+      "category": "clothing",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_clothing_gloves",
+      "audioText": "Gloves"
+    },
+    {
+      "id": "transport.car",
+      "ptPT": "Carro",
+      "enGB": "Car",
+      "category": "transport",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_transport_car",
+      "audioText": "Car"
+    },
+    {
+      "id": "transport.train",
+      "ptPT": "Comboio",
+      "enGB": "Train",
+      "category": "transport",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_transport_train",
+      "audioText": "Train"
+    },
+    {
+      "id": "transport.plane",
+      "ptPT": "Avião",
+      "enGB": "Plane",
+      "category": "transport",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_transport_plane",
+      "audioText": "Plane"
+    },
+    {
+      "id": "transport.bus",
+      "ptPT": "Autocarro",
+      "enGB": "Bus",
+      "category": "transport",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_transport_bus",
+      "audioText": "Bus"
+    },
+    {
+      "id": "transport.bicycle",
+      "ptPT": "Bicicleta",
+      "enGB": "Bicycle",
+      "category": "transport",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_transport_bicycle",
+      "audioText": "Bicycle"
+    },
+    {
+      "id": "transport.boat",
+      "ptPT": "Barco",
+      "enGB": "Boat",
+      "category": "transport",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_transport_boat",
+      "audioText": "Boat"
+    },
+    {
+      "id": "transport.lorry",
+      "ptPT": "Camião",
+      "enGB": "Lorry",
+      "category": "transport",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_transport_lorry",
+      "audioText": "Lorry"
+    },
+    {
+      "id": "transport.motorbike",
+      "ptPT": "Motociclo",
+      "enGB": "Motorbike",
+      "category": "transport",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_transport_motorbike",
+      "audioText": "Motorbike"
+    },
+    {
+      "id": "transport.helicopter",
+      "ptPT": "Helicóptero",
+      "enGB": "Helicopter",
+      "category": "transport",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_transport_helicopter",
+      "audioText": "Helicopter"
+    },
+    {
+      "id": "transport.tram",
+      "ptPT": "Elétrico",
+      "enGB": "Tram",
+      "category": "transport",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_transport_tram",
+      "audioText": "Tram"
+    },
+    {
+      "id": "transport.ship",
+      "ptPT": "Navio",
+      "enGB": "Ship",
+      "category": "transport",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_transport_ship",
+      "audioText": "Ship"
+    },
+    {
+      "id": "transport.scooter",
+      "ptPT": "Trotinete",
+      "enGB": "Scooter",
+      "category": "transport",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_transport_scooter",
+      "audioText": "Scooter"
     }
   ],
   "questions": [
@@ -2848,6 +3136,246 @@
         "objects.desk"
       ],
       "correctId": "objects.desk"
+    },
+    {
+      "id": "quiz.clothing.shirt",
+      "prompt": "Como se diz «Camisa» em inglês?",
+      "optionIds": [
+        "clothing.hat",
+        "clothing.shirt",
+        "clothing.shorts"
+      ],
+      "correctId": "clothing.shirt"
+    },
+    {
+      "id": "quiz.clothing.trousers",
+      "prompt": "Como se diz «Calças» em inglês?",
+      "optionIds": [
+        "clothing.trousers",
+        "clothing.scarf",
+        "clothing.socks"
+      ],
+      "correctId": "clothing.trousers"
+    },
+    {
+      "id": "quiz.clothing.shoes",
+      "prompt": "Como se diz «Sapatos» em inglês?",
+      "optionIds": [
+        "clothing.gloves",
+        "clothing.skirt",
+        "clothing.shoes"
+      ],
+      "correctId": "clothing.shoes"
+    },
+    {
+      "id": "quiz.clothing.coat",
+      "prompt": "Como se diz «Casaco» em inglês?",
+      "optionIds": [
+        "clothing.jumper",
+        "clothing.coat",
+        "clothing.shirt"
+      ],
+      "correctId": "clothing.coat"
+    },
+    {
+      "id": "quiz.clothing.dress",
+      "prompt": "Como se diz «Vestido» em inglês?",
+      "optionIds": [
+        "clothing.dress",
+        "clothing.trousers",
+        "clothing.shorts"
+      ],
+      "correctId": "clothing.dress"
+    },
+    {
+      "id": "quiz.clothing.hat",
+      "prompt": "Como se diz «Chapéu» em inglês?",
+      "optionIds": [
+        "clothing.shoes",
+        "clothing.scarf",
+        "clothing.hat"
+      ],
+      "correctId": "clothing.hat"
+    },
+    {
+      "id": "quiz.clothing.socks",
+      "prompt": "Como se diz «Meias» em inglês?",
+      "optionIds": [
+        "clothing.gloves",
+        "clothing.socks",
+        "clothing.coat"
+      ],
+      "correctId": "clothing.socks"
+    },
+    {
+      "id": "quiz.clothing.skirt",
+      "prompt": "Como se diz «Saia» em inglês?",
+      "optionIds": [
+        "clothing.skirt",
+        "clothing.dress",
+        "clothing.shirt"
+      ],
+      "correctId": "clothing.skirt"
+    },
+    {
+      "id": "quiz.clothing.jumper",
+      "prompt": "Como se diz «Camisola» em inglês?",
+      "optionIds": [
+        "clothing.hat",
+        "clothing.trousers",
+        "clothing.jumper"
+      ],
+      "correctId": "clothing.jumper"
+    },
+    {
+      "id": "quiz.clothing.shorts",
+      "prompt": "Como se diz «Calções» em inglês?",
+      "optionIds": [
+        "clothing.shoes",
+        "clothing.shorts",
+        "clothing.socks"
+      ],
+      "correctId": "clothing.shorts"
+    },
+    {
+      "id": "quiz.clothing.scarf",
+      "prompt": "Como se diz «Cachecol» em inglês?",
+      "optionIds": [
+        "clothing.scarf",
+        "clothing.skirt",
+        "clothing.coat"
+      ],
+      "correctId": "clothing.scarf"
+    },
+    {
+      "id": "quiz.clothing.gloves",
+      "prompt": "Como se diz «Luvas» em inglês?",
+      "optionIds": [
+        "clothing.jumper",
+        "clothing.dress",
+        "clothing.gloves"
+      ],
+      "correctId": "clothing.gloves"
+    },
+    {
+      "id": "quiz.transport.car",
+      "prompt": "Como se diz «Carro» em inglês?",
+      "optionIds": [
+        "transport.boat",
+        "transport.car",
+        "transport.tram"
+      ],
+      "correctId": "transport.car"
+    },
+    {
+      "id": "quiz.transport.train",
+      "prompt": "Como se diz «Comboio» em inglês?",
+      "optionIds": [
+        "transport.train",
+        "transport.ship",
+        "transport.lorry"
+      ],
+      "correctId": "transport.train"
+    },
+    {
+      "id": "quiz.transport.plane",
+      "prompt": "Como se diz «Avião» em inglês?",
+      "optionIds": [
+        "transport.scooter",
+        "transport.motorbike",
+        "transport.plane"
+      ],
+      "correctId": "transport.plane"
+    },
+    {
+      "id": "quiz.transport.bus",
+      "prompt": "Como se diz «Autocarro» em inglês?",
+      "optionIds": [
+        "transport.helicopter",
+        "transport.bus",
+        "transport.car"
+      ],
+      "correctId": "transport.bus"
+    },
+    {
+      "id": "quiz.transport.bicycle",
+      "prompt": "Como se diz «Bicicleta» em inglês?",
+      "optionIds": [
+        "transport.bicycle",
+        "transport.train",
+        "transport.tram"
+      ],
+      "correctId": "transport.bicycle"
+    },
+    {
+      "id": "quiz.transport.boat",
+      "prompt": "Como se diz «Barco» em inglês?",
+      "optionIds": [
+        "transport.plane",
+        "transport.ship",
+        "transport.boat"
+      ],
+      "correctId": "transport.boat"
+    },
+    {
+      "id": "quiz.transport.lorry",
+      "prompt": "Como se diz «Camião» em inglês?",
+      "optionIds": [
+        "transport.scooter",
+        "transport.lorry",
+        "transport.bus"
+      ],
+      "correctId": "transport.lorry"
+    },
+    {
+      "id": "quiz.transport.motorbike",
+      "prompt": "Como se diz «Motociclo» em inglês?",
+      "optionIds": [
+        "transport.motorbike",
+        "transport.bicycle",
+        "transport.car"
+      ],
+      "correctId": "transport.motorbike"
+    },
+    {
+      "id": "quiz.transport.helicopter",
+      "prompt": "Como se diz «Helicóptero» em inglês?",
+      "optionIds": [
+        "transport.boat",
+        "transport.train",
+        "transport.helicopter"
+      ],
+      "correctId": "transport.helicopter"
+    },
+    {
+      "id": "quiz.transport.tram",
+      "prompt": "Como se diz «Elétrico» em inglês?",
+      "optionIds": [
+        "transport.plane",
+        "transport.tram",
+        "transport.lorry"
+      ],
+      "correctId": "transport.tram"
+    },
+    {
+      "id": "quiz.transport.ship",
+      "prompt": "Como se diz «Navio» em inglês?",
+      "optionIds": [
+        "transport.ship",
+        "transport.motorbike",
+        "transport.bus"
+      ],
+      "correctId": "transport.ship"
+    },
+    {
+      "id": "quiz.transport.scooter",
+      "prompt": "Como se diz «Trotinete» em inglês?",
+      "optionIds": [
+        "transport.helicopter",
+        "transport.bicycle",
+        "transport.scooter"
+      ],
+      "correctId": "transport.scooter"
     }
   ]
 }

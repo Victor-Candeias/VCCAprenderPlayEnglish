@@ -28,7 +28,9 @@ enum class WordCategory(val id: String) {
     NUMBERS("numbers"),
     FOOD("food"),
     OBJECTS("objects"),
-    PHRASES("phrases");
+    PHRASES("phrases"),
+    CLOTHING("clothing"),
+    TRANSPORT("transport");
 
     companion object {
         fun fromId(id: String): WordCategory =
