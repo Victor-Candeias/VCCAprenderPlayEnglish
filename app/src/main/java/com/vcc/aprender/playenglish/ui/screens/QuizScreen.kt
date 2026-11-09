@@ -424,6 +424,13 @@ private fun QuestionIllustration(category: WordCategory?, questionId: String) {
                     contentDescription = "Amostra ilustrativa da cor da pergunta"
                 }
         )
+    } else if (category == WordCategory.EMOTIONS || category == WordCategory.ACTIONS) {
+        val ctx = LocalContext.current
+        val prefix = if (category == WordCategory.EMOTIONS) "pe_emotions_" else "pe_actions_"
+        val resource = ctx.resources.getIdentifier(prefix + questionId.substringAfterLast('.'), "drawable", ctx.packageName)
+        if (resource != 0) {
+            Image(painter = painterResource(resource), contentDescription = if (category == WordCategory.EMOTIONS) "Expressão da emoção" else "Ilustração da ação", modifier = Modifier.size(112.dp).testTag("quiz-pe034-illustration"))
+        }
     } else if (category == WordCategory.CALENDAR || category == WordCategory.TIME) {
         val context = LocalContext.current
         val prefix = if (category == WordCategory.CALENDAR) "pe_calendar_" else "pe_time_"
@@ -575,6 +582,8 @@ private fun QuestionIllustration(category: WordCategory?, questionId: String) {
             WordCategory.WEATHER -> "🌦"
             WordCategory.CALENDAR -> "📅"
             WordCategory.TIME -> "🕒"
+            WordCategory.EMOTIONS -> "🙂"
+            WordCategory.ACTIONS -> "🏃"
             null -> "🧩"
         }
         Text(

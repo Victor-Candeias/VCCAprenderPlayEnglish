@@ -14,7 +14,7 @@ class FoodVocabularyTests(unittest.TestCase):
         self.questions = [q for q in self.catalog["questions"] if q["id"].startswith("quiz.food.")]
 
     def test_offline_catalog_and_coverage(self):
-        self.assertEqual((246, 222), validate_catalog(self.catalog))
+        self.assertEqual((276, 252), validate_catalog(self.catalog))
         word_counts, question_counts = inspect_category_coverage(self.catalog)
         self.assertEqual((24, 20), (word_counts["food"], question_counts["food"]))
 

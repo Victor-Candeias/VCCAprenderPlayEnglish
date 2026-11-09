@@ -13,7 +13,7 @@ class OfflineCatalogTests(unittest.TestCase):
         self.sample = load_catalog()
 
     def test_packaged_catalog_is_valid_and_uses_unicode(self):
-        self.assertEqual((246, 222), validate_catalog(self.sample))
+        self.assertEqual((276, 252), validate_catalog(self.sample))
         self.assertEqual(
             "Pássaro",
             next(w["ptPT"] for w in self.sample["words"] if w["id"] == "animals.bird")

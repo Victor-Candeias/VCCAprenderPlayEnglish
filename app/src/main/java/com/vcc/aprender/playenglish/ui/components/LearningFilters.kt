@@ -112,6 +112,8 @@ fun learningCategoryName(category: WordCategory): String {
         WordCategory.WEATHER -> R.string.category_weather
         WordCategory.CALENDAR -> R.string.category_calendar
         WordCategory.TIME -> R.string.category_time
+        WordCategory.EMOTIONS -> R.string.category_emotions
+        WordCategory.ACTIONS -> R.string.category_actions
     }
     return stringResource(resId)
 }
