@@ -424,6 +424,19 @@ private fun QuestionIllustration(category: WordCategory?, questionId: String) {
                     contentDescription = "Amostra ilustrativa da cor da pergunta"
                 }
         )
+    } else if (category == WordCategory.NATURE || category == WordCategory.WEATHER) {
+        val context = LocalContext.current
+        val prefix = if (category == WordCategory.NATURE) "pe_nature_" else "pe_weather_"
+        val resource = context.resources.getIdentifier(
+            prefix + questionId.substringAfterLast('.'), "drawable", context.packageName
+        )
+        if (resource != 0) {
+            Image(
+                painter = painterResource(resource),
+                contentDescription = if (category == WordCategory.NATURE) "Ilustração da natureza ou estação" else "Ilustração meteorológica",
+                modifier = Modifier.size(112.dp).testTag("quiz-pe032-illustration")
+            )
+        }
     } else if (category == WordCategory.FAMILY || category == WordCategory.BODY) {
         val context = LocalContext.current
         val prefix = if (category == WordCategory.FAMILY) "pe_family_" else "pe_body_"
@@ -551,6 +564,8 @@ private fun QuestionIllustration(category: WordCategory?, questionId: String) {
             WordCategory.TRANSPORT -> "🚆"
             WordCategory.FAMILY -> "👪"
             WordCategory.BODY -> "🖐"
+            WordCategory.NATURE -> "🌳"
+            WordCategory.WEATHER -> "🌦"
             null -> "🧩"
         }
         Text(
