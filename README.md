@@ -615,3 +615,8 @@ Duas categorias offline com 12 termos cada (24 novos termos), 24 imagens vetoria
 ## PE-031 — Família e partes do corpo humano
 
 Categorias `family` e `body` com 24 termos PT-PT/en-GB, 24 pictogramas originais offline e 24 perguntas com 3 opções. Ver [docs/PE-031-FAMILY-BODY.md](docs/PE-031-FAMILY-BODY.md).
+
+
+## PE-032 — Natureza, meteorologia e estações
+
+24 termos e perguntas PT-PT/en-GB com ilustrações offline nas categorias Natureza e Meteorologia, incluindo as quatro estações. Consultar [docs/PE-032-NATURE-WEATHER.md](docs/PE-032-NATURE-WEATHER.md).

@@ -2272,6 +2272,294 @@
       },
       "imageRef": "drawable/pe_body_shoulder",
       "audioText": "Shoulder"
+    },
+    {
+      "id": "nature.tree",
+      "ptPT": "Árvore",
+      "enGB": "Tree",
+      "category": "nature",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_nature_tree",
+      "audioText": "Tree"
+    },
+    {
+      "id": "nature.flower",
+      "ptPT": "Flor",
+      "enGB": "Flower",
+      "category": "nature",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_nature_flower",
+      "audioText": "Flower"
+    },
+    {
+      "id": "nature.river",
+      "ptPT": "Rio",
+      "enGB": "River",
+      "category": "nature",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_nature_river",
+      "audioText": "River"
+    },
+    {
+      "id": "nature.mountain",
+      "ptPT": "Montanha",
+      "enGB": "Mountain",
+      "category": "nature",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_nature_mountain",
+      "audioText": "Mountain"
+    },
+    {
+      "id": "nature.forest",
+      "ptPT": "Floresta",
+      "enGB": "Forest",
+      "category": "nature",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_nature_forest",
+      "audioText": "Forest"
+    },
+    {
+      "id": "nature.sea",
+      "ptPT": "Mar",
+      "enGB": "Sea",
+      "category": "nature",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_nature_sea",
+      "audioText": "Sea"
+    },
+    {
+      "id": "nature.beach",
+      "ptPT": "Praia",
+      "enGB": "Beach",
+      "category": "nature",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_nature_beach",
+      "audioText": "Beach"
+    },
+    {
+      "id": "nature.leaf",
+      "ptPT": "Folha",
+      "enGB": "Leaf",
+      "category": "nature",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_nature_leaf",
+      "audioText": "Leaf"
+    },
+    {
+      "id": "nature.spring",
+      "ptPT": "Primavera",
+      "enGB": "Spring",
+      "category": "nature",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_nature_spring",
+      "audioText": "Spring"
+    },
+    {
+      "id": "nature.summer",
+      "ptPT": "Verão",
+      "enGB": "Summer",
+      "category": "nature",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_nature_summer",
+      "audioText": "Summer"
+    },
+    {
+      "id": "nature.autumn",
+      "ptPT": "Outono",
+      "enGB": "Autumn",
+      "category": "nature",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_nature_autumn",
+      "audioText": "Autumn"
+    },
+    {
+      "id": "nature.winter",
+      "ptPT": "Inverno",
+      "enGB": "Winter",
+      "category": "nature",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_nature_winter",
+      "audioText": "Winter"
+    },
+    {
+      "id": "weather.sun",
+      "ptPT": "Sol",
+      "enGB": "Sun",
+      "category": "weather",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_weather_sun",
+      "audioText": "Sun"
+    },
+    {
+      "id": "weather.rain",
+      "ptPT": "Chuva",
+      "enGB": "Rain",
+      "category": "weather",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_weather_rain",
+      "audioText": "Rain"
+    },
+    {
+      "id": "weather.cloud",
+      "ptPT": "Nuvem",
+      "enGB": "Cloud",
+      "category": "weather",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_weather_cloud",
+      "audioText": "Cloud"
+    },
+    {
+      "id": "weather.wind",
+      "ptPT": "Vento",
+      "enGB": "Wind",
+      "category": "weather",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_weather_wind",
+      "audioText": "Wind"
+    },
+    {
+      "id": "weather.snow",
+      "ptPT": "Neve",
+      "enGB": "Snow",
+      "category": "weather",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_weather_snow",
+      "audioText": "Snow"
+    },
+    {
+      "id": "weather.fog",
+      "ptPT": "Nevoeiro",
+      "enGB": "Fog",
+      "category": "weather",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_weather_fog",
+      "audioText": "Fog"
+    },
+    {
+      "id": "weather.storm",
+      "ptPT": "Tempestade",
+      "enGB": "Storm",
+      "category": "weather",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_weather_storm",
+      "audioText": "Storm"
+    },
+    {
+      "id": "weather.rainbow",
+      "ptPT": "Arco-íris",
+      "enGB": "Rainbow",
+      "category": "weather",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_weather_rainbow",
+      "audioText": "Rainbow"
+    },
+    {
+      "id": "weather.lightning",
+      "ptPT": "Relâmpago",
+      "enGB": "Lightning",
+      "category": "weather",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_weather_lightning",
+      "audioText": "Lightning"
+    },
+    {
+      "id": "weather.hail",
+      "ptPT": "Granizo",
+      "enGB": "Hail",
+      "category": "weather",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_weather_hail",
+      "audioText": "Hail"
+    },
+    {
+      "id": "weather.hot",
+      "ptPT": "Quente",
+      "enGB": "Hot",
+      "category": "weather",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_weather_hot",
+      "audioText": "Hot"
+    },
+    {
+      "id": "weather.cold",
+      "ptPT": "Frio",
+      "enGB": "Cold",
+      "category": "weather",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_weather_cold",
+      "audioText": "Cold"
     }
   ],
   "questions": [
@@ -3904,6 +4192,246 @@
         "body.shoulder"
       ],
       "correctId": "body.shoulder"
+    },
+    {
+      "id": "quiz.nature.tree",
+      "prompt": "Como se diz «Árvore» em inglês?",
+      "optionIds": [
+        "nature.sea",
+        "nature.tree",
+        "nature.summer"
+      ],
+      "correctId": "nature.tree"
+    },
+    {
+      "id": "quiz.nature.flower",
+      "prompt": "Como se diz «Flor» em inglês?",
+      "optionIds": [
+        "nature.flower",
+        "nature.autumn",
+        "nature.beach"
+      ],
+      "correctId": "nature.flower"
+    },
+    {
+      "id": "quiz.nature.river",
+      "prompt": "Como se diz «Rio» em inglês?",
+      "optionIds": [
+        "nature.winter",
+        "nature.leaf",
+        "nature.river"
+      ],
+      "correctId": "nature.river"
+    },
+    {
+      "id": "quiz.nature.mountain",
+      "prompt": "Como se diz «Montanha» em inglês?",
+      "optionIds": [
+        "nature.spring",
+        "nature.mountain",
+        "nature.tree"
+      ],
+      "correctId": "nature.mountain"
+    },
+    {
+      "id": "quiz.nature.forest",
+      "prompt": "Como se diz «Floresta» em inglês?",
+      "optionIds": [
+        "nature.forest",
+        "nature.flower",
+        "nature.summer"
+      ],
+      "correctId": "nature.forest"
+    },
+    {
+      "id": "quiz.nature.sea",
+      "prompt": "Como se diz «Mar» em inglês?",
+      "optionIds": [
+        "nature.river",
+        "nature.autumn",
+        "nature.sea"
+      ],
+      "correctId": "nature.sea"
+    },
+    {
+      "id": "quiz.nature.beach",
+      "prompt": "Como se diz «Praia» em inglês?",
+      "optionIds": [
+        "nature.winter",
+        "nature.beach",
+        "nature.mountain"
+      ],
+      "correctId": "nature.beach"
+    },
+    {
+      "id": "quiz.nature.leaf",
+      "prompt": "Como se diz «Folha» em inglês?",
+      "optionIds": [
+        "nature.leaf",
+        "nature.forest",
+        "nature.tree"
+      ],
+      "correctId": "nature.leaf"
+    },
+    {
+      "id": "quiz.nature.spring",
+      "prompt": "Como se diz «Primavera» em inglês?",
+      "optionIds": [
+        "nature.sea",
+        "nature.flower",
+        "nature.spring"
+      ],
+      "correctId": "nature.spring"
+    },
+    {
+      "id": "quiz.nature.summer",
+      "prompt": "Como se diz «Verão» em inglês?",
+      "optionIds": [
+        "nature.river",
+        "nature.summer",
+        "nature.beach"
+      ],
+      "correctId": "nature.summer"
+    },
+    {
+      "id": "quiz.nature.autumn",
+      "prompt": "Como se diz «Outono» em inglês?",
+      "optionIds": [
+        "nature.autumn",
+        "nature.leaf",
+        "nature.mountain"
+      ],
+      "correctId": "nature.autumn"
+    },
+    {
+      "id": "quiz.nature.winter",
+      "prompt": "Como se diz «Inverno» em inglês?",
+      "optionIds": [
+        "nature.spring",
+        "nature.forest",
+        "nature.winter"
+      ],
+      "correctId": "nature.winter"
+    },
+    {
+      "id": "quiz.weather.sun",
+      "prompt": "Como se diz «Sol» em inglês?",
+      "optionIds": [
+        "weather.fog",
+        "weather.sun",
+        "weather.hail"
+      ],
+      "correctId": "weather.sun"
+    },
+    {
+      "id": "quiz.weather.rain",
+      "prompt": "Como se diz «Chuva» em inglês?",
+      "optionIds": [
+        "weather.rain",
+        "weather.hot",
+        "weather.storm"
+      ],
+      "correctId": "weather.rain"
+    },
+    {
+      "id": "quiz.weather.cloud",
+      "prompt": "Como se diz «Nuvem» em inglês?",
+      "optionIds": [
+        "weather.cold",
+        "weather.rainbow",
+        "weather.cloud"
+      ],
+      "correctId": "weather.cloud"
+    },
+    {
+      "id": "quiz.weather.wind",
+      "prompt": "Como se diz «Vento» em inglês?",
+      "optionIds": [
+        "weather.lightning",
+        "weather.wind",
+        "weather.sun"
+      ],
+      "correctId": "weather.wind"
+    },
+    {
+      "id": "quiz.weather.snow",
+      "prompt": "Como se diz «Neve» em inglês?",
+      "optionIds": [
+        "weather.snow",
+        "weather.rain",
+        "weather.hail"
+      ],
+      "correctId": "weather.snow"
+    },
+    {
+      "id": "quiz.weather.fog",
+      "prompt": "Como se diz «Nevoeiro» em inglês?",
+      "optionIds": [
+        "weather.cloud",
+        "weather.hot",
+        "weather.fog"
+      ],
+      "correctId": "weather.fog"
+    },
+    {
+      "id": "quiz.weather.storm",
+      "prompt": "Como se diz «Tempestade» em inglês?",
+      "optionIds": [
+        "weather.cold",
+        "weather.storm",
+        "weather.wind"
+      ],
+      "correctId": "weather.storm"
+    },
+    {
+      "id": "quiz.weather.rainbow",
+      "prompt": "Como se diz «Arco-íris» em inglês?",
+      "optionIds": [
+        "weather.rainbow",
+        "weather.snow",
+        "weather.sun"
+      ],
+      "correctId": "weather.rainbow"
+    },
+    {
+      "id": "quiz.weather.lightning",
+      "prompt": "Como se diz «Relâmpago» em inglês?",
+      "optionIds": [
+        "weather.fog",
+        "weather.rain",
+        "weather.lightning"
+      ],
+      "correctId": "weather.lightning"
+    },
+    {
+      "id": "quiz.weather.hail",
+      "prompt": "Como se diz «Granizo» em inglês?",
+      "optionIds": [
+        "weather.cloud",
+        "weather.hail",
+        "weather.storm"
+      ],
+      "correctId": "weather.hail"
+    },
+    {
+      "id": "quiz.weather.hot",
+      "prompt": "Como se diz «Quente» em inglês?",
+      "optionIds": [
+        "weather.hot",
+        "weather.rainbow",
+        "weather.wind"
+      ],
+      "correctId": "weather.hot"
+    },
+    {
+      "id": "quiz.weather.cold",
+      "prompt": "Como se diz «Frio» em inglês?",
+      "optionIds": [
+        "weather.lightning",
+        "weather.snow",
+        "weather.cold"
+      ],
+      "correctId": "weather.cold"
     }
   ]
 }
