@@ -110,6 +110,8 @@ fun learningCategoryName(category: WordCategory): String {
         WordCategory.BODY -> R.string.category_body
         WordCategory.NATURE -> R.string.category_nature
         WordCategory.WEATHER -> R.string.category_weather
+        WordCategory.CALENDAR -> R.string.category_calendar
+        WordCategory.TIME -> R.string.category_time
     }
     return stringResource(resId)
 }

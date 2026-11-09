@@ -620,3 +620,8 @@ Categorias `family` e `body` com 24 termos PT-PT/en-GB, 24 pictogramas originais
 ## PE-032 — Natureza, meteorologia e estações
 
 24 termos e perguntas PT-PT/en-GB com ilustrações offline nas categorias Natureza e Meteorologia, incluindo as quatro estações. Consultar [docs/PE-032-NATURE-WEATHER.md](docs/PE-032-NATURE-WEATHER.md).
+
+
+## PE-033 — Dias da semana, meses e horas
+
+Novas categorias `calendar` e `time`, com 35 termos e 35 perguntas; meses e horas apenas no nível 6–8. Ver [docs/PE-033-CALENDAR-TIME.md](docs/PE-033-CALENDAR-TIME.md).

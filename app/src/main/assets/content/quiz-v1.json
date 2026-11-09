@@ -2560,6 +2560,426 @@
       },
       "imageRef": "drawable/pe_weather_cold",
       "audioText": "Cold"
+    },
+    {
+      "id": "calendar.monday",
+      "ptPT": "Segunda-feira",
+      "enGB": "Monday",
+      "category": "calendar",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_calendar_monday",
+      "audioText": "Monday"
+    },
+    {
+      "id": "calendar.tuesday",
+      "ptPT": "Terça-feira",
+      "enGB": "Tuesday",
+      "category": "calendar",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_calendar_tuesday",
+      "audioText": "Tuesday"
+    },
+    {
+      "id": "calendar.wednesday",
+      "ptPT": "Quarta-feira",
+      "enGB": "Wednesday",
+      "category": "calendar",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_calendar_wednesday",
+      "audioText": "Wednesday"
+    },
+    {
+      "id": "calendar.thursday",
+      "ptPT": "Quinta-feira",
+      "enGB": "Thursday",
+      "category": "calendar",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_calendar_thursday",
+      "audioText": "Thursday"
+    },
+    {
+      "id": "calendar.friday",
+      "ptPT": "Sexta-feira",
+      "enGB": "Friday",
+      "category": "calendar",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_calendar_friday",
+      "audioText": "Friday"
+    },
+    {
+      "id": "calendar.saturday",
+      "ptPT": "Sábado",
+      "enGB": "Saturday",
+      "category": "calendar",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_calendar_saturday",
+      "audioText": "Saturday"
+    },
+    {
+      "id": "calendar.sunday",
+      "ptPT": "Domingo",
+      "enGB": "Sunday",
+      "category": "calendar",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_calendar_sunday",
+      "audioText": "Sunday"
+    },
+    {
+      "id": "calendar.january",
+      "ptPT": "Janeiro",
+      "enGB": "January",
+      "category": "calendar",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_calendar_january",
+      "audioText": "January"
+    },
+    {
+      "id": "calendar.february",
+      "ptPT": "Fevereiro",
+      "enGB": "February",
+      "category": "calendar",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_calendar_february",
+      "audioText": "February"
+    },
+    {
+      "id": "calendar.march",
+      "ptPT": "Março",
+      "enGB": "March",
+      "category": "calendar",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_calendar_march",
+      "audioText": "March"
+    },
+    {
+      "id": "calendar.april",
+      "ptPT": "Abril",
+      "enGB": "April",
+      "category": "calendar",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_calendar_april",
+      "audioText": "April"
+    },
+    {
+      "id": "calendar.may",
+      "ptPT": "Maio",
+      "enGB": "May",
+      "category": "calendar",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_calendar_may",
+      "audioText": "May"
+    },
+    {
+      "id": "calendar.june",
+      "ptPT": "Junho",
+      "enGB": "June",
+      "category": "calendar",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_calendar_june",
+      "audioText": "June"
+    },
+    {
+      "id": "calendar.july",
+      "ptPT": "Julho",
+      "enGB": "July",
+      "category": "calendar",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_calendar_july",
+      "audioText": "July"
+    },
+    {
+      "id": "calendar.august",
+      "ptPT": "Agosto",
+      "enGB": "August",
+      "category": "calendar",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_calendar_august",
+      "audioText": "August"
+    },
+    {
+      "id": "calendar.september",
+      "ptPT": "Setembro",
+      "enGB": "September",
+      "category": "calendar",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_calendar_september",
+      "audioText": "September"
+    },
+    {
+      "id": "calendar.october",
+      "ptPT": "Outubro",
+      "enGB": "October",
+      "category": "calendar",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_calendar_october",
+      "audioText": "October"
+    },
+    {
+      "id": "calendar.november",
+      "ptPT": "Novembro",
+      "enGB": "November",
+      "category": "calendar",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_calendar_november",
+      "audioText": "November"
+    },
+    {
+      "id": "calendar.december",
+      "ptPT": "Dezembro",
+      "enGB": "December",
+      "category": "calendar",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_calendar_december",
+      "audioText": "December"
+    },
+    {
+      "id": "time.morning",
+      "ptPT": "Manhã",
+      "enGB": "Morning",
+      "category": "time",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_time_morning",
+      "audioText": "Morning"
+    },
+    {
+      "id": "time.afternoon",
+      "ptPT": "Tarde",
+      "enGB": "Afternoon",
+      "category": "time",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_time_afternoon",
+      "audioText": "Afternoon"
+    },
+    {
+      "id": "time.evening",
+      "ptPT": "Fim da tarde ou início da noite",
+      "enGB": "Evening",
+      "category": "time",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_time_evening",
+      "audioText": "Evening"
+    },
+    {
+      "id": "time.night",
+      "ptPT": "Noite",
+      "enGB": "Night",
+      "category": "time",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_time_night",
+      "audioText": "Night"
+    },
+    {
+      "id": "time.one_oclock",
+      "ptPT": "É uma hora",
+      "enGB": "It's one o'clock",
+      "category": "time",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_time_one_oclock",
+      "audioText": "It's one o'clock"
+    },
+    {
+      "id": "time.two_oclock",
+      "ptPT": "São duas horas",
+      "enGB": "It's two o'clock",
+      "category": "time",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_time_two_oclock",
+      "audioText": "It's two o'clock"
+    },
+    {
+      "id": "time.three_oclock",
+      "ptPT": "São três horas",
+      "enGB": "It's three o'clock",
+      "category": "time",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_time_three_oclock",
+      "audioText": "It's three o'clock"
+    },
+    {
+      "id": "time.four_oclock",
+      "ptPT": "São quatro horas",
+      "enGB": "It's four o'clock",
+      "category": "time",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_time_four_oclock",
+      "audioText": "It's four o'clock"
+    },
+    {
+      "id": "time.five_oclock",
+      "ptPT": "São cinco horas",
+      "enGB": "It's five o'clock",
+      "category": "time",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_time_five_oclock",
+      "audioText": "It's five o'clock"
+    },
+    {
+      "id": "time.six_oclock",
+      "ptPT": "São seis horas",
+      "enGB": "It's six o'clock",
+      "category": "time",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_time_six_oclock",
+      "audioText": "It's six o'clock"
+    },
+    {
+      "id": "time.seven_oclock",
+      "ptPT": "São sete horas",
+      "enGB": "It's seven o'clock",
+      "category": "time",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_time_seven_oclock",
+      "audioText": "It's seven o'clock"
+    },
+    {
+      "id": "time.eight_oclock",
+      "ptPT": "São oito horas",
+      "enGB": "It's eight o'clock",
+      "category": "time",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_time_eight_oclock",
+      "audioText": "It's eight o'clock"
+    },
+    {
+      "id": "time.good_morning",
+      "ptPT": "Bom dia",
+      "enGB": "Good morning",
+      "category": "time",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_time_good_morning",
+      "audioText": "Good morning"
+    },
+    {
+      "id": "time.good_afternoon",
+      "ptPT": "Boa tarde",
+      "enGB": "Good afternoon",
+      "category": "time",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_time_good_afternoon",
+      "audioText": "Good afternoon"
+    },
+    {
+      "id": "time.good_evening",
+      "ptPT": "Boa noite (ao cumprimentar)",
+      "enGB": "Good evening",
+      "category": "time",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_time_good_evening",
+      "audioText": "Good evening"
+    },
+    {
+      "id": "time.good_night",
+      "ptPT": "Boa noite (ao despedir)",
+      "enGB": "Good night",
+      "category": "time",
+      "ageRange": {
+        "min": 3,
+        "max": 8
+      },
+      "imageRef": "drawable/pe_time_good_night",
+      "audioText": "Good night"
     }
   ],
   "questions": [
@@ -4432,6 +4852,356 @@
         "weather.cold"
       ],
       "correctId": "weather.cold"
+    },
+    {
+      "id": "quiz.calendar.monday",
+      "prompt": "Como se diz «Segunda-feira» em inglês?",
+      "optionIds": [
+        "calendar.monday",
+        "calendar.tuesday",
+        "calendar.wednesday"
+      ],
+      "correctId": "calendar.monday"
+    },
+    {
+      "id": "quiz.calendar.tuesday",
+      "prompt": "Como se diz «Terça-feira» em inglês?",
+      "optionIds": [
+        "calendar.wednesday",
+        "calendar.thursday",
+        "calendar.tuesday"
+      ],
+      "correctId": "calendar.tuesday"
+    },
+    {
+      "id": "quiz.calendar.wednesday",
+      "prompt": "Como se diz «Quarta-feira» em inglês?",
+      "optionIds": [
+        "calendar.friday",
+        "calendar.wednesday",
+        "calendar.thursday"
+      ],
+      "correctId": "calendar.wednesday"
+    },
+    {
+      "id": "quiz.calendar.thursday",
+      "prompt": "Como se diz «Quinta-feira» em inglês?",
+      "optionIds": [
+        "calendar.thursday",
+        "calendar.friday",
+        "calendar.saturday"
+      ],
+      "correctId": "calendar.thursday"
+    },
+    {
+      "id": "quiz.calendar.friday",
+      "prompt": "Como se diz «Sexta-feira» em inglês?",
+      "optionIds": [
+        "calendar.saturday",
+        "calendar.sunday",
+        "calendar.friday"
+      ],
+      "correctId": "calendar.friday"
+    },
+    {
+      "id": "quiz.calendar.saturday",
+      "prompt": "Como se diz «Sábado» em inglês?",
+      "optionIds": [
+        "calendar.monday",
+        "calendar.saturday",
+        "calendar.sunday"
+      ],
+      "correctId": "calendar.saturday"
+    },
+    {
+      "id": "quiz.calendar.sunday",
+      "prompt": "Como se diz «Domingo» em inglês?",
+      "optionIds": [
+        "calendar.sunday",
+        "calendar.monday",
+        "calendar.tuesday"
+      ],
+      "correctId": "calendar.sunday"
+    },
+    {
+      "id": "quiz.calendar.january",
+      "prompt": "Como se diz «Janeiro» em inglês?",
+      "optionIds": [
+        "calendar.january",
+        "calendar.february",
+        "calendar.march"
+      ],
+      "correctId": "calendar.january"
+    },
+    {
+      "id": "quiz.calendar.february",
+      "prompt": "Como se diz «Fevereiro» em inglês?",
+      "optionIds": [
+        "calendar.march",
+        "calendar.april",
+        "calendar.february"
+      ],
+      "correctId": "calendar.february"
+    },
+    {
+      "id": "quiz.calendar.march",
+      "prompt": "Como se diz «Março» em inglês?",
+      "optionIds": [
+        "calendar.may",
+        "calendar.march",
+        "calendar.april"
+      ],
+      "correctId": "calendar.march"
+    },
+    {
+      "id": "quiz.calendar.april",
+      "prompt": "Como se diz «Abril» em inglês?",
+      "optionIds": [
+        "calendar.april",
+        "calendar.may",
+        "calendar.june"
+      ],
+      "correctId": "calendar.april"
+    },
+    {
+      "id": "quiz.calendar.may",
+      "prompt": "Como se diz «Maio» em inglês?",
+      "optionIds": [
+        "calendar.june",
+        "calendar.july",
+        "calendar.may"
+      ],
+      "correctId": "calendar.may"
+    },
+    {
+      "id": "quiz.calendar.june",
+      "prompt": "Como se diz «Junho» em inglês?",
+      "optionIds": [
+        "calendar.august",
+        "calendar.june",
+        "calendar.july"
+      ],
+      "correctId": "calendar.june"
+    },
+    {
+      "id": "quiz.calendar.july",
+      "prompt": "Como se diz «Julho» em inglês?",
+      "optionIds": [
+        "calendar.july",
+        "calendar.august",
+        "calendar.september"
+      ],
+      "correctId": "calendar.july"
+    },
+    {
+      "id": "quiz.calendar.august",
+      "prompt": "Como se diz «Agosto» em inglês?",
+      "optionIds": [
+        "calendar.september",
+        "calendar.october",
+        "calendar.august"
+      ],
+      "correctId": "calendar.august"
+    },
+    {
+      "id": "quiz.calendar.september",
+      "prompt": "Como se diz «Setembro» em inglês?",
+      "optionIds": [
+        "calendar.november",
+        "calendar.september",
+        "calendar.october"
+      ],
+      "correctId": "calendar.september"
+    },
+    {
+      "id": "quiz.calendar.october",
+      "prompt": "Como se diz «Outubro» em inglês?",
+      "optionIds": [
+        "calendar.october",
+        "calendar.november",
+        "calendar.december"
+      ],
+      "correctId": "calendar.october"
+    },
+    {
+      "id": "quiz.calendar.november",
+      "prompt": "Como se diz «Novembro» em inglês?",
+      "optionIds": [
+        "calendar.december",
+        "calendar.january",
+        "calendar.november"
+      ],
+      "correctId": "calendar.november"
+    },
+    {
+      "id": "quiz.calendar.december",
+      "prompt": "Como se diz «Dezembro» em inglês?",
+      "optionIds": [
+        "calendar.february",
+        "calendar.december",
+        "calendar.january"
+      ],
+      "correctId": "calendar.december"
+    },
+    {
+      "id": "quiz.time.morning",
+      "prompt": "Como se diz «Manhã» em inglês?",
+      "optionIds": [
+        "time.morning",
+        "time.afternoon",
+        "time.evening"
+      ],
+      "correctId": "time.morning"
+    },
+    {
+      "id": "quiz.time.afternoon",
+      "prompt": "Como se diz «Tarde» em inglês?",
+      "optionIds": [
+        "time.evening",
+        "time.night",
+        "time.afternoon"
+      ],
+      "correctId": "time.afternoon"
+    },
+    {
+      "id": "quiz.time.evening",
+      "prompt": "Como se diz «Fim da tarde ou início da noite» em inglês?",
+      "optionIds": [
+        "time.morning",
+        "time.evening",
+        "time.night"
+      ],
+      "correctId": "time.evening"
+    },
+    {
+      "id": "quiz.time.night",
+      "prompt": "Como se diz «Noite» em inglês?",
+      "optionIds": [
+        "time.night",
+        "time.morning",
+        "time.afternoon"
+      ],
+      "correctId": "time.night"
+    },
+    {
+      "id": "quiz.time.one_oclock",
+      "prompt": "Como se diz «É uma hora» em inglês?",
+      "optionIds": [
+        "time.one_oclock",
+        "time.two_oclock",
+        "time.three_oclock"
+      ],
+      "correctId": "time.one_oclock"
+    },
+    {
+      "id": "quiz.time.two_oclock",
+      "prompt": "Como se diz «São duas horas» em inglês?",
+      "optionIds": [
+        "time.three_oclock",
+        "time.four_oclock",
+        "time.two_oclock"
+      ],
+      "correctId": "time.two_oclock"
+    },
+    {
+      "id": "quiz.time.three_oclock",
+      "prompt": "Como se diz «São três horas» em inglês?",
+      "optionIds": [
+        "time.five_oclock",
+        "time.three_oclock",
+        "time.four_oclock"
+      ],
+      "correctId": "time.three_oclock"
+    },
+    {
+      "id": "quiz.time.four_oclock",
+      "prompt": "Como se diz «São quatro horas» em inglês?",
+      "optionIds": [
+        "time.four_oclock",
+        "time.five_oclock",
+        "time.six_oclock"
+      ],
+      "correctId": "time.four_oclock"
+    },
+    {
+      "id": "quiz.time.five_oclock",
+      "prompt": "Como se diz «São cinco horas» em inglês?",
+      "optionIds": [
+        "time.six_oclock",
+        "time.seven_oclock",
+        "time.five_oclock"
+      ],
+      "correctId": "time.five_oclock"
+    },
+    {
+      "id": "quiz.time.six_oclock",
+      "prompt": "Como se diz «São seis horas» em inglês?",
+      "optionIds": [
+        "time.eight_oclock",
+        "time.six_oclock",
+        "time.seven_oclock"
+      ],
+      "correctId": "time.six_oclock"
+    },
+    {
+      "id": "quiz.time.seven_oclock",
+      "prompt": "Como se diz «São sete horas» em inglês?",
+      "optionIds": [
+        "time.seven_oclock",
+        "time.eight_oclock",
+        "time.one_oclock"
+      ],
+      "correctId": "time.seven_oclock"
+    },
+    {
+      "id": "quiz.time.eight_oclock",
+      "prompt": "Como se diz «São oito horas» em inglês?",
+      "optionIds": [
+        "time.one_oclock",
+        "time.two_oclock",
+        "time.eight_oclock"
+      ],
+      "correctId": "time.eight_oclock"
+    },
+    {
+      "id": "quiz.time.good_morning",
+      "prompt": "Como se diz «Bom dia» em inglês?",
+      "optionIds": [
+        "time.good_morning",
+        "time.good_afternoon",
+        "time.good_evening"
+      ],
+      "correctId": "time.good_morning"
+    },
+    {
+      "id": "quiz.time.good_afternoon",
+      "prompt": "Como se diz «Boa tarde» em inglês?",
+      "optionIds": [
+        "time.good_evening",
+        "time.good_night",
+        "time.good_afternoon"
+      ],
+      "correctId": "time.good_afternoon"
+    },
+    {
+      "id": "quiz.time.good_evening",
+      "prompt": "Como se diz «Boa noite (ao cumprimentar)» em inglês?",
+      "optionIds": [
+        "time.good_morning",
+        "time.good_evening",
+        "time.good_night"
+      ],
+      "correctId": "time.good_evening"
+    },
+    {
+      "id": "quiz.time.good_night",
+      "prompt": "Como se diz «Boa noite (ao despedir)» em inglês?",
+      "optionIds": [
+        "time.good_night",
+        "time.good_morning",
+        "time.good_afternoon"
+      ],
+      "correctId": "time.good_night"
     }
   ]
 }

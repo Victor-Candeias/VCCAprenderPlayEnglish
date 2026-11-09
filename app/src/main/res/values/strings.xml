@@ -61,6 +61,8 @@
     <string name="category_body">Corpo humano</string>
     <string name="category_nature">Natureza e estações</string>
     <string name="category_weather">Meteorologia</string>
+    <string name="category_calendar">Dias e meses</string>
+    <string name="category_time">Períodos do dia e horas</string>
     <string name="learning_level_instruction">Escolhe o teu nível</string>
     <string name="learning_level_3_5">3–5 anos</string>
     <string name="learning_level_6_8">6–8 anos</string>
