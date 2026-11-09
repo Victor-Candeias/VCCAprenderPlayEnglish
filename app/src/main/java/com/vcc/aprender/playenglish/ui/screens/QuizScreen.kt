@@ -424,6 +424,19 @@ private fun QuestionIllustration(category: WordCategory?, questionId: String) {
                     contentDescription = "Amostra ilustrativa da cor da pergunta"
                 }
         )
+    } else if (category == WordCategory.CLOTHING || category == WordCategory.TRANSPORT) {
+        val context = LocalContext.current
+        val prefix = if (category == WordCategory.CLOTHING) "pe_clothing_" else "pe_transport_"
+        val resource = context.resources.getIdentifier(
+            prefix + questionId.substringAfterLast('.'), "drawable", context.packageName
+        )
+        if (resource != 0) {
+            Image(
+                painter = painterResource(resource),
+                contentDescription = if (category == WordCategory.CLOTHING) "Ilustração de vestuário" else "Ilustração do transporte",
+                modifier = Modifier.size(112.dp).testTag("quiz-pe030-illustration")
+            )
+        }
     } else if (category == WordCategory.OBJECTS) {
         val context = LocalContext.current
         val resource = context.resources.getIdentifier(
@@ -521,6 +534,8 @@ private fun QuestionIllustration(category: WordCategory?, questionId: String) {
             WordCategory.FOOD -> "🍎"
             WordCategory.OBJECTS -> "🧸"
             WordCategory.PHRASES -> "💬"
+            WordCategory.CLOTHING -> "👕"
+            WordCategory.TRANSPORT -> "🚆"
             null -> "🧩"
         }
         Text(

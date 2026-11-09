@@ -55,6 +55,8 @@
     <string name="category_phrases">Expressões</string>
     <string name="category_food">Alimentos</string>
     <string name="category_objects">Objetos</string>
+    <string name="category_clothing">Vestuário</string>
+    <string name="category_transport">Transportes</string>
     <string name="learning_level_instruction">Escolhe o teu nível</string>
     <string name="learning_level_3_5">3–5 anos</string>
     <string name="learning_level_6_8">6–8 anos</string>
