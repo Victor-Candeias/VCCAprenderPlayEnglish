@@ -34,7 +34,9 @@ enum class WordCategory(val id: String) {
     FAMILY("family"),
     BODY("body"),
     NATURE("nature"),
-    WEATHER("weather");
+    WEATHER("weather"),
+    CALENDAR("calendar"),
+    TIME("time");
 
     companion object {
         fun fromId(id: String): WordCategory =

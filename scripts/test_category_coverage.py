@@ -13,10 +13,10 @@ class CategoryCoverageTests(unittest.TestCase):
     def setUp(self):
         self.catalog = load_catalog()
 
-    def test_all_twelve_categories_have_words_and_questions(self):
+    def test_all_fourteen_categories_have_words_and_questions(self):
         words, questions = inspect_category_coverage(self.catalog)
-        self.assertEqual(211, sum(words.values()))
-        self.assertEqual(187, sum(questions.values()))
+        self.assertEqual(246, sum(words.values()))
+        self.assertEqual(222, sum(questions.values()))
         self.assertEqual(15, words['colors'])
         self.assertEqual(11, questions['colors'])
         self.assertEqual(32, words['numbers'])
@@ -31,7 +31,9 @@ class CategoryCoverageTests(unittest.TestCase):
         self.assertEqual(12, words['body'])
         self.assertEqual(12, words['nature'])
         self.assertEqual(12, words['weather'])
-        self.assertTrue(all(count == 12 for category, count in words.items() if category not in ('colors', 'numbers', 'animals', 'food', 'objects', 'clothing', 'transport', 'family', 'body', 'nature', 'weather')))
+        self.assertEqual(19, words['calendar'])
+        self.assertEqual(16, words['time'])
+        self.assertTrue(all(count == 12 for category, count in words.items() if category not in ('colors', 'numbers', 'animals', 'food', 'objects', 'clothing', 'transport', 'family', 'body', 'nature', 'weather', 'calendar', 'time')))
         self.assertEqual(20, questions['food'])
         self.assertEqual(20, questions['objects'])
         self.assertEqual(12, questions['clothing'])
@@ -40,7 +42,9 @@ class CategoryCoverageTests(unittest.TestCase):
         self.assertEqual(12, questions['body'])
         self.assertEqual(12, questions['nature'])
         self.assertEqual(12, questions['weather'])
-        self.assertTrue(all(count == 8 for category, count in questions.items() if category not in ('colors', 'numbers', 'animals', 'food', 'objects', 'clothing', 'transport', 'family', 'body', 'nature', 'weather')))
+        self.assertEqual(19, questions['calendar'])
+        self.assertEqual(16, questions['time'])
+        self.assertTrue(all(count == 8 for category, count in questions.items() if category not in ('colors', 'numbers', 'animals', 'food', 'objects', 'clothing', 'transport', 'family', 'body', 'nature', 'weather', 'calendar', 'time')))
 
     def test_catches_wrong_pt_pt_prompt(self):
         data = copy.deepcopy(self.catalog)

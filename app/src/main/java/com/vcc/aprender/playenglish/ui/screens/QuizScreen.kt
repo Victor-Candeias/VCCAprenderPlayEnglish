@@ -424,6 +424,13 @@ private fun QuestionIllustration(category: WordCategory?, questionId: String) {
                     contentDescription = "Amostra ilustrativa da cor da pergunta"
                 }
         )
+    } else if (category == WordCategory.CALENDAR || category == WordCategory.TIME) {
+        val context = LocalContext.current
+        val prefix = if (category == WordCategory.CALENDAR) "pe_calendar_" else "pe_time_"
+        val res = context.resources.getIdentifier(prefix + questionId.substringAfterLast('.'), "drawable", context.packageName)
+        if (res != 0) {
+            Image(painter = painterResource(res), contentDescription = "Ilustração de calendário ou horas", modifier = Modifier.size(112.dp).testTag("quiz-pe033-illustration"))
+        }
     } else if (category == WordCategory.NATURE || category == WordCategory.WEATHER) {
         val context = LocalContext.current
         val prefix = if (category == WordCategory.NATURE) "pe_nature_" else "pe_weather_"
@@ -566,6 +573,8 @@ private fun QuestionIllustration(category: WordCategory?, questionId: String) {
             WordCategory.BODY -> "🖐"
             WordCategory.NATURE -> "🌳"
             WordCategory.WEATHER -> "🌦"
+            WordCategory.CALENDAR -> "📅"
+            WordCategory.TIME -> "🕒"
             null -> "🧩"
         }
         Text(

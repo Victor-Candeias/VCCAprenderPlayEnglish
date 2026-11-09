@@ -3,7 +3,7 @@
 from collections import Counter
 from validate_offline_catalog import load_catalog, validate_catalog
 
-CATEGORY_IDS = ("animals", "colors", "numbers", "phrases", "food", "objects", "clothing", "transport", "family", "body", "nature", "weather")
+CATEGORY_IDS = ("animals", "colors", "numbers", "phrases", "food", "objects", "clothing", "transport", "family", "body", "nature", "weather", "calendar", "time")
 
 
 def inspect_category_coverage(catalog):
