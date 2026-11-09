@@ -13,6 +13,8 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Slider
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -34,10 +36,13 @@ import androidx.compose.ui.unit.sp
 import com.vcc.aprender.playenglish.R
 import com.vcc.aprender.playenglish.audio.AndroidEnglishPronunciationOutput
 import com.vcc.aprender.playenglish.audio.EnglishTtsStatus
+import com.vcc.aprender.playenglish.audio.ReadingPreferences
+import com.vcc.aprender.playenglish.audio.ReadingPreferencesStore
 import com.vcc.aprender.playenglish.domain.model.WordEntry
 import com.vcc.aprender.playenglish.domain.model.WordCategory
 import com.vcc.aprender.playenglish.domain.usecase.SearchVocabularyUseCase
 import kotlin.random.Random
+import kotlin.math.roundToInt
 import com.vcc.aprender.playenglish.ui.components.AnimalIllustrations
 import com.vcc.aprender.playenglish.ui.components.ChildScreenLayout
 import com.vcc.aprender.playenglish.ui.pronunciation.PronunciationNavigation
@@ -47,7 +52,18 @@ import com.vcc.aprender.playenglish.ui.theme.PlayEnglishColors
 @Composable
 fun PronunciationScreen(onBack: () -> Unit, words: List<WordEntry> = emptyList()) {
     val context = LocalContext.current
-    val audio = remember(context) { AndroidEnglishPronunciationOutput(context) }
+    val preferencesStore = remember(context) { ReadingPreferencesStore(context) }
+    var preferences by remember(preferencesStore) {
+        mutableStateOf(preferencesStore.load())
+    }
+    val audio = remember(context) {
+        AndroidEnglishPronunciationOutput(context, preferences.speechRate)
+    }
+    fun saveOptions(next: ReadingPreferences) {
+        val safe = next.normalized()
+        preferences = safe
+        preferencesStore.save(safe)
+    }
     DisposableEffect(audio) { onDispose { audio.close() } }
 
     // The category/age filter is supplied by the existing selection ViewModel.
@@ -62,8 +78,9 @@ fun PronunciationScreen(onBack: () -> Unit, words: List<WordEntry> = emptyList()
     val index = if (visibleWords.isEmpty()) 0 else selectedIndex.coerceIn(0, visibleWords.lastIndex)
     val word = visibleWords.getOrNull(index)
     val status = audio.status
-    val canSpeak = status == EnglishTtsStatus.READY && !audio.isSpeaking && word != null
-    val message = when (status) {
+    val canSpeak = preferences.audioEnabled &&
+        status == EnglishTtsStatus.READY && !audio.isSpeaking && word != null
+    val message = if (!preferences.audioEnabled) R.string.pronunciation_tts_disabled else when (status) {
         EnglishTtsStatus.INITIALIZING -> R.string.pronunciation_tts_loading
         EnglishTtsStatus.READY -> if (audio.lastPlaybackFailed)
             R.string.pronunciation_tts_error else R.string.pronunciation_tts_ready
@@ -76,6 +93,77 @@ fun PronunciationScreen(onBack: () -> Unit, words: List<WordEntry> = emptyList()
         screenTag = "screen-pronunciation",
         onBack = onBack
     ) {
+        Card(
+            modifier = Modifier.fillMaxWidth().testTag("reading-preferences"),
+            colors = CardDefaults.cardColors(containerColor = PlayEnglishColors.Sky)
+        ) {
+            Column(
+                modifier = Modifier.fillMaxWidth().padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                Text(
+                    stringResource(R.string.reading_settings_title),
+                    style = MaterialTheme.typography.titleMedium
+                )
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(stringResource(R.string.reading_audio_enabled))
+                    Switch(
+                        checked = preferences.audioEnabled,
+                        onCheckedChange = { enabled ->
+                            // Immediate stop invalidates the old utterance ID in SpeechTurnGate.
+                            if (!enabled) audio.stop()
+                            saveOptions(preferences.copy(audioEnabled = enabled))
+                        },
+                        modifier = Modifier.testTag("reading-audio-toggle")
+                    )
+                }
+                Text(
+                    stringResource(
+                        R.string.reading_speed_label,
+                        (preferences.speechRate * 100).roundToInt()
+                    )
+                )
+                Slider(
+                    value = preferences.speechRate,
+                    onValueChange = { rate ->
+                        val safe = rate.coerceIn(
+                            ReadingPreferences.MIN_RATE, ReadingPreferences.MAX_RATE
+                        )
+                        audio.setSpeechRate(safe)
+                        saveOptions(preferences.copy(speechRate = safe))
+                    },
+                    valueRange = ReadingPreferences.MIN_RATE..ReadingPreferences.MAX_RATE,
+                    steps = 7,
+                    enabled = !audio.isSpeaking,
+                    modifier = Modifier.fillMaxWidth().testTag("reading-speed-slider")
+                )
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(stringResource(R.string.reading_show_instructions))
+                    Switch(
+                        checked = preferences.showInstructions,
+                        onCheckedChange = { value ->
+                            saveOptions(preferences.copy(showInstructions = value))
+                        },
+                        modifier = Modifier.testTag("reading-instructions-toggle")
+                    )
+                }
+                if (preferences.showInstructions) {
+                    Text(
+                        stringResource(R.string.reading_instructions),
+                        style = MaterialTheme.typography.bodyMedium,
+                        modifier = Modifier.testTag("reading-instructions-text")
+                    )
+                }
+            }
+        }
         OutlinedTextField(
             value = query,
             onValueChange = { query = it },
@@ -161,20 +249,20 @@ fun PronunciationScreen(onBack: () -> Unit, words: List<WordEntry> = emptyList()
         }
         Text(stringResource(message), style = MaterialTheme.typography.bodyLarge,
             modifier = Modifier.testTag("pronunciation-tts-status"))
-        if (status == EnglishTtsStatus.VOICE_MISSING) {
+        if (status == EnglishTtsStatus.VOICE_MISSING && preferences.audioEnabled) {
             Text(stringResource(R.string.pronunciation_tts_install_hint),
                 modifier = Modifier.testTag("pronunciation-tts-install-hint"))
         }
         // Only the English audioText is ever passed to the TTS engine.
         // The PE-022 gate makes rapid taps and callbacks safe.
         OutlinedButton(
-            onClick = { word?.let { audio.speak(it.audioText, "en-GB") } },
+            onClick = { if (preferences.audioEnabled) word?.let { audio.speak(it.audioText, "en-GB") } },
             enabled = canSpeak,
             modifier = Modifier.fillMaxWidth().heightIn(min = 56.dp)
                 .testTag("pronunciation-listen")
         ) { Text(stringResource(R.string.pronunciation_listen)) }
         OutlinedButton(
-            onClick = { word?.let { audio.speak(it.audioText, "en-GB") } },
+            onClick = { if (preferences.audioEnabled) word?.let { audio.speak(it.audioText, "en-GB") } },
             enabled = canSpeak,
             modifier = Modifier.fillMaxWidth().heightIn(min = 56.dp)
                 .testTag("pronunciation-repeat")
