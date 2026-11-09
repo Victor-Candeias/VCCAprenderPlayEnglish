@@ -15,7 +15,7 @@ class ObjectVocabularyTests(unittest.TestCase):
         self.questions = [q for q in self.data["questions"] if q["id"].startswith("quiz.objects.")]
 
     def test_catalog_and_subcategories(self):
-        self.assertEqual((276, 252), validate_catalog(self.data))
+        self.assertEqual((296, 272), validate_catalog(self.data))
         wc, qc = inspect_category_coverage(self.data)
         self.assertEqual((24, 20), (wc["objects"], qc["objects"]))
         self.assertEqual({"home", "school"}, {w["subcategory"] for w in self.objects})

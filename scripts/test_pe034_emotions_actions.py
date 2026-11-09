@@ -10,7 +10,7 @@ class EmotionsActionsTests(unittest.TestCase):
         self.catalog = load_catalog()
         self.words = {w["id"]: w for w in self.catalog["words"]}
     def test_counts(self):
-        self.assertEqual((276, 252), validate_catalog(self.catalog))
+        self.assertEqual((296, 272), validate_catalog(self.catalog))
         wc, qc = inspect_category_coverage(self.catalog)
         self.assertEqual((15, 15), (wc["emotions"], wc["actions"]))
         self.assertEqual((15, 15), (qc["emotions"], qc["actions"]))

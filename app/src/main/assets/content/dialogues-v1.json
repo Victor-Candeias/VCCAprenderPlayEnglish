@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "category": "phrases",
+  "dialogs": [
+    {
+      "id": "saudacao",
+      "title": "Um cumprimento",
+      "turnIds": [
+        "phrases.hello",
+        "phrases.how_are_you"
+      ]
+    },
+    {
+      "id": "bem_estar",
+      "title": "Como te sentes?",
+      "turnIds": [
+        "phrases.how_are_you_today",
+        "phrases.im_good_thanks"
+      ]
+    },
+    {
+      "id": "apresentacao",
+      "title": "Apresentar-se",
+      "turnIds": [
+        "phrases.whats_your_name",
+        "phrases.my_name_is_alex"
+      ]
+    },
+    {
+      "id": "prazer",
+      "title": "Conhecer alguém",
+      "turnIds": [
+        "phrases.nice_to_meet_you",
+        "phrases.nice_to_meet_you_too"
+      ]
+    },
+    {
+      "id": "brincadeira",
+      "title": "Convidar para brincar",
+      "turnIds": [
+        "phrases.can_i_play",
+        "phrases.yes_of_course"
+      ]
+    },
+    {
+      "id": "agua",
+      "title": "Pedir água com educação",
+      "turnIds": [
+        "phrases.may_i_have_water",
+        "phrases.here_you_are"
+      ]
+    },
+    {
+      "id": "agradecimento",
+      "title": "Agradecer",
+      "turnIds": [
+        "phrases.thank_you",
+        "phrases.youre_welcome"
+      ]
+    },
+    {
+      "id": "ajuda",
+      "title": "Pedir ajuda",
+      "turnIds": [
+        "phrases.can_you_help_me",
+        "phrases.yes_of_course"
+      ]
+    },
+    {
+      "id": "despedida",
+      "title": "Despedir-se",
+      "turnIds": [
+        "phrases.goodbye",
+        "phrases.see_you_tomorrow"
+      ]
+    },
+    {
+      "id": "compreensao",
+      "title": "Pedir para repetir",
+      "turnIds": [
+        "phrases.i_dont_understand",
+        "phrases.can_you_repeat_please"
+      ]
+    }
+  ]
+}

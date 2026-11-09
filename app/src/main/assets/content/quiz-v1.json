@@ -3340,6 +3340,246 @@
       },
       "imageRef": "drawable/pe_actions_i_can_sing",
       "audioText": "I can sing"
+    },
+    {
+      "id": "phrases.good_afternoon",
+      "ptPT": "Boa tarde",
+      "enGB": "Good afternoon.",
+      "category": "phrases",
+      "ageRange": {
+        "min": 5,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Good afternoon."
+    },
+    {
+      "id": "phrases.good_evening",
+      "ptPT": "Boa noite (ao cumprimentar)",
+      "enGB": "Good evening.",
+      "category": "phrases",
+      "ageRange": {
+        "min": 5,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Good evening."
+    },
+    {
+      "id": "phrases.how_are_you_today",
+      "ptPT": "Como estás hoje?",
+      "enGB": "How are you today?",
+      "category": "phrases",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "How are you today?"
+    },
+    {
+      "id": "phrases.im_good_thanks",
+      "ptPT": "Estou bem, obrigado ou obrigada.",
+      "enGB": "I'm good, thanks.",
+      "category": "phrases",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "I'm good, thanks."
+    },
+    {
+      "id": "phrases.and_you",
+      "ptPT": "E tu?",
+      "enGB": "And you?",
+      "category": "phrases",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "And you?"
+    },
+    {
+      "id": "phrases.nice_to_meet_you",
+      "ptPT": "Muito prazer em conhecer-te.",
+      "enGB": "Nice to meet you.",
+      "category": "phrases",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Nice to meet you."
+    },
+    {
+      "id": "phrases.nice_to_meet_you_too",
+      "ptPT": "Também é um prazer conhecer-te.",
+      "enGB": "Nice to meet you too.",
+      "category": "phrases",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Nice to meet you too."
+    },
+    {
+      "id": "phrases.whats_your_name",
+      "ptPT": "Como te chamas?",
+      "enGB": "What's your name?",
+      "category": "phrases",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "What's your name?"
+    },
+    {
+      "id": "phrases.my_name_is_alex",
+      "ptPT": "Chamo-me Alex.",
+      "enGB": "My name is Alex.",
+      "category": "phrases",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "My name is Alex."
+    },
+    {
+      "id": "phrases.can_i_play",
+      "ptPT": "Posso brincar contigo?",
+      "enGB": "Can I play with you?",
+      "category": "phrases",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Can I play with you?"
+    },
+    {
+      "id": "phrases.yes_of_course",
+      "ptPT": "Sim, claro!",
+      "enGB": "Yes, of course!",
+      "category": "phrases",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Yes, of course!"
+    },
+    {
+      "id": "phrases.may_i_have_water",
+      "ptPT": "Posso ter um pouco de água?",
+      "enGB": "May I have some water, please?",
+      "category": "phrases",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "May I have some water, please?"
+    },
+    {
+      "id": "phrases.here_you_are",
+      "ptPT": "Aqui tens.",
+      "enGB": "Here you are.",
+      "category": "phrases",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Here you are."
+    },
+    {
+      "id": "phrases.youre_welcome",
+      "ptPT": "De nada.",
+      "enGB": "You're welcome.",
+      "category": "phrases",
+      "ageRange": {
+        "min": 5,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "You're welcome."
+    },
+    {
+      "id": "phrases.excuse_me",
+      "ptPT": "Com licença.",
+      "enGB": "Excuse me.",
+      "category": "phrases",
+      "ageRange": {
+        "min": 5,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Excuse me."
+    },
+    {
+      "id": "phrases.see_you_tomorrow",
+      "ptPT": "Até amanhã.",
+      "enGB": "See you tomorrow.",
+      "category": "phrases",
+      "ageRange": {
+        "min": 5,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "See you tomorrow."
+    },
+    {
+      "id": "phrases.have_a_nice_day",
+      "ptPT": "Tem um bom dia!",
+      "enGB": "Have a nice day!",
+      "category": "phrases",
+      "ageRange": {
+        "min": 5,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Have a nice day!"
+    },
+    {
+      "id": "phrases.can_you_help_me",
+      "ptPT": "Podes ajudar-me?",
+      "enGB": "Can you help me?",
+      "category": "phrases",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Can you help me?"
+    },
+    {
+      "id": "phrases.i_dont_understand",
+      "ptPT": "Não percebo.",
+      "enGB": "I don't understand.",
+      "category": "phrases",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "I don't understand."
+    },
+    {
+      "id": "phrases.can_you_repeat_please",
+      "ptPT": "Podes repetir, por favor?",
+      "enGB": "Can you repeat that, please?",
+      "category": "phrases",
+      "ageRange": {
+        "min": 6,
+        "max": 8
+      },
+      "imageRef": null,
+      "audioText": "Can you repeat that, please?"
     }
   ],
   "questions": [
@@ -5862,6 +6102,206 @@
         "actions.i_can_run"
       ],
       "correctId": "actions.i_can_sing"
+    },
+    {
+      "id": "quiz.phrases.good_afternoon",
+      "prompt": "Como se diz «Boa tarde» em inglês?",
+      "optionIds": [
+        "phrases.good_night",
+        "phrases.good_afternoon",
+        "phrases.please"
+      ],
+      "correctId": "phrases.good_afternoon"
+    },
+    {
+      "id": "quiz.phrases.good_evening",
+      "prompt": "Como se diz «Boa noite (ao cumprimentar)» em inglês?",
+      "optionIds": [
+        "phrases.good_evening",
+        "phrases.goodbye",
+        "phrases.good_morning"
+      ],
+      "correctId": "phrases.good_evening"
+    },
+    {
+      "id": "quiz.phrases.how_are_you_today",
+      "prompt": "Como se diz «Como estás hoje?» em inglês?",
+      "optionIds": [
+        "phrases.thank_you",
+        "phrases.hello",
+        "phrases.how_are_you_today"
+      ],
+      "correctId": "phrases.how_are_you_today"
+    },
+    {
+      "id": "quiz.phrases.im_good_thanks",
+      "prompt": "Como se diz «Estou bem, obrigado ou obrigada.» em inglês?",
+      "optionIds": [
+        "phrases.goodbye",
+        "phrases.im_good_thanks",
+        "phrases.please"
+      ],
+      "correctId": "phrases.im_good_thanks"
+    },
+    {
+      "id": "quiz.phrases.and_you",
+      "prompt": "Como se diz «E tu?» em inglês?",
+      "optionIds": [
+        "phrases.and_you",
+        "phrases.sorry",
+        "phrases.good_morning"
+      ],
+      "correctId": "phrases.and_you"
+    },
+    {
+      "id": "quiz.phrases.nice_to_meet_you",
+      "prompt": "Como se diz «Muito prazer em conhecer-te.» em inglês?",
+      "optionIds": [
+        "phrases.no",
+        "phrases.hello",
+        "phrases.nice_to_meet_you"
+      ],
+      "correctId": "phrases.nice_to_meet_you"
+    },
+    {
+      "id": "quiz.phrases.nice_to_meet_you_too",
+      "prompt": "Como se diz «Também é um prazer conhecer-te.» em inglês?",
+      "optionIds": [
+        "phrases.yes",
+        "phrases.nice_to_meet_you_too",
+        "phrases.goodbye"
+      ],
+      "correctId": "phrases.nice_to_meet_you_too"
+    },
+    {
+      "id": "quiz.phrases.whats_your_name",
+      "prompt": "Como se diz «Como te chamas?» em inglês?",
+      "optionIds": [
+        "phrases.whats_your_name",
+        "phrases.thank_you",
+        "phrases.good_night"
+      ],
+      "correctId": "phrases.whats_your_name"
+    },
+    {
+      "id": "quiz.phrases.my_name_is_alex",
+      "prompt": "Como se diz «Chamo-me Alex.» em inglês?",
+      "optionIds": [
+        "phrases.sorry",
+        "phrases.please",
+        "phrases.my_name_is_alex"
+      ],
+      "correctId": "phrases.my_name_is_alex"
+    },
+    {
+      "id": "quiz.phrases.can_i_play",
+      "prompt": "Como se diz «Posso brincar contigo?» em inglês?",
+      "optionIds": [
+        "phrases.no",
+        "phrases.can_i_play",
+        "phrases.goodbye"
+      ],
+      "correctId": "phrases.can_i_play"
+    },
+    {
+      "id": "quiz.phrases.yes_of_course",
+      "prompt": "Como se diz «Sim, claro!» em inglês?",
+      "optionIds": [
+        "phrases.yes_of_course",
+        "phrases.good_night",
+        "phrases.how_are_you"
+      ],
+      "correctId": "phrases.yes_of_course"
+    },
+    {
+      "id": "quiz.phrases.may_i_have_water",
+      "prompt": "Como se diz «Posso ter um pouco de água?» em inglês?",
+      "optionIds": [
+        "phrases.sorry",
+        "phrases.good_morning",
+        "phrases.may_i_have_water"
+      ],
+      "correctId": "phrases.may_i_have_water"
+    },
+    {
+      "id": "quiz.phrases.here_you_are",
+      "prompt": "Como se diz «Aqui tens.» em inglês?",
+      "optionIds": [
+        "phrases.goodbye",
+        "phrases.here_you_are",
+        "phrases.how_are_you"
+      ],
+      "correctId": "phrases.here_you_are"
+    },
+    {
+      "id": "quiz.phrases.youre_welcome",
+      "prompt": "Como se diz «De nada.» em inglês?",
+      "optionIds": [
+        "phrases.youre_welcome",
+        "phrases.yes",
+        "phrases.goodbye"
+      ],
+      "correctId": "phrases.youre_welcome"
+    },
+    {
+      "id": "quiz.phrases.excuse_me",
+      "prompt": "Como se diz «Com licença.» em inglês?",
+      "optionIds": [
+        "phrases.yes",
+        "phrases.thank_you",
+        "phrases.excuse_me"
+      ],
+      "correctId": "phrases.excuse_me"
+    },
+    {
+      "id": "quiz.phrases.see_you_tomorrow",
+      "prompt": "Como se diz «Até amanhã.» em inglês?",
+      "optionIds": [
+        "phrases.good_morning",
+        "phrases.see_you_tomorrow",
+        "phrases.no"
+      ],
+      "correctId": "phrases.see_you_tomorrow"
+    },
+    {
+      "id": "quiz.phrases.have_a_nice_day",
+      "prompt": "Como se diz «Tem um bom dia!» em inglês?",
+      "optionIds": [
+        "phrases.have_a_nice_day",
+        "phrases.sorry",
+        "phrases.good_night"
+      ],
+      "correctId": "phrases.have_a_nice_day"
+    },
+    {
+      "id": "quiz.phrases.can_you_help_me",
+      "prompt": "Como se diz «Podes ajudar-me?» em inglês?",
+      "optionIds": [
+        "phrases.no",
+        "phrases.hello",
+        "phrases.can_you_help_me"
+      ],
+      "correctId": "phrases.can_you_help_me"
+    },
+    {
+      "id": "quiz.phrases.i_dont_understand",
+      "prompt": "Como se diz «Não percebo.» em inglês?",
+      "optionIds": [
+        "phrases.thank_you",
+        "phrases.i_dont_understand",
+        "phrases.goodbye"
+      ],
+      "correctId": "phrases.i_dont_understand"
+    },
+    {
+      "id": "quiz.phrases.can_you_repeat_please",
+      "prompt": "Como se diz «Podes repetir, por favor?» em inglês?",
+      "optionIds": [
+        "phrases.can_you_repeat_please",
+        "phrases.good_night",
+        "phrases.hello"
+      ],
+      "correctId": "phrases.can_you_repeat_please"
     }
   ]
 }
