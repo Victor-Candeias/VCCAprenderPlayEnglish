@@ -424,6 +424,19 @@ private fun QuestionIllustration(category: WordCategory?, questionId: String) {
                     contentDescription = "Amostra ilustrativa da cor da pergunta"
                 }
         )
+    } else if (category == WordCategory.FAMILY || category == WordCategory.BODY) {
+        val context = LocalContext.current
+        val prefix = if (category == WordCategory.FAMILY) "pe_family_" else "pe_body_"
+        val resource = context.resources.getIdentifier(
+            prefix + questionId.substringAfterLast('.'), "drawable", context.packageName
+        )
+        if (resource != 0) {
+            Image(
+                painter = painterResource(resource),
+                contentDescription = if (category == WordCategory.FAMILY) "Símbolo da relação familiar" else "Ilustração da parte do corpo",
+                modifier = Modifier.size(112.dp).testTag("quiz-pe031-illustration")
+            )
+        }
     } else if (category == WordCategory.CLOTHING || category == WordCategory.TRANSPORT) {
         val context = LocalContext.current
         val prefix = if (category == WordCategory.CLOTHING) "pe_clothing_" else "pe_transport_"
@@ -536,6 +549,8 @@ private fun QuestionIllustration(category: WordCategory?, questionId: String) {
             WordCategory.PHRASES -> "💬"
             WordCategory.CLOTHING -> "👕"
             WordCategory.TRANSPORT -> "🚆"
+            WordCategory.FAMILY -> "👪"
+            WordCategory.BODY -> "🖐"
             null -> "🧩"
         }
         Text(

@@ -610,3 +610,8 @@ O catálogo integra 24 itens de alimentação (12 existentes e 12 novos), com 20
 ## PE-030 — Vestuário e meios de transporte
 
 Duas categorias offline com 12 termos cada (24 novos termos), 24 imagens vetoriais originais e 24 perguntas de 3 opções, com TTS en-GB. Consultar [docs/PE-030-CLOTHING-TRANSPORT.md](docs/PE-030-CLOTHING-TRANSPORT.md).
+
+
+## PE-031 — Família e partes do corpo humano
+
+Categorias `family` e `body` com 24 termos PT-PT/en-GB, 24 pictogramas originais offline e 24 perguntas com 3 opções. Ver [docs/PE-031-FAMILY-BODY.md](docs/PE-031-FAMILY-BODY.md).

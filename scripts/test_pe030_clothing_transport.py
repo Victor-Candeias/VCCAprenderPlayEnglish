@@ -14,7 +14,7 @@ class ClothingTransportTests(unittest.TestCase):
         self.lookup = {word["id"]: word for word in self.catalog["words"]}
 
     def test_catalog_counts_and_two_new_categories(self):
-        self.assertEqual((163, 139), validate_catalog(self.catalog))
+        self.assertEqual((187, 163), validate_catalog(self.catalog))
         words, questions = inspect_category_coverage(self.catalog)
         self.assertEqual((12, 12), (words["clothing"], words["transport"]))
         self.assertEqual((12, 12), (questions["clothing"], questions["transport"]))

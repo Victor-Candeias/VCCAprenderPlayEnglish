@@ -106,6 +106,8 @@ fun learningCategoryName(category: WordCategory): String {
         WordCategory.PHRASES -> R.string.category_phrases
         WordCategory.CLOTHING -> R.string.category_clothing
         WordCategory.TRANSPORT -> R.string.category_transport
+        WordCategory.FAMILY -> R.string.category_family
+        WordCategory.BODY -> R.string.category_body
     }
     return stringResource(resId)
 }

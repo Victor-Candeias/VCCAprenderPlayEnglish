@@ -107,7 +107,9 @@ fun PronunciationScreen(onBack: () -> Unit, words: List<WordEntry> = emptyList()
                     verticalArrangement = Arrangement.spacedBy(14.dp)
                 ) {
                     val newCategoryIllustration = if (word.category == WordCategory.CLOTHING ||
-                        word.category == WordCategory.TRANSPORT) {
+                        word.category == WordCategory.TRANSPORT ||
+                        word.category == WordCategory.FAMILY ||
+                        word.category == WordCategory.BODY) {
                         word.imageRef?.takeIf { it.startsWith("drawable/") }?.let { ref ->
                             context.resources.getIdentifier(
                                 ref.substringAfter("drawable/"), "drawable", context.packageName
@@ -130,6 +132,8 @@ fun PronunciationScreen(onBack: () -> Unit, words: List<WordEntry> = emptyList()
                         WordCategory.OBJECTS -> "🧸"
                         WordCategory.CLOTHING -> "👕"
                         WordCategory.TRANSPORT -> "🚆"
+                        WordCategory.FAMILY -> "👪"
+                        WordCategory.BODY -> "🖐"
                     }
                     Text(illustration, fontSize = 48.sp,
                         modifier = Modifier.testTag("pronunciation-illustration"))

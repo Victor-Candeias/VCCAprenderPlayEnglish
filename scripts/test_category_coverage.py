@@ -13,10 +13,10 @@ class CategoryCoverageTests(unittest.TestCase):
     def setUp(self):
         self.catalog = load_catalog()
 
-    def test_all_eight_categories_have_words_and_questions(self):
+    def test_all_ten_categories_have_words_and_questions(self):
         words, questions = inspect_category_coverage(self.catalog)
-        self.assertEqual(163, sum(words.values()))
-        self.assertEqual(139, sum(questions.values()))
+        self.assertEqual(187, sum(words.values()))
+        self.assertEqual(163, sum(questions.values()))
         self.assertEqual(15, words['colors'])
         self.assertEqual(11, questions['colors'])
         self.assertEqual(32, words['numbers'])
@@ -27,12 +27,16 @@ class CategoryCoverageTests(unittest.TestCase):
         self.assertEqual(24, words['objects'])
         self.assertEqual(12, words['clothing'])
         self.assertEqual(12, words['transport'])
-        self.assertTrue(all(count == 12 for category, count in words.items() if category not in ('colors', 'numbers', 'animals', 'food', 'objects', 'clothing', 'transport')))
+        self.assertEqual(12, words['family'])
+        self.assertEqual(12, words['body'])
+        self.assertTrue(all(count == 12 for category, count in words.items() if category not in ('colors', 'numbers', 'animals', 'food', 'objects', 'clothing', 'transport', 'family', 'body')))
         self.assertEqual(20, questions['food'])
         self.assertEqual(20, questions['objects'])
         self.assertEqual(12, questions['clothing'])
         self.assertEqual(12, questions['transport'])
-        self.assertTrue(all(count == 8 for category, count in questions.items() if category not in ('colors', 'numbers', 'animals', 'food', 'objects', 'clothing', 'transport')))
+        self.assertEqual(12, questions['family'])
+        self.assertEqual(12, questions['body'])
+        self.assertTrue(all(count == 8 for category, count in questions.items() if category not in ('colors', 'numbers', 'animals', 'food', 'objects', 'clothing', 'transport', 'family', 'body')))
 
     def test_catches_wrong_pt_pt_prompt(self):
         data = copy.deepcopy(self.catalog)

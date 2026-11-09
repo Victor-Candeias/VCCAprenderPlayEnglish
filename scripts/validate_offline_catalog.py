@@ -10,7 +10,7 @@ CATALOG_PATH = (
     / "app/src/main/assets/content/quiz-v1.json"
 )
 ID_PATTERN = re.compile(r"[a-z0-9]+(?:[._-][a-z0-9]+)*\Z")
-CATEGORIES = {"animals", "colors", "numbers", "food", "objects", "phrases", "clothing", "transport"}
+CATEGORIES = {"animals", "colors", "numbers", "food", "objects", "phrases", "clothing", "transport", "family", "body"}
 
 
 def check_id(value):
