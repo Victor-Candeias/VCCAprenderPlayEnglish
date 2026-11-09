@@ -640,3 +640,8 @@ Mais 20 expressões PT-PT/en-GB e 10 diálogos offline A/B mostrados na descober
 ## PE-038 — Som e leitura
 
 Preferências locais para ativar/desativar áudio, velocidade da voz en-GB e instruções de leitura, com interrupção imediata do playback. Ver [docs/PE-038-AUDIO-READING-PREFERENCES.md](docs/PE-038-AUDIO-READING-PREFERENCES.md).
+
+
+## PE-037 — Validação editorial do catálogo
+
+Validação automatizada PT-PT/en-GB e de idades, com relatório CSV para revisão e assinatura pedagógica humana. Ver [docs/PE-037-EDITORIAL-VALIDATION.md](docs/PE-037-EDITORIAL-VALIDATION.md).
