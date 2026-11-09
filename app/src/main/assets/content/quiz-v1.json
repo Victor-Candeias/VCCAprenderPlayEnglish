@@ -2539,7 +2539,7 @@
     },
     {
       "id": "weather.hot",
-      "ptPT": "Calor",
+      "ptPT": "Quente",
       "enGB": "Hot",
       "category": "weather",
       "ageRange": {
@@ -4415,7 +4415,7 @@
     },
     {
       "id": "quiz.weather.hot",
-      "prompt": "Como se diz «Calor» em inglês?",
+      "prompt": "Como se diz «Quente» em inglês?",
       "optionIds": [
         "weather.hot",
         "weather.rainbow",
