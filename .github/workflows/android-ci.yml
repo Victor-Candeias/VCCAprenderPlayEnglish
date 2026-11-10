@@ -84,6 +84,8 @@ jobs:
           set -euo pipefail
           python3 scripts/validate_offline_catalog.py
           python3 scripts/validate_category_coverage.py
+          python3 scripts/validate_pe039_offline.py
+          python3 -m unittest discover -s scripts -p "test_pe039_offline.py" -v
           python3 -m unittest discover -s scripts -p "test_offline_catalog.py" -v
           python3 -m unittest discover -s scripts -p "test_category_coverage.py" -v
           python3 -m unittest discover -s scripts -p "test_pe025_colours.py" -v

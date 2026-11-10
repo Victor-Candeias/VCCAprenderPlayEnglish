@@ -15,6 +15,10 @@ object EnglishVoicePolicy {
     fun usableVoice(locale: Locale?, requiresNetwork: Boolean): Boolean =
         validLocale(locale) && !requiresNetwork
 
+    /** A voice advertised by the TTS engine must actually have its data installed. */
+    fun usableInstalledVoice(locale: Locale?, requiresNetwork: Boolean, installed: Boolean): Boolean =
+        usableVoice(locale, requiresNetwork) && installed
+
     fun hasCountryVoice(availability: Int, countryAvailableThreshold: Int): Boolean =
         availability >= countryAvailableThreshold
 }
