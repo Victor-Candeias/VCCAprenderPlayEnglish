@@ -182,3 +182,53 @@ jobs:
             echo "Descarrega o artefacto **VCCAprenderPlayEnglish-debug-${GITHUB_RUN_NUMBER}** nesta execução."
             echo "Assinatura Debug verificada; a compatibilidade com o host exige certificado coincidente em ambos os APKs."
           } >> "${GITHUB_STEP_SUMMARY}"
+
+  pe041-ui:
+    name: PE-041 Compose UI tests on Android emulator
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          packages: 'platform-tools'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Enable KVM access
+        run: |
+          if [ -e /dev/kvm ]; then sudo chmod 666 /dev/kvm; fi
+
+      - name: Run PE-041 Compose tests in emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 30
+          target: google_apis
+          arch: x86_64
+          profile: pixel_2
+          disable-animations: true
+          emulator-boot-timeout: 900
+          script: |
+            chmod +x ./gradlew
+            ./gradlew :app:connectedDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=com.vcc.aprender.playenglish.Pe041ComposeUiTest --no-daemon --max-workers=2 --no-parallel --console=plain
+
+      - name: Upload PE-041 instrumented test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: PE-041-androidTest-${{ github.run_number }}
+          path: |
+            app/build/outputs/androidTest-results/
+            app/build/reports/androidTests/
+          if-no-files-found: ignore
+          retention-days: 14

@@ -645,3 +645,8 @@ Preferências locais para ativar/desativar áudio, velocidade da voz en-GB e ins
 ## PE-039 — Modo offline e voz inglesa britânica
 
 Catálogo e quizzes locais; seleção explícita de voz en-GB instalada sem rede, mensagens claras quando a voz falta e testes de proteção offline. Ver [docs/PE-039-OFFLINE-TTS.md](docs/PE-039-OFFLINE-TTS.md).
+
+
+## PE-041 — Testes instrumentados de UI Compose
+
+Testes reais de interação dos dois modos executados no emulador Android da CI. Ver [docs/PE-041-COMPOSE-UI-TESTS.md](docs/PE-041-COMPOSE-UI-TESTS.md).
