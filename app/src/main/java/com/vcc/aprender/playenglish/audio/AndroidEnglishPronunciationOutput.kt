@@ -78,7 +78,7 @@ class AndroidEnglishPronunciationOutput(
                     EnglishVoicePolicy.usableInstalledVoice(
                         voice.locale,
                         voice.isNetworkConnectionRequired,
-                        !voice.features.orEmpty().contains(Voice.KEY_FEATURE_NOT_INSTALLED)
+                        !voice.features.orEmpty().contains(TextToSpeech.Engine.KEY_FEATURE_NOT_INSTALLED)
                     )
                 }
                 .sortedWith(compareBy<Voice>({ it.quality }, { it.latency }).thenBy { it.name })
@@ -92,7 +92,7 @@ class AndroidEnglishPronunciationOutput(
             if (selected == null ||
                 !EnglishVoicePolicy.usableInstalledVoice(
                     selected.locale, selected.isNetworkConnectionRequired,
-                    !selected.features.orEmpty().contains(Voice.KEY_FEATURE_NOT_INSTALLED)
+                    !selected.features.orEmpty().contains(TextToSpeech.Engine.KEY_FEATURE_NOT_INSTALLED)
                 )) {
                 status = EnglishTtsStatus.VOICE_MISSING
                 return
@@ -154,7 +154,7 @@ class AndroidEnglishPronunciationOutput(
         if (active == null || installedVoice == null || active.name != installedVoice?.name ||
             !EnglishVoicePolicy.usableInstalledVoice(
                 active.locale, active.isNetworkConnectionRequired,
-                !active.features.orEmpty().contains(Voice.KEY_FEATURE_NOT_INSTALLED)
+                !active.features.orEmpty().contains(TextToSpeech.Engine.KEY_FEATURE_NOT_INSTALLED)
             )) {
             stop()
             installedVoice = null
