@@ -123,7 +123,11 @@ class Pe040CatalogDeckScoringRegressionTest {
             request.profileId, 1, 1, 2))
     }
 
-    @Test fun hostRejectsConflictingScoreAndSendsOnlyOnce() {
+    @Test fun hostRejectsConflictingScoreWithoutAndroidIntent() {
+        // Pure JVM tests may verify the score/session guards, but cannot call
+        // finishQuizOnce successfully: it constructs an Android Intent.
+        // Successful delivery and exactly-once serialization are covered by
+        // PluginQuizResultSenderInstrumentedTest on an Android device/emulator.
         val request = GameProtocol.newRequest(PlayEnglishPlugin.GAME_ID, 42L)
         val session = PluginSessionStateHolder.start(request)
         assertTrue(session.beginQuiz(listOf("q1", "q2")))
@@ -133,8 +137,12 @@ class Pe040CatalogDeckScoringRegressionTest {
         assertNull(session.finishQuizOnce(0, 2))
         assertNull(session.finishQuizOnce(1, 3))
         assertFalse(session.recordAnswer("q2", true))
-        assertNotNull(session.finishQuizOnce(1, 2))
-        assertNull(session.finishQuizOnce(1, 2))
-        assertFalse(session.isActive)
+        assertEquals(mapOf("q1" to true, "q2" to false),
+            session.snapshot().quiz?.answers)
+        assertTrue(session.isActive)
+        assertTrue(GameValidation.validResult(
+            request, request.gameId, request.sessionId, request.profileId,
+            1, 1, 2
+        ))
     }
 }

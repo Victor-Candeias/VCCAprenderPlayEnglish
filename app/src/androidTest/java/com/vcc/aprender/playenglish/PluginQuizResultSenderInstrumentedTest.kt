@@ -44,6 +44,24 @@ class PluginQuizResultSenderInstrumentedTest {
         }.finishIfComplete()))
     }
 
+    @Test fun hostSessionRejectsWrongScoresAndEmitsResultExactlyOnce() {
+        val request = GameProtocol.newRequest(PlayEnglishPlugin.GAME_ID, 42L)
+        val session = com.vcc.aprender.playenglish.plugin.PluginSessionStateHolder.start(request)
+        assertTrue(session.beginQuiz(listOf("q1", "q2")))
+        assertTrue(session.recordAnswer("q1", true))
+        assertNull(session.finishQuizOnce(1, 2))
+        assertTrue(session.recordAnswer("q2", false))
+        assertNull(session.finishQuizOnce(0, 2))
+        assertNull(session.finishQuizOnce(1, 3))
+        assertFalse(session.recordAnswer("q2", true))
+        val intent = requireNotNull(session.finishQuizOnce(1, 2))
+        val score = requireNotNull(GameProtocol.readResult(intent, request))
+        assertEquals(1, score.correctAnswers)
+        assertEquals(2, score.totalQuestions)
+        assertNull(session.finishQuizOnce(1, 2))
+        assertFalse(session.isActive)
+    }
+
     @Test fun cancelOrIncompleteQuizDoesNotGenerateAResult() {
         val request = GameProtocol.newRequest(PlayEnglishPlugin.GAME_ID, 99L)
         val sender = PluginQuizResultSender(request)
