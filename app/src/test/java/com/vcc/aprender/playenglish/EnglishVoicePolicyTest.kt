@@ -20,6 +20,14 @@ class EnglishVoicePolicyTest {
         assertFalse(EnglishVoicePolicy.usableVoice(Locale.US, false))
     }
 
+    @Test fun offlineVoiceMustBeInstalledAndBritish() {
+        assertTrue(EnglishVoicePolicy.usableInstalledVoice(Locale.UK, false, true))
+        assertFalse(EnglishVoicePolicy.usableInstalledVoice(Locale.UK, false, false))
+        assertFalse(EnglishVoicePolicy.usableInstalledVoice(Locale.UK, true, true))
+        assertFalse(EnglishVoicePolicy.usableInstalledVoice(Locale.US, false, true))
+        assertFalse(EnglishVoicePolicy.usableInstalledVoice(null, false, true))
+    }
+
     @Test fun languageOnlyAvailabilityDoesNotSatisfyCountryRequirement() {
         assertFalse(EnglishVoicePolicy.hasCountryVoice(0, 1))
         assertTrue(EnglishVoicePolicy.hasCountryVoice(1, 1))

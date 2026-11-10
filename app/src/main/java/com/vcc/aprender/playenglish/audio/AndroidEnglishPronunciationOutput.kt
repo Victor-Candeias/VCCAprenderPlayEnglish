@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Handler
 import android.os.Looper
 import android.speech.tts.TextToSpeech
+import android.speech.tts.Voice
 import android.speech.tts.UtteranceProgressListener
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -23,6 +24,7 @@ class AndroidEnglishPronunciationOutput(
 ) : PronunciationOutput, AutoCloseable {
     private val main = Handler(Looper.getMainLooper())
     private var engine: TextToSpeech? = null
+    private var installedVoice: Voice? = null
     private val turnGate = SpeechTurnGate()
     private var closed = false
     private var speechRate = ReadingPreferences(speechRate = initialSpeechRate).normalized().speechRate
@@ -69,14 +71,33 @@ class AndroidEnglishPronunciationOutput(
                 status = EnglishTtsStatus.VOICE_MISSING
                 return
             }
-            // Some engines silently substitute en-US or a network-only voice.
-            val chosen = tts.voice
-            if (chosen == null || !EnglishVoicePolicy.usableVoice(
-                    chosen.locale, chosen.isNetworkConnectionRequired
+            // setLanguage can silently pick en-US or a cloud voice. Select an
+            // explicitly installed offline en-GB voice instead of using the default.
+            val chosen = tts.voices.orEmpty()
+                .filter { voice ->
+                    EnglishVoicePolicy.usableInstalledVoice(
+                        voice.locale,
+                        voice.isNetworkConnectionRequired,
+                        !voice.features.orEmpty().contains(Voice.KEY_FEATURE_NOT_INSTALLED)
+                    )
+                }
+                .sortedWith(compareBy<Voice>({ it.quality }, { it.latency }).thenBy { it.name })
+                .lastOrNull()
+            if (chosen == null || tts.setVoice(chosen) != TextToSpeech.SUCCESS) {
+                status = EnglishTtsStatus.VOICE_MISSING
+                return
+            }
+            // Refuse fallback after the engine accepts the voice selection.
+            val selected = tts.voice
+            if (selected == null ||
+                !EnglishVoicePolicy.usableInstalledVoice(
+                    selected.locale, selected.isNetworkConnectionRequired,
+                    !selected.features.orEmpty().contains(Voice.KEY_FEATURE_NOT_INSTALLED)
                 )) {
                 status = EnglishTtsStatus.VOICE_MISSING
                 return
             }
+            installedVoice = selected
             tts.setSpeechRate(speechRate)
             tts.setOnUtteranceProgressListener(object : UtteranceProgressListener() {
                 override fun onStart(utteranceId: String?) = Unit
@@ -90,6 +111,7 @@ class AndroidEnglishPronunciationOutput(
             })
             status = EnglishTtsStatus.READY
         } catch (_: RuntimeException) {
+            installedVoice = null
             status = EnglishTtsStatus.ERROR
         }
     }
@@ -126,6 +148,19 @@ class AndroidEnglishPronunciationOutput(
         if (closed || status != EnglishTtsStatus.READY ||
             languageTag != EnglishVoicePolicy.LANGUAGE_TAG || text.isBlank()) return false
         val tts = engine ?: return false
+        // A TTS engine can change its active voice while the screen is open.
+        // Never invoke speak() if the approved installed en-GB voice is lost.
+        val active = try { tts.voice } catch (_: RuntimeException) { null }
+        if (active == null || installedVoice == null || active.name != installedVoice?.name ||
+            !EnglishVoicePolicy.usableInstalledVoice(
+                active.locale, active.isNetworkConnectionRequired,
+                !active.features.orEmpty().contains(Voice.KEY_FEATURE_NOT_INSTALLED)
+            )) {
+            stop()
+            installedVoice = null
+            status = EnglishTtsStatus.VOICE_MISSING
+            return false
+        }
         val id = UUID.randomUUID().toString()
         if (!turnGate.tryBegin(id)) return false
         lastPlaybackFailed = false
@@ -166,6 +201,7 @@ class AndroidEnglishPronunciationOutput(
         if (closed) return
         closed = true
         turnGate.cancel()
+        installedVoice = null
         runCatching { engine?.stop() }
         runCatching { engine?.shutdown() }
         engine = null

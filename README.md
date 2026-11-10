@@ -640,3 +640,8 @@ Mais 20 expressões PT-PT/en-GB e 10 diálogos offline A/B mostrados na descober
 ## PE-038 — Som e leitura
 
 Preferências locais para ativar/desativar áudio, velocidade da voz en-GB e instruções de leitura, com interrupção imediata do playback. Ver [docs/PE-038-AUDIO-READING-PREFERENCES.md](docs/PE-038-AUDIO-READING-PREFERENCES.md).
+
+
+## PE-039 — Modo offline e voz inglesa britânica
+
+Catálogo e quizzes locais; seleção explícita de voz en-GB instalada sem rede, mensagens claras quando a voz falta e testes de proteção offline. Ver [docs/PE-039-OFFLINE-TTS.md](docs/PE-039-OFFLINE-TTS.md).
