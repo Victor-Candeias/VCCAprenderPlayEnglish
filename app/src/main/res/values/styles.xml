@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Base.Theme.PlayEnglish" parent="android:style/Theme.Material.Light.NoActionBar">
+        <!-- The app always uses a light background, including behind system bars. -->
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+    <style name="Theme.PlayEnglish" parent="Base.Theme.PlayEnglish" />
+</resources>

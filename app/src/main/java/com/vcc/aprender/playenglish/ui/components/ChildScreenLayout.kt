@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -32,7 +33,12 @@ fun ChildScreenLayout(
     content: @Composable ColumnScope.() -> Unit
 ) {
     Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.TopCenter) {
+        // Keep the scrolling viewport clear of system bars, cutouts and the keyboard.
+        // Apply insets outside the scroll so content cannot scroll under those areas.
+        Box(
+            modifier = Modifier.fillMaxSize().safeDrawingPadding().testTag("screen-safe-viewport"),
+            contentAlignment = Alignment.TopCenter
+        ) {
             Column(
                 modifier = Modifier.fillMaxSize()
                     .verticalScroll(rememberScrollState())
